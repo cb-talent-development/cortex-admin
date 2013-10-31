@@ -1,7 +1,4 @@
-angular.module('cortex.auth.resource', [
-    'ng',
-    'cortex.auth'
-])
+angular.module('cortex.auth.resource', [])
 
 .factory('authorizedResource', function(authService) {
 

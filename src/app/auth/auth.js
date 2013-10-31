@@ -1,27 +1,28 @@
 angular.module('cortex.auth', [
     'ngResource',
     'ngCookies',
-    'base64',
-    'cortex.user.resources'
+    'base64'
 ])
 
-.factory('authService', function($rootScope, $resource, $cookieStore, base64, User) {
+.factory('authService', function($cookieStore, $rootScope, $resource, base64) {
 
     var credentials = $cookieStore.get('credentials') || {encoded: ''};
 
     return {
-        login: function(username, password, error) {
-
+        login: function(username, password) {
             // Persist plaintext encoded credentials for HTTP Basic auth.
             // This is a placeholder until OAuth is implemented.
             credentials.encoded = base64.encode(username + ':' + password);
             $cookieStore.put('credentials', credentials);
 
-            $rootScope.user = User.$me();
-        },
+            var userResource = $resource('/users/:id', {id: '@id'}, {
+                me: {
+                    method: 'GET', 
+                    params: {id: 'me'}
+                }
+            });
 
-        addAuth: function(httpConfig) {
-            httpConfig.headers = angular.extend({}, {'Authorization': 'Basic ' + credentials.encoded}, httpConfig.headers || {});
+            $rootScope.user = userResource.me();
         },
 
         credentials: credentials
