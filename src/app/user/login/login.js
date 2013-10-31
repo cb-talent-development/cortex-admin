@@ -1,7 +1,5 @@
 angular.module('cortex.user.login', [
     'ui.state',
-    'placeholders',
-    'ui.bootstrap',
     'cortex.auth'
 ])
 
