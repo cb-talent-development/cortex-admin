@@ -11,7 +11,7 @@ angular.module('cortex', [
     $urlRouterProvider.otherwise('/login');
 })
 
-.controller('AppCtrl', function($scope, $location) {
+.controller('CortexAdminCtrl', function($scope, $location) {
 
     $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) { 
         if (angular.isDefined(toState.data.pageTitle)) {
