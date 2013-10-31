@@ -1,4 +1,4 @@
-angular.module('cortex.user', [
+angular.module('cortex.user.resources', [
     'cortex.auth.resource'
 ])
 

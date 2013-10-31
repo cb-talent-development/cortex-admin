@@ -1,11 +1,11 @@
 angular.module('cortex.auth', [
     'ngResource',
     'ngCookies',
-    'cortex.user.resources',
-    'base64'
+    'base64',
+    'cortex.user.resources'
 ])
 
-.factory('AuthService', function($rootScope, $resource, $cookieStore) {
+.factory('authService', function($rootScope, $resource, $cookieStore, base64, User) {
 
     var credentials = $cookieStore.get('credentials') || {encoded: ''};
 
@@ -17,7 +17,7 @@ angular.module('cortex.auth', [
             credentials.encoded = base64.encode(username + ':' + password);
             $cookieStore.put('credentials', credentials);
 
-            $rootScope.user = User.me();
+            $rootScope.user = User.$me();
         },
 
         addAuth: function(httpConfig) {
