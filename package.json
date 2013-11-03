@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "postinstall": "echo grunt runner; ./node_modules/grunt-cli/bin/grunt build"
+    "postinstall": "./node_modules/grunt-cli/bin/grunt"
   },
   "author": "Josh David Miller",
   "name": "ng-boilerplate",
