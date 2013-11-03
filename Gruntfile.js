@@ -566,6 +566,10 @@ module.exports = function ( grunt ) {
     'karma:continuous' 
   ]);
 
+  grunt.registerTask( 'heroku', [
+    'build'
+  ]);
+
   /**
    * The `compile` task gets your app ready for deployment by concatenating and
    * minifying your code.
