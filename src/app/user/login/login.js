@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('cortex.user.login', [
     'ui.router.state',
     'cortex.auth'

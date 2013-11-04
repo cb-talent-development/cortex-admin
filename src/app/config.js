@@ -1,4 +1,5 @@
 /// <reference path="/reference.js"/>
+'use strict';
 
 angular.module('cortex.config', [])
 
