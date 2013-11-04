@@ -18,6 +18,7 @@ module.exports = function ( grunt ) {
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-ngmin');
   grunt.loadNpmTasks('grunt-html2js');
+  grunt.loadNpmTasks('grunt-ftp-deploy');
 
   /**
    * Load in our build configuration file.
@@ -49,6 +50,19 @@ module.exports = function ( grunt ) {
         ' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
         ' * Licensed <%= pkg.licenses.type %> <<%= pkg.licenses.url %>>\n' +
         ' */\n'
+    },
+
+    'ftp-deploy': {
+      build: {
+        auth: {
+          host: 'whump.net',
+          port: 21,
+          authKey: 'key1'
+        },
+        src: 'build',
+        dest: 'cb/cortex-admin',
+        exclusions: ['path/to/source/folder/**/.DS_Store', 'path/to/source/folder/**/Thumbs.db', 'dist/tmp']
+      }
     },
 
     /**
@@ -563,7 +577,7 @@ module.exports = function ( grunt ) {
     'clean', 'html2js', 'jshint', 'coffeelint', 'coffee', 'recess:build',
     'concat:build_css', 'copy:build_app_assets', 'copy:build_vendor_assets',
     'copy:build_appjs', 'copy:build_vendorjs', 'index:build', 'karmaconfig',
-    'karma:continuous' 
+    'karma:continuous'
   ]);
 
   /**
@@ -571,7 +585,8 @@ module.exports = function ( grunt ) {
    * minifying your code.
    */
   grunt.registerTask( 'compile', [
-    'recess:compile', 'copy:compile_assets', 'ngmin', 'concat:compile_js', 'uglify', 'index:compile'
+    'recess:compile', 'copy:compile_assets', 'ngmin', 'concat:compile_js', 'uglify',
+    'index:compile'
   ]);
 
   /**
