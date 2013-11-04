@@ -1,5 +1,5 @@
 angular.module('cortex.user.login', [
-    'ui.state',
+    'ui.router.state',
     'cortex.auth'
 ])
 
@@ -19,7 +19,7 @@ angular.module('cortex.user.login', [
 .controller('LoginCtrl', function($scope, authService) {
 
     $scope.login = function(username, password) {
-        authService.login(username, password);
+        authService.login($scope, username, password);
     };
     
 });

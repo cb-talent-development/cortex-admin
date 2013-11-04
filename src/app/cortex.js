@@ -1,10 +1,11 @@
+/// <reference path="/reference.js"/>
+
 angular.module('cortex', [
     'templates-app',
     'templates-common',
     'cortex.user.login',
-    'cortex.user.resources',
-    'ui.state',
-    'ui.route'
+    'ui.router.state',
+    'ui.router'
 ])
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -17,6 +18,10 @@ angular.module('cortex', [
         if (angular.isDefined(toState.data.pageTitle)) {
             $scope.pageTitle = toState.data.pageTitle + " | Cortex";
         }
+    });
+
+    $scope.$on('userLoginSuccess', function(event, user, oldUser) {
+
     });
     
 });

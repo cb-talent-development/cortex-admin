@@ -1,4 +1,9 @@
-angular.module('cortex.auth.resource', [])
+/// <reference path="/reference.js"/>
+
+angular.module('cortex.auth.resource', [
+    'ngResource',
+    'cortex.auth'
+])
 
 .factory('authorizedResource', function(authService) {
 
@@ -17,8 +22,8 @@ angular.module('cortex.auth.resource', [])
     return function(url, paramDefaults, actions) {
 
         // Iterate over all resource actions and allow the auth service to manipulate it
-        forEach(extend({}, DEFAULT_ACTIONS, actions), function(action) {
-            authService.addAuth(action);            
+        forEach(extend({}, DEFAULT_ACTIONS, actions), function(httpConfig) {
+            authService.addAuth(httpConfig);
         });
 
         return $resource(url, paramDefaults, actions);
