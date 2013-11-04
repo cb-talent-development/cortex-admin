@@ -4,6 +4,7 @@ angular.module('cortex', [
     'templates-app',
     'templates-common',
     'cortex.user.login',
+    'cortex.user.home',
     'ui.router.state',
     'ui.router'
 ])
@@ -20,8 +21,8 @@ angular.module('cortex', [
         }
     });
 
-    $scope.$on('userLoginSuccess', function(event, user, oldUser) {
-
+    $scope.$on('userLoginSuccess', function (event, user, oldUser) {
+        $location.url('/home');
     });
     
 });

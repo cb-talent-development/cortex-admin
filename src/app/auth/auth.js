@@ -27,10 +27,10 @@ angular.module('cortex.auth', [
             var userResource = $resource(config.api.baseUrl + '/users/:id', {id: '@id'}, {me: meHttpConfig});
 
             var oldUser = $rootScope.user;
-            var user = userResource.me();
-            $rootScope.user = user;
-            
-            scope.$emit('userLoginSuccess', user, oldUser);
+            var user = userResource.me(function () {
+                $rootScope.user = user;
+                scope.$emit('userLoginSuccess', user, oldUser);
+            });
         },
         
         addAuth: function (httpConfig) {
