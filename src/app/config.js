@@ -6,6 +6,6 @@ angular.module('cortex.config', [])
 // environment specific configuration.
 .constant('config',  {
     api: {
-        baseUrl: 'http://dev.cbencompass.com'
+        baseUrl: 'http://localhost:56854'
     }
 });

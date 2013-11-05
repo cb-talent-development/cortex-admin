@@ -6,12 +6,8 @@ angular.module('cortex.user.login', [
 .config(function($stateProvider) {
     $stateProvider.state('login', {
         url: '/login',
-        views: {
-            'main': {
-                controller: 'LoginCtrl',
-                templateUrl: 'user/login/login.tpl.html'
-            }
-        },
+        controller: 'LoginCtrl',
+        templateUrl: 'user/login/login.tpl.html',
         data: {pageTitle: 'Login'}
     });
 })

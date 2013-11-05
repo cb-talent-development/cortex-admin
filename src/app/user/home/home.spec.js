@@ -6,7 +6,7 @@ describe('HomeCtrl', function() {
 
         beforeEach(module('cortex.user.home'));
 
-        beforeEach(inject(function (_$controller_, _$rootScope_) {
+        beforeEach(inject(function(_$controller_, _$rootScope_) {
             scope = _$rootScope_.$new();
             rootScope = _$rootScope_;
 
@@ -16,7 +16,7 @@ describe('HomeCtrl', function() {
             });
         }));
 
-        it('should construct', inject(function () {
+        it('should construct', inject(function() {
             expect(HomeCtrl).toBeTruthy();
         }));
     });
