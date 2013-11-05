@@ -1,5 +1,7 @@
-describe('CortexAdminCtrl', function() {
-    describe('isCurrentUrl', function() {
+/// <reference path="/reference.js"/>
+
+describe('CortexAdminCtrl', function () {
+    describe('Config or Constructor (TODO)', function () {
         var CortexAdminCtrl, $location, $scope;
 
         beforeEach(module('cortex'));
@@ -7,10 +9,14 @@ describe('CortexAdminCtrl', function() {
         beforeEach(inject(function($controller, _$location_, $rootScope) {
             $location = _$location_;
             $scope = $rootScope.$new();
-            CortexAdminCtrl = $controller('CortexAdminCtrl', {$location: $location, $scope: $scope});
+            
+            CortexAdminCtrl = $controller('CortexAdminCtrl', {
+                $location: $location,
+                $scope: $scope
+            });
         }));
 
-        it('should pass a dummy test', inject(function() {
+        it('should construct', inject(function() {
             expect(CortexAdminCtrl).toBeTruthy();
         }));
     });

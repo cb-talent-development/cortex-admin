@@ -306,7 +306,8 @@ module.exports = function ( grunt ) {
         noarg: true,
         sub: true,
         boss: true,
-        eqnull: true
+        eqnull: true,
+        debug: true
       },
       globals: {}
     },
@@ -371,7 +372,7 @@ module.exports = function ( grunt ) {
         background: true
       },
       continuous: {
-        singleRun: true
+        singleRun: false
       }
     },
 

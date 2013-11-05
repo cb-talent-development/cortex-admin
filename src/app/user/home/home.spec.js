@@ -1,15 +1,23 @@
-describe('Controller: HomeCtrl', function() {
-    beforeEach(module('cortex.user.home'));
+/// <reference path="/reference.js"/>
 
-    beforeEach(inject(function ($rootScope, $controller) {
-        scope = $rootScope.$new();
+describe('HomeCtrl', function() {
+    describe('Config or Constructor (TODO)', function () {
+        var HomeCtrl, scope, rootScope;
 
-        HomeCtrl = $controller('HomeCtrl', {
-            $scope: scope
-        });
-    }));
+        beforeEach(module('cortex.user.home'));
 
-    it('should test scope.user to equal rootScope.user', function () {
-        expect(scope.user).toBe(rootScope.user);
+        beforeEach(inject(function (_$controller_, _$rootScope_) {
+            scope = _$rootScope_.$new();
+            rootScope = _$rootScope_;
+
+            HomeCtrl = _$controller_('HomeCtrl', {
+                $scope: scope,
+                $rootScope: rootScope
+            });
+        }));
+
+        it('should construct', inject(function () {
+            expect(HomeCtrl).toBeTruthy();
+        }));
     });
 });

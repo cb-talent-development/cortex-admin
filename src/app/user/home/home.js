@@ -1,4 +1,6 @@
-﻿angular.module('cortex.user.home', [])
+﻿angular.module('cortex.user.home', [
+    'ui.router.state'
+])
 
 .config(function ($stateProvider) {
     $stateProvider.state('home', {
