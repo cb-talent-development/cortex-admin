@@ -1,5 +1,3 @@
-'use strict';
-
 describe('CortexAdminCtrl', function() {
     describe('isCurrentUrl', function() {
         var CortexAdminCtrl, $location, $scope;

@@ -1,6 +1,4 @@
-﻿'use strict';
-
-angular.module('cortex.user.home', [])
+﻿angular.module('cortex.user.home', [])
 
 .config(function ($stateProvider) {
     $stateProvider.state('home', {

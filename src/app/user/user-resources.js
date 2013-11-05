@@ -1,5 +1,3 @@
-'use strict';
-
 angular.module('cortex.user.resources', [
     'cortex.auth.resource',
     'cortex.config'

@@ -1,5 +1,3 @@
-'use strict';
-
 angular.module('base64', [])
 
 .factory('base64', function() {
