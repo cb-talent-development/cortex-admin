@@ -1,3 +1,10 @@
+/**
+*
+*  Base64 encode / decode adopted from
+*  http://www.webtoolkit.info/javascript-base64.html
+*
+**/
+
 angular.module('base64', [])
 
 .factory('base64', function() {
