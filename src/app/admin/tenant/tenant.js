@@ -1,7 +1,9 @@
 ﻿/// <reference path="/reference.js"/>
 
 angular.module('cortex.admin.tenant', [
-    'ui.router.state'
+    'ui.router.state',
+    'cortex.admin.tenant.hierarchy',
+    'cortex.admin.tenant.select'
 ])
 
 .config(function ($stateProvider) {

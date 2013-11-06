@@ -1,16 +1,14 @@
 ﻿/// <reference path="/reference.js"/>
 
 angular.module('cortex.admin', [
-    'ui.router.state'
+    'ui.router.state',
+    'cortex.admin.tenant'
 ])
 
-.config(function ($stateProvider) {
+.config(function($stateProvider) {
     $stateProvider.state('admin', {
+            abstract: true,
             url: '/admin',
-            controller: 'AdminCtrl',
-            templateUrl: 'admin/admin.tpl.html'
+            template: '<ui-view/>'
         });
-})
-
-.controller('AdminCtrl', function () {
 });

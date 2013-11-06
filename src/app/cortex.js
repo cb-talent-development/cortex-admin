@@ -3,13 +3,12 @@
 angular.module('cortex', [
     'templates-app',
     'templates-common',
-    'cortex.user.login',
-    'cortex.user.home',
+    'ui.router',
     'ui.router.state',
-    'ui.router'
+    'cortex.admin'
 ])
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($urlRouterProvider) {
     $urlRouterProvider.otherwise('/login');
 })
 
@@ -26,5 +25,4 @@ angular.module('cortex', [
     $scope.$on('userLoginSuccess', function (event, user, oldUser) {
         $location.url('/home');
     });
-    
 });

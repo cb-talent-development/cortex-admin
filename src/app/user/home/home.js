@@ -1,6 +1,4 @@
 ﻿angular.module('cortex.user.home', [
-    'cortex.admin',
-    'cortex.admin.tenant',
     'ui.router.state'
 ])
 
