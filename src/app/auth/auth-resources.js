@@ -1,6 +1,6 @@
 /// <reference path="/reference.js"/>
 
-angular.module('cortex.auth.resource', [
+angular.module('cortex.auth.resources', [
     'ngResource',
     'cortex.auth'
 ])

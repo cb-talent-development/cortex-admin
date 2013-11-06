@@ -62,6 +62,7 @@ module.exports = {
    */
   vendor_files: {
     js: [
+      'vendor/jquery/jquery.min.js',
       'vendor/angular/angular.js',
       'vendor/angular-resource/angular-resource.js',
       'vendor/angular-cookies/angular-cookies.js',
@@ -69,13 +70,10 @@ module.exports = {
       'vendor/placeholders/angular-placeholders-0.0.1-SNAPSHOT.min.js',
       'vendor/angular-ui-router/release/angular-ui-router.js',
       'vendor/angular-ui-utils/modules/route/route.js',
-      'vendor/jquery/jquery.min.js',
       'vendor/kendo-ui/js/kendo.web.min.js',
       'vendor/angular-kendo-ui/build/angular-kendo.min.js'
     ],
     css: [
-      'vendor/kendo-ui/styles/kendo.common.min.css',
-      'vendor/kendo-ui/styles/kendo.bootstrap.min.css'
     ],
     assets: [
     ]

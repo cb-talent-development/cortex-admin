@@ -1,5 +1,5 @@
 angular.module('cortex.user.resources', [
-    'cortex.auth.resource',
+    'cortex.auth.resources',
     'cortex.config'
 ])
 

@@ -1,21 +1,26 @@
 <!DOCTYPE html>
-<html ng-app="cortex" ng-controller="CortexAdminCtrl">
+<html xmlns:ng="http://angularjs.org">
+
   <head>
     <title ng-bind="pageTitle"></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- font awesome from BootstrapCDN -->
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.2/css/font-awesome.min.css" rel="stylesheet">
 
+    <!-- kendo ui css+assets from CloudFront -->
+    <link href="https://da7xgjtj801h2.cloudfront.net/2013.1.319/styles/kendo.common.min.css" rel="stylesheet">
+    <link href="https://da7xgjtj801h2.cloudfront.net/2013.1.319/styles/kendo.bootstrap.min.css" rel="stylesheet">
+    
     <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
     <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
+  </head>
+
+  <body ng-controller="CortexAdminCtrl">
+    <div class="container" ui-view></div>
 
     <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
     <script type="text/javascript" src="<%= file %>"></script><% }); %>
-  </head>
-
-  <body>
-    <div class="container" ui-view></div>
   </body>
 
 </html>
