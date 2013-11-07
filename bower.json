@@ -14,5 +14,9 @@
     "kendo-ui": "~2013.1.319",
     "angular-kendo-ui": "~0.5.1"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "resolutions": {
+    "angular": "~1.2.0-rc.3",
+    "jquery": "~1.9.1"
+  }
 }
