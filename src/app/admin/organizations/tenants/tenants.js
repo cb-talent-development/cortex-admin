@@ -5,7 +5,7 @@ angular.module('cortex.admin.organizations.tenants', [
         'cortex.admin.organizations.tenants.hierarchy'
     ])
 
-    .config(function($stateProvider) {
+    .config(function ($stateProvider) {
         $stateProvider.state('admin.organizations.tenants', {
             abstract: true,
             url: '/tenants',

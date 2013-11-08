@@ -1,31 +1,31 @@
 /// <reference path="/reference.js"/>
 
 angular.module('cortex.shared.auth.resources', [
-    'ngResource',
-    'cortex.shared.auth'
-])
+        'ngResource',
+        'cortex.shared.auth'
+    ])
 
-.factory('authorizedResource', function($resource, authService) {
+    .factory('authorizedResource', function ($resource, authService) {
 
-    var forEach = angular.forEach,
-        extend = angular.extend;
+        var forEach = angular.forEach,
+            extend = angular.extend;
 
-    // Default actions from ngResource/resource.js
-    var DEFAULT_ACTIONS = {
-        'get':    {method:'GET'},
-        'save':   {method:'POST'},
-        'query':  {method:'GET', isArray:true},
-        'remove': {method:'DELETE'},
-        'delete': {method:'DELETE'}
-    };
+        // Default actions from ngResource/resource.js
+        var DEFAULT_ACTIONS = {
+            'get': {method: 'GET'},
+            'save': {method: 'POST'},
+            'query': {method: 'GET', isArray: true},
+            'remove': {method: 'DELETE'},
+            'delete': {method: 'DELETE'}
+        };
 
-    return function(url, paramDefaults, actions) {
+        return function (url, paramDefaults, actions) {
 
-        // Iterate over all resource actions and allow the auth service to manipulate it
-        forEach(extend({}, DEFAULT_ACTIONS, actions), function(httpConfig) {
-            authService.addAuth(httpConfig);
-        });
+            // Iterate over all resource actions and allow the auth service to manipulate it
+            forEach(extend({}, DEFAULT_ACTIONS, actions), function (httpConfig) {
+                authService.addAuth(httpConfig);
+            });
 
-        return $resource(url, paramDefaults, actions);
-    };
-});
+            return $resource(url, paramDefaults, actions);
+        };
+    });
