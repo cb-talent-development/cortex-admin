@@ -2,7 +2,7 @@
 
 angular.module('cortex.admin', [
     'ui.router.state',
-    'cortex.admin.tenant'
+    'cortex.admin.organizations'
 ])
 
 .config(function($stateProvider) {

@@ -5,7 +5,7 @@
 *
 **/
 
-angular.module('base64', [])
+angular.module('common.base64', [])
 
 .factory('base64', function() {
     var keyStr = 'ABCDEFGHIJKLMNOP' +

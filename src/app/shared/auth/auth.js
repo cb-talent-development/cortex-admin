@@ -1,9 +1,9 @@
 /// <reference path="/reference.js"/>
 
-angular.module('cortex.auth', [
+angular.module('cortex.shared.auth', [
     'ngResource',
     'ngCookies',
-    'base64',
+    'common.base64',
     'cortex.config'
 ])
 

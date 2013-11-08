@@ -1,11 +1,11 @@
 /// <reference path="/reference.js"/>
 
-angular.module('cortex.auth.resources', [
+angular.module('cortex.shared.auth.resources', [
     'ngResource',
-    'cortex.auth'
+    'cortex.shared.auth'
 ])
 
-.factory('authorizedResource', function(authService) {
+.factory('authorizedResource', function($resource, authService) {
 
     var forEach = angular.forEach,
         extend = angular.extend;

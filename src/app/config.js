@@ -6,6 +6,6 @@ angular.module('cortex.config', [])
 // environment specific configuration.
 .constant('config',  {
     api: {
-        baseUrl: 'http://localhost:56854'
+        baseUrl: 'http://api.cortex.com:60000'
     }
 });

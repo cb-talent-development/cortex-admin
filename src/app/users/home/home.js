@@ -1,4 +1,4 @@
-﻿angular.module('cortex.user.home', [
+﻿angular.module('cortex.users.home', [
     'ui.router.state'
 ])
 
@@ -6,13 +6,11 @@
     $stateProvider.state('home', {
         url: '/home',
         controller: 'HomeCtrl',
-        templateUrl: 'user/home/home.tpl.html',
+        templateUrl: 'users/home/home.tpl.html',
         data: { pageTitle: 'Home' }
     });
 })
 
 .controller('HomeCtrl', function ($scope, $rootScope) {
-
     $scope.user = $rootScope.user;
-
 });

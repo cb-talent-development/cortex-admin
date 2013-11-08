@@ -1,13 +1,13 @@
-angular.module('cortex.user.login', [
+angular.module('cortex.users.login', [
     'ui.router.state',
-    'cortex.auth'
+    'cortex.shared.auth'
 ])
 
 .config(function($stateProvider) {
     $stateProvider.state('login', {
         url: '/login',
         controller: 'LoginCtrl',
-        templateUrl: 'user/login/login.tpl.html',
+        templateUrl: 'users/login/login.tpl.html',
         data: {pageTitle: 'Login'}
     });
 })

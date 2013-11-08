@@ -8,7 +8,7 @@ angular.element(document).ready(function() {
         'ui.router',
         'ui.router.state',
         'cortex.admin',
-        'cortex.user'
+        'cortex.users'
     ])
 
     .config(function($urlRouterProvider) {
