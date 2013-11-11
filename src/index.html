@@ -5,17 +5,17 @@
     <title ng-bind="pageTitle"></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- font awesome from BootstrapCDN -->
     <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.2/css/font-awesome.min.css" rel="stylesheet">
-    
-    <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <% styles.forEach( function ( file ) { %>
     <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
   </head>
 
   <body ng-controller="CortexAdminCtrl">
     <div class="container" ui-view></div>
 
-    <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
+    <% scripts.forEach( function ( file ) { %>
     <script type="text/javascript" src="<%= file %>"></script><% }); %>
 
     <!--[if lt IE 9]>
