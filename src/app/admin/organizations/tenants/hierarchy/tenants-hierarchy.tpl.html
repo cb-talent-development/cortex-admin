@@ -1,13 +1,13 @@
 ﻿<h2>admin.organizations.tenants.hierarchy</h2>
-<div kendo-tree-view k-options="tenantsTreeOptions" k-on-select="selectTenantsNode(kendoEvent)"
-     k-on-change="dropTenantsNode(kendoEvent)">
+
+<div style="width:250px;background:whitesmoke;border:1px solid lightgray;border-radius:5px;">
+    <abn-tree tree-data="tenants.hierarchy" icon-leaf="icon-file" on-select="tenantsTreeHandler(branch)" expand-level="2"></abn-tree>
 </div>
 <br/>
-
 <div>
     Selected Node Name: {{tenants.selectedNode.Name}}
     <br/>
-    Selected Node ID: {{tenants.selectedNode.Id}}
+    Selected Node Id: {{tenants.selectedNode.Id}}
     <br/>
-    Selected Node TenantID: {{tenants.selectedNode.TenantId}}
+    Selected Node OrganizationId: {{tenants.selectedNode.OrganizationId}}
 </div>

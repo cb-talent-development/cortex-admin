@@ -2,7 +2,9 @@
 
 angular.module('cortex.admin.organizations.tenants.hierarchy', [
         'ui.router.state',
-        'cortex.resources.organizations'
+        'cortex.resources.organizations',
+        'common.angularBootstrapNavTree',
+        'ngAnimate'
     ])
 
     .config(function ($stateProvider) {
@@ -15,38 +17,13 @@ angular.module('cortex.admin.organizations.tenants.hierarchy', [
 
     .controller('TenantsHierarchyCtrl', function ($scope, Tenants) {
         $scope.tenants = {};
+        $scope.tenants.hierarchy = [];
+
+        $scope.tenantsTreeHandler = function(branch) {
+            $scope.tenants.selectedNode = branch;
+        };
 
         Tenants.query({id: '5d877872-145b-4ed1-89c1-c50704711577'}, function (response) {
             $scope.tenants.hierarchy = response;
         });
-
-        $scope.tenantsTreeOptions = {
-            dragAndDrop: true,
-            dataSource: {
-                data: $scope.tenants.hierarchy,
-                schema: {
-                    model: {
-                        children: 'Children',
-                        expanded: true
-                    }
-                }
-            },
-            dataTextField: 'Name'
-        };
-
-        $scope.selectTenantsNode = function (event) {
-            var tree = event.sender,
-                selectedNode = event.node,
-                nodeData = tree.dataItem(selectedNode);
-
-            if (nodeData) {
-                $scope.tenants.selectedNode = nodeData;
-            }
-        };
-
-        $scope.dropTenantsNode = function (event) {
-            var tree = event.sender;
-
-            alert('bluh');
-        };
     });
