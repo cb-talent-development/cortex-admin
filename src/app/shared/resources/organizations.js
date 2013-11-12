@@ -4,7 +4,7 @@ angular.module('cortex.resources.organizations', [
     ])
 
     .factory('Organizations', function (authorizedResource, config) {
-        return authorizedResource(config.api.baseUrl + '/organizations/:id', {id: '@id'}, {
+        return authorizedResource(config.api.baseUrl + '/organizations', {
         });
     })
 

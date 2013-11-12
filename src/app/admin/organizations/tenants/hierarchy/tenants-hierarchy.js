@@ -17,13 +17,9 @@ angular.module('cortex.admin.organizations.tenants.hierarchy', [
 
     .controller('TenantsHierarchyCtrl', function ($scope, Tenants) {
         $scope.tenants = {};
-        $scope.tenants.hierarchy = [];
+        $scope.tenants.hierarchy = Tenants.query({id: '5d877872-145b-4ed1-89c1-c50704711577'});
 
         $scope.tenantsTreeHandler = function(branch) {
             $scope.tenants.selectedNode = branch;
         };
-
-        Tenants.query({id: '5d877872-145b-4ed1-89c1-c50704711577'}, function (response) {
-            $scope.tenants.hierarchy = response;
-        });
     });
