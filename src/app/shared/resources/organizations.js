@@ -9,6 +9,6 @@ angular.module('cortex.resources.organizations', [
     })
 
     .factory('Tenants', function (authorizedResource, config) {
-        return authorizedResource(config.api.baseUrl + '/organizations/:id/tenants', {id: '@id'}, {
+        return authorizedResource(config.api.baseUrl + '/organizations/:id/tenants/hierarchy', {id: '@id'}, {
         });
     });
