@@ -1,21 +1,22 @@
 {
-  "author": "Josh David Miller",
-  "name": "ng-boilerplate",
-  "version": "0.3.1",
-  "homepage": "http://bit.ly/ng-boilerplate",
-  "licenses": {
-    "type": "MIT",
-    "url": "https://raw.github.com/joshdmiller/ng-boilerplate/master/LICENSE"
-  },
-  "bugs": "https://github.com/joshdmiller/ng-boilerplate/issues",
+  "contributors": [
+    "Alex Tharp",
+    "Bennett Goble",
+    "Lijin Iype",
+    "Pierre Raymond"
+  ],
+  "name": "cortex-admin",
+  "version": "1.0.0-alpha",
+  "homepage": "http://www.careerbuilder.com/",
+  "license": "proprietary",
   "repository": {
     "type": "git",
-    "url": "git@github.com:joshdmiller/ng-boilerplate.git"
+    "url": "git@gitsum.careerbuilder.com:talent-solutions/cortex-admin.git"
   },
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
-    "grunt-recess": "~0.3.0",
+    "grunt-sass": "~0.5.0",
     "grunt-contrib-clean": "~0.4.1",
     "grunt-contrib-copy": "~0.4.1",
     "grunt-contrib-jshint": "~0.4.3",

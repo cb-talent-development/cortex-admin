@@ -7,4 +7,4 @@ bin/
 node_modules/
 vendor/
 .idea/
-
+.sass-cache/

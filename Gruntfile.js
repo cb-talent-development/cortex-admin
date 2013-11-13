@@ -11,10 +11,10 @@ module.exports = function ( grunt ) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-coffee');
+  grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-conventional-changelog');
   grunt.loadNpmTasks('grunt-bump');
   grunt.loadNpmTasks('grunt-coffeelint');
-  grunt.loadNpmTasks('grunt-recess');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-ngmin');
   grunt.loadNpmTasks('grunt-html2js');
@@ -183,12 +183,12 @@ module.exports = function ( grunt ) {
        * The `compile_css` target concatenates compiled CSS and vendor CSS
        * together.
        */
-      compile_css: {
+      build_css: {
         src: [
           '<%= vendor_files.css %>',
-          '<%= recess.build.dest %>'
+          '<%= sass.build._dest %>'
         ],
-        dest: '<%= recess.build.dest %>'
+        dest: '<%= sass.build._dest %>'
       },
       /**
        * The `compile_js` target is the concatenation of our application source
@@ -261,36 +261,23 @@ module.exports = function ( grunt ) {
       }
     },
 
-    /**
-     * `recess` handles our LESS compilation and uglification automatically.
-     * Only our `main.less` file is included in compilation; all other files
-     * must be imported from this file.
-     */
-    recess: {
+    sass: {
       build: {
-        src: [ '<%= app_files.less %>' ],
-        dest: '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css',
-        options: {
-          compile: true,
-          compress: false,
-          noUnderscores: false,
-          noIDs: false,
-          zeroUnits: false
+        _dest: '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css',
+        files: {
+          '<%= sass.build._dest %>' : '<%= app_files.sass %>'          
         }
       },
       compile: {
-        src: [ '<%= recess.build.dest %>' ],
-        dest: '<%= recess.build.dest %>',
+        _dest: '<%= sass.build._dest %>',
+        files: {
+          '<%= sass.build._dest %>' : '<%= app_files.sass %>'          
+        },
         options: {
-          compile: true,
-          compress: true,
-          noUnderscores: false,
-          noIDs: false,
-          zeroUnits: false
+          style: 'compressed'
         }
       }
     },
-
     /**
      * `jshint` defines the rules of our linter as well as which files we
      * should check. This file, all javascript sources, and all our unit tests
@@ -406,7 +393,7 @@ module.exports = function ( grunt ) {
           '<%= html2js.common.dest %>',
           '<%= html2js.app.dest %>',
           '<%= vendor_files.css %>',
-          '<%= recess.build.dest %>'
+          '<%= sass.build._dest %>'
         ]
       },
 
@@ -419,7 +406,7 @@ module.exports = function ( grunt ) {
         dir: '<%= compile_dir %>',
         src: [
           '<%= concat.compile_js.dest %>',
-          '<%= recess.compile.dest %>'
+          '<%= sass.compile._dest %>'
         ]
       }
     },
@@ -530,7 +517,7 @@ module.exports = function ( grunt ) {
        */
       less: {
         files: [ 'src/**/*.less' ],
-        tasks: [ 'recess:build' ]
+        tasks: [ 'sass:build' ]
       },
 
       /**
@@ -584,9 +571,9 @@ module.exports = function ( grunt ) {
    * The `build` task gets your app ready to run for development and testing.
    */
   grunt.registerTask( 'build', [
-    'clean', 'html2js', 'jshint', 'coffeelint', 'coffee', 'recess:build',
-    'copy:build_app_assets', 'copy:build_vendor_assets','copy:build_appjs',
-    'copy:build_vendorjs', 'copy:build_vendor_css', 'index:build', 'karmaconfig',
+    'clean', 'html2js', 'jshint', 'coffeelint', 'coffee', 'sass:build',
+    'concat:build_css', 'copy:build_app_assets', 'copy:build_vendor_assets',
+    'copy:build_appjs','copy:build_vendorjs', 'index:build', 'karmaconfig',
     'karma:continuous'
   ]);
 
@@ -595,7 +582,7 @@ module.exports = function ( grunt ) {
    * minifying your code.
    */
   grunt.registerTask( 'compile', [
-    'concat:compile_css', 'recess:compile', 'copy:compile_assets', 'ngmin',
+    'sass:compile', 'copy:compile_assets', 'ngmin',
     'concat:compile_js', 'uglify', 'index:compile'
   ]);
 
