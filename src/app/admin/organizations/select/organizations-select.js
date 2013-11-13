@@ -13,7 +13,7 @@ angular.module('cortex.admin.organizations.select', [
         });
     })
 
-    .controller('OrganizationsSelectCtrl', function ($scope, Organizations) {
+    .controller('OrganizationsSelectCtrl', function ($scope, $location, Organizations) {
         $scope.organizations = {};
         $scope.organizations.list = [
             {
@@ -44,7 +44,7 @@ angular.module('cortex.admin.organizations.select', [
             }
         ];
 
-        $scope.toggleSelection = function() {
-            $scope.isSelected = ! $scope.isSelected;
+        $scope.selectOrganization = function(organizationId) {
+            $location.url('/admin/organizations/tenants/hierarchy/' + organizationId);
         };
     });
