@@ -1,7 +1,8 @@
 /// <reference path="/reference.js"/>
 
-describe('CortexAdminCtrl', function () {
-    describe('Config or Constructor (TODO)', function () {
+describe('Cortex State Module', function () {
+
+    describe('CortexAdminCtrl', function () {
         var CortexAdminCtrl, $location, $scope;
 
         beforeEach(module('cortex'));
@@ -16,7 +17,7 @@ describe('CortexAdminCtrl', function () {
             });
         }));
 
-        it('should construct', inject(function () {
+        it('should exist', inject(function () {
             expect(CortexAdminCtrl).toBeTruthy();
         }));
     });
