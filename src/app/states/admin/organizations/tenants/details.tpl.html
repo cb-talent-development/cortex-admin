@@ -1,1 +1,43 @@
-﻿Details
+﻿
+<h1>{{ data.tenants.selected.Name }}</h1>
+<h3>
+    <ng-pluralize count="(data.tenants.selected.Children|totalTenantChildren)"
+                  when="{'one': '1 Child', 'other': '{} Children'}"></ng-pluralize>
+</h3>
+<h4>Tenant Details</h4>
+<table class="table small">
+    <tbody>
+    <tr>
+        <td>Name:</td>
+        <td>{{ data.tenants.selected.Name }}</td>
+    </tr>
+    <tr>
+        <td>Contact Name</td>
+        <td>{{ data.tenants.selected.ContactName }}</td>
+    </tr>
+    <tr>
+        <td>Contact Phone</td>
+        <td>{{ data.tenants.selected.ContactPhone }}</td>
+    </tr>
+    <tr>
+        <td>Contact Email</td>
+        <td>{{ data.tenants.selected.ContactEmail }}</td>
+    </tr>
+    <tr>
+        <td>Active Date</td>
+        <td>{{ data.tenants.selected.DateActive | date }}</td>
+    </tr>
+    <tr>
+        <td>Deactive Date</td>
+        <td>{{ data.tenants.selected.DateInactive | date }}</td>
+    </tr>
+    <tr>
+        <td>Contract Number</td>
+        <td>{{ data.tenants.selected.Contract }}</td>
+    </tr>
+    <tr>
+        <td>DID</td>
+        <td>{{ data.tenants.selected.Did }}</td>
+    </tr>
+    </tbody>
+</table>

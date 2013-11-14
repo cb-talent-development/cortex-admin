@@ -1,14 +1,9 @@
-angular.module('cortex.resources.organizations', [
-        'cortex.shared.auth.resources',
-        'cortex.config'
-    ])
+var module = angular.module('cortex.resources.organizations', [
+    'cortex.resources.authorized',
+    'cortex.config'
+]);
 
-    .factory('Organizations', function (authorizedResource, config) {
-        return authorizedResource(config.api.baseUrl + '/organizations', {
-        });
-    })
-
-    .factory('Tenants', function (authorizedResource, config) {
-        return authorizedResource(config.api.baseUrl + '/organizations/:id/tenants/hierarchy', {id: '@id'}, {
-        });
+module.factory('Organizations', function (authorizedResource, config) {
+    return authorizedResource(config.api.baseUrl + '/organizations/:id', {id: '@id'}, {
     });
+});

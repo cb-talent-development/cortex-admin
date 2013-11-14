@@ -1,16 +1,18 @@
 {
-    "name": "cortex-admin",
-    "version": "0.0.1",
-    "devDependencies": {
-        "angular": "~1.2.0",
-        "angular-mocks": "~1.2.0",
-        "angular-bootstrap": "~0.6.0",
-        "angular-ui-router": "https://github.com/toastercup/ui-router.git#4fd2315761e30352ac91ff210d7afa0ba0b33a72",
-        "angular-ui-utils": "~0.0.4",
-        "angular-resource": "~1.2.0",
-        "angular-cookies": "~1.2.0",
-        "angular-animate": "~1.2.0",
-        "jquery": "~1.9.1"
-    },
-    "dependencies": {}
+  "name": "cortex-admin",
+  "version": "0.0.1",
+  "devDependencies": {
+    "angular": "~1.2.0",
+    "angular-mocks": "~1.2.0",
+    "angular-bootstrap": "~0.6.0",
+    "angular-ui-router": "https://github.com/toastercup/ui-router.git#4fd2315761e30352ac91ff210d7afa0ba0b33a72",
+    "angular-ui-utils": "~0.0.4",
+    "angular-resource": "~1.2.0",
+    "angular-cookies": "~1.2.0",
+    "angular-animate": "~1.2.0",
+    "jquery": "~1.9.1",
+    "angular-underscore": "*",
+    "underscore": "~1.5.2"
+  },
+  "dependencies": {}
 }

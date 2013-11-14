@@ -1,5 +1,23 @@
-﻿<div ui-view="organizations"></div>
+﻿<div class="col-md-4">
+    <input class="form-control" type="text" placeholder="Search for Organization"/>
+    <div id="filterByLetter" class="text-center text-muted small vmargin-top-sm vmargin-bot-sm">
+        0-9 A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">R</h3>
+        </div>
+        <div class="panel-body">
+            <button ng-repeat="organization in data.organizations"
+                    class="btn btn-block"
+                    ui-sref=".tenants({organizationId:organization.Id})"
+                    ng-class="{'btn-primary': organization.Id == data.selectedOrganization.Id}">
+                {{ organization.Name }}
+            </button>
+        </div>
+    </div>
+</div>
 
-<div ui-view="tenants-treeview"></div>
+<div ui-view="tenants-treeview" class="col-md-4"></div>
 
-<div ui-view="tenants-details"></div>
+<div ui-view="tenants-details" class="col-md-4"></div>
