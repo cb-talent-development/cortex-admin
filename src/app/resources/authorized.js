@@ -1,8 +1,8 @@
 /// <reference path="/reference.js"/>
 
-angular.module('cortex.shared.auth.resources', [
+angular.module('cortex.resources.auth', [
         'ngResource',
-        'cortex.shared.auth'
+        'cortex.services.auth'
     ])
 
     .factory('authorizedResource', function ($resource, authService) {

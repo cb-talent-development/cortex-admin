@@ -1,4 +1,4 @@
-angular.module('cortex.users.login', [
+angular.module('cortex.views.users.login', [
         'ui.router.state',
         'cortex.shared.auth'
     ])

@@ -1,8 +1,8 @@
 ﻿/// <reference path="/reference.js"/>
 
-angular.module('cortex.admin', [
+angular.module('cortex.views.admin', [
         'ui.router.state',
-        'cortex.admin.organizations'
+        'cortex.states.admin.organizations'
     ])
 
     .config(function ($stateProvider) {
