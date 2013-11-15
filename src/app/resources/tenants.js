@@ -25,7 +25,7 @@ module.factory('tenantUtils', function(){
     };
 });
 
-module.filter('totalTenants', function(tenantUtils){
+module.filter('totalTenantsChildren', function(tenantUtils){
     return function(children) {
         return tenantUtils.flattenTenantHierarchy(children).length;
     };
