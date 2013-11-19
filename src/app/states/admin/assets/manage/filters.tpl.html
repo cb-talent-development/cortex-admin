@@ -1,0 +1,47 @@
+<div class="panel panel-default vmargin-top-large">
+    <div class="panel-body">
+        <p class="h6">Asset Type</p>
+
+        <!--
+        <ul class="list-unstyled smaller">
+            <li><input type="checkbox"/> Archive (.zip)</li>
+            <li><input type="checkbox"/> Excel (.xls, .xlsx)</li>
+            <li><input type="checkbox"/> Image (.gif, .jpg, .png)</li>
+            <li><input type="checkbox"/> PDF (.pdf)</li>
+            <li><input type="checkbox"/> Text (.txt)</li>
+            <li><input type="checkbox"/> Video (.avi, .mov, .mp4)</li>
+            <li><input type="checkbox"/> Word (.doc, .docx)</li>
+            <li><input type="checkbox"/> Other</li>
+        </ul>
+        -->
+
+        <div ng-grid="data.filters.assetTypeGrid"></div>
+
+        <button type="button" class="pull-right btn btn-default btn-sm">Clear</button>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <p class="h6">Date</p>
+        <div class="btn-group btn-group-xs">
+            <button type="button" class="btn btn-primary" ng-model="data.filters.date.property" btn-radio="'create_date'">Created</button>
+            <button type="button" class="btn btn-primary" ng-model="data.filters.date.property" btn-radio="'update_date'">Modified</button>
+        </div>
+
+        <label class="h6 vmargin-top-large">From</label>
+        <div class="input-group input-group-sm">
+            <input type="text" class="form-control"/>
+            <span class="input-group-btn"><button class="btn btn-default"><i class="icon-calendar"></i></button></span>
+        </div>
+
+        <label class="h6 vmargin-top-large">To</label>
+        <div class="input-group input-group-sm">
+            <input type="text" class="form-control"/>
+            <span class="input-group-btn"><button class="btn btn-default"><i class="icon-calendar"></i></button></span>
+        </div>
+
+        <button type="button" class="pull-right btn btn-default btn-sm">Clear</button>
+    </div>
+</div>

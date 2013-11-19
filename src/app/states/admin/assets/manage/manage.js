@@ -1,46 +1,19 @@
 var module = angular.module('cortex.states.admin.assets.manage', [
     'ui.router.state',
-    'ngGrid',
-    'cortex.resources.assets'
+    'cortex.states.admin.assets.manage.components'
 ]);
 
 module.config(function($stateProvider){
-    $stateProvider
-        .state('admin.assets.manage',{
-            url: '/manage/:assetId',
-            views:
-            {
-                'assets-gridview':
-                {
-                    templateUrl: 'states/admin/assets/manage/gridview.tpl.html',
-                    controller: 'AssetsGridviewCtrl'
-                }
-            }
-        });
+    $stateProvider.state('admin.assets.manage', {
+        url: '',
+        abstract: true,
+        templateUrl: 'states/admin/assets/manage/manage.tpl.html',
+        controller: 'AssetsEditCtrl'
+    });
 });
 
-module.controller('AssetsGridviewCtrl', function($scope, Assets) {
+module.controller('AssetsEditCtrl', function($scope){
 
-    // Create a generic grid factory for Cortex? This will be boilerplate for a ton of our resource grids
+    $scope.data = {filters: {}};
 
-    $scope.data = {};
-    $scope.data.totalServerItems = 0;
-
-    $scope.data.assets = Assets.query(function(response) {
-        $scope.data.totalServerItems = response.length;
-    });
-
-    $scope.data.pagingOptions = {
-        pageSizes: [10, 50, 100],
-        pageSize: 10,
-        currentPage: 1
-    };
-
-    $scope.gridOptions = {
-        data: 'data.assets',
-        enablePaging: true,
-        showFooter: true,
-        totalServerItems: 'data.totalServerItems',
-        pagingOptions: $scope.data.pagingOptions
-    };
 });

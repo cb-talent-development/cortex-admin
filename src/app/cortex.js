@@ -8,6 +8,9 @@ var cortexModule = angular.module('cortex', [
 ]);
 
 cortexModule.config(function ($urlRouterProvider) {
+
+    $urlRouterProvider.when('/admin/assets', '/admin/assets/');
+
     $urlRouterProvider.otherwise('/login');
 });
 

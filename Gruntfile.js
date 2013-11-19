@@ -515,8 +515,8 @@ module.exports = function ( grunt ) {
       /**
        * When the CSS files change, we need to compile and minify them.
        */
-      less: {
-        files: [ 'src/**/*.less' ],
+      sass: {
+        files: [ 'src/**/*.scss' ],
         tasks: [ 'sass:build' ]
       },
 
