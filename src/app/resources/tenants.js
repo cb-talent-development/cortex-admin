@@ -1,5 +1,7 @@
 var module = angular.module('cortex.resources.tenants', [
-    'angular-underscore'
+    'angular-underscore',
+    'cortex.resources.authorized',
+    'cortex.config'
 ]);
 
 module.factory('TenantsHierarchy', function (authorizedResource, config) {
