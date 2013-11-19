@@ -72,9 +72,12 @@ module.exports = {
       'vendor/angular-ui-utils/modules/route/route.js',
       'vendor/angular-animate/angular-animate.min.js',
       'vendor/underscore/underscore.js',
-      'vendor/angular-underscore/angular-underscore.js'
+      'vendor/angular-underscore/angular-underscore.js',
+      'vendor/jquery/jquery.min.js',
+      'vendor/ng-grid/ng-grid-2.0.7.min.js'
     ],
     css: [
+      'vendor/ng-grid/ng-grid.min.css'
     ],
     assets: [
     ]
