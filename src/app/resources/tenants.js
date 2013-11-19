@@ -15,8 +15,8 @@ module.factory('tenantUtils', function(){
             var flatten = function(tenants, result){
                 _.each(tenants, function(tenant){
                     result.push(tenant);
-                    if (tenant.Children.length > 0){
-                        flatten(tenant.Children, result);
+                    if (tenant.children.length > 0){
+                        flatten(tenant.children, result);
                     }
                 });
             };

@@ -10,9 +10,9 @@
         <div class="panel-body">
             <button ng-repeat="organization in data.organizations"
                     class="btn btn-block"
-                    ui-sref=".tenants({organizationId:organization.Id})"
-                    ng-class="{'btn-primary': organization.Id == data.selectedOrganization.Id}">
-                {{ organization.Name }}
+                    ui-sref=".tenants({organizationId:organization.id})"
+                    ng-class="{'btn-primary': organization.id == data.selectedOrganization.id}">
+                {{ organization.name }}
             </button>
         </div>
     </div>

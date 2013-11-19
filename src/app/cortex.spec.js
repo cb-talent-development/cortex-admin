@@ -1,5 +1,3 @@
-/// <reference path="/reference.js"/>
-
 describe('Cortex State Module', function () {
 
     describe('CortexAdminCtrl', function () {

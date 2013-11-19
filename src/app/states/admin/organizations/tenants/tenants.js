@@ -43,7 +43,7 @@ module.controller('TenantsTreeviewCtrl', function($scope, $stateParams, TenantsH
         // Set $scope.data.tenants.selected if tenantId was specified in URL
         var tenantId = $stateParams.tenantId;
         if (tenantId) {
-            $scope.data.tenants.selected = _.find(flattened, function(t) { return t.Id == tenantId; });
+            $scope.data.tenants.selected = _.find(flattened, function(t) { return t.id == tenantId; });
         }
     });
 

@@ -1,5 +1,3 @@
-/// <reference path="/reference.js"/>
-
 angular.module('cortex', [
     'templates-app',
     'templates-common',

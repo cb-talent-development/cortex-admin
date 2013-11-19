@@ -2,30 +2,30 @@ describe('Tenants Resource Module', function(){
 
     var mock = {
         tenants: [
-            {Id: 1, Children: [
-                {Id: 11, Children: [
-                    {Id: 111, Children: []},
-                    {Id: 112, Children: []}
+            {id: 1, children: [
+                {id: 11, children: [
+                    {id: 111, children: []},
+                    {id: 112, children: []}
                 ]},
-                {Id: 12, Children: []}
+                {id: 12, children: []}
             ]},
-            {Id: 2, Children: []}
+            {id: 2, children: []}
         ],
         flattenedTenants: [
-            {Id: 1, Children: [
-                {Id: 11, Children: [
-                    {Id: 111, Children: []},
-                    {Id: 112, Children: []}
+            {id: 1, children: [
+                {id: 11, children: [
+                    {id: 111, children: []},
+                    {id: 112, children: []}
                 ]},
-                {Id: 12, Children: []}
+                {id: 12, children: []}
             ]},
-            {Id: 11, Children: [
-                {Id: 111, Children: []},
-                {Id: 112, Children: []}
+            {id: 11, children: [
+                {id: 111, children: []},
+                {id: 112, children: []}
             ]},
-            {Id: 111, Children: []},
-            {Id: 112, Children: []},
-            {Id: 2, Children: []}
+            {id: 111, children: []},
+            {id: 112, children: []},
+            {id: 2, children: []}
         ]
     };
 
@@ -104,7 +104,7 @@ describe('Tenants Resource Module', function(){
 
             $httpBackend.flush();
 
-            expect(result[0].Id).toEqual(1);
+            expect(result[0].id).toEqual(1);
         });
     });
 });
