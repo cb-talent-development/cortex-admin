@@ -573,8 +573,8 @@ module.exports = function ( grunt ) {
   grunt.registerTask( 'build', [
     'clean', 'html2js', 'jshint', 'coffeelint', 'coffee', 'sass:build',
     'concat:build_css', 'copy:build_app_assets', 'copy:build_vendor_assets',
-    'copy:build_appjs','copy:build_vendorjs', 'index:build', 'karmaconfig',
-    'karma:continuous'
+    'copy:build_appjs','copy:build_vendorjs', 'copy:build_vendor_css',
+    'index:build', 'karmaconfig', 'karma:continuous'
   ]);
 
     /**
@@ -583,7 +583,8 @@ module.exports = function ( grunt ) {
   grunt.registerTask( 'build_without_karma', [
     'clean', 'html2js', 'jshint', 'coffeelint', 'coffee', 'sass:build',
     'concat:build_css', 'copy:build_app_assets', 'copy:build_vendor_assets',
-    'copy:build_appjs','copy:build_vendorjs', 'index:build', 'karmaconfig'
+    'copy:build_appjs','copy:build_vendorjs', 'copy:build_vendor_css',
+    'index:build', 'karmaconfig'
   ]);
 
   /**
