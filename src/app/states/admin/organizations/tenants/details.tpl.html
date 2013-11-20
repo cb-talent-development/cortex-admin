@@ -1,7 +1,7 @@
 ﻿
 <h1>{{ data.tenants.selected.Name }}</h1>
 <h3>
-    <ng-pluralize count="(data.tenants.selected.Children|totalTenants)"
+    <ng-pluralize count="(data.tenants.selected.children|totalTenants)"
                   when="{'one': '1 Child', 'other': '{} Children'}"></ng-pluralize>
 </h3>
 <h4>Tenant Details</h4>
