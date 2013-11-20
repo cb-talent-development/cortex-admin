@@ -1,17 +1,21 @@
 /**
- * This is the main application stylesheet. It should include or import all
- * stylesheets used throughout the application as this is the only stylesheet in
- * the Grunt configuration that is automatically processed.
+ * Main.scss
+ *
+ * This file imports all of Cortex's styles to construct
+ * the application's final stylesheet.
  */
- @import 'variables';
 
-/* abn_tree - SASS version of angular-bootstrap-nav-tree's CSS */
-@import 'abn-tree.scss';
+@import 'variables';
 
-@import 'states/admin.assets.manage.scss';
+// abn-tree - SASS version of angular-bootstrap-nav-tree
+@import 'abn-tree';
 
-@import 'cortex-bootstrap.scss';
+// -- states --
+@import 'states/admin.assets.manage';
+// -- /states --
 
-.smaller {
-  font-size: 75%;
-}
+// Twitter Bootstrap and overridden styles
+@import 'cortex-bootstrap';
+
+// Application-wide styling
+@import 'cortex';
