@@ -12,10 +12,10 @@ module.config(function($stateProvider){
             url: '/tenants/:tenantId',
             views:
             {
-                'tenants-treeview':
+                'tenants-tree':
                 {
-                    templateUrl: 'states/admin/organizations/tenants/treeview.tpl.html',
-                    controller: 'TenantsTreeviewCtrl'
+                    templateUrl: 'states/admin/organizations/tenants/tree.tpl.html',
+                    controller: 'TenantsTreeCtrl'
                 },
                 'tenants-details':
                 {
@@ -26,7 +26,7 @@ module.config(function($stateProvider){
         });
 });
 
-module.controller('TenantsTreeviewCtrl', function($scope, $stateParams, TenantsHierarchy, tenantUtils) {
+module.controller('TenantsTreeCtrl', function($scope, $stateParams, TenantsHierarchy, tenantUtils) {
 
     $scope.data.tenants =
     {

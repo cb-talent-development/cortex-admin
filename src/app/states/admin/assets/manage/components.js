@@ -2,6 +2,7 @@ var module = angular.module('cortex.states.admin.assets.manage.components', [
     'ui.router.state',
     'ngGrid',
     'ui.bootstrap',
+    'common.templates',
     'cortex.resources.assets'
 ]);
 
@@ -15,7 +16,7 @@ module.config(function($stateProvider){
     });
 });
 
-module.controller('AssetsGridCtrl', function($scope, Assets){
+module.controller('AssetsGridCtrl', function($scope, Assets, templates){
 
     // Create a generic grid factory for Cortex? This will be boilerplate for a ton of our resource grids
     $scope.data = {};
@@ -25,7 +26,7 @@ module.controller('AssetsGridCtrl', function($scope, Assets){
         $scope.data.totalServerItems = response.length;
     });
 
-    $scope.data.pagingOptions = {
+    var assetGridPagingOptions = {
         pageSizes: [10, 50, 100],
         pageSize: 10,
         currentPage: 1
@@ -36,7 +37,21 @@ module.controller('AssetsGridCtrl', function($scope, Assets){
         enablePaging: true,
         showFooter: true,
         totalServerItems: 'data.totalServerItems',
-        pagingOptions: $scope.data.pagingOptions
+        pagingOptions: assetGridPagingOptions,
+        columnDefs: [
+            {field: 'original_filename', displayName: 'Name'},
+            {field: 'name', displayName: 'Description'},
+            {field: 'creator.username', displayName: 'Author'},
+            {field: 'create_date|date:"y/M/d h:mm:ss a"', displayName: 'Created'},
+            {field: 'update_date|date:"y/M/d h:mm:ss a"', displayName: 'Modified'},
+            {
+                field: 'delete_date == null ? "\u2713" : ""',
+                displayName: 'Active',
+                width: 43,
+                cellTemplate: templates.ngGridCells.centerAligned
+            },
+            {field: 'tags.join(", ")', displayName: 'Tags'}
+        ]
     };
 });
 
