@@ -2,20 +2,14 @@
     <div class="panel-body">
         <p class="h6">Asset Type</p>
 
-        <!--
         <ul class="list-unstyled smaller">
-            <li><input type="checkbox"/> Archive (.zip)</li>
-            <li><input type="checkbox"/> Excel (.xls, .xlsx)</li>
-            <li><input type="checkbox"/> Image (.gif, .jpg, .png)</li>
-            <li><input type="checkbox"/> PDF (.pdf)</li>
-            <li><input type="checkbox"/> Text (.txt)</li>
-            <li><input type="checkbox"/> Video (.avi, .mov, .mp4)</li>
-            <li><input type="checkbox"/> Word (.doc, .docx)</li>
-            <li><input type="checkbox"/> Other</li>
+            <li ng-repeat="type in data.assetTypes">
+                <input type="checkbox" /> {{ type.name }} ({{ type.extensions.join(', ') }})
+            </li>
+            <li>
+                <input type="checkbox" /> Other
+            </li>
         </ul>
-        -->
-
-        <div ng-grid="data.filters.assetTypeGrid"></div>
 
         <button type="button" class="pull-right btn btn-default btn-sm">Clear</button>
     </div>
@@ -42,6 +36,6 @@
             <span class="input-group-btn"><button class="btn btn-default"><i class="icon-calendar"></i></button></span>
         </div>
 
-        <button type="button" class="pull-right btn btn-default btn-sm">Clear</button>
+        <button id="asset-filter-date-clear-btn" type="button" class="pull-right btn btn-default btn-sm">Clear</button>
     </div>
 </div>

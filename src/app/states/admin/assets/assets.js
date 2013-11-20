@@ -8,6 +8,6 @@ module.config(function($stateProvider){
    $stateProvider.state('admin.assets', {
        url: '/assets',
        abstract: true,
-       template: '<ui-view/>'
+       template: '<div class="admin-assets" ui-view></div>'
    });
 });

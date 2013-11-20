@@ -1,17 +1,10 @@
-<!--div class="assets-gridStyle" ng-grid="gridOptions"></div-->
-
 <div class="pull-left">
     <h3>Asset Library</h3>
 </div>
 
-<div class="pull-right">
-    <input type="text" class="form-control inline" placeholder="Search Library"/>
-</div>
-
 <div class="clearfix"></div>
 
-<div>
-
+<div id="batch-and-search">
     <button class="btn btn-sm btn-primary" type="button">Upload</button>
 
     <button class="btn btn-sm dropdown-toggle" type="button">Bulk Action <span class="caret"></span></button>
@@ -20,4 +13,9 @@
         <li><a>Deactivate</a></li>
     </ul>
 
+    <div id="asset-search" class="pull-right">
+        <input type="text" class="form-control input-sm" placeholder="Search Assets...">
+    </div>
 </div>
+
+<div id="asset-grid" ng-grid="data.assetGridOptions"></div>

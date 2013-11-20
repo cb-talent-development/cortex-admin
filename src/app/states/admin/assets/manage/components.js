@@ -2,7 +2,8 @@ var module = angular.module('cortex.states.admin.assets.manage.components', [
     'ui.router.state',
     'ngGrid',
     'ui.bootstrap',
-    'cortex.resources.assets']);
+    'cortex.resources.assets'
+]);
 
 module.config(function($stateProvider){
     $stateProvider.state('admin.assets.manage.components', {
@@ -15,7 +16,7 @@ module.config(function($stateProvider){
 });
 
 module.controller('AssetsGridCtrl', function($scope, Assets){
-    /*
+
     // Create a generic grid factory for Cortex? This will be boilerplate for a ton of our resource grids
     $scope.data = {};
     $scope.data.totalServerItems = 0;
@@ -30,20 +31,26 @@ module.controller('AssetsGridCtrl', function($scope, Assets){
         currentPage: 1
     };
 
-    $scope.gridOptions = {
+    $scope.data.assetGridOptions = {
         data: 'data.assets',
         enablePaging: true,
         showFooter: true,
         totalServerItems: 'data.totalServerItems',
         pagingOptions: $scope.data.pagingOptions
-    };*/
+    };
 });
 
 module.controller('AssetsFiltersCtrl', function($scope){
 
     $scope.data = {
         assetTypes: [
-            {name: 'Archive', extensions: '.zip'}
+            {name: 'Archive', extensions: ['zip']},
+            {name: 'Document', extensions: ['doc', 'docx']},
+            {name: 'Image', extensions: ['jpg', 'png', 'gif']},
+            {name: 'PDF', extensions: ['pdf']},
+            {name: 'Spreadsheet', extensions: ['xls', 'xlsx']},
+            {name: 'Text', extensions: ['txt']},
+            {name: 'Video', extensions: ['avi', 'mov', 'mp4']}
         ],
         filters: {
             date: {
@@ -51,6 +58,4 @@ module.controller('AssetsFiltersCtrl', function($scope){
             }
         }
     };
-
-    $scope.data.filters.assetTypeGrid = { data: 'data.assetTypes' }
 });
