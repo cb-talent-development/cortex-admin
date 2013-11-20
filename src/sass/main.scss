@@ -14,13 +14,6 @@
   font-size: 75%;
 }
 
-// Temporary Hack for Bootstrap navbar (for use with dev navbar)
-.navbar-fixed-top {
-  height: 30px;
-  min-height: 30px;
-
-  .navbar-nav > li > a {
-    padding-bottom: 4px;
-    padding-top: 4px;
-  }
+.hmargin-left-small {
+  margin-left: 10px;
 }
