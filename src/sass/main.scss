@@ -6,21 +6,12 @@
  @import 'variables';
 
 /* abn_tree - SASS version of angular-bootstrap-nav-tree's CSS */
-@import 'abn_tree.scss';
+@import 'abn-tree.scss';
 
 @import 'states/admin.assets.manage.scss';
 
+@import 'cortex-bootstrap.scss';
+
 .smaller {
   font-size: 75%;
-}
-
-// Temporary Hack for Bootstrap navbar (for use with dev navbar)
-.navbar-fixed-top {
-  height: 30px;
-  min-height: 30px;
-
-  .navbar-nav > li > a {
-    padding-bottom: 4px;
-    padding-top: 4px;
-  }
 }
