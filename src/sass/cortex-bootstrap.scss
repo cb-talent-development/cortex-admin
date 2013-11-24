@@ -1,5 +1,7 @@
 /* Override bootstrap variables here */
 // ex. $navbar-height: 30px;
 
+$icon-font-path: '../assets/';
+
 /* Bring in "The Bootstrap" */
 @import "../../vendor/bootstrap-sass/lib/bootstrap.scss";
