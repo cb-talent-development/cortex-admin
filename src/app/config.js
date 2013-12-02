@@ -2,7 +2,7 @@ var configModule = angular.module('cortex.config', []);
 
 var devConfig = {
     api: {
-        baseUrl: 'http://api.cortex.com:60000',
+        baseUrl: 'http://localhost:3000',
         environmentName: 'Development'
     }
 };

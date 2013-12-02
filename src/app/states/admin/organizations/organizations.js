@@ -1,15 +1,17 @@
-﻿var module = angular.module('cortex.states.admin.organizations', [
+var module = angular.module('cortex.states.admin.organizations', [
     'ui.router.state',
     'angular-underscore',
     'cortex.resources.organizations',
-    'cortex.states.admin.organizations.tenants'
+    'cortex.states.admin.organizations.manage',
+    'cortex.states.admin.organizations.edit'
 ]);
 
 module.config(function ($stateProvider) {
     $stateProvider
         .state('admin.organizations', {
             url: '/organizations/:organizationId',
-            templateUrl: 'states/admin/organizations/organizations.tpl.html',
+            template: '<ui-view/>',
+            abstract: true,
             controller: 'OrganizationsCtrl'
         });
 });
@@ -21,14 +23,14 @@ module.controller('OrganizationsCtrl', function($scope, $stateParams, $state, Or
     $scope.data.organizations = Organizations.query(function(organizations) {
         var orgId = $stateParams.organizationId;
         if (orgId) {
-            $scope.data.selectedOrganization = _.find(organizations, function(o){
+            $scope.data.organization = _.find(organizations, function(o){
                 return o.id == orgId;
             });
         }
     });
 
     $scope.isOrganizationSelected = function(organization){
-        var selected = $scope.data.selectedOrganization;
+        var selected = $scope.data.organization;
         return selected && selected.id == organization.id;
     };
 });

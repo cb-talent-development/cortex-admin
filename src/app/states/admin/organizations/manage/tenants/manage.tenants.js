@@ -1,32 +1,32 @@
-var module = angular.module('cortex.states.admin.organizations.tenants', [
+var module = angular.module('cortex.states.admin.organizations.manage.tenants', [
     'ui.router.state',
     'angular-underscore',
-    'cortex.resources.tenants',
+    'cortex.resources.organizations',
     'common.angularBootstrapNavTree',
     'ngAnimate'
  ]);
 
 module.config(function($stateProvider){
     $stateProvider
-        .state('admin.organizations.tenants',{
+        .state('admin.organizations.manage.tenants',{
             url: '/tenants/:tenantId',
             views:
             {
                 'tenants-tree':
                 {
-                    templateUrl: 'states/admin/organizations/tenants/tree.tpl.html',
+                    templateUrl: 'states/admin/organizations/manage/tenants/manage.tenants.tree.tpl.html',
                     controller: 'TenantsTreeCtrl'
                 },
                 'tenants-details':
                 {
-                    templateUrl: 'states/admin/organizations/tenants/details.tpl.html',
+                    templateUrl: 'states/admin/organizations/manage/tenants/manage.tenants.details.tpl.html',
                     controller: 'TenantsDetailsCtrl'
                 }
             }
         });
 });
 
-module.controller('TenantsTreeCtrl', function($scope, $stateParams, TenantsHierarchy, tenantUtils) {
+module.controller('TenantsTreeCtrl', function($scope, $stateParams, Organizations, hierarchyUtils) {
 
     $scope.data.tenants =
     {
@@ -35,9 +35,9 @@ module.controller('TenantsTreeCtrl', function($scope, $stateParams, TenantsHiera
         selected: null
     };
 
-    $scope.data.tenants.hierarchy = TenantsHierarchy.query({orgId: $stateParams.organizationId}, function(hierarchy){
+    $scope.data.tenants.hierarchy = Organizations.hierarchy({id: $stateParams.organizationId}, function(hierarchy){
 
-        var flattened = tenantUtils.flattenTenantHierarchy(hierarchy);
+        var flattened = hierarchyUtils.flattenTenantHierarchy(hierarchy);
         $scope.data.tenants.flattened = flattened;
 
         // Set $scope.data.tenants.selected if tenantId was specified in URL

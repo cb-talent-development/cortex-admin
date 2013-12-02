@@ -30,6 +30,6 @@ cortexModule.controller('CortexAdminCtrl', function ($scope, $state) {
     });
 
     $scope.$on('userLoginSuccess', function (event, user, oldUser) {
-        $state.go('admin.organizations');
+        $state.go('admin.organizations.manage');
     });
 });

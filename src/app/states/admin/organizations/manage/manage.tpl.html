@@ -1,4 +1,4 @@
-﻿<div class="container">
+<div class="container">
     <div class="col-md-4">
         <input class="form-control" type="text" placeholder="Search for Organization"/>
         <div id="filterByLetter" class="text-center text-muted small vmargin-top-sm vmargin-bot-sm">
@@ -12,7 +12,7 @@
                 <button ng-repeat="organization in data.organizations"
                         class="btn btn-block"
                         ui-sref=".tenants({organizationId:organization.id})"
-                        ng-class="{'btn-primary': organization.id == data.selectedOrganization.id}">
+                        ng-class="{'btn-primary': organization.id == data.organization.id}">
                     {{ organization.name }}
                 </button>
             </div>

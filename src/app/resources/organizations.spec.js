@@ -1,4 +1,4 @@
-describe('Tenants Resource Module', function(){
+describe('Organizations Resource Module', function(){
 
     var mock = {
         tenants: [
@@ -29,24 +29,24 @@ describe('Tenants Resource Module', function(){
         ]
     };
 
-    beforeEach(angular.mock.module('cortex.resources.tenants'));
+    beforeEach(angular.mock.module('cortex.resources.organizations'));
 
-    describe('tenantUtils', function(){
-        var tenantUtils;
+    describe('hierarchyUtils', function(){
+        var hierarchyUtils;
 
         beforeEach(inject(function($injector){
-            tenantUtils = $injector.get('tenantUtils');
+            hierarchyUtils = $injector.get('hierarchyUtils');
         }));
 
         it('should exist', function(){
-            expect(tenantUtils).toBeTruthy();
+            expect(hierarchyUtils).toBeTruthy();
         });
 
         describe('flattenTenantHierarchy', function(){
             var flattenTenantHierarchy;
 
             beforeEach(inject(function($injector){
-                flattenTenantHierarchy = $injector.get('tenantUtils').flattenTenantHierarchy;
+                flattenTenantHierarchy = $injector.get('hierarchyUtils').flattenTenantHierarchy;
             }));
 
             it('should exist', function(){
@@ -60,7 +60,7 @@ describe('Tenants Resource Module', function(){
         });
     });
 
-    describe('totalTenants', function(){
+    describe('totalTenants filter', function(){
         var totalTenants;
 
         beforeEach(inject(function($filter){
@@ -76,8 +76,8 @@ describe('Tenants Resource Module', function(){
         });
     });
 
-    describe('TenantsHierarchy Resource', function(){
-        var TenantsHierarchy, $httpBackend;
+    describe('Organizations Resource', function(){
+        var Organizations, $httpBackend;
 
 
         beforeEach(function(){
@@ -88,19 +88,19 @@ describe('Tenants Resource Module', function(){
 
             inject(function($injector){
                 $httpBackend = $injector.get('$httpBackend');
-                TenantsHierarchy = $injector.get('TenantsHierarchy');
+                Organizations = $injector.get('Organizations');
             });
         });
 
         it('should exist', function(){
-            expect(TenantsHierarchy).toBeTruthy();
+            expect(Organizations).toBeTruthy();
         });
 
         it('should get hierarchy', function(){
             $httpBackend.expectGET('/organizations/1/tenants/hierarchy')
                         .respond(mock.tenants);
 
-            var result = TenantsHierarchy.query({orgId: 1});
+            var result = Organizations.hierarchy({id: 1});
 
             $httpBackend.flush();
 
