@@ -3,7 +3,7 @@ var module = angular.module('cortex.resources.assets', [
     'cortex.config'
 ]);
 
-module.factory('Assets', function (authorizedResource, config) {
-    return authorizedResource(config.api.baseUrl + '/assets/:id', {id: '@id'}, {
+module.factory('Assets', function (authorizedResource, Config) {
+    return authorizedResource(Config.api.baseUrl + '/assets/:id', {id: '@id'}, {
     });
 });

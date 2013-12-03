@@ -4,7 +4,7 @@ var module = angular.module('cortex.resources.tenants', [
     'cortex.config'
 ]);
 
-module.factory('Tenants', function(authorizedResource, config) {
-    return authorizedResource(config.api.baseUrl + '/tenants/:id', {id: '@id'}, {
+module.factory('Tenants', function(authorizedResource, Config) {
+    return authorizedResource(Config.api.baseUrl + '/tenants/:id', {id: '@id'}, {
     });
 });

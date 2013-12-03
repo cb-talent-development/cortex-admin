@@ -3,8 +3,8 @@ var module = angular.module('cortex.resources.users', [
     'cortex.config'
 ]);
 
-module.factory('Users', function (authorizedResource, config) {
-    return authorizedResource(config.api.baseUrl + '/users/:id', {id: '@id'}, {
+module.factory('Users', function (authorizedResource, Config) {
+    return authorizedResource(Config.api.baseUrl + '/users/:id', {id: '@id'}, {
         me: {
             method: 'GET',
             params: {id: 'me'}

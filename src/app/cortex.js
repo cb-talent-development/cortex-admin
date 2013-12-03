@@ -3,11 +3,12 @@ var cortexModule = angular.module('cortex', [
     'templates-common',
     'ui.router',
     'ui.router.state',
+    'cortex.config',
     'cortex.states.admin',
     'cortex.states.users.login'
 ]);
 
-cortexModule.factory('httpInterceptorService', function($q, $rootScope) {
+cortexModule.factory('httpInterceptorService', function($q, $rootScope, EventsDict) {
     return {
         'requestError': function(rejection) {
             // Perhaps retry here
@@ -15,7 +16,7 @@ cortexModule.factory('httpInterceptorService', function($q, $rootScope) {
             return $q.reject(rejection);
         },
         'responseError': function(rejection) {
-            $rootScope.$broadcast('httpResponseError', rejection.status);
+            $rootScope.$broadcast(EventsDict.HTTP_RESPONSE_ERROR, rejection.status);
             return $q.reject(rejection);
         }
     };
@@ -36,25 +37,24 @@ cortexModule.config(function ($urlRouterProvider, $httpProvider) {
     $httpProvider.interceptors.push('httpInterceptorService');
 });
 
-cortexModule.controller('CortexAdminCtrl', function ($scope, $state) {
+cortexModule.controller('CortexAdminCtrl', function ($scope, $state, EventsDict) {
     var isDefined = angular.isDefined;
 
-    $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+    $scope.$on(EventsDict.STATE_CHANGE_SUCCESS, function (event, toState, toParams, fromState, fromParams) {
         if (isDefined(toState.data) && isDefined(toState.data.pageTitle)) {
             $scope.pageTitle = toState.data.pageTitle + " | Cortex";
         }
     });
 
-    $scope.$on('userLoginSuccess', function (event, user, oldUser) {
+    $scope.$on(EventsDict.USER_LOGIN_SUCCESS, function (event, user, oldUser) {
         $state.go('admin.organizations.manage');
     });
 
-    $scope.$on('httpResponseError', function (event, statusCode) {
+    $scope.$on(EventsDict.HTTP_RESPONSE_ERROR, function (event, statusCode) {
         switch (statusCode) {
-
             // HTTP UNAUTHORIZED
             case 401:
-                alert('The username and/or password provided was incorrect.');
+                alert('Incorrect username and/or password provided.');
                 break;
 
             default:
