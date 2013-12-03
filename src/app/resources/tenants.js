@@ -1,10 +1,9 @@
 var module = angular.module('cortex.resources.tenants', [
     'angular-underscore',
-    'cortex.resources.authorized',
-    'cortex.config'
+    'cortex.resources.authorized'
 ]);
 
-module.factory('Tenants', function(authorizedResource, Config) {
-    return authorizedResource(Config.api.baseUrl + '/tenants/:id', {id: '@id'}, {
+module.factory('Tenants', function(authorizedResource) {
+    return authorizedResource('/tenants/:id', {id: '@id'}, {
     });
 });
