@@ -7,7 +7,7 @@ var cortexModule = angular.module('cortex', [
     'cortex.states.users.login'
 ]);
 
-cortexModule.factory('httpInterceptorService', function($q) {
+cortexModule.factory('httpInterceptorService', function($q, $rootScope) {
     return {
         'requestError': function(rejection) {
             // Perhaps retry here
@@ -15,7 +15,7 @@ cortexModule.factory('httpInterceptorService', function($q) {
             return $q.reject(rejection);
         },
         'responseError': function(rejection) {
-            alert('It would broadcast an error here on the rootScope');
+            $rootScope.$broadcast('httpResponseError', rejection.status);
             return $q.reject(rejection);
         }
     };
@@ -47,5 +47,18 @@ cortexModule.controller('CortexAdminCtrl', function ($scope, $state) {
 
     $scope.$on('userLoginSuccess', function (event, user, oldUser) {
         $state.go('admin.organizations.manage');
+    });
+
+    $scope.$on('httpResponseError', function (event, statusCode) {
+        switch (statusCode) {
+
+            // HTTP UNAUTHORIZED
+            case 401:
+                alert('The username and/or password provided was incorrect.');
+                break;
+
+            default:
+                alert('Unhandled HTTP response exception!');
+        }
     });
 });
