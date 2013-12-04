@@ -3,21 +3,29 @@ var cortexModule = angular.module('cortex', [
     'templates-common',
     'ui.router',
     'ui.router.state',
+    'angular-flash.service',
+    'angular-flash.flash-alert-directive',
     'cortex.states.admin',
     'cortex.states.users.login'
 ]);
 
-cortexModule.config(function ($urlRouterProvider, $httpProvider) {
+cortexModule.config(function ($urlRouterProvider, $httpProvider, flashProvider) {
 
     $urlRouterProvider.when('/admin/assets', '/admin/assets/');
 
     $urlRouterProvider.otherwise('/login');
 
-    // override the defalt Accept header value of 'application/json, text/plain, */*'
-    // as "*/*" invalidates all specificity
+    // Override the defalt Accept header value of 'application/json, text/plain, */*'
+    // as '*/*' invalidates all specificity
     // https://github.com/rails/rails/issues/9940
     // http://blog.bigbinary.com/2010/11/23/mime-type-resolution-in-rails.html
     $httpProvider.defaults.headers.common['Accept'] = 'application/json, text/plain';
+
+    // Configure message flashing with bootstrap alert classes
+    flashProvider.warnClassnames.push('alert-warning');
+    flashProvider.infoClassnames.push('alert-info');
+    flashProvider.successClassnames.push('alert-success');
+    flashProvider.errorClassnames.push('alert-danger');
 });
 
 cortexModule.controller('CortexAdminCtrl', function ($scope, $state) {

@@ -11,7 +11,7 @@
             <a class="navbar-brand" href="#">Cortex</a>
 
             <ul class="nav navbar-nav small">
-                <li ng-class="{ active: $state.includes('admin.organizations') }"><a ui-sref="admin.organizations">Tenant Management</a></li>
+                <li ng-class="{ active: $state.includes('admin.organizations') }"><a ui-sref="admin.organizations.manage">Tenant Management</a></li>
                 <li ng-class="{ active: $state.includes('admin.assets') }"><a ui-sref="admin.assets.manage.components">Asset Library</a></li>
                 <li ng-class="{ active: $state.includes('admin.permissions') }"><a ui-sref="admin.permissions">Roles/Permissions</a></li>
                 <li ng-class="{ active: $state.includes('admin.packages') }"><a ui-sref="admin.packages">Packages</a></li>
@@ -37,4 +37,10 @@
     </div>
 </div>
 
-<div ui-view></div>
+<div class="col-md-4 col-md-offset-4">
+  <div flash-alert active-class="in alert" class="fade-slow">
+    <span class="alert-message">{{flash.message}}</span>
+  </div>
+</div>
+
+<div class="col-md-12" ui-view></div>

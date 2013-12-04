@@ -29,7 +29,6 @@ module.directive('abnTree', function($timeout) {
       scope.header = attrs.header;
       if (!scope.treeData) {
         alert('no treeData defined for the tree!');
-        debugger;
         return;
       }
       if (scope.treeData.length == null) {
@@ -37,7 +36,6 @@ module.directive('abnTree', function($timeout) {
           scope.treeData = [treeData];
         } else {
           alert('treeData should be an array of root branches');
-          debugger;
           return;
         }
       }
@@ -163,9 +161,9 @@ module.directive('abnTree', function($timeout) {
         }
         return _results;
       };
-      if (attrs.initialSelection != null) {
+      if (attrs.initialSelection) {
         for_each_branch(function(b) {
-          if (b.label === attrs.initialSelection) {
+          if (b.name === attrs.initialSelection) {
             return select_branch(b);
           }
         });

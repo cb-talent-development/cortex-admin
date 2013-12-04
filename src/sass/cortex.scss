@@ -1,3 +1,53 @@
+////////////////////////////////
+// Mixins (Should be moved to separate file)
+
+@mixin placeholder {
+  &.placeholder { @content; }
+  &:-moz-placeholder { @content; }
+  &::-moz-placeholder { @content; }
+  &::-webkit-input-placeholder { @content; }
+  &:-ms-input-placeholder { @content; }
+}
+
+////////////////////////////////
+// Typography
+
 .smaller {
   font-size: 75%;
+}
+
+////////////////////////////////
+// Alerts
+
+// Fix message flash transition
+.alert-flash:not(.in) {
+  height: 0;
+  transition-property: all;
+}
+
+////////////////////////////////
+// Inputs
+
+/*
+// Emphasize required input fields
+input.form-control[required]:not(:focus) {
+  border-color: $gray;
+  @include placeholder {
+    color: #000;
+  }
+}
+*/
+
+////////////////////////////////
+// Transitions
+
+.fade-slow {
+  opacity: 0;
+  height: 0;
+  @include transition(opacity .3s linear);
+  transition-property: all;
+  &.in {
+    height: auto;
+    opacity: 1;
+  }
 }

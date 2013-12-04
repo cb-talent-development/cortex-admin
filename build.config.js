@@ -74,7 +74,9 @@ module.exports = {
       'vendor/underscore/underscore.js',
       'vendor/angular-underscore/angular-underscore.js',
       'vendor/jquery/jquery.min.js',
-      'vendor/ng-grid/ng-grid-2.0.7.min.js'
+      'vendor/ng-grid/ng-grid-2.0.7.min.js',
+      'vendor/angular-flash/dist/angular-flash.js',
+      'vendor/bootstrap-sass/dist/js/bootstrap.js'
     ],
     css: [
       'vendor/ng-grid/ng-grid.min.css'

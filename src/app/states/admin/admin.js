@@ -1,5 +1,6 @@
-﻿var module = angular.module('cortex.states.admin', [
+var module = angular.module('cortex.states.admin', [
     'ui.router.state',
+    'angular-flash.flash-alert-directive',
     'cortex.states.admin.organizations',
     'cortex.states.admin.assets',
     'cortex.states.admin.packages',
