@@ -4,7 +4,8 @@ var module = angular.module('cortex.states.admin.organizations.edit.tenants', [
     'angular-underscore',
     'cortex.resources.tenants',
     'cortex.resources.organizations',
-    'cortex.states.admin.organizations.manage.tenants'
+    'cortex.states.admin.organizations.manage.tenants',
+    'cortex.directives.tenantSettings'
 ]);
 
 module.config(function ($stateProvider) {
@@ -59,9 +60,16 @@ module.controller('EditTenantsCtrl', function($scope, $stateParams, $state, $tim
     $scope.save = function() {
         var tenantIsNew = !$scope.data.tenant.id;
         $scope.data.tenant.$save(function(tenant) {
-            var message = tenantIsNew ?
-                'Created new tenant "' + tenant.name + '" under "' + $scope.data.tenants.selected.name + '"' :
-                'Saved tenant "' +  tenant.name + '"';
+
+            var message;
+            if (tenantIsNew) {
+                message = 'Created new tenant "' + tenant.name + '" under "' + $scope.data.tenants.selected.name + '"' ;
+                $state.go('.', {tenantId: tenant.id, organizationId: $stateParams.organizationId});
+            }
+            else {
+                message = 'Saved tenant "' +  tenant.name + '"';
+            }
+
             flash.success = message;
         });
     };

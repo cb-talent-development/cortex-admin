@@ -2,6 +2,7 @@ var module = angular.module('cortex.states.admin.organizations.manage.tenants', 
     'ui.router.state',
     'angular-underscore',
     'cortex.resources.organizations',
+    'cortex.directives.tenantSettings',
     'common.angularBootstrapNavTree',
     'ngAnimate'
  ]);

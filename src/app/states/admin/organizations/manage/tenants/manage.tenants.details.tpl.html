@@ -21,12 +21,12 @@
         <td>{{ data.tenants.selected.contact_email }}</td>
     </tr>
     <tr>
-        <td>Active Date</td>
-        <td>{{ data.tenants.selected.date_active | date }}</td>
+        <td>Activate Date</td>
+        <td>{{ data.tenants.selected.active_at | date }}</td>
     </tr>
     <tr>
-        <td>Deactive Date</td>
-        <td>{{ data.tenants.selected.date_inactive | date }}</td>
+        <td>Deactivate Date</td>
+        <td>{{ data.tenants.selected.deactive_at | date }}</td>
     </tr>
     <tr>
         <td>Contract Number</td>
@@ -41,63 +41,4 @@
 
 <h4>Settings</h4>
 
-<table class="table small">
-    <thead>
-    <tr>
-        <th>Available Products</th>
-        <th>Available Roles</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>
-            <span class="glyphicon glyphicon-remove"></span>
-            Resume
-        </td>
-        <td>
-            <span class="glyphicon glyphicon-ok"></span>
-            Role 1
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <span class="glyphicon glyphicon-remove"></span>
-            Training
-        </td>
-        <td>
-            <span class="glyphicon glyphicon-ok"></span>
-            Role 2
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <span class="glyphicon glyphicon-remove"></span>
-            Assessments
-        </td>
-        <td>
-            <span class="glyphicon glyphicon-ok"></span>
-            Role 3
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <span class="glyphicon glyphicon-ok"></span>
-            Job Board
-        </td>
-        <td>
-            <span class="glyphicon glyphicon-ok"></span>
-            Role 4
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <span class="glyphicon glyphicon-ok"></span>
-            Job Data
-        </td>
-        <td>
-            <span class="glyphicon glyphicon-ok"></span>
-            Role 5
-        </td>
-    </tr>
-    </tbody>
-</table>
+<tenant-settings></tenant-settings>

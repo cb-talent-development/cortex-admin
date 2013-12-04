@@ -12,7 +12,7 @@
 
   <div class="panel panel-default">
     <div class="panel-body">
-      <p>1. Enter Tenant Information</p>
+      <p>1. Tenant Information</p>
       <form novalidate name="tenantForm">
         <div class="form-group"><input type="text" class="form-control" ng-model="data.tenant.name" name="name" placeholder="Name (Required)" required /></div>
         <div class="form-group"><input type="text" class="form-control" ng-model="data.tenant.contact_name" placeholder="Contact Name" /></div>
@@ -23,7 +23,7 @@
           <input type="text" class="form-control" datepicker-popup="{{datepicker.format}}"
                                                   is-open="datepicker.activateAtOpen"
                                                   show-weeks="false"
-                                                  ng-model="data.tenant.activate_at"
+                                                  ng-model="data.tenant.active_at"
                                                   placeholder="Activate Date"/>
           <span class="input-group-btn"><button class="btn btn-default" ng-click="datepicker.open('activateAtOpen')"><i class="icon-calendar"></i></button></span>
         </div>
@@ -32,7 +32,7 @@
           <input type="text" class="form-control" datepicker-popup="{{datepicker.format}}"
                                                   is-open="datepicker.deactivateAtOpen"
                                                   show-weeks="false"
-                                                  ng-model="data.tenant.deactivate_at"
+                                                  ng-model="data.tenant.deactive_at"
                                                   placeholder="Deactivate Date"/>
           <span class="input-group-btn"><button class="btn btn-default" ng-click="datepicker.open('deactivateAtOpen')"><i class="icon-calendar"></i></button></span>
         </div>
@@ -50,7 +50,7 @@
 
   <div class="panel panel-default">
     <div class="panel-body">
-      <p>2. Select Tenant Location in Organization Hierarchy</p>
+      <p>2. Tenant Location in Organization Hierarchy</p>
       <abn-tree tree-data="data.tenants.hierarchy" icon-leaf="icon-file"
                                                    on-select="selectParent(branch)"
                                                    expand-level="2"></abn-tree>
@@ -63,8 +63,14 @@
           </label>
         </div>
       </li>
+      <li class="list-group-item" ng-hide="data.tenant.inherit_from_parent">
+        <tenant-settings></tenant-settings>
+      </li>
       <li class="list-group-item">
-        <button type="button" class="btn btn-success btn-block" ng-disabled="tenantForm.$invalid || !data.tenants.selected" ng-click="save()">Create</button>
+        <button type="button"
+                class="btn btn-success btn-block"
+                ng-disabled="tenantForm.$invalid || !data.tenants.selected"
+                ng-click="save()">{{ data.tenant.id ? 'Save' : 'Create' }}</button>
       </li>
     </ul>
   </div>
