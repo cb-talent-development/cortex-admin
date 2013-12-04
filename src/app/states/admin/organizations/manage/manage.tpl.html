@@ -19,7 +19,7 @@
 </div>
 
 <div class="col-md-4">
-  <div class="panel panel-default">
+  <div class="panel panel-default" ng-show="$state.includes('admin.organizations.manage.tenants')">
     <div class="panel-heading">
       <span class="panel-title h3">Tenant Hierarchy</span>
       <div class="btn-group pull-right">
@@ -34,7 +34,7 @@
 </div>
 
 <div class="col-md-4">
-  <div class="panel panel-default">
+  <div class="panel panel-default" ng-show="$state.includes('admin.organizations.manage.tenants') && data.tenants.selected">
     <div class="panel-heading"><h3 class="panel-title">Tenant Details</h3></div>
     <div class="panel-body" ui-view="tenants-details">
     </div>
