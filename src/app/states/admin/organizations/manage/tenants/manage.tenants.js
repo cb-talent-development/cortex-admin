@@ -35,7 +35,7 @@ module.controller('TenantsTreeCtrl', function($scope, $stateParams, Organization
         selected: null
     };
 
-    $scope.data.tenants.hierarchy = Organizations.hierarchy({id: $stateParams.organizationId}, function(hierarchy){
+    $scope.data.tenants.hierarchy = Organizations.hierarchy({id: $stateParams.organizationId, include_root: true}, function(hierarchy){
 
         var flattened = hierarchyUtils.flattenTenantHierarchy(hierarchy);
         $scope.data.tenants.flattened = flattened;
