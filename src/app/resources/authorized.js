@@ -19,8 +19,10 @@ module.factory('authorizedResource', function ($resource, authService, Config) {
 
     return function (url, paramDefaults, actions) {
 
+        actions = extend({}, DEFAULT_ACTIONS, actions);
+
         // Iterate over all resource actions and allow the auth service to manipulate it
-        forEach(extend({}, DEFAULT_ACTIONS, actions), function (httpConfig) {
+        forEach(actions, function (httpConfig) {
             authService.addAuth(httpConfig);
         });
 
