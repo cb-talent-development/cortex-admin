@@ -4,10 +4,10 @@ var module = angular.module('cortex.resources.organizations', [
 ]);
 
 module.factory('Organizations', function (authorizedResource, config) {
-    return authorizedResource(config.api.baseUrl + '/organizations/:id', {id: '@id'}, {
+    return authorizedResource('/organizations/:id', {id: '@id'}, {
         hierarchy: {
             method: 'GET',
-            url: '/organizations/:id/tenants/hierarchy',
+            url: config.api.baseUrl + '/organizations/:id/tenants/hierarchy',
             isArray: true
         }
     });

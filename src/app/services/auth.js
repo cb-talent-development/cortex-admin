@@ -5,7 +5,7 @@ var module = angular.module('cortex.services.auth', [
     'cortex.config'
 ]);
 
-module.factory('authService', function ($cookieStore, $rootScope, $resource, base64, config) {
+module.factory('authService', function ($cookieStore, $rootScope, $resource, base64, config, events) {
 
     var credentials = $cookieStore.get('credentials') || {encoded: ''};
 
@@ -27,7 +27,7 @@ module.factory('authService', function ($cookieStore, $rootScope, $resource, bas
             var oldUser = $rootScope.user;
             var user = userResource.me(function () {
                 $rootScope.user = user;
-                scope.$emit('userLoginSuccess', user, oldUser);
+                scope.$emit(events.USER_LOGIN_SUCCESS, user, oldUser);
             });
         },
 
