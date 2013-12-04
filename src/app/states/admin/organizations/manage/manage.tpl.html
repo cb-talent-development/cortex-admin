@@ -18,6 +18,25 @@
     </div>
 </div>
 
-<div ui-view="tenants-tree" class="col-md-4"></div>
+<div class="col-md-4">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <span class="panel-title h3">Tenant Hierarchy</span>
+      <div class="btn-group pull-right">
+        <button type="button" class="btn btn-default btn-xs" ui-sref="admin.organizations.edit.tenants({organizationId: data.organization.id})">
+          <span class="glyphicon glyphicon-plus"></span> Add
+        </button>
+      </div>
+    </div>
+    <div class="panel-body" ui-view="tenants-tree">
+    </div>
+  </div>
+</div>
 
-<div ui-view="tenants-details" class="col-md-4"></div>
+<div class="col-md-4">
+  <div class="panel panel-default">
+    <div class="panel-heading"><h3 class="panel-title">Tenant Details</h3></div>
+    <div class="panel-body" ui-view="tenants-details">
+    </div>
+  </div>
+</div>

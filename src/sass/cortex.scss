@@ -1,4 +1,14 @@
 ////////////////////////////////
+// Container
+
+// Wow, people have screens *much* larger than 1200px
+@media (min-width: 1400px) {
+  .container.content {
+    width: 1400px;
+  }
+}
+
+////////////////////////////////
 // Mixins (Should be moved to separate file)
 
 @mixin placeholder {
