@@ -45,6 +45,12 @@ cortexModule.config(function ($urlRouterProvider, $httpProvider, flashProvider) 
     flashProvider.errorClassnames.push('alert-danger');
 });
 
+cortexModule.run(function ($rootScope, $state, $stateParams) {
+    // We can access $state and $stateParams from within any scope in our application
+    $rootScope.$state = $state;
+    $rootScope.$stateParams = $stateParams;
+});
+
 cortexModule.controller('CortexAdminCtrl', function ($scope, $state, events) {
     var isDefined = angular.isDefined;
 
