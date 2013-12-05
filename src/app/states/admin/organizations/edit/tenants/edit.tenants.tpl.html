@@ -2,6 +2,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">Instructions</div>
     <div class="panel-body">
+      {{ }}
       Create or edit a tenant.
     </div>
   </div>
@@ -16,6 +17,7 @@
       <form novalidate name="tenantForm">
         <div class="form-group"><input type="text" class="form-control" ng-model="data.tenant.name" name="name" placeholder="Name (Required)" required /></div>
         <div class="form-group"><input type="text" class="form-control" ng-model="data.tenant.contact_name" placeholder="Contact Name" /></div>
+        <div class="form-group"><input type="text" class="form-control" ng-model="data.tenant.contact_email" placeholder="Contact Email" /></div>
         <div class="form-group"><input type="text" class="form-control" ng-model="data.tenant.contact_phone" placeholder="Contact Phone" /></div>
 
 
