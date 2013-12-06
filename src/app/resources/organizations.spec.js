@@ -81,10 +81,7 @@ describe('Organizations Resource Module', function(){
 
 
         beforeEach(function(){
-            angular.mock.module('cortex.resources.authorized');
-            angular.mock.module(function($provide){
-                $provide.constant('config', {api: {baseUrl: ''}});
-            });
+            testing.provideConfig(testing.config.withEmptyApiBaseUrl);
 
             inject(function($injector){
                 $httpBackend = $injector.get('$httpBackend');

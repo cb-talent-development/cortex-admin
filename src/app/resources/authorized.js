@@ -1,5 +1,5 @@
 var module = angular.module('cortex.resources.authorized', [
-    'cortex.resource',
+    'cortex.resources.resource',
     'cortex.config',
     'cortex.services.auth'
 ]);

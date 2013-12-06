@@ -1,4 +1,4 @@
-var module = angular.module('cortex.resource', ['ngResource']);
+var module = angular.module('cortex.resources.resource', ['ngResource']);
 
 // RestfulResource uses PUT for saving existing resource (/foo/:id) and POST for creating
 module.factory('cortexResource', function($resource){
