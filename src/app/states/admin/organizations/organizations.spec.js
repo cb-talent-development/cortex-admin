@@ -9,9 +9,7 @@ describe('Admin.Organizations State Module', function() {
 
     beforeEach(function() {
         angular.mock.module('cortex.states.admin.organizations');
-        angular.mock.module(function($provide) {
-            $provide.constant('config', {api: {baseUrl: ''}});
-        });
+        testing.provideConfig(testing.config.withEmptyApiBaseUrl);
     });
 
     // $scope, $stateParams, $state, Organizations
@@ -24,7 +22,7 @@ describe('Admin.Organizations State Module', function() {
 
             $httpBackend = _$httpBackend_;
             $httpBackend.expectGET('/organizations')
-                .respond(mockData.organizations);
+                        .respond(mockData.organizations);
 
             createController = function() {
                 return organizationsCtrl = $controller('OrganizationsCtrl', {
