@@ -28,9 +28,4 @@ module.controller('OrganizationsCtrl', function($scope, $stateParams, $state, Or
             });
         }
     });
-
-    $scope.isOrganizationSelected = function(organization){
-        var selected = $scope.data.organization;
-        return selected && selected.id == organization.id;
-    };
 });

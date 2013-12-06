@@ -20,8 +20,7 @@ module.config(function($stateProvider){
                 },
                 'tenants-details':
                 {
-                    templateUrl: 'states/admin/organizations/manage/tenants/manage.tenants.details.tpl.html',
-                    controller: 'TenantsDetailsCtrl'
+                    templateUrl: 'states/admin/organizations/manage/tenants/manage.tenants.details.tpl.html'
                 }
             }
         });
@@ -51,8 +50,4 @@ module.controller('TenantsTreeCtrl', function($scope, $stateParams, Organization
     $scope.selectTenant = function(tenant){
         $scope.data.tenants.selected = tenant;
     };
-});
-
-module.controller('TenantsDetailsCtrl', function($scope, $stateParams) {
-
 });

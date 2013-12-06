@@ -52,11 +52,8 @@ describe('Admin.Organizations State Module', function() {
 
         it('has set $scope.data.organization if $stateParams.organizationId set', function() {
             $stateParams.organizationId = 1;
-
             var controller = createController();
-
             $httpBackend.flush();
-
             expect($scope.data.organization.id).toEqual(1);
         });
     });

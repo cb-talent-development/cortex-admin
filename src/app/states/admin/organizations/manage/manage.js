@@ -14,11 +14,6 @@ module.config(function ($stateProvider) {
 });
 
 module.controller('OrganizationsManageCtrl', function($scope, $stateParams, $state) {
-    $scope.isOrganizationSelected = function(organization){
-        var selected = $scope.data.organization;
-        return selected && selected.id == organization.id;
-    };
-
     // Open tenant hierarchy and details panels if an organization is selected
     if ($stateParams.organizationId && !$state.includes('admin.organizations.manage.tenants')) {
         $state.go('.tenants');
