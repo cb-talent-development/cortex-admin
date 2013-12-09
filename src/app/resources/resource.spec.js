@@ -5,11 +5,15 @@ describe('Cortex Resources Resource Module', function(){
     describe('Cortex Base Resource', function() {
         var FooResource, $httpBackend, createResource;
 
-        beforeEach(inject(function($injector){
-            $httpBackend = $injector.get('$httpBackend');
-            var cortexResource = $injector.get('cortexResource');
-            FooResource = cortexResource('/foo/:id', {id: '@id'});
-        }));
+        beforeEach(function() {
+            testing.provideConfig(testing.config.withEmptyApiBaseUrl);
+
+            inject(function($injector){
+                $httpBackend = $injector.get('$httpBackend');
+                var cortexResource = $injector.get('cortexResource');
+                FooResource = cortexResource('/foo/:id', {id: '@id'});
+            });
+        });
 
         afterEach(function() {
             $httpBackend.verifyNoOutstandingExpectation();

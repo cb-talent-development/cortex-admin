@@ -1,10 +1,10 @@
 var module = angular.module('cortex.resources.organizations', [
-    'cortex.resources.authorized',
+    'cortex.resources.resource',
     'cortex.config'
 ]);
 
-module.factory('Organizations', function (authorizedResource, config) {
-    return authorizedResource('/organizations/:id', {id: '@id'}, {
+module.factory('Organizations', function (cortexResource, config) {
+    return cortexResource('/organizations/:id', {id: '@id'}, {
         hierarchy: {
             method: 'GET',
             url: config.api.baseUrl + '/organizations/:id/tenants/hierarchy',
