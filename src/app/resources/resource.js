@@ -1,14 +1,13 @@
 var module = angular.module('cortex.resources.resource', ['ngResource']);
 
+module.constant('defaultActions', {
+    update: {method: 'PUT', inArray: false},
+    create: {method: 'POST'}
+});
+
 // RestfulResource uses PUT for saving existing resource (/foo/:id) and POST for creating
-module.factory('cortexResource', function($resource){
+module.factory('cortexResource', function($resource, defaultActions){
     return function(url, params, actions) {
-
-        var defaultActions = {
-            update: {method: 'PUT', inArray: false},
-            create: {method: 'POST'}
-        };
-
         actions = angular.extend(defaultActions, actions);
 
         var resource = $resource(url, params, actions);
