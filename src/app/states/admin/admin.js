@@ -8,12 +8,6 @@ var module = angular.module('cortex.states.admin', [
     'cortex.states.admin.products'
 ]);
 
-module.run(function ($rootScope, $state, $stateParams) {
-    // We can access $state and $stateParams from within any scope in our application
-    $rootScope.$state = $state;
-    $rootScope.$stateParams = $stateParams;
-});
-
 module.config(function ($stateProvider) {
     $stateProvider.state('admin', {
         abstract: true,

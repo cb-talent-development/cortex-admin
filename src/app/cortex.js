@@ -45,8 +45,12 @@ cortexModule.config(function ($urlRouterProvider, $httpProvider, flashProvider) 
     flashProvider.errorClassnames.push('alert-danger');
 });
 
-cortexModule.controller('CortexAdminCtrl', function ($scope, $state, events) {
+cortexModule.controller('CortexAdminCtrl', function ($scope, $state, events, $rootScope, $stateParams) {
     var isDefined = angular.isDefined;
+
+    // Add $state and $stateParams to root scope for universal access within views
+    $rootScope.$state = $state;
+    $rootScope.$stateParams = $stateParams;
 
     $scope.$on(events.STATE_CHANGE_SUCCESS, function (event, toState, toParams, fromState, fromParams) {
         if (isDefined(toState.data) && isDefined(toState.data.pageTitle)) {
