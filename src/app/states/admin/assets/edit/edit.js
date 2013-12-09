@@ -22,7 +22,7 @@ module.controller('AssetsEditCtrl', function($scope, $upload, config, authServic
         var httpConfig = {
             url: config.api.baseUrl + '/assets',
             data: {},
-            attachment: $files[0]
+            file: $files[0]
         };
         authService.addAuth(httpConfig);
 
