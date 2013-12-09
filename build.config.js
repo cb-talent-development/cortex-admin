@@ -63,6 +63,7 @@ module.exports = {
   vendor_files: {
     js: [
       'vendor/jquery/jquery.min.js',
+      'vendor/angularjs-file-upload/angular-file-upload-shim.min.js',
       'vendor/angular/angular.js',
       'vendor/angular-resource/angular-resource.js',
       'vendor/angular-cookies/angular-cookies.js',
@@ -76,13 +77,18 @@ module.exports = {
       'vendor/jquery/jquery.min.js',
       'vendor/ng-grid/ng-grid-2.0.7.min.js',
       'vendor/angular-flash/dist/angular-flash.js',
-      'vendor/bootstrap-sass/dist/js/bootstrap.js'
+      'vendor/bootstrap-sass/dist/js/bootstrap.js',
+      'vendor/angularjs-file-upload/angular-file-upload.min.js',
+      // Angular-file-upload would prefer this file be loaded in dynamically by its library.
+      // Unfortunately, for grunt to include it in the built output, it must be loaded on page load too. Perhaps create a separate grunt step for including files in HTML?
+      'vendor/angularjs-file-upload/FileAPI.min.js'
     ],
     css: [
       'vendor/ng-grid/ng-grid.min.css'
     ],
     assets: [
-      'vendor/bootstrap-sass/fonts/*'
+      'vendor/bootstrap-sass/fonts/*',
+      'vendor/angularjs-file-upload/FileAPI.flash.swf'
     ]
   }
 };
