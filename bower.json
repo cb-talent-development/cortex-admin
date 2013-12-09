@@ -5,7 +5,7 @@
     "angular": "~1.2.3",
     "angular-mocks": "~1.2.3",
     "angular-bootstrap": "~0.7.0",
-    "angular-ui-router": "https://github.com/toastercup/ui-router.git#4fd2315761e30352ac91ff210d7afa0ba0b33a72",
+    "angular-ui-router": "~0.2.6",
     "angular-ui-utils": "~0.0.4",
     "angular-resource": "~1.2.3",
     "angular-cookies": "~1.2.3",
@@ -15,7 +15,8 @@
     "jquery": "~2.0.3",
     "ng-grid": "~2.0.7",
     "bootstrap-sass": "~3.0.2",
-    "angular-flash": "~0.1.11"
+    "angular-flash": "~0.1.11",
+    "angularjs-file-upload": "~1.1.10"
   },
   "dependencies": {}
 }
