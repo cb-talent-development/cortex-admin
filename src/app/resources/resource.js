@@ -13,8 +13,8 @@ module.factory('cortexResource', function($resource){
 
         var resource = $resource(url, params, actions);
 
-        resource.prototype.$save = function() {
-            return this.id ? this.$update() : this.$create();
+        resource.prototype.$save = function(params, success, error) {
+            return this.id ? this.$update(params, success, error) : this.$create(params, success, error);
         };
 
         return resource;
