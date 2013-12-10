@@ -7,7 +7,8 @@
         <div class="panel-body">
 
             <div class="form-group" ng-hide="data.upload.file">
-                <span class="help-block text-center" ng-show="dropSupported">Drag a file into this panel or use the button below to select</span>
+                <span class="help-block text-center" ng-show="dropSupported" ng-file-drop="onFileSelect($files);" ng-file-drop-available="dropSupported=true">Drag a file into this panel or use the button below to select</span>
+                <span class="help-block text-center" ng-show="!dropSupported">Use the button below to select a file from your computer</span>
                 <span class="btn btn-primary btn-block btn-file">
                     <span class="glyphicon glyphicon-file"></span> Browse Computer <input type="file" ng-file-select="onFileSelect($files)"/>
                 </span>
