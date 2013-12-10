@@ -71,7 +71,7 @@ module.controller('AssetsEditCtrl', function($scope, $timeout, $upload, $state, 
 
         $scope.upload = $upload.upload(httpConfig)
         .progress(function(e) {
-            $scope.data.progress = parseInt(100.0 * e.loaded / e.total);
+            $scope.data.upload.progress = parseInt(100.0 * e.loaded / e.total);
         })
         .success(function(asset) {
             flash.success = asset.name + " created";
