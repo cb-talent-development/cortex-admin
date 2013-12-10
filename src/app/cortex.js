@@ -69,6 +69,10 @@ cortexModule.controller('CortexAdminCtrl', function ($scope, $state, events, $ro
                 alert('Incorrect username and/or password provided.');
                 break;
 
+            case 422:
+                alert('Invalid file type!');
+                break;
+
             case 0:
                 // The most disgusting hack in the world, ever, for IE10, I want to shoot myself - see: http://stackoverflow.com/questions/16081267/xmlhttprequest-status-0-instead-of-401-in-ie-10
                 alert('Incorrect username and/or password provided.');

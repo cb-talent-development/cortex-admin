@@ -57,7 +57,7 @@ module.controller('AssetsEditCtrl', function($scope, $timeout, $upload, $state, 
             method: 'POST',
             data: {asset: $scope.data.asset},
             file: file,
-            fileFormDataName: 'asset[file]',
+            fileFormDataName: 'asset[attachment]',
             formDataAppender: function(formData, key, value) {
                 if (key === 'asset') {
                     angular.forEach(value, function(v, k) {
