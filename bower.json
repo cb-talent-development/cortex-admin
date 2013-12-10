@@ -5,7 +5,7 @@
     "angular": "~1.2.4",
     "angular-mocks": "~1.2.4",
     "angular-bootstrap": "~0.7.0",
-    "angular-ui-router": "https://github.com/toastercup/ui-router.git#4fd2315761e30352ac91ff210d7afa0ba0b33a72",
+    "angular-ui-router": "~0.2.7",
     "angular-ui-utils": "~0.0.4",
     "angular-resource": "~1.2.4",
     "angular-cookies": "~1.2.4",
