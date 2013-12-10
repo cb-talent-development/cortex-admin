@@ -1,92 +1,64 @@
-<div class="container">
+<div class="col-md-6 col-md-offset-3">
+    <div class="panel panel-default"
+         ng-file-drop="onFileSelect($files)"
+         ng-file-drop-available="dropSupported=true">
+        <div class="panel-heading h3">Upload File</div>
 
-    <div class="col-md-offset-2 col-md-10">
-        <h3>Upload New File</h3>
+        <div class="panel-body">
 
-        <div class="form-group col-sm-12">
-            <h5><strong>Upload File from Computer</strong></h5>
-        </div><!--/form-group col-sm-12-->
+            <div class="form-group" ng-hide="data.upload.file">
+                <span class="help-block text-center" ng-show="dropSupported">Drag a file into this panel or use the button below to select</span>
+                <span class="btn btn-primary btn-block btn-file">
+                    <span class="glyphicon glyphicon-file"></span> Browse Computer <input type="file" ng-file-select="onFileSelect($files)"/>
+                </span>
+            </div>
 
-        <div class="form-group">
-            <label for="inputFile" class="col-sm-2 control-label small">Select File</label>
-            <div class="col-sm-6">
-                <input type="hidden" ng-model="myModelObj">
-                <input type="file" id="inputFile" ng-file-select="onFileSelect($files)">
+            <div class="form-group input-group" ng-show="data.upload.file">
+                <input type="text" class="form-control" ng-model="data.upload.file.name" disabled />
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" ng-click="remove()">
+                        <span class="glyphicon glyphicon-ban-circle"></span> Remove
+                    </button>
+                </span>
+            </div>
 
-                <div ng-file-drop="onFileSelect($files)" ng-file-drag-over-class="dragDropUpload" ng-show="dropSupported">Or drag and drop file here.</div>
-                <div ng-file-drop-available="dropSupported=true" ng-show="!dropSupported">HTML5 Drop File is not supported!</div>
-                <p class="help-block smaller">Allowed file types: .avi, .doc, .docx, .gif, .jpg, .mov, .mp4, .pdf, .png, .txt, .xls, .xlsx, .zip</p>
+            <progress percent="data.upload.progress" ng-show="data.upload.file"></progress>
 
-                <!--begin progress bar and thumbnail display - we can reposition/resize the elements within this div later-->
-                <div ng-show="selectedFiles != null">
-                    <div class="sel-file" ng-repeat="f in selectedFiles">
-                        <img ng-show="dataUrls[$index]" src="{{dataUrls[$index]}}">
-                        <button class="button" ng-click="start($index)" ng-show="progress[$index] < 0">Start</button>
-				                    <span class="progress" ng-show="progress[$index] >= 0">
-					                    <div style="width:{{progress[$index]}}%">{{progress[$index]}}%</div>
-				                    </span>
-                        <button class="button" ng-click="abort($index)" ng-show="hasUploader($index) && progress[$index] < 100">Abort</button>
-                        {{f.name}} - size: {{f.size}}B - type: {{f.type}}
-                    </div>
+            <form novalidate name="assetForm">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Name (Required)" ng-model="data.asset.name" required />
+                    <span class="help-block">Provide a clean display name</span>
                 </div>
-                <!--end progress bar and thumbnail display-->
-            </div><!--/col-sm-6-->
+                <div class="form-group">
+                    <textarea class="form-control vertical-only" rows="3" placeholder="Description" ng-model="data.asset.description"></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Tags" ng-model="data.asset.tag_list" />
+                    <span class="help-block">Use commas to separate tags</span>
+                </div>
+                <div class="input-group form-group">
+                    <input type="text" class="form-control" datepicker-popup="{{datepicker.format}}"
+                                                            is-open="datepicker.expireAtOpen"
+                                                            show-weeks="false"
+                                                            ng-model="data.asset.deactive_at"
+                                                            placeholder="Expiration Date"/>
+                    <span class="input-group-btn"><button class="btn btn-default" ng-click="datepicker.open('expireAtOpen')"><i class="icon-calendar"></i></button></span>
+                </div>
+            </form>
 
-            <div class="clearfix"></div><!--/clearfix-->
-        </div><!--/form-group-->
+            <div class="row">
+                <div class="col-xs-6">
+                    <button class="btn btn-block btn-danger" ng-disabled="!data.upload.progress" ng-click="upload.abort()">
+                        <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                    </button>
+                </div>
+                <div class="col-xs-6">
+                    <button class="btn btn-block btn-success" ng-disabled="!data.upload.file || assetForm.$invalid" ng-click="startUpload()">
+                        <span class="glyphicon glyphicon-cloud-upload"></span> Save
+                    </button>
+                </div>
+            </div>
 
-        <div class="form-group">
-            <label for="inputDisplayName" class="col-sm-2 control-label small">Display Name</label>
-            <div class="col-sm-6">
-                <input type="text" class="form-control" id="inputDisplayName" placeholder="Display Name">
-                <p class="help-block smaller">Provide a clean display name for the asset in case the filename is not clear or descriptive.</p>
-            </div><!--/col-sm-6-->
-
-            <div class="clearfix"></div><!--/clearfix-->
-        </div><!--/form-group-->
-
-        <div class="form-group col-sm-12">
-            <h5><strong>File Attributes (Optional)</strong></h5>
-        </div><!--/form-group col-sm-12-->
-
-        <div class="form-group">
-            <label for="inputDescription" class="col-sm-2 control-label small">File Description</label>
-            <div class="col-sm-6">
-                <textarea class="form-control" id="inputDescription" maxlength="200" placeholder="Description"></textarea>
-                <p class="help-block smaller">Maximum 200 characters.</p>
-            </div><!--/col-sm-6-->
-
-            <div class="clearfix"></div><!--/clearfix-->
-        </div><!--/form-group-->
-
-        <div class="form-group">
-            <label for="inputTags" class="col-sm-2 control-label small">Tags</label>
-            <div class="col-sm-6">
-                <input type="text" class="form-control" id="inputTags" placeholder="Tags">
-                <p class="help-block smaller">Use commas between tags to separate them.</p>
-            </div><!--/col-sm-6-->
-
-            <div class="clearfix"></div><!--/clearfix-->
-        </div><!--/form-group-->
-
-        <div class="form-group">
-            <label for="inputExpirationDate" class="col-sm-2 control-label small">Expiration Date</label>
-            <div class="col-sm-6">
-                <input type="text" class="form-control" id="inputExpirationDate" placeholder=""><span class="input-group-btn"><button class="btn btn-default"><i class="icon-calendar"></i></button></span>
-            </div><!--/col-sm-6-->
-
-            <div class="clearfix"></div><!--/clearfix-->
-        </div><!--/form-group-->
-
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-6">
-                <button class="btn btn-primary btn-sm">Upload</button>
-                <button class="btn btn-default btn-sm">Cancel</button>
-
-
-            </div><!--/col-sm-offset-2 col-sm-6-->
-
-            <div class="clearfix"></div><!--/clearfix-->
-        </div><!--/form-group-->
-    </div><!--/col-md-10-->
-</div><!--/container-->
+        </div>
+    </div>
+</div>

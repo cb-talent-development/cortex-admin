@@ -39,11 +39,11 @@ module.controller('AssetsGridCtrl', function($scope, Assets, templates){
         totalServerItems: 'data.totalServerItems',
         pagingOptions: assetGridPagingOptions,
         columnDefs: [
-            {field: 'original_filename', displayName: 'Name'},
-            {field: 'name', displayName: 'Description'},
-            {field: 'creator.username', displayName: 'Author'},
-            {field: 'create_date|date:"y/M/d h:mm:ss a"', displayName: 'Created'},
-            {field: 'update_date|date:"y/M/d h:mm:ss a"', displayName: 'Modified'},
+            {field: 'name', displayName: 'Name'},
+            {field: 'description', displayName: 'Description'},
+            {field: 'creator.name', displayName: 'Author'},
+            {field: 'created_at|date:"y/M/d h:mm:ss a"', displayName: 'Created'},
+            {field: 'updated_at|date:"y/M/d h:mm:ss a"', displayName: 'Modified'},
             {
                 // Unicode checkmark if delete_date is null
                 field: 'delete_date == null ? "\u2713" : ""',
@@ -51,7 +51,7 @@ module.controller('AssetsGridCtrl', function($scope, Assets, templates){
                 width: 43,
                 cellTemplate: templates.ngGridCells.centerAligned
             },
-            {field: 'tags.join(", ")', displayName: 'Tags'}
+            {field: 'tags|tagList', displayName: 'Tags'}
         ]
     };
 });

@@ -1,4 +1,5 @@
 var module = angular.module('cortex.resources.organizations', [
+    'angular-underscore/utils',
     'cortex.resources.resource',
     'cortex.config'
 ]);

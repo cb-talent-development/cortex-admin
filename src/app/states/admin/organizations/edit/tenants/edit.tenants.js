@@ -1,5 +1,6 @@
 var module = angular.module('cortex.states.admin.organizations.edit.tenants', [
     'ui.router.state',
+    'ui.bootstrap.datepicker',
     'angular-flash.service',
     'angular-underscore',
     'cortex.resources.tenants',
