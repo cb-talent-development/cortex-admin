@@ -1,8 +1,16 @@
 <div class="col-md-4">
-    <input class="form-control" type="text" placeholder="Search for Organization"/>
-    <div id="filterByLetter" class="text-center text-muted small vmargin-top-sm vmargin-bot-sm">
-        0-9 A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+    <form class="form-inline" role="form">
+       <input id="tenantSearchBar" class="form-control input-sm pull-left" type="text" placeholder="Search for Organization" />
+       <button type="button" class="btn btn-sm btn-default hmargin-left-small"><i class="icon-search"></i></button>
+       <button type="button" class="btn btn-sm btn-info pull-right" ui-sref="admin.organizations.edit.tenants({organizationId: ''})">Add New Org.</button>
+	</form>
+    
+    <div class="clearfix"></div>
+
+    <div id="filterByLetter" class="text-center text-muted small vmargin-top-small vmargin-bottom-small">
+        # A B C D E F G H I J K L M N O P Q <a href="#">R</a> S T U V W X Y Z
     </div>
+    
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">R</h3>
