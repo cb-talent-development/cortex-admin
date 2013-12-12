@@ -1,7 +1,8 @@
 var module = angular.module('cortex.states.admin.assets', [
     'ui.router.state',
     'cortex.states.admin.assets.manage',
-    'cortex.states.admin.assets.edit'
+    'cortex.states.admin.assets.edit',
+    'cortex.states.admin.assets.view'
 ]);
 
 module.config(function($stateProvider){

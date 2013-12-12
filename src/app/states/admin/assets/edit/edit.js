@@ -12,7 +12,7 @@ var module = angular.module('cortex.states.admin.assets.edit', [
 
 module.config(function($stateProvider){
     $stateProvider.state('admin.assets.edit', {
-        url: '/:assetId',
+        url: '/:assetId/edit',
         templateUrl: 'states/admin/assets/edit/edit.tpl.html',
         controller: 'AssetsEditCtrl'
     })
