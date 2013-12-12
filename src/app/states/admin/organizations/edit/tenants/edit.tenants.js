@@ -32,6 +32,9 @@ module.controller('EditTenantsCtrl', function($scope, $stateParams, $state, $tim
         }
     };
 
+    $scope.levelName = $stateParams.organizationId ? 'tenant' : 'organization';
+    $scope.creatingOrganization = $stateParams.organizationId === '';
+
     // Fetch the tenant or create a new resource
     if ($stateParams.tenantId) {
         $scope.data.tenant = Tenants.get({id: $stateParams.tenantId});
@@ -51,7 +54,9 @@ module.controller('EditTenantsCtrl', function($scope, $stateParams, $state, $tim
     };
 
     // Fetch organization hierarchy
-    $scope.data.tenants.hierarchy = Organizations.hierarchy({id: $stateParams.organizationId, include_root: true});
+    if ($stateParams.organizationId) {
+        $scope.data.tenants.hierarchy = Organizations.hierarchy({id: $stateParams.organizationId, include_root: true});
+    }
     $scope.creatingTenant = $stateParams.tenantId === '';
 
     $scope.selectParent = function(tenant){
@@ -64,12 +69,23 @@ module.controller('EditTenantsCtrl', function($scope, $stateParams, $state, $tim
         $scope.data.tenant.$save(function(tenant) {
 
             var message;
-            if (tenantIsNew) {
-                message = 'Created new tenant "' + tenant.name + '" under "' + $scope.data.tenants.selected.name + '"' ;
-                $state.go('.', {tenantId: tenant.id, organizationId: $stateParams.organizationId});
+            if ($scope.creatingOrganization) {
+                if (tenantIsNew) {
+                    message = 'Created new organization "' + tenant.name + '"';
+                    $state.go('.', {tenantId: tenant.id});
+                }
+                else {
+                    message = 'Saved organization "' + tenant.name + '"';
+                }
             }
             else {
-                message = 'Saved tenant "' +  tenant.name + '"';
+                if (tenantIsNew) {
+                    message = 'Created new tenant "' + tenant.name + '" under "' + $scope.data.tenants.selected.name + '"' ;
+                    $state.go('.', {tenantId: tenant.id, organizationId: $stateParams.organizationId});
+                }
+                else {
+                    message = 'Saved tenant "' +  tenant.name + '"';
+                }
             }
 
             flash.success = message;

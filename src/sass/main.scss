@@ -12,6 +12,7 @@
 
 // -- states --
 @import 'states/admin.assets.manage';
+@import 'states/admin.tenant.manage';
 // -- /states --
 
 // Twitter Bootstrap and overridden styles
@@ -19,7 +20,3 @@
 
 // Application-wide styling
 @import 'cortex';
-
-.hmargin-left-small {
-  margin-left: 10px;
-}
