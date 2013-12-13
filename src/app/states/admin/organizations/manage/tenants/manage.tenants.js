@@ -26,7 +26,13 @@ module.config(function($stateProvider){
         });
 });
 
-module.controller('TenantsTreeCtrl', function($scope, $stateParams, Organizations, hierarchyUtils) {
+module.factory('TenantsTreeStatus', function () {
+    return {
+        isLoaded: false
+    };
+});
+
+module.controller('TenantsTreeCtrl', function($scope, $stateParams, Organizations, hierarchyUtils, TenantsTreeStatus) {
 
     $scope.data.tenants =
     {
@@ -34,6 +40,8 @@ module.controller('TenantsTreeCtrl', function($scope, $stateParams, Organization
         flattened: [],
         selected: null
     };
+
+    TenantsTreeStatus.isLoaded = false;
 
     $scope.data.tenants.hierarchy = Organizations.hierarchy({id: $stateParams.organizationId, include_root: true}, function(hierarchy){
 
@@ -45,6 +53,8 @@ module.controller('TenantsTreeCtrl', function($scope, $stateParams, Organization
         if (tenantId) {
             $scope.data.tenants.selected = _.find(flattened, function(t) { return t.id == tenantId; });
         }
+
+        TenantsTreeStatus.isLoaded = true;
     });
 
     $scope.selectTenant = function(tenant){

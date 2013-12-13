@@ -13,9 +13,11 @@ module.config(function ($stateProvider) {
         });
 });
 
-module.controller('OrganizationsManageCtrl', function($scope, $stateParams, $state) {
+module.controller('OrganizationsManageCtrl', function($scope, $stateParams, $state, TenantsTreeStatus) {
     // Open tenant hierarchy and details panels if an organization is selected
     if ($stateParams.organizationId && !$state.includes('admin.organizations.manage.tenants')) {
         $state.go('.tenants');
     }
+
+    $scope.tenantsTreeStatus = TenantsTreeStatus;
 });
