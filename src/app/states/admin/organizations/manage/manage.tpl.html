@@ -1,11 +1,17 @@
 <div class="col-md-4">
-    <form class="form-inline" role="form">
-       <input id="tenantSearchBar" class="form-control input-sm pull-left" type="text" placeholder="Search for Organization" />
-       <button type="button" class="btn btn-sm btn-default hmargin-left-small"><i class="icon-search"></i></button>
-       <button type="button" class="btn btn-sm btn-info pull-right" ui-sref="admin.organizations.edit.tenants({organizationId: ''})">Add New Org.</button>
-	</form>
-    
-    <div class="clearfix"></div>
+	<div class="row">
+    <div class="col-md-8">
+      <form class="form-inline" role="form">
+        <label class="sr-only" for="tenantSearchBar">Search for Organization</label>
+        <input id="tenantSearchBar" class="form-control input-sm pull-left" type="text" placeholder="Search for Organization" />
+        <button type="button" class="btn btn-sm btn-default pull-left hmargin-left-small"><i class="icon-search"></i></button>
+      </form>
+    </div>
+        
+		<div class="col-md-4">
+			<button type="button" class="btn btn-sm btn-info pull-right" ui-sref="admin.organizations.edit.tenants({organizationId: ''})">Add New Org.</button>
+    </div>
+	</div>
 
     <div id="filterByLetter" class="text-center text-muted small vmargin-top-small vmargin-bottom-small">
         # A B C D E F G H I J K L M N O P Q <a href="#">R</a> S T U V W X Y Z
