@@ -32,7 +32,9 @@
     <div class="col-md-10">
 		<h3 class="vmargin-bottom-large">
             Asset Details: [{{asset.name}}]
-            <button type="button" class="btn btn-primary pull-right">Edit Asset Details</button>
+            <button type="button" ui-sref="admin.assets.edit({assetId: asset.id})" class="btn btn-primary pull-right">
+                Edit Asset Details
+            </button>
         </h3>
 		
 		<div class="panel panel-info">
