@@ -10,8 +10,14 @@ module.config(function($stateProvider){
     $stateProvider.state('admin.assets.manage.components', {
         url: '/',
         views: {
-            'assets-grid': { templateUrl: 'states/admin/assets/manage/grid.tpl.html', controller: 'AssetsGridCtrl' },
-            'assets-filters': { templateUrl: 'states/admin/assets/manage/filters.tpl.html', controller: 'AssetsFiltersCtrl' }
+            'assets-grid': {
+                templateUrl: 'states/admin/assets/manage/grid.tpl.html',
+                controller: 'AssetsGridCtrl'
+            },
+            'assets-filters': {
+                templateUrl: 'states/admin/assets/manage/filters.tpl.html',
+                controller: 'AssetsFiltersCtrl'
+            }
         }
     });
 });

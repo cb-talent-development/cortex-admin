@@ -1,5 +1,6 @@
 var module = angular.module('cortex.states.admin.assets.view', [
     'ui.router.state',
+    'common.filters',
     'cortex.resources.assets'
 ]);
 
