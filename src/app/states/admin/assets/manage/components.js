@@ -45,7 +45,7 @@ module.controller('AssetsGridCtrl', function($scope, Assets, templates){
         totalServerItems: 'data.totalServerItems',
         pagingOptions: assetGridPagingOptions,
         columnDefs: [
-            {field: 'name', displayName: 'Name'},
+            {field: 'name', displayName: 'Name', cellTemplate: "<div class='ngCellText'><a ui-sref='admin.assets.view({assetId: row.getProperty(\"id\")})'>{{row.getProperty(col.field)}}</a></div>"},
             {field: 'description', displayName: 'Description'},
             {field: 'creator.name', displayName: 'Author'},
             {field: 'created_at|date:"y/M/d h:mm:ss a"', displayName: 'Created'},
