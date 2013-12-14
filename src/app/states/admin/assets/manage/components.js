@@ -45,8 +45,8 @@ module.controller('AssetsGridCtrl', function($scope, Assets, templates){
             {field: 'created_at|date:"y/M/d h:mm:ss a"', displayName: 'Created'},
             {field: 'updated_at|date:"y/M/d h:mm:ss a"', displayName: 'Modified'},
             {
-                // Unicode checkmark if delete_date is null
-                field: 'delete_date == null ? "\u2713" : ""',
+                // Unicode checkmark if deactive_at is null
+                field: 'deactive_at == null ? "\u2713" : ""',
                 displayName: 'Active',
                 width: 43,
                 cellTemplate: templates.ngGridCells.centerAligned
