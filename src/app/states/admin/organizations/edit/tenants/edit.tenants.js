@@ -72,6 +72,10 @@ module.controller('EditTenantsCtrl', function($scope, $stateParams, $state, $tim
             if ($scope.creatingOrganization) {
                 if (tenantIsNew) {
                     message = 'Created new organization "' + tenant.name + '"';
+
+                    // Refresh organizations
+                    $scope.data.organizations = Organizations.query();
+
                     $state.go('.', {tenantId: tenant.id});
                 }
                 else {
