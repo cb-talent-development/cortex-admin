@@ -1,0 +1,21 @@
+<div class="pull-left">
+    <h3>Packages</h3>
+</div>
+
+<div class="clearfix"></div>
+
+<div id="batch-and-search">
+    <button ui-sref="admin.assets.new" class="btn btn-sm btn-primary" type="button">Create Package</button>
+
+    <button class="btn btn-sm dropdown-toggle" type="button">Bulk Action <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+        <li><a>Activate</a></li>
+        <li><a>Deactivate</a></li>
+    </ul>
+
+    <div id="package-search" class="pull-right">
+        <input type="text" class="form-control input-sm" placeholder="Search Packages...">
+    </div>
+</div>
+
+<div id="package-grid" class="smaller" ng-grid="data.assetGridOptions"></div>

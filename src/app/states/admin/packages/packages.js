@@ -1,9 +1,12 @@
 var module = angular.module('cortex.states.admin.packages', [
-    'ui.router.state']);
+    'ui.router.state',
+    'cortex.states.admin.packages.manage'
+    ]);
 
 module.config(function($stateProvider){
     $stateProvider.state('admin.packages', {
         url: '/packages',
-        template: '<div class="container">Here ly thy beast, Packages</div>'
+        abstract: true,
+        template: '<div class="admin-packages" ui-view></div>'
     });
 });

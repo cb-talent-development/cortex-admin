@@ -1,0 +1,55 @@
+<div class="panel panel-default vmargin-top-large">
+    <div class="panel-body">
+        <p class="h6">Package Type</p>
+
+        <ul class="list-unstyled smaller">
+            <li ng-repeat="type in data.assetTypes">
+                <input type="checkbox" /> {{ type.name }} ({{ type.extensions.join(', ') }})
+            </li>
+        </ul>
+
+        <button type="button" class="pull-right btn btn-default btn-sm">Clear</button>
+    </div>
+</div>
+
+<div class="panel panel-default vmargin-top-large">
+    <div class="panel-body">
+        <p class="h6">Category</p>
+
+        <select id="categorySelect" class="form-control smaller">
+            <option value="Cover Letters">Cover Letters</option>
+            <option value="Job Trends">Job Trends</option>
+            <option value="Networking">Networking</option>
+            <option value="On the Job">On the Job</option>
+            <option value="Who's Hiring">Who's Hiring</option>
+            <option value="Work/Life Balance">Work/Life Balance</option>
+        </select>
+
+        <button type="button" class="pull-right btn btn-default btn-sm vmargin-top-small">Clear</button>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <p class="h6">Date</p>
+        <div class="btn-group btn-group-xs">
+            <button type="button" class="btn btn-primary" ng-model="data.filters.date.property" btn-radio="'create_date'">Created</button>
+            <button type="button" class="btn btn-primary" ng-model="data.filters.date.property" btn-radio="'update_date'">Modified</button>
+        </div>
+
+        <label class="h6 vmargin-top-large">From</label>
+        <div class="input-group input-group-sm">
+            <input type="text" class="form-control"/>
+            <span class="input-group-btn"><button class="btn btn-default"><i class="icon-calendar"></i></button></span>
+        </div>
+
+        <label class="h6 vmargin-top-large">To</label>
+        <div class="input-group input-group-sm">
+            <input type="text" class="form-control"/>
+            <span class="input-group-btn"><button class="btn btn-default"><i class="icon-calendar"></i></button></span>
+        </div>
+
+        <button id="asset-filter-date-clear-btn" type="button" class="pull-right btn btn-default btn-sm vmargin-top-small">Clear</button>
+    </div>
+</div>
