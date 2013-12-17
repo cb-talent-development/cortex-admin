@@ -2,21 +2,21 @@
   "name": "cortex-admin",
   "version": "0.0.1",
   "devDependencies": {
-    "angular": "~1.2.4",
-    "angular-mocks": "~1.2.4",
+    "angular": "~1.2.5",
+    "angular-mocks": "~1.2.5",
     "angular-bootstrap": "~0.7.0",
     "angular-ui-router": "~0.2.7",
     "angular-ui-utils": "~0.0.4",
-    "angular-resource": "~1.2.4",
-    "angular-cookies": "~1.2.4",
-    "angular-animate": "~1.2.4",
+    "angular-resource": "~1.2.5",
+    "angular-cookies": "~1.2.5",
+    "angular-animate": "~1.2.5",
     "angular-underscore": "*",
     "underscore": "~1.5.2",
     "jquery": "~2.0.3",
     "ng-grid": "~2.0.7",
     "bootstrap-sass": "~3.0.2",
     "angular-flash": "~0.1.11",
-    "angularjs-file-upload": "~1.1.10"
+    "angularjs-file-upload": "~1.1.11"
   },
   "dependencies": {}
 }
