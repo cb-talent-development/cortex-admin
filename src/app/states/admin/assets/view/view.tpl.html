@@ -1,36 +1,41 @@
 <div class="container">
     <div class="col-md-2 vmargin-top-large">
-		<img src="assets/admin/placeholder.gif" height="100" width="100" alt="Placeholder" />
+		<img src="{{asset.attachment_thumb_url}}" height="100" width="100" alt="Placeholder" />
 		
 		<dl class="smaller">
 			<dt>File Type</dt>
-			<dd>image/gif</dd>
+			<dd>{{asset.content_type}}</dd>
 			
 			<dt>File Size</dt>
-			<dd>3KB</dd>
+			<dd>{{asset.file_size | bytes}}</dd>
 			
 			<dt>Dimensions</dt>
-			<dd>100x100</dd>
+			<dd>{{asset.dimensions.0}} x {{asset.dimensions.1}}</dd>
 			
 			<dt>Author</dt>
-			<dd>sblack</dd>
+			<dd>{{asset.creator.name}}</dd>
 			
 			<dt>Created</dt>
-			<dd>11/30/2013</dd>
+			<dd>{{asset.created_at | date:"y/M/d h:mm:ss a"}}</dd>
 			
 			<dt>Last Modified</dt>
-			<dd>12/1/2013</dd>
+			<dd>{{asset.updated_at | date:"y/M/d h:mm:ss a"}}</dd>
 			
 			<dt>Last Published</dt>
-			<dd>12/2/2013</dd>
+			<dd>Placeholder</dd>
 			
 			<dt>Direct URL</dt>
-			<dd><a href="http://cbcortex.com/assets/fileurl.jpg">http://cbcortex.com/assets/fileurl.gif</a></dd>
+			<dd><a href="{{asset.attachment_url}}">{{asset.attachment_url}}</a></dd>
 		</dl>
 	</div>
 
     <div class="col-md-10">
-		<h3 class="vmargin-bottom-large">Asset Details <button type="button" class="btn btn-primary pull-right">Edit Asset Details</button></h3>
+		<h3 class="vmargin-bottom-large">
+            Asset Details: [{{asset.name}}]
+            <button type="button" ui-sref="admin.assets.edit({assetId: asset.id})" class="btn btn-primary pull-right">
+                Edit Asset Details
+            </button>
+        </h3>
 		
 		<div class="panel panel-info">
 			<div class="panel-heading">
@@ -40,7 +45,7 @@
 			<div class="panel-body">
 				<dl class="dl-horizontal">
 					<dt>Filename</dt>
-					<dd>placeholder.gif</dd>
+					<dd>{{asset.file_name}}</dd>
 					
 					<dt>Alt Text</dt>
 					<dd>Placeholder</dd>
@@ -56,10 +61,10 @@
 			<div class="panel-body">
 				<dl class="dl-horizontal">
 					<dt>Asset Display Name</dt>
-					<dd>Sample image</dd>
+					<dd>{{asset.name}}</dd>
 					
 					<dt>Description</dt>
-					<dd>Lorem ipsum dolor sit amet</dd>
+					<dd>{{asset.description}}</dd>
 					
 					<dt>Phase</dt>
 					<dd>Discovery</dd>
@@ -68,7 +73,7 @@
 					<dd>How to Search</dd>
 					
 					<dt>Tags</dt>
-					<dd>test, image, asset, demo, jpg</dd>
+					<dd>{{asset.tags|tagList}}</dd>
 					
 					<dt>Associated Packages</dt>
 					<dd></dd>
@@ -87,7 +92,7 @@
 					<dd>Active</dd>
 					
 					<dt>Expiration Date</dt>
-					<dd>12/12/2016</dd>
+					<dd>{{asset.deactive_at | date:"y/M/d"}}</dd>
 				</dl>
 			</div>
 		</div><!--/panel panel-info-->

@@ -10,13 +10,23 @@ module.config(function($stateProvider){
     $stateProvider.state('admin.assets.manage.components', {
         url: '/',
         views: {
-            'assets-grid': { templateUrl: 'states/admin/assets/manage/grid.tpl.html', controller: 'AssetsGridCtrl' },
-            'assets-filters': { templateUrl: 'states/admin/assets/manage/filters.tpl.html', controller: 'AssetsFiltersCtrl' }
+            'assets-grid': {
+                templateUrl: 'states/admin/assets/manage/grid.tpl.html',
+                controller: 'AssetsGridCtrl'
+            },
+            'assets-filters': {
+                templateUrl: 'states/admin/assets/manage/filters.tpl.html',
+                controller: 'AssetsFiltersCtrl'
+            }
         }
     });
 });
 
-module.controller('AssetsGridCtrl', function($scope, Assets, templates){
+module.constant('gridTemplates', {
+    viewAssetLinkCell: "<div class='ngCellText'><a ui-sref='admin.assets.view({assetId: row.getProperty(\"id\")})'>{{row.getProperty(col.field)}}</a></div>"
+});
+
+module.controller('AssetsGridCtrl', function($scope, Assets, templates, gridTemplates){
 
     // Create a generic grid factory for Cortex? This will be boilerplate for a ton of our resource grids
     $scope.data = {};
@@ -39,14 +49,14 @@ module.controller('AssetsGridCtrl', function($scope, Assets, templates){
         totalServerItems: 'data.totalServerItems',
         pagingOptions: assetGridPagingOptions,
         columnDefs: [
-            {field: 'name', displayName: 'Name'},
+            {field: 'name', displayName: 'Name', cellTemplate: gridTemplates.viewAssetLinkCell},
             {field: 'description', displayName: 'Description'},
             {field: 'creator.name', displayName: 'Author'},
             {field: 'created_at|date:"y/M/d h:mm:ss a"', displayName: 'Created'},
             {field: 'updated_at|date:"y/M/d h:mm:ss a"', displayName: 'Modified'},
             {
-                // Unicode checkmark if delete_date is null
-                field: 'delete_date == null ? "\u2713" : ""',
+                // Unicode checkmark if deactive_at is null
+                field: 'deactive_at == null ? "\u2713" : ""',
                 displayName: 'Active',
                 width: 43,
                 cellTemplate: templates.ngGridCells.centerAligned

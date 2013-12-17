@@ -1,5 +1,7 @@
 var module = angular.module('cortex.states.admin.assets.view', [
-    'ui.router.state'
+    'ui.router.state',
+    'common.filters',
+    'cortex.resources.assets'
 ]);
 
 module.config(function($stateProvider){
@@ -10,5 +12,6 @@ module.config(function($stateProvider){
     });
 });
 
-module.controller('AssetsViewCtrl', function($scope) {
+module.controller('AssetsViewCtrl', function($scope, $stateParams, Assets) {
+    $scope.asset = Assets.get({id: $stateParams.assetId});
 });
