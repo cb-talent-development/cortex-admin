@@ -42,7 +42,6 @@ module.controller('PackagesGridCtrl', function($scope, Posts, templates){
             {field: 'type', displayName: 'Type'},
             {field: 'created_at', displayName: 'Created'},
             {field: 'published_at|publishStatus', displayName: 'Status'},
-            {field: 'publish_location', displayName: 'Published On'},
             {field: 'author.name', displayName: 'Author'},
             {field: 'categories|tagList', displayName: 'Categories'},
             {field: 'created_at|date:"d/M/y h:mm:ss a"', displayName: 'Created'},
