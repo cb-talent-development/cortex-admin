@@ -13,7 +13,5 @@ module.config(function($stateProvider){
 });
 
 module.controller('PackagesEditCtrl', function($scope){
-
     $scope.data = {filters: {}};
-
 });

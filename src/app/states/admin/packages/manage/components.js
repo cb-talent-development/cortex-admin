@@ -3,7 +3,7 @@ var module = angular.module('cortex.states.admin.packages.manage.components', [
     'ngGrid',
     'ui.bootstrap',
     'common.templates',
-    'cortex.resources.assets'
+    'cortex.resources.posts'
 ]);
 
 module.config(function($stateProvider){
@@ -16,14 +16,13 @@ module.config(function($stateProvider){
     });
 });
 
-module.controller('PackagesGridCtrl', function($scope, Assets, templates){
+module.controller('PackagesGridCtrl', function($scope, Posts, templates){
 
     // Create a generic grid factory for Cortex? This will be boilerplate for a ton of our resource grids
     $scope.data = {};
     $scope.data.totalServerItems = 0;
 
-    $scope.data.assets = Assets.query(function(response) {
-        $scope.data.totalServerItems = response.length;
+    $scope.data.assets = Posts.query(function(response) {
     });
 
     var assetGridPagingOptions = {
@@ -39,13 +38,13 @@ module.controller('PackagesGridCtrl', function($scope, Assets, templates){
         totalServerItems: 'data.totalServerItems',
         pagingOptions: assetGridPagingOptions,
         columnDefs: [
-            {field: 'headline', displayName: 'Headline'},
-            {field: 'package_type', displayName: 'Type'},
-            {field: 'date', displayName: 'Date'},
-            {field: 'status', displayName: 'Status'},
-            {field: 'publish_location', displayName: 'Publish Location'},
-            {field: 'creator.name', displayName: 'Author'},
-            {field: 'categories', displayName: 'Categories'},
+            {field: 'title', displayName: 'Title'},
+            {field: 'type', displayName: 'Type'},
+            {field: 'created_at', displayName: 'Created'},
+            {field: 'published_at|publishStatus', displayName: 'Status'},
+            {field: 'publish_location', displayName: 'Published On'},
+            {field: 'author.name', displayName: 'Author'},
+            {field: 'categories|tagList', displayName: 'Categories'},
             {field: 'created_at|date:"d/M/y h:mm:ss a"', displayName: 'Created'},
             {field: 'updated_at|date:"d/M/y h:mm:ss a"', displayName: 'Modified'},
             {
@@ -55,8 +54,13 @@ module.controller('PackagesGridCtrl', function($scope, Assets, templates){
                 width: 43,
                 cellTemplate: templates.ngGridCells.centerAligned
             },
-            {field: 'tags|tagList', displayName: 'Tags'},
-            {field: 'comment_count', displayName: 'Comments'}
+            {field: "tags.join(', ')", displayName: 'Tags'},
+            {
+                field: 'comment_count', 
+                displayName: 'Comments',
+                width: 70,
+                cellTemplate: templates.ngGridCells.centerAligned
+            }
         ]
     };
 });
