@@ -29,12 +29,9 @@
 		</dl>
 	</div>
 
-    <div class="col-md-10">
+    <div class="col-md-10 vmargin-bottom-large">
 		<h3 class="vmargin-bottom-large">
             Asset Details: [{{asset.name}}]
-            <button type="button" ui-sref="admin.assets.edit({assetId: asset.id})" class="btn btn-primary pull-right">
-                Edit Asset Details
-            </button>
         </h3>
 		
 		<div class="panel panel-info">
@@ -45,10 +42,10 @@
 			<div class="panel-body">
 				<dl class="dl-horizontal">
 					<dt>Filename</dt>
-					<dd>{{asset.file_name}}</dd>
+					<dd class="vmargin-bottom-small"><input id="asset-filename" type="text" class="form-control input-sm" value="{{asset.file_name}}"></dd>
 					
 					<dt>Alt Text</dt>
-					<dd>Placeholder</dd>
+					<dd><input id="asset-alt" type="text" class="form-control input-sm" value="Placeholder"></dd>
 				</dl>
 			</div>
 		</div><!--/panel panel-info-->
@@ -61,22 +58,31 @@
 			<div class="panel-body">
 				<dl class="dl-horizontal">
 					<dt>Asset Display Name</dt>
-					<dd>{{asset.name}}</dd>
+					<dd class="vmargin-bottom-small"><input id="asset-display-name" type="text" class="form-control input-sm" value="{{asset.name}}"></dd>
 					
 					<dt>Description</dt>
-					<dd>{{asset.description}}</dd>
+					<dd class="vmargin-bottom-small"><input id="asset-description" type="text" class="form-control input-sm" value="{{asset.description}}"></dd>
 					
 					<dt>Phase</dt>
-					<dd>Discovery</dd>
+					<dd class="vmargin-bottom-small">
+						<select id="asset-phase" class="form-control input-sm">
+							<option>Sample Phase Name 1</option>
+							<option>Sample Phase Name 2</option>
+							<option>Sample Phase Name n</option>
+						</select>
+					</dd>
 					
 					<dt>Category</dt>
-					<dd>How to Search</dd>
+					<dd class="vmargin-bottom-small">
+						<select id="asset-category" class="form-control input-sm">
+							<option>Sample Category 1</option>
+							<option>Sample Category 2</option>
+							<option>Sample Category n</option>
+						</select>
+					</dd>
 					
 					<dt>Tags</dt>
-					<dd>{{asset.tags|tagList}}</dd>
-					
-					<dt>Associated Packages</dt>
-					<dd></dd>
+					<dd class="vmargin-bottom-small"><textarea id="asset-description" class="form-control input-sm" rows="3">{{asset.tags|tagList}}</textarea></dd>
 				</dl>
 			</div>
 		</div><!--/panel panel-info-->
@@ -89,13 +95,22 @@
 			<div class="panel-body">
 				<dl class="dl-horizontal">
 					<dt>Status</dt>
-					<dd>Active</dd>
+					<dd class="vmargin-bottom-small">
+						<label class="radio-inline">
+							<input type="radio" name="asset-status" id="asset-status-active" value="Active"> Active
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="asset-status" id="asset-status-inactive" value="Inactive"> Inactive
+						</label>
+					</dd>
 					
 					<dt>Expiration Date</dt>
-					<dd>{{asset.deactive_at | date:"y/M/d"}}</dd>
+					<dd><!--Did you want to use the datepicker from http://mgcrea.github.io/angular-strap/#/datepicker here?-->{{asset.deactive_at | date:"d/M/y"}}</dd>
 				</dl>
 			</div>
 		</div><!--/panel panel-info-->
-		
+
+		<button type="button" class="btn btn-sm btn-primary">Update</button>		
+		<button type="button" class="btn btn-sm btn-default">Cancel</button>
 	</div>
 </div>
