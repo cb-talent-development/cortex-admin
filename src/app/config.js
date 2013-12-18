@@ -9,7 +9,7 @@ var devConfig = {
 
 var prodConfig = {
     api: {
-        baseUrl: 'http://cb-cortex.herokuapp.com',
+        baseUrl: 'http://whale.cb-cortex.c66.me',
         environmentName: 'Production'
     }
 };
