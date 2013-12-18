@@ -1,65 +1,116 @@
-<div class="col-md-6 col-md-offset-3">
-    <div class="panel panel-default"
-         ng-file-drop="onFileSelect($files)"
-         ng-file-drop-available="dropSupported=true">
-        <div class="panel-heading h3">Upload File</div>
+<div class="container">
+    <div class="col-md-2 vmargin-top-large">
+		<img src="{{asset.attachment_thumb_url}}" height="100" width="100" alt="Placeholder" />
+		
+		<dl class="smaller">
+			<dt>Filename</dt>
+			<dd>{{asset.file_name}}</dd>
 
-        <div class="panel-body">
+			<dt>File Type</dt>
+			<dd>{{asset.content_type}}</dd>
+			
+			<dt>File Size</dt>
+			<dd>{{asset.file_size | bytes}}</dd>
+			
+			<dt>Dimensions</dt>
+			<dd>{{asset.dimensions.0}} x {{asset.dimensions.1}}</dd>
+			
+			<dt>Author</dt>
+			<dd>{{asset.creator.name}}</dd>
+			
+			<dt>Created</dt>
+			<dd>{{asset.created_at | date:"y/M/d h:mm:ss a"}}</dd>
+			
+			<dt>Last Modified</dt>
+			<dd>{{asset.updated_at | date:"y/M/d h:mm:ss a"}}</dd>
+			
+			<dt>Last Published</dt>
+			<dd>Placeholder</dd>
+			
+			<dt>Direct URL</dt>
+			<dd><a href="{{asset.attachment_url}}">{{asset.attachment_url}}</a></dd>
+		</dl>
+	</div>
 
-            <div class="form-group" ng-hide="data.upload.file">
-                <span class="help-block text-center" ng-show="dropSupported" ng-file-drop="onFileSelect($files);" ng-file-drop-available="dropSupported=true">Drag a file into this panel or use the button below to select</span>
-                <span class="help-block text-center" ng-show="!dropSupported">Use the button below to select a file from your computer</span>
-                <span class="btn btn-primary btn-block btn-file">
-                    <span class="glyphicon glyphicon-file"></span> Browse Computer <input type="file" ng-file-select="onFileSelect($files)"/>
-                </span>
-            </div>
+    <div class="col-md-10 vmargin-bottom-large">
+		<h3 class="vmargin-bottom-large">
+            Asset Details: [{{asset.name}}]
+        </h3>
+		
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title">Image Properties</h3>
+			</div>
+			
+			<div class="panel-body">
+				<dl class="dl-horizontal">
+					<dt>Asset Display Name</dt>
+					<dd class="vmargin-bottom-small"><input id="asset-display-name" type="text" class="form-control input-sm" ng-model="asset.name"></dd>
+					
+					<dt>Alt Text</dt>
+					<dd><input id="asset-alt" type="text" class="form-control input-sm" value="Placeholder"></dd>
+				</dl>
+			</div>
+		</div><!--/panel panel-info-->
+		
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title">Catalog Data</h3>
+			</div>
+			
+			<div class="panel-body">
+				<dl class="dl-horizontal">
+					<dt>Description</dt>
+					<dd class="vmargin-bottom-small"><input id="asset-description" type="text" class="form-control input-sm" ng-model="asset.description"></dd>
+					
+					<dt>Phase</dt>
+					<dd class="vmargin-bottom-small">
+						<select id="asset-phase" class="form-control input-sm">
+							<option>Sample Phase Name 1</option>
+							<option>Sample Phase Name 2</option>
+							<option>Sample Phase Name n</option>
+						</select>
+					</dd>
+					
+					<dt>Category</dt>
+					<dd class="vmargin-bottom-small">
+						<select id="asset-category" class="form-control input-sm">
+							<option>Sample Category 1</option>
+							<option>Sample Category 2</option>
+							<option>Sample Category n</option>
+						</select>
+					</dd>
+					
+					<dt>Tags</dt>
+					<dd class="vmargin-bottom-small"><textarea id="asset-description" class="form-control input-sm" rows="3">{{asset.tags|tagList}}</textarea></dd>
+				</dl>
+			</div>
+		</div><!--/panel panel-info-->
+		
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title">Status</h3>
+			</div>
+			
+			<div class="panel-body">
+				<dl class="dl-horizontal">
+					<dt>Status</dt>
+					<dd class="vmargin-bottom-small">
+						<label class="radio-inline">
+							<input type="radio" name="asset-status" id="asset-status-active" value="Active"> Active
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="asset-status" id="asset-status-inactive" value="Inactive"> Inactive
+						</label>
+					</dd>
+					
+					<dt>Expiration Date</dt>
+					<dd><!--Did you want to use the datepicker from http://mgcrea.github.io/angular-strap/#/datepicker here?-->{{asset.deactive_at | date:"d/M/y"}}</dd>
+				</dl>
+			</div>
+		</div><!--/panel panel-info-->
 
-            <div class="form-group input-group" ng-show="data.upload.file">
-                <input type="text" class="form-control" ng-model="data.upload.file.name" disabled />
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button" ng-click="remove()">
-                        <span class="glyphicon glyphicon-ban-circle"></span> Remove
-                    </button>
-                </span>
-            </div>
-
-            <progress percent="data.upload.progress" ng-show="data.upload.file"></progress>
-
-            <form novalidate name="assetForm">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Name (Required)" ng-model="data.asset.name" required />
-                    <span class="help-block">Provide a clean display name</span>
-                </div>
-                <div class="form-group">
-                    <textarea class="form-control vertical-only" rows="3" placeholder="Description" ng-model="data.asset.description"></textarea>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Tags" ng-model="data.asset.tag_list" />
-                    <span class="help-block">Use commas to separate tags</span>
-                </div>
-                <div class="input-group form-group">
-                    <input type="text" class="form-control" datepicker-popup="{{datepicker.format}}"
-                                                            is-open="datepicker.expireAtOpen"
-                                                            show-weeks="false"
-                                                            ng-model="data.asset.deactive_at"
-                                                            placeholder="Expiration Date"/>
-                    <span class="input-group-btn"><button class="btn btn-default" ng-click="datepicker.open('expireAtOpen')"><i class="icon-calendar"></i></button></span>
-                </div>
-            </form>
-
-            <div class="row">
-                <div class="col-xs-6">
-                    <button class="btn btn-block btn-danger" ng-disabled="!data.upload.progress" ng-click="upload.abort()">
-                        <span class="glyphicon glyphicon-ban-circle"></span> Cancel
-                    </button>
-                </div>
-                <div class="col-xs-6">
-                    <button class="btn btn-block btn-success" ng-disabled="!data.upload.file || assetForm.$invalid" ng-click="startUpload()">
-                        <span class="glyphicon glyphicon-cloud-upload"></span> Save
-                    </button>
-                </div>
-            </div>
-
-        </div>
-    </div>
+		<button type="button" class="btn btn-sm btn-primary">Update</button>		
+		<button type="button" class="btn btn-sm btn-default">Cancel</button>
+	</div>
 </div>

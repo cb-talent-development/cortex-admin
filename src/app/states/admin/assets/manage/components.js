@@ -23,7 +23,7 @@ module.config(function($stateProvider){
 });
 
 module.constant('gridTemplates', {
-    viewAssetLinkCell: "<div class='ngCellText'><a ui-sref='admin.assets.view({assetId: row.getProperty(\"id\")})'>{{row.getProperty(col.field)}}</a></div>"
+    viewAssetLinkCell: "<div class='ngCellText'><a ui-sref='admin.assets.edit({assetId: row.getProperty(\"id\")})'>{{row.getProperty(col.field)}}</a></div>"
 });
 
 module.controller('AssetsGridCtrl', function($scope, Assets, templates, gridTemplates){
