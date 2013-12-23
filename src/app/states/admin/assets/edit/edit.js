@@ -1,13 +1,9 @@
 var module = angular.module('cortex.states.admin.assets.edit', [
-    'ngCookies',
     'ui.router.state',
-    'ui.bootstrap.datepicker',
-    'ui.bootstrap.progressbar',
-    'angularFileUpload',
     'angular-flash.service',
-    'cortex.config',
-    'cortex.services.auth',
-    'cortex.config'
+    'common.filters',
+    'common.unsavedChanges',
+    'cortex.resources.assets'
 ]);
 
 module.config(function($stateProvider){
@@ -15,76 +11,31 @@ module.config(function($stateProvider){
         url: '/:assetId/edit',
         templateUrl: 'states/admin/assets/edit/edit.tpl.html',
         controller: 'AssetsEditCtrl'
-    })
-    .state('admin.assets.new', {
-        url: '/new',
-        templateUrl: 'states/admin/assets/edit/edit.tpl.html',
-        controller: 'AssetsEditCtrl'
     });
 });
 
-module.controller('AssetsEditCtrl', function($scope, $timeout, $upload, $state, flash, config, authService) {
+module.controller('AssetsEditCtrl', function($scope, $stateParams, $state, $filter, flash, Assets, unsavedChanges) {
+    $scope.data = {};
 
-    // angular-bootstrap datepicker settings
-    $scope.datepicker = {
-        format: 'yyyy/MM/dd',
-        expireAtOpen: false,
-        open: function(datepicker) {
-            $timeout(function(){
-                $scope.datepicker[datepicker] = true;
-            });
-        }
-    };
+    $scope.asset = Assets.get({id: $stateParams.assetId}, function(asset) {
+        unsavedChanges.fnListen($scope, $scope.asset);
 
-    $scope.data = {
-        upload: {
-            progress: 0,
-            file: null
-        },
-        asset: {}
-    };
+        $scope.data.tags = $filter('tagList')(asset.tags);
+    });
 
-    $scope.startUpload = function() {
+    $scope.update = function() {
+        $scope.asset.tag_list = $scope.data.tags;
+        delete $scope.asset.tags;
 
-        var file = $scope.data.upload.file;
+        $scope.asset.$save(function(asset) {
+            unsavedChanges.fnListen($scope, $scope.asset);
 
-        if (!file) {
-            return;
-        }
-
-        var httpConfig = {
-            url: config.api.baseUrl + '/assets',
-            method: 'POST',
-            data: {asset: $scope.data.asset},
-            file: file,
-            fileFormDataName: 'asset[attachment]',
-            formDataAppender: function(formData, key, value) {
-                if (key === 'asset') {
-                    angular.forEach(value, function(v, k) {
-                        formData.append('asset[' + k + ']', v);
-                    });
-                }
-            }
-        };
-
-        authService.addAuth(httpConfig);
-
-        $scope.upload = $upload.upload(httpConfig)
-        .progress(function(e) {
-            $scope.data.upload.progress = parseInt(100.0 * e.loaded / e.total);
-        })
-        .success(function(asset) {
-            flash.success = asset.name + " created";
+            flash.success = 'Saved asset "' +  asset.name + '"';
             $state.go('admin.assets.manage.components');
         });
     };
 
-    $scope.onFileSelect = function(files) {
-        var file = files[0];
-        $scope.data.upload.file = file;
-    };
-
-    $scope.remove = function() {
-        $scope.data.upload.file = null;
+    $scope.cancel = function() {
+        $state.go('admin.assets.manage.components');
     };
 });

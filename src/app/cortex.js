@@ -45,7 +45,7 @@ cortexModule.config(function ($urlRouterProvider, $httpProvider, flashProvider) 
     flashProvider.errorClassnames.push('alert-danger');
 });
 
-cortexModule.controller('CortexAdminCtrl', function ($scope, $state, events, $rootScope, $stateParams) {
+cortexModule.controller('CortexAdminCtrl', function ($scope, $rootScope, $state, $stateParams, flash, events) {
     var isDefined = angular.isDefined;
 
     // Add $state and $stateParams to root scope for universal access within views
@@ -64,13 +64,20 @@ cortexModule.controller('CortexAdminCtrl', function ($scope, $state, events, $ro
 
     $scope.$on(events.HTTP_RESPONSE_ERROR, function (event, statusCode) {
         switch (statusCode) {
-            // HTTP UNAUTHORIZED
-            case 401:
-                alert('Incorrect username and/or password provided.');
+
+            // HTTP NOT FOUND
+            case 404:
+                flash.error = 'The requested resource was not found.';
                 break;
 
+            // HTTP UNAUTHORIZED
+            case 401:
+                flash.error = 'Incorrect username and/or password provided.';
+                break;
+
+            // HTTP UNPROCESSABLE ENTITY
             case 422:
-                alert('Invalid file type!');
+                flash.error = 'Invalid file type!';
                 break;
 
             case 0:
@@ -79,7 +86,7 @@ cortexModule.controller('CortexAdminCtrl', function ($scope, $state, events, $ro
                 break;
 
             default:
-                alert('Unhandled HTTP response exception!');
+                flash.error = 'Unhandled HTTP response exception!';
         }
     });
 });

@@ -1,11 +1,11 @@
-describe('Admin View Asset Module', function() {
+describe('Admin Edit Asset Module', function() {
 
     beforeEach(function(){
-        angular.mock.module('cortex.states.admin.assets.view');
+        angular.mock.module('cortex.states.admin.assets.edit');
         testing.provideConfig(testing.config.withEmptyApiBaseUrl);
     });
 
-    describe('View Asset Controller', function() {
+    describe('Edit Asset Controller', function() {
         var constructController, $httpBackend, $scope, $stateParams;
 
         beforeEach(inject(function($controller, _$httpBackend_, $rootScope, Assets){
@@ -16,7 +16,7 @@ describe('Admin View Asset Module', function() {
             $scope.data = {};
 
             constructController = function() {
-                controller = $controller('AssetsViewCtrl', {
+                controller = $controller('AssetsEditCtrl', {
                     $scope: $scope,
                     $stateParams: $stateParams,
                     Assets: Assets

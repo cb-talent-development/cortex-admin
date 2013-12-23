@@ -8,11 +8,11 @@ module.config(function($stateProvider){
         url: '',
         abstract: true,
         templateUrl: 'states/admin/assets/manage/manage.tpl.html',
-        controller: 'AssetsEditCtrl'
+        controller: 'AssetsManageCtrl'
     });
 });
 
-module.controller('AssetsEditCtrl', function($scope){
+module.controller('AssetsManageCtrl', function($scope){
 
     $scope.data = {filters: {}};
 
