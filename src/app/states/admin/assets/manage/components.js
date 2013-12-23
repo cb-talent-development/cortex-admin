@@ -23,7 +23,8 @@ module.config(function($stateProvider){
 });
 
 module.constant('gridTemplates', {
-    viewAssetLinkCell: "<div class='ngCellText'><a ui-sref='admin.assets.edit({assetId: row.getProperty(\"id\")})'>{{row.getProperty(col.field)}}</a></div>"
+    viewAssetLinkCell: "<div class='ngCellText'><a ui-sref='admin.assets.edit({assetId: row.getProperty(\"id\")})'>{{row.getProperty(col.field)}}</a></div>",
+    assetThumbCell: "<div class='ngCellText'><img src='{{row.getProperty(col.field)}}' height='100' width='100' /></div>"
 });
 
 module.controller('AssetsGridCtrl', function($scope, Assets, templates, gridTemplates){
@@ -48,6 +49,7 @@ module.controller('AssetsGridCtrl', function($scope, Assets, templates, gridTemp
         showFooter: true,
         totalServerItems: 'data.totalServerItems',
         pagingOptions: assetGridPagingOptions,
+        rowHeight: 110,
         columnDefs: [
             {field: 'name', displayName: 'Name', cellTemplate: gridTemplates.viewAssetLinkCell},
             {field: 'description', displayName: 'Description'},
@@ -61,7 +63,8 @@ module.controller('AssetsGridCtrl', function($scope, Assets, templates, gridTemp
                 width: 43,
                 cellTemplate: templates.ngGridCells.centerAligned
             },
-            {field: 'tags|tagList', displayName: 'Tags'}
+            {field: 'tags|tagList', displayName: 'Tags'},
+            {field: 'attachment_thumb_url', displayName: 'Thumbnail', cellTemplate: gridTemplates.assetThumbCell}
         ]
     };
 });
