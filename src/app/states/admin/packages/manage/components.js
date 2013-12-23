@@ -40,7 +40,6 @@ module.controller('PackagesGridCtrl', function($scope, Posts, templates){
         columnDefs: [
             {field: 'title', displayName: 'Title'},
             {field: 'type', displayName: 'Type'},
-            {field: 'created_at', displayName: 'Created'},
             {field: 'published_at|publishStatus', displayName: 'Status'},
             {field: 'author.name', displayName: 'Author'},
             {field: 'categories|tagList', displayName: 'Categories'},
