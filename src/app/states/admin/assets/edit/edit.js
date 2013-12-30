@@ -1,5 +1,6 @@
 var module = angular.module('cortex.states.admin.assets.edit', [
     'ui.router.state',
+    'ui.bootstrap.datepicker',
     'angular-flash.service',
     'common.filters',
     'common.unsavedChanges',
@@ -14,7 +15,17 @@ module.config(function($stateProvider){
     });
 });
 
-module.controller('AssetsEditCtrl', function($scope, $stateParams, $state, $filter, flash, Assets, unsavedChanges) {
+module.controller('AssetsEditCtrl', function($scope, $filter, $stateParams, $state, $timeout, flash, Assets, unsavedChanges) {
+    $scope.datepicker = {
+        format: 'yyyy/MM/dd',
+        expireAtOpen: false,
+        open: function(datepicker) {
+            $timeout(function(){
+                $scope.datepicker[datepicker] = true;
+            });
+        }
+    };
+
     $scope.data = {};
 
     $scope.asset = Assets.get({id: $stateParams.assetId}, function(asset) {

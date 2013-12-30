@@ -1,39 +1,39 @@
 <div class="container">
     <div class="col-md-2 vmargin-top-large">
-		<img src="{{asset.attachment_thumb_url}}" height="100" width="100" alt="{{asset.alt}}" />
-		
-		<dl class="smaller">
-			<dt>Filename</dt>
-			<dd>{{asset.file_name}}</dd>
+        <img src="{{asset.attachment_thumb_url}}" height="100" width="100" alt="{{asset.alt}}" />
 
-			<dt>File Type</dt>
-			<dd>{{asset.content_type}}</dd>
-			
-			<dt>File Size</dt>
-			<dd>{{asset.file_size | bytes}}</dd>
-			
-			<dt>Dimensions</dt>
-			<dd>{{asset.dimensions.0}} x {{asset.dimensions.1}}</dd>
-			
-			<dt>Author</dt>
-			<dd>{{asset.creator.name}}</dd>
-			
-			<dt>Created</dt>
-			<dd>{{asset.created_at | date:"y/M/d h:mm:ss a"}}</dd>
-			
-			<dt>Last Modified</dt>
-			<dd>{{asset.updated_at | date:"y/M/d h:mm:ss a"}}</dd>
-			
-			<dt>Last Published</dt>
-			<dd>Placeholder</dd>
-			
-			<dt>Direct URL</dt>
-			<dd><a href="{{asset.attachment_url}}">{{asset.attachment_url}}</a></dd>
-		</dl>
-	</div>
+        <dl class="smaller">
+            <dt>Filename</dt>
+            <dd>{{asset.file_name}}</dd>
+
+            <dt>File Type</dt>
+            <dd>{{asset.content_type}}</dd>
+
+            <dt>File Size</dt>
+            <dd>{{asset.file_size | bytes}}</dd>
+
+            <dt>Dimensions</dt>
+            <dd>{{asset.dimensions.0}} x {{asset.dimensions.1}}</dd>
+
+            <dt>Author</dt>
+            <dd>{{asset.creator.name}}</dd>
+
+            <dt>Created</dt>
+            <dd>{{asset.created_at | date:"y/M/d h:mm:ss a"}}</dd>
+
+            <dt>Last Modified</dt>
+            <dd>{{asset.updated_at | date:"y/M/d h:mm:ss a"}}</dd>
+
+            <dt>Last Published</dt>
+            <dd>Placeholder</dd>
+
+            <dt>Direct URL</dt>
+            <dd><a href="{{asset.attachment_url}}">{{asset.attachment_url}}</a></dd>
+        </dl>
+    </div>
 
     <div class="col-md-10 vmargin-bottom-large">
-		<h3 class="vmargin-bottom-large">
+        <h3 class="vmargin-bottom-large">
             Asset Details: [{{asset.name}}]
         </h3>
 
@@ -49,7 +49,7 @@
                         <dd class="vmargin-bottom-small"><input id="asset-display-name" type="text" class="form-control input-sm" ng-model="asset.name" required maxlength="100"></dd>
 
                         <dt>Alt Text</dt>
-                        <dd><input id="asset-alt" type="text" class="form-control input-sm" value="Placeholder" maxlength="100"></dd>
+                        <dd><input id="asset-alt" type="text" class="form-control input-sm" ng-model="asset.alt" maxlength="100"></dd>
                     </dl>
                 </div>
             </div><!--/panel panel-info-->
@@ -98,13 +98,19 @@
                         <dt>Status</dt>
                         <dd class="vmargin-bottom-small">
                             <div class="btn-group btn-group-xs">
-                                <button type="button" class="btn btn-primary" ng-model="asset.active" btn-radio="'true'">Active</button>
-                                <button type="button" class="btn btn-primary" ng-model="asset.active" btn-radio="'false'">Inactive</button>
+                                <button type="button" class="btn btn-primary" ng-model="asset.active" btn-radio="true">Active</button>
+                                <button type="button" class="btn btn-primary" ng-model="asset.active" btn-radio="false">Inactive</button>
                             </div>
                         </dd>
 
                         <dt>Expiration Date</dt>
-                        <dd><!--Did you want to use the datepicker from http://mgcrea.github.io/angular-strap/#/datepicker here?-->{{asset.deactive_at | date:"d/M/y"}}</dd>
+                        <dd class="vmargin-bottom-small input-group form-group">
+                            <input type="text" class="form-control" datepicker-popup="{{datepicker.format}}"
+                                   is-open="datepicker.expireAtOpen"
+                                   show-weeks="false"
+                                   ng-model="asset.deactive_at" />
+                            <span class="input-group-btn"><button class="btn btn-default" ng-click="datepicker.open('expireAtOpen')"><i class="icon-calendar"></i></button></span>
+                        </dd>
                     </dl>
                 </div>
             </div><!--/panel panel-info-->
@@ -117,5 +123,5 @@
                     class="btn btn-sm btn-default"
                     ng-click="cancel()">Cancel</button>
         </form>
-	</div>
+    </div>
 </div>
