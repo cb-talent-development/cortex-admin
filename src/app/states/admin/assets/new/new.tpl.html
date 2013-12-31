@@ -10,7 +10,7 @@
                 <span class="help-block text-center" ng-show="dropSupported" ng-file-drop="onFileSelect($files);" ng-file-drop-available="dropSupported=true">Drag a file into this panel or use the button below to select</span>
                 <span class="help-block text-center" ng-show="!dropSupported">Use the button below to select a file from your computer</span>
                 <span class="btn btn-primary btn-block btn-file">
-                    <span class="glyphicon glyphicon-file"></span> Browse Computer <input type="file" ng-file-select="onFileSelect($files)"/>
+                    <span class="fa fa-file"></span> Browse Computer <input type="file" ng-file-select="onFileSelect($files)"/>
                 </span>
             </div>
 
@@ -18,7 +18,7 @@
                 <input type="text" class="form-control" ng-model="data.upload.file.name" disabled />
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button" ng-click="remove()">
-                        <span class="glyphicon glyphicon-ban-circle"></span> Remove
+                        <span class="fa fa-ban"></span> Remove
                     </button>
                 </span>
             </div>
@@ -43,19 +43,19 @@
                                                             show-weeks="false"
                                                             ng-model="data.asset.deactive_at"
                                                             placeholder="Expiration Date"/>
-                    <span class="input-group-btn"><button class="btn btn-default" ng-click="datepicker.open('expireAtOpen')"><i class="icon-calendar"></i></button></span>
+                    <span class="input-group-btn"><button class="btn btn-default" ng-click="datepicker.open('expireAtOpen')"><i class="fa fa-calendar"></i></button></span>
                 </div>
             </form>
 
             <div class="row">
                 <div class="col-xs-6">
                     <button class="btn btn-block btn-danger" ng-disabled="!data.upload.progress" ng-click="upload.abort()">
-                        <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                        <span class="fa fa-ban"></span> Cancel
                     </button>
                 </div>
                 <div class="col-xs-6">
                     <button class="btn btn-block btn-success" ng-disabled="!data.upload.file || assetForm.$invalid" ng-click="startUpload()">
-                        <span class="glyphicon glyphicon-cloud-upload"></span> Save
+                        <span class="fa fa-cloud-upload"></span> Save
                     </button>
                 </div>
             </div>
