@@ -14,13 +14,13 @@ module.directive('abnTree', function($timeout) {
     link: function(scope, element, attrs) {
       var expand_level, for_each_branch, on_treeData_change, select_branch, selected_branch;
       if (attrs.iconExpand == null) {
-        attrs.iconExpand = 'icon-plus';
+        attrs.iconExpand = 'fa fa-plus';
       }
       if (attrs.iconCollapse == null) {
-        attrs.iconCollapse = 'icon-minus';
+        attrs.iconCollapse = 'fa fa-minus';
       }
       if (attrs.iconLeaf == null) {
-        attrs.iconLeaf = 'icon-chevron-right';
+        attrs.iconLeaf = 'fa fa-file';
       }
       if (attrs.expandLevel == null) {
         attrs.expandLevel = '3';
