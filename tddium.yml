@@ -1,8 +1,8 @@
 :tddium:
   :hooks:
-    :pre: npm install && npm install grunt-cli karma bower && ./node_modules/bower/bin/bower install && npm install && bower install && grunt build
+    :pre: npm install grunt-cli karma bower && npm install && ./node_modules/bower/bin/bower install && ./node_modules/grunt-cli/bin/grunt build
     :post: grunt ftp-deploy
   :nodejs:
     :version: '0.10.24'
   :tests:
-    - grunt karma
+    - ./node_modules/grunt-cli/bin/grunt karma
