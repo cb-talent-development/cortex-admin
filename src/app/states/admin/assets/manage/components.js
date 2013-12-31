@@ -3,7 +3,8 @@ var module = angular.module('cortex.states.admin.assets.manage.components', [
     'ngGrid',
     'ui.bootstrap',
     'common.templates',
-    'cortex.resources.assets'
+    'cortex.resources.assets',
+    'cortex.directives.delayedInput'
 ]);
 
 module.config(function($stateProvider){
@@ -64,8 +65,12 @@ module.controller('AssetsGridCtrl', function($scope, Assets, templates, gridTemp
                 cellTemplate: templates.ngGridCells.centerAligned
             },
             {field: 'tags|tagList', displayName: 'Tags'},
-            {field: 'thumb.mini', displayName: 'Thumbnail', cellTemplate: gridTemplates.assetThumbCell}
+            {field: 'thumbs.mini', displayName: 'Thumbnail', cellTemplate: gridTemplates.assetThumbCell}
         ]
+    };
+
+    $scope.searchAssets = function(query) {
+        $scope.data.assets = Assets.search({q: query});
     };
 });
 

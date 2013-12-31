@@ -5,6 +5,11 @@ var module = angular.module('cortex.resources.assets', [
 
 module.factory('Assets', function (cortexResource) {
     return cortexResource('/assets/:id', {id: '@id'}, {
+        search: {
+          method: 'GET', 
+          url: '/assets/search',
+          isArray: true
+        }  
     });
 });
 

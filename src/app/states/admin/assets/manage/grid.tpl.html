@@ -14,7 +14,11 @@
     </ul>
 
     <div id="asset-search" class="pull-right">
-        <input type="text" class="form-control input-sm" placeholder="Search Assets...">
+        <delayed-input class="form-control input-sm" 
+                       ng-model='assetSearchQuery' 
+                       ng-change="searchAssets(assetSearchQuery)" 
+                       placeholder="Search Assets..." 
+                       delay="500"></delayed-input>
     </div>
 </div>
 
