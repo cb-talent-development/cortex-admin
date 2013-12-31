@@ -24,7 +24,7 @@ module.config(function($stateProvider){
 
 module.constant('gridTemplates', {
     viewAssetLinkCell: "<div class='ngCellText'><a ui-sref='admin.assets.edit({assetId: row.getProperty(\"id\")})'>{{row.getProperty(col.field)}}</a></div>",
-    assetThumbCell: "<div class='ngCellText'><img src='{{row.getProperty(col.field)}}' height='100' width='100' /></div>"
+    assetThumbCell: "<div class='ngCellText'><img src='{{row.getProperty(col.field)}}' /></div>"
 });
 
 module.controller('AssetsGridCtrl', function($scope, Assets, templates, gridTemplates){
@@ -64,7 +64,7 @@ module.controller('AssetsGridCtrl', function($scope, Assets, templates, gridTemp
                 cellTemplate: templates.ngGridCells.centerAligned
             },
             {field: 'tags|tagList', displayName: 'Tags'},
-            {field: 'attachment_thumb_url', displayName: 'Thumbnail', cellTemplate: gridTemplates.assetThumbCell}
+            {field: 'thumb.mini', displayName: 'Thumbnail', cellTemplate: gridTemplates.assetThumbCell}
         ]
     };
 });
