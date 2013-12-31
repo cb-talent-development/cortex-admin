@@ -1,13 +1,14 @@
 var module = angular.module('cortex.resources.assets', [
     'angular-underscore/utils',
-    'cortex.resources.resource'
+    'cortex.resources.resource',
+    'cortex.config'
 ]);
 
-module.factory('Assets', function (cortexResource) {
+module.factory('Assets', function (cortexResource, config) {
     return cortexResource('/assets/:id', {id: '@id'}, {
         search: {
           method: 'GET', 
-          url: '/assets/search',
+          url: config.api.baseUrl + '/assets/search',
           isArray: true
         }  
     });
