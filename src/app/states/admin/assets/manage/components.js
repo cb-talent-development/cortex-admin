@@ -65,6 +65,7 @@ module.controller('AssetsGridCtrl', function($scope, Assets, templates, gridTemp
                 cellTemplate: templates.ngGridCells.centerAligned
             },
             {field: 'tags|tagList', displayName: 'Tags'},
+            {field: 'content_type',  displayName: 'Type'},
             {field: 'thumbs.mini', displayName: 'Thumbnail', cellTemplate: gridTemplates.assetThumbCell}
         ]
     };
