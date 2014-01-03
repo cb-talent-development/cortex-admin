@@ -1,6 +1,10 @@
 var module = angular.module('cortex.states.admin.organizations.manage', [
     'ui.router.state',
     'angular-underscore',
+    'angular-flash.service',
+    'angular-flash.flash-alert-directive',
+    'cortex.config',
+    'cortex.resources.tenants',
     'cortex.states.admin.organizations.manage.tenants'
 ]);
 
@@ -13,11 +17,20 @@ module.config(function ($stateProvider) {
         });
 });
 
-module.controller('OrganizationsManageCtrl', function($scope, $stateParams, $state, TenantsTreeStatus) {
+module.controller('OrganizationsManageCtrl', function($scope, $stateParams, $state, flash, events, Tenants, TenantsTreeStatus) {
     // Open tenant hierarchy and details panels if an organization is selected
     if ($stateParams.organizationId && !$state.includes('admin.organizations.manage.tenants')) {
         $state.go('.tenants');
     }
 
     $scope.tenantsTreeStatus = TenantsTreeStatus;
+
+    $scope.deleteTenant = function(tenant){
+            if (confirm('Are you sure you want to delete tenant "' + tenant.name + '"?')) {
+                Tenants.delete({id: tenant.id}, function(data) {
+                    $scope.$broadcast(events.TENANT_HIERARCHY_CHANGE);
+                    flash.warn = '"' + tenant.name + '" tenant was deleted successfully';
+                });
+            }
+    };
 });
