@@ -21,5 +21,6 @@ configModule.constant('config', devConfig);
 configModule.constant('events', {
     STATE_CHANGE_SUCCESS: '$stateChangeSuccess',
     USER_LOGIN_SUCCESS: 'userLoginSuccess',
-    HTTP_RESPONSE_ERROR: 'httpResponseError'
+    HTTP_RESPONSE_ERROR: 'httpResponseError',
+    TENANT_HIERARCHY_CHANGE: 'tenantHierarchyChange'
 });

@@ -1,6 +1,7 @@
 var module = angular.module('cortex.states.admin.organizations.manage.tenants', [
     'ui.router.state',
     'angular-underscore',
+    'cortex.config',
     'cortex.resources.organizations',
     'cortex.directives.tenantSettings',
     'common.angularBootstrapNavTree',
@@ -32,7 +33,25 @@ module.factory('TenantsTreeStatus', function () {
     };
 });
 
-module.controller('TenantsTreeCtrl', function($scope, $stateParams, Organizations, hierarchyUtils, TenantsTreeStatus) {
+module.controller('TenantsTreeCtrl', function($scope, $stateParams, events, Organizations, hierarchyUtils, TenantsTreeStatus) {
+
+    var loadTenantHierarchy = function() {
+        TenantsTreeStatus.isLoaded = false;
+
+        $scope.data.tenants.hierarchy = Organizations.hierarchy({id: $stateParams.organizationId, include_root: true}, function(hierarchy){
+
+            var flattened = hierarchyUtils.flattenTenantHierarchy(hierarchy);
+            $scope.data.tenants.flattened = flattened;
+
+            // Set $scope.data.tenants.selected if tenantId was specified in URL
+            var tenantId = $stateParams.tenantId;
+            if (tenantId) {
+                $scope.data.tenants.selected = _.find(flattened, function(t) { return t.id == tenantId; });
+            }
+
+            TenantsTreeStatus.isLoaded = true;
+        });
+    };
 
     $scope.data.tenants =
     {
@@ -41,23 +60,13 @@ module.controller('TenantsTreeCtrl', function($scope, $stateParams, Organization
         selected: null
     };
 
-    TenantsTreeStatus.isLoaded = false;
-
-    $scope.data.tenants.hierarchy = Organizations.hierarchy({id: $stateParams.organizationId, include_root: true}, function(hierarchy){
-
-        var flattened = hierarchyUtils.flattenTenantHierarchy(hierarchy);
-        $scope.data.tenants.flattened = flattened;
-
-        // Set $scope.data.tenants.selected if tenantId was specified in URL
-        var tenantId = $stateParams.tenantId;
-        if (tenantId) {
-            $scope.data.tenants.selected = _.find(flattened, function(t) { return t.id == tenantId; });
-        }
-
-        TenantsTreeStatus.isLoaded = true;
-    });
+    loadTenantHierarchy();
 
     $scope.selectTenant = function(tenant){
         $scope.data.tenants.selected = tenant;
     };
+
+    $scope.$on(events.TENANT_HIERARCHY_CHANGE, function (event) {
+        loadTenantHierarchy();
+    });
 });

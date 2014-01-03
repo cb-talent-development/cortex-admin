@@ -18,7 +18,7 @@ cortexModule.factory('httpInterceptorService', function($q, $rootScope, events) 
             return $q.reject(rejection);
         },
         'responseError': function(rejection) {
-            $rootScope.$broadcast(events.HTTP_RESPONSE_ERROR, rejection.status);
+            $rootScope.$broadcast(events.HTTP_RESPONSE_ERROR, rejection.status, rejection.data.message);
             return $q.reject(rejection);
         }
     };
@@ -62,8 +62,18 @@ cortexModule.controller('CortexAdminCtrl', function ($scope, $rootScope, $state,
         $state.go('admin.organizations.manage');
     });
 
-    $scope.$on(events.HTTP_RESPONSE_ERROR, function (event, statusCode) {
+    $scope.$on(events.HTTP_RESPONSE_ERROR, function (event, statusCode, errorMessage) {
         switch (statusCode) {
+
+            // HTTP UNPROCESSABLE ENTITY
+            case 422:
+                flash.error = 'Invalid file type!';
+                break;
+
+            // HTTP CONFLICT
+            case 409:
+                flash.error = 'There was a conflict. Details: ' + errorMessage;
+                break;
 
             // HTTP NOT FOUND
             case 404:
@@ -73,11 +83,6 @@ cortexModule.controller('CortexAdminCtrl', function ($scope, $rootScope, $state,
             // HTTP UNAUTHORIZED
             case 401:
                 flash.error = 'Incorrect username and/or password provided.';
-                break;
-
-            // HTTP UNPROCESSABLE ENTITY
-            case 422:
-                flash.error = 'Invalid file type!';
                 break;
 
             case 0:
