@@ -28,7 +28,13 @@ module.controller('OrganizationsManageCtrl', function($scope, $stateParams, $sta
     $scope.deleteTenant = function(tenant){
             if (confirm('Are you sure you want to delete tenant "' + tenant.name + '"?')) {
                 Tenants.delete({id: tenant.id}, function(data) {
-                    $scope.$broadcast(events.TENANT_HIERARCHY_CHANGE);
+                    if (tenant.parent_id) {
+                        $scope.$broadcast(events.TENANT_HIERARCHY_CHANGE);
+                    }
+                    else {
+                        // Go to org manage if an org tenant was deleted
+                        $state.go('admin.organizations.manage');
+                    }
                     flash.warn = '"' + tenant.name + '" tenant was deleted successfully';
                 });
             }
