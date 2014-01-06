@@ -32,6 +32,8 @@ module.controller('OrganizationsManageCtrl', function($scope, $stateParams, $sta
                         $scope.$broadcast(events.TENANT_HIERARCHY_CHANGE);
                     }
                     else {
+                        $scope.$emit(events.ORGANIZATIONS_CHANGE);
+
                         // Go to org manage if an org tenant was deleted
                         $state.go('admin.organizations.manage');
                     }

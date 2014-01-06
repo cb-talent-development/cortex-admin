@@ -3,6 +3,7 @@ var module = angular.module('cortex.states.admin.organizations.edit.tenants', [
     'ui.bootstrap.datepicker',
     'angular-flash.service',
     'angular-underscore',
+    'cortex.config',
     'cortex.resources.tenants',
     'cortex.resources.organizations',
     'cortex.states.admin.organizations.manage.tenants',
@@ -18,7 +19,7 @@ module.config(function ($stateProvider) {
         });
 });
 
-module.controller('EditTenantsCtrl', function($scope, $stateParams, $state, $timeout, Tenants, Organizations, hierarchyUtils, flash) {
+module.controller('EditTenantsCtrl', function($scope, $stateParams, $state, $timeout, events, Tenants, Organizations, hierarchyUtils, flash) {
 
     // angular-bootstrap datepicker settings
     $scope.datepicker = {
@@ -66,16 +67,16 @@ module.controller('EditTenantsCtrl', function($scope, $stateParams, $state, $tim
 
     $scope.save = function() {
         var tenantIsNew = !$scope.data.tenant.id;
+        var tenantIsOrg = !$scope.data.tenant.parent_id;
+
         $scope.data.tenant.$save(function(tenant) {
 
             var message;
             if ($scope.creatingOrganization) {
+                $scope.$emit(events.ORGANIZATIONS_CHANGE);
+
                 if (tenantIsNew) {
                     message = 'Created new organization "' + tenant.name + '"';
-
-                    // Refresh organizations
-                    $scope.data.organizations = Organizations.query();
-
                     $state.go('.', {tenantId: tenant.id});
                 }
                 else {
@@ -88,7 +89,13 @@ module.controller('EditTenantsCtrl', function($scope, $stateParams, $state, $tim
                     $state.go('.', {tenantId: tenant.id, organizationId: $stateParams.organizationId});
                 }
                 else {
-                    message = 'Saved tenant "' +  tenant.name + '"';
+                    if (tenantIsOrg) {
+                        message = 'Saved organization "' +  tenant.name + '"';
+                        $scope.$emit(events.ORGANIZATIONS_CHANGE);
+                    }
+                    else {
+                        message = 'Saved tenant "' +  tenant.name + '"';
+                    }
                 }
             }
 

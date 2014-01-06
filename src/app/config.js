@@ -22,5 +22,6 @@ configModule.constant('events', {
     STATE_CHANGE_SUCCESS: '$stateChangeSuccess',
     USER_LOGIN_SUCCESS: 'userLoginSuccess',
     HTTP_RESPONSE_ERROR: 'httpResponseError',
-    TENANT_HIERARCHY_CHANGE: 'tenantHierarchyChange'
+    TENANT_HIERARCHY_CHANGE: 'tenantHierarchyChange',
+    ORGANIZATIONS_CHANGE: 'organizationsChange'
 });
