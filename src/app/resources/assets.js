@@ -1,16 +1,17 @@
 var module = angular.module('cortex.resources.assets', [
     'angular-underscore/utils',
-    'cortex.resources.resource',
+    'cortex.resources.paginated',
     'cortex.config'
 ]);
 
-module.factory('Assets', function (cortexResource, config) {
-    return cortexResource('/assets/:id', {id: '@id'}, {
+module.factory('Assets', function (paginatedResource, config) {
+    return paginatedResource('/assets/:id', {id: '@id'}, {
         search: {
-          method: 'GET', 
+          method: 'GET',
           url: config.api.baseUrl + '/assets/search',
-          isArray: true
-        }  
+          isArray: true,
+          paginated: true
+        }
     });
 });
 

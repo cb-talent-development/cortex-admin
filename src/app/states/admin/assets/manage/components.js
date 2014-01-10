@@ -34,7 +34,7 @@ module.controller('AssetsGridCtrl', function($scope, Assets, templates, gridTemp
     $scope.data = {};
     $scope.data.totalServerItems = 0;
 
-    $scope.data.assets = Assets.query(function(response) {
+    $scope.data.assets = Assets.query(function(response, headers, pagination) {
         $scope.data.totalServerItems = response.length;
     });
 
@@ -71,7 +71,7 @@ module.controller('AssetsGridCtrl', function($scope, Assets, templates, gridTemp
     };
 
     $scope.searchAssets = function(query) {
-        $scope.data.assets = Assets.search({q: query});
+        $scope.data.assets = Assets.$search({q: query});
     };
 });
 
