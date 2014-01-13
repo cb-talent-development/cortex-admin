@@ -38,38 +38,6 @@ module.controller('AssetsGridCtrl', function($scope, Assets, templates, gridTemp
         $scope.data.totalServerItems = response.length;
     });
 
-    var assetGridPagingOptions = {
-        pageSizes: [10, 50, 100],
-        pageSize: 10,
-        currentPage: 1
-    };
-
-    $scope.data.assetGridOptions = {
-        data: 'data.assets',
-        enablePaging: true,
-        showFooter: true,
-        totalServerItems: 'data.totalServerItems',
-        pagingOptions: assetGridPagingOptions,
-        rowHeight: 110,
-        columnDefs: [
-            {field: 'name', displayName: 'Name', cellTemplate: gridTemplates.viewAssetLinkCell},
-            {field: 'description', displayName: 'Description'},
-            {field: 'creator.name', displayName: 'Author'},
-            {field: 'created_at|date:"y/M/d h:mm:ss a"', displayName: 'Created'},
-            {field: 'updated_at|date:"y/M/d h:mm:ss a"', displayName: 'Modified'},
-            {
-                // Unicode checkmark if deactive_at is null
-                field: 'active ? "\u2713" : ""',
-                displayName: 'Active',
-                width: 43,
-                cellTemplate: templates.ngGridCells.centerAligned
-            },
-            {field: 'tags|tagList', displayName: 'Tags'},
-            {field: 'content_type',  displayName: 'Type'},
-            {field: 'thumbs.mini', displayName: 'Thumbnail', cellTemplate: gridTemplates.assetThumbCell}
-        ]
-    };
-
     $scope.searchAssets = function(query) {
         $scope.data.assets = Assets.$search({q: query});
     };
