@@ -30,16 +30,21 @@ module.constant('gridTemplates', {
 
 module.controller('AssetsGridCtrl', function($scope, Assets, templates, gridTemplates){
 
-    // Create a generic grid factory for Cortex? This will be boilerplate for a ton of our resource grids
-    $scope.data = {};
-    $scope.data.totalServerItems = 0;
+    $scope.data = {
+        paging: {
+            per_page: 5
+        }
+    };
 
-    $scope.data.assets = Assets.query(function(response, headers, pagination) {
+    $scope.data.assets =  Assets.queryPaged(function(response, headers, paging) {
         $scope.data.totalServerItems = response.length;
+        console.log(paging);  
     });
 
     $scope.searchAssets = function(query) {
-        $scope.data.assets = Assets.$search({q: query});
+        $scope.data.assets = Assets.$search({q: query}, function(data, headers, paging){
+            console.log(paging);            
+        });
     };
 });
 

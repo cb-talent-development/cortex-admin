@@ -5,6 +5,7 @@ var module = angular.module('cortex.resources.paginated', [
 
 module.factory('paginatedResource', function(cortexResource, resourceDefaultActions) {
     var forEach = angular.forEach;
+    var extend = angular.extend;
 
     return function(url, params, actions) {
         actions = angular.extend(actions, resourceDefaultActions);
@@ -16,10 +17,10 @@ module.factory('paginatedResource', function(cortexResource, resourceDefaultActi
 
             if (/^(QUERY)$/i.test(name) || action.paginated) {
 
-                resource.prototype['_' + name] = resource.prototype[name];
+                console.log('Overwriting $' + name);
 
                 // Wrap action function in pagination handler
-                resource.prototype[name] = function(params, success, error) {
+                resource[name + 'Paged'] = function(params, success, error) {
                     if (angular.isFunction(params)) {
                         error = success; success = params; params = {};
                     }
@@ -53,11 +54,11 @@ module.factory('paginatedResource', function(cortexResource, resourceDefaultActi
                         success(data, headers, pagination);
                     };
 
-                    return this['_' + name](params, wrappedSuccess, error);
+                    return resource[name](params, wrappedSuccess, error);
                 };
             }
         });
-
+ 
         return resource;
     };
 });
