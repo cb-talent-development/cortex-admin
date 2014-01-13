@@ -30,20 +30,30 @@ module.constant('gridTemplates', {
 
 module.controller('AssetsGridCtrl', function($scope, Assets, templates, gridTemplates){
 
-    $scope.data = {
-        paging: {
-            per_page: 5
+    $scope.data = {};
+    $scope.page = {
+        per_page: 5,
+        page: 1,
+        quickPages: [],
+        flip: function() {
+        },
+        first: function() {
+        },
+        last: function() {
         }
     };
 
-    $scope.data.assets =  Assets.queryPaged(function(response, headers, paging) {
+    $scope.data.assets =  Assets.queryPaged({page: $scope.page.page, per: $scope.page.per_page},
+                                            function(response, headers, paging) {
         $scope.data.totalServerItems = response.length;
-        console.log(paging);  
+        console.log(paging);
+        $scope.data.paging = paging;
     });
 
     $scope.searchAssets = function(query) {
-        $scope.data.assets = Assets.$search({q: query}, function(data, headers, paging){
-            console.log(paging);            
+        $scope.data.assets = Assets.searchPaged({q: query, page: $scope.page.page, per: $scope.page.per_page}, 
+                                            function(data, headers, paging) {
+            $scope.data.paging = paging;         
         });
     };
 });

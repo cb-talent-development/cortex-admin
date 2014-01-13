@@ -27,7 +27,7 @@
     <form class="form-inline" role="form">
       <div class="form-group pull-left">
         <label class="sr-only" for="page-size">Items per page</label>
-        <select class="form-control" id="page-size">
+        <select class="form-control" id="page-size" ng-model="page.per_page">
           <option>5</option>
           <option>10</option>
           <option>25</option>
@@ -56,9 +56,16 @@
   </div>
 
   <div class="pull-right">
-    Showing 1-10 of xx items &bull; Page 1 of y
+    <div>
+      <ul class="pagination">
+        <li><a ng-click="page.first()">&laquo;</a></li>
+        <li ng-repeat="pageIndex in page.quickPages"><a ng-click="page.flip(pageIndex)">{{ pageIndex }}</a></li>
+        <li><a ng-click="page.last()">&raquo;</a></li>
+      </ul>   
+    </div> 
 
-    <strong>&#171; 1 <a href="#">2</a> <a href="#">&#187;</a></strong>
+    <div>
+      Showing {{ data.paging.start }}-{{ data.paging.end }} of {{ data.paging.count }} items &bull; Page {{ data.paging.page }} of {{ data.paging.pages }}
   </div>
 </div>
 

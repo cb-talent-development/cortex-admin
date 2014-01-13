@@ -17,8 +17,6 @@ module.factory('paginatedResource', function(cortexResource, resourceDefaultActi
 
             if (/^(QUERY)$/i.test(name) || action.paginated) {
 
-                console.log('Overwriting $' + name);
-
                 // Wrap action function in pagination handler
                 resource[name + 'Paged'] = function(params, success, error) {
                     if (angular.isFunction(params)) {
@@ -27,22 +25,24 @@ module.factory('paginatedResource', function(cortexResource, resourceDefaultActi
 
                     wrappedSuccess = function(data, headers) {
                         var pagination;
-                        var range = headers['Content-Range'];
+                        var range = headers('Content-Range');
                         if (range) {
                             // Parse pagination information from Content-Range header (Format: start-end:per_page/count)
-                            range = range.match(/^(\d+)-(\d+):(\d+)\/(\d+)$/);
+                            range = range.match(/(\d+)-(\d+):(\d+)\/(\d+)$/);
 
-                            if (range.length != 3) {
-                                throw new Exception('Content-Range header contained ill-formated pagination data.');
+                            if (range.length != 5) {
+                                throw new Error('Content-Range header contained ill-formated pagination data.');
                             }
 
-                            var start = range[0];
-                            var end = range[1];
-                            var per_page = range[2];
-                            var count = range[3];
+                            var start = range[1];
+                            var end = range[2];
+                            var per_page = range[3];
+                            var count = range[4];
+                            var page = params.page || 1;
 
                             pagination = {
                                 page: params.page || 1,
+                                pages: parseInt(count / per_page) + 1,
                                 start: start,
                                 end: end,
                                 per_page: per_page,
