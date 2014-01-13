@@ -30,12 +30,22 @@ module.constant('gridTemplates', {
 
 module.controller('AssetsGridCtrl', function($scope, Assets, templates, gridTemplates){
 
-    $scope.data = {};
+    $scope.data = {
+        query: ''
+    };
     $scope.page = {
         per_page: 5,
         page: 1,
         quickPages: [],
         flip: function() {
+        },
+        next: function() {
+            $scope.page.page++;
+            $scope.searchAssets($scope.data.query);
+        },
+        previous: function() {
+            $scope.page.page--;
+            $scope.searchAssets($scope.data.query);
         },
         first: function() {
         },
@@ -43,19 +53,14 @@ module.controller('AssetsGridCtrl', function($scope, Assets, templates, gridTemp
         }
     };
 
-    $scope.data.assets =  Assets.queryPaged({page: $scope.page.page, per: $scope.page.per_page},
-                                            function(response, headers, paging) {
-        $scope.data.totalServerItems = response.length;
-        console.log(paging);
-        $scope.data.paging = paging;
-    });
-
     $scope.searchAssets = function(query) {
         $scope.data.assets = Assets.searchPaged({q: query, page: $scope.page.page, per: $scope.page.per_page}, 
-                                            function(data, headers, paging) {
+                                                function(data, headers, paging) {
             $scope.data.paging = paging;         
         });
     };
+
+    $scope.searchAssets('');
 });
 
 module.controller('AssetsFiltersCtrl', function($scope){
