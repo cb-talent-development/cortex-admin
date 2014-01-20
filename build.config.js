@@ -73,7 +73,7 @@ module.exports = {
       'vendor/angular-animate/angular-animate.js',
       'vendor/underscore/underscore.js',
       'vendor/angular-underscore/angular-underscore.js',
-      'vendor/ng-grid/ng-grid-2.0.7.js',
+      'vendor/ng-grid/build/ng-grid.js',
       'vendor/angular-flash/dist/angular-flash.js',
       'vendor/bootstrap-sass/dist/js/bootstrap.js',
       'vendor/angularjs-file-upload/angular-file-upload.js',
