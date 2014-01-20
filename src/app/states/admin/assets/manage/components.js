@@ -2,6 +2,7 @@ var module = angular.module('cortex.states.admin.assets.manage.components', [
     'ui.router.state',
     'ngGrid',
     'ui.bootstrap',
+    'placeholders.img',
     'common.templates',
     'cortex.resources.assets',
     'cortex.directives.delayedInput'
