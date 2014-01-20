@@ -8,7 +8,7 @@ module.factory('paginatedResource', function(cortexResource, resourceDefaultActi
     var extend = angular.extend;
 
     return function(url, params, actions) {
-        actions = angular.extend(actions, resourceDefaultActions);
+        actions = extend(actions, resourceDefaultActions);
 
         var resource = cortexResource(url, params, actions);
 
@@ -23,7 +23,7 @@ module.factory('paginatedResource', function(cortexResource, resourceDefaultActi
                         error = success; success = params; params = {};
                     }
 
-                    wrappedSuccess = function(data, headers) {
+                    var wrappedSuccess = function(data, headers) {
                         var pagination;
                         var range = headers('Content-Range');
                         if (range) {
@@ -41,7 +41,7 @@ module.factory('paginatedResource', function(cortexResource, resourceDefaultActi
                             var page = params.page || 1;
 
                             pagination = {
-                                page: params.page || 1,
+                                page: page,
                                 pages: parseInt(count / per_page) + 1,
                                 start: start,
                                 end: end,
