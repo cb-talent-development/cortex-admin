@@ -12,8 +12,10 @@
             <dt>File Size</dt>
             <dd>{{asset.file_size | bytes}}</dd>
 
-            <dt>Dimensions</dt>
-            <dd>{{asset.dimensions.0}} x {{asset.dimensions.1}}</dd>
+            <span ng-if="asset.dimensions">
+                <dt>Dimensions</dt>
+                <dd>{{asset.dimensions.0}} x {{asset.dimensions.1}}</dd>
+            </span>
 
             <dt>Author</dt>
             <dd>{{asset.creator.name}}</dd>
