@@ -58,9 +58,9 @@
     <div class="pull-right">
         <div>
             <ul class="pagination" ng-show="data.paging.pages > 1">
-                <li><a ng-click="page.previous()">&laquo;</a></li>
+                <li ng-if="data.paging.page > 1"><a ng-click="page.previous()">&laquo;</a></li>
                 <li ng-repeat="pageIndex in page.quickPages"><a ng-click="page.flip(pageIndex)">{{ pageIndex }}</a></li>
-                <li><a ng-click="page.next()">&raquo;</a></li>
+                <li ng-if="data.paging.page < data.paging.pages"><a ng-click="page.next()">&raquo;</a></li>
             </ul>
         </div>
 
@@ -83,7 +83,8 @@
                     </div>
 
                     <div class="col-xs-10">
-                        <img ng-src="{{ asset.thumbs.mini }}" alt="Thumbnail">
+                        <img ng-if="asset.has_thumbs" ng-src="{{ asset.thumbs.mini }}" alt="Thumbnail">
+                        <img ng-if="!asset.has_thumbs" ph-img="100x100" ph-text="{{ asset.general_type | uppercase }}" alt="Thumbnail">
                     </div>
                 </div>
             </div>
