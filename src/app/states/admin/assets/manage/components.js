@@ -3,7 +3,6 @@ var module = angular.module('cortex.states.admin.assets.manage.components', [
     'ngGrid',
     'ui.bootstrap',
     'placeholders.img',
-    'common.templates',
     'cortex.resources.assets',
     'cortex.directives.delayedInput'
 ]);
@@ -24,12 +23,7 @@ module.config(function($stateProvider){
     });
 });
 
-module.constant('gridTemplates', {
-    viewAssetLinkCell: "<div class='ngCellText'><a ui-sref='admin.assets.edit({assetId: row.getProperty(\"id\")})'>{{row.getProperty(col.field)}}</a></div>",
-    assetThumbCell: "<div class='ngCellText'><img src='{{row.getProperty(col.field)}}' /></div>"
-});
-
-module.controller('AssetsGridCtrl', function($scope, Assets, templates, gridTemplates){
+module.controller('AssetsGridCtrl', function($scope, Assets){
 
     $scope.data = {
         query: ''
@@ -57,7 +51,7 @@ module.controller('AssetsGridCtrl', function($scope, Assets, templates, gridTemp
     $scope.searchAssets = function(query) {
         $scope.data.assets = Assets.searchPaged({q: query, page: $scope.page.page, per: $scope.page.per_page}, 
                                                 function(data, headers, paging) {
-            $scope.data.paging = paging;         
+            $scope.data.paging = paging;
         });
     };
 

@@ -31,7 +31,7 @@ module.factory('paginatedResource', function(cortexResource, resourceDefaultActi
                             range = range.match(/(\d+)-(\d+):(\d+)\/(\d+)$/);
 
                             if (range.length != 5) {
-                                throw new Error('Content-Range header contained ill-formated pagination data.');
+                                throw new RangeError('Content-Range header contained ill-formated pagination data.');
                             }
 
                             var start = range[1];
