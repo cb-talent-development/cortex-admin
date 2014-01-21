@@ -14,12 +14,108 @@
     </ul>
 
     <div id="asset-search" class="pull-right">
-        <delayed-input class="form-control input-sm" 
-                       ng-model='assetSearchQuery' 
-                       ng-change="searchAssets(assetSearchQuery)" 
-                       placeholder="Search Assets..." 
+        <delayed-input class="form-control input-sm"
+                       ng-model='data.query'
+                       ng-change="searchAssets(data.query, true)"
+                       placeholder="Search Assets..."
                        delay="500"></delayed-input>
     </div>
 </div>
 
-<div id="asset-grid" class="smaller" ng-grid="data.assetGridOptions"></div>
+<div id="pagination-sorting">
+    <div class="pull-left">
+        <form class="form-inline" role="form">
+            <div class="form-group pull-left">
+                <label class="sr-only" for="page-size">Items per page</label>
+                <select class="form-control" id="page-size" ng-model="page.per_page">
+                    <option>5</option>
+                    <option>10</option>
+                    <option>25</option>
+                    <option>50</option>
+                </select>
+            </div>
+
+            <div class="pull-left hmargin-left-small hmargin-right-small">
+                items per page &bull; Sort by
+            </div>
+
+            <div class="form-group pull-left">
+                <label class="sr-only" for="sort-order">Sort by</label>
+                <select class="form-control" id="sort-order">
+                    <option>Last modified (recent first)</option>
+                    <option>Last modified (oldest first)</option>
+                    <option>Creation date (recent first)</option>
+                    <option>Creation date (oldest first)</option>
+                    <option>Display name (ascending)</option>
+                    <option>Display name (descending)</option>
+                    <option>Filename (ascending)</option>
+                    <option>Filename (descending)</option>
+                </select>
+            </div>
+        </form>
+    </div>
+
+    <div class="pull-right">
+        <div>
+            <ul class="pagination" ng-show="data.paging.pages > 1">
+                <li ng-if="data.paging.page > 1"><a ng-click="page.previous()">&laquo;</a></li>
+                <li ng-repeat="pageIndex in page.quickPages"><a ng-click="page.flip(pageIndex)">{{ pageIndex }}</a></li>
+                <li ng-if="data.paging.page < data.paging.pages"><a ng-click="page.next()">&raquo;</a></li>
+            </ul>
+        </div>
+
+        <div>
+            Showing {{ data.paging.start }}-{{ data.paging.end }} of {{ data.paging.count }} items &bull; Page {{
+            data.paging.page }} of {{ data.paging.pages }}
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <hr>
+
+    <div ng-repeat="asset in data.assets">
+        <div class="asset-data-row row">
+            <div class="col-sm-3 col-xs-12">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <input type="checkbox">
+                    </div>
+
+                    <div class="col-xs-10">
+                        <img ng-if="asset.has_thumbs" ng-src="{{ asset.thumbs.mini }}" alt="Thumbnail">
+                        <img ng-if="!asset.has_thumbs" ph-img="100x100" ph-text="{{ asset.general_type | uppercase }}"
+                             alt="Thumbnail">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-5 col-xs-6 asset-data-row-desc">
+                <strong>{{ asset.name }}</strong><br>
+                {{ asset.file_name }}<br>
+                <br>
+                <strong>Author: </strong>{{ asset.creator.name }}<br>
+                <strong>Description: </strong>{{ asset.description }}<br>
+                <strong>Tags: </strong>{{ asset.tags|tagList }}
+            </div>
+
+            <div class="col-sm-4 col-xs-6 text-right asset-data-row-action-status">
+                <strong>Created: </strong> {{ asset.created_at|date:"y/M/d h:mm:ss a" }}<br>
+                <strong>Last Modified: </strong> {{ moment(asset.updated_at).fromNow(); }}<br>
+                <br>
+                <strong>Status: </strong>{{ asset.deactive_at != null && (Date().new) >
+                moment(asset.deactive_at).toDate() ? 'Deactive' : 'Active' }}<br>
+                <br>
+                <button class="btn btn-sm btn-danger" type="button"><i class="fa fa-trash-o"></i> Delete
+                </button>
+                <button class="btn btn-sm btn-primary" type="button"
+                        ui-sref="admin.assets.edit({assetId: {{asset.id}}})"><i class="fa fa-edit"></i> Edit
+                </button>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <hr/>
+    </div>
+</div>

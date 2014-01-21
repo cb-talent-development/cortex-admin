@@ -51,6 +51,7 @@ cortexModule.controller('CortexAdminCtrl', function ($scope, $rootScope, $state,
     // Add $state and $stateParams to root scope for universal access within views
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
+    $rootScope.moment = window.moment;
 
     $scope.$on(events.STATE_CHANGE_SUCCESS, function (event, toState, toParams, fromState, fromParams) {
         if (isDefined(toState.data) && isDefined(toState.data.pageTitle)) {

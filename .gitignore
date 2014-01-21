@@ -6,7 +6,7 @@
 build/
 bin/
 node_modules/
-vendor/
+/vendor/
 .idea/
 .sass-cache/
 .tddium*

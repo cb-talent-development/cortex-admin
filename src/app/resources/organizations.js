@@ -9,7 +9,8 @@ module.factory('Organizations', function (cortexResource, config) {
         hierarchy: {
             method: 'GET',
             url: config.api.baseUrl + '/organizations/:id/tenants/hierarchy',
-            isArray: true
+            isArray: true,
+            paginated: true
         }
     });
 });

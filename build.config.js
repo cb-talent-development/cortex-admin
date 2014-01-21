@@ -27,7 +27,7 @@ module.exports = {
     coffeeunit: [ 'src/**/*.spec.coffee' ],
 
     atpl: [ 'src/app/**/*.tpl.html' ],
-    ctpl: [ 'src/common/**/*.tpl.html' ],
+    ctpl: [ 'src/common/**/*.tpl.html', 'src/vendor/**/*.tpl.html' ],
 
     html: [ 'src/index.html' ],
     sass: 'src/sass/main.scss'
@@ -62,29 +62,28 @@ module.exports = {
    */
   vendor_files: {
     js: [
-      'vendor/jquery/jquery.min.js',
-      'vendor/angularjs-file-upload/angular-file-upload-shim.min.js',
+      'vendor/jquery/jquery.js',
+      'vendor/angularjs-file-upload/angular-file-upload-shim.js',
       'vendor/angular/angular.js',
       'vendor/angular-resource/angular-resource.js',
       'vendor/angular-cookies/angular-cookies.js',
       'vendor/angular-bootstrap/ui-bootstrap-tpls.js',
-      'vendor/placeholders/angular-placeholders-0.0.1-SNAPSHOT.min.js',
       'vendor/angular-ui-router/release/angular-ui-router.js',
       'vendor/angular-ui-utils/modules/route/route.js',
-      'vendor/angular-animate/angular-animate.min.js',
+      'vendor/angular-animate/angular-animate.js',
       'vendor/underscore/underscore.js',
       'vendor/angular-underscore/angular-underscore.js',
-      'vendor/jquery/jquery.min.js',
-      'vendor/ng-grid/ng-grid-2.0.7.min.js',
+      'vendor/ng-grid/build/ng-grid.js',
       'vendor/angular-flash/dist/angular-flash.js',
       'vendor/bootstrap-sass/dist/js/bootstrap.js',
-      'vendor/angularjs-file-upload/angular-file-upload.min.js',
+      'vendor/angularjs-file-upload/angular-file-upload.js',
       // Angular-file-upload would prefer this file be loaded in dynamically by its library.
       // Unfortunately, for grunt to include it in the built output, it must be loaded on page load too. Perhaps create a separate grunt step for including files in HTML?
-      'vendor/angularjs-file-upload/FileAPI.min.js'
+      'vendor/angularjs-file-upload/FileAPI.js',
+      'vendor/momentjs/moment.js'
     ],
     css: [
-      'vendor/ng-grid/ng-grid.min.css'
+      'vendor/ng-grid/ng-grid.css'
     ],
     assets: [
       'vendor/bootstrap-sass/fonts/*',

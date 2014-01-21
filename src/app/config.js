@@ -38,3 +38,11 @@ configModule.constant('events', {
     TENANT_HIERARCHY_CHANGE: 'tenantHierarchyChange',
     ORGANIZATIONS_CHANGE: 'organizationsChange'
 });
+
+configModule.constant('resourceDefaultActions', {
+    'get':    {method: 'GET'},
+    'save':   {method: 'POST'},
+    'query':  {method: 'GET', isArray: true},
+    'remove': {method: 'DELETE'},
+    'delete': {method: 'DELETE'}
+});
