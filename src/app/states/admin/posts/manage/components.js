@@ -1,4 +1,4 @@
-var module = angular.module('cortex.states.admin.packages.manage.components', [
+var module = angular.module('cortex.states.admin.posts.manage.components', [
     'ui.router.state',
     'ngGrid',
     'ui.bootstrap',
@@ -7,36 +7,35 @@ var module = angular.module('cortex.states.admin.packages.manage.components', [
 ]);
 
 module.config(function($stateProvider){
-    $stateProvider.state('admin.packages.manage.components', {
+    $stateProvider.state('admin.posts.manage.components', {
         url: '/',
         views: {
-            'packages-grid': { templateUrl: 'states/admin/packages/manage/grid.tpl.html', controller: 'PackagesGridCtrl' },
-            'packages-filters': { templateUrl: 'states/admin/packages/manage/filters.tpl.html', controller: 'PackagesFiltersCtrl' }
+            'posts-grid': { templateUrl: 'states/admin/posts/manage/grid.tpl.html', controller: 'PostsGridCtrl' },
+            'posts-filters': { templateUrl: 'states/admin/posts/manage/filters.tpl.html', controller: 'PostsFiltersCtrl' }
         }
     });
 });
 
-module.controller('PackagesGridCtrl', function($scope, Posts, templates){
+module.controller('PostsGridCtrl', function($scope, Posts, templates){
 
-    // Create a generic grid factory for Cortex? This will be boilerplate for a ton of our resource grids
     $scope.data = {};
     $scope.data.totalServerItems = 0;
 
-    $scope.data.assets = Posts.query(function(response) {
+    $scope.data.posts = Posts.query(function(response) {
     });
 
-    var assetGridPagingOptions = {
+    var postGridPagingOptions = {
         pageSizes: [10, 50, 100],
         pageSize: 10,
         currentPage: 1
     };
 
-    $scope.data.assetGridOptions = {
-        data: 'data.assets',
+    $scope.data.postGridOptions = {
+        data: 'data.posts',
         enablePaging: true,
         showFooter: true,
         totalServerItems: 'data.totalServerItems',
-        pagingOptions: assetGridPagingOptions,
+        pagingOptions: postGridPagingOptions,
         columnDefs: [
             {field: 'title', displayName: 'Title'},
             {field: 'type', displayName: 'Type'},
@@ -63,7 +62,7 @@ module.controller('PackagesGridCtrl', function($scope, Posts, templates){
     };
 });
 
-module.controller('PackagesFiltersCtrl', function($scope){
+module.controller('PostsFiltersCtrl', function($scope){
 
     $scope.data = {
         assetTypes: [
