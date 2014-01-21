@@ -26,6 +26,61 @@
   font-size: 75%;
 }
 
+.hr-below {
+  margin-bottom: 5px;
+}
+
+////////////////////////////////
+// Container Child-element Restyling/Overrides
+
+.container {
+  hr {
+    margin: 5px 0 10px 0;
+    border-top: 1px solid #f47937;
+  }
+
+  .btn{
+    border: 1px solid #f47937;
+    background: white;
+    color: black;
+  }
+
+  .btn:hover{
+    background: #FFA178;
+    color: white;
+  }
+
+  .btn-primary{
+    background-image: -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      color-stop(0, #FFA178),
+      color-stop(100, #E9743A)
+    );
+    background-image: -o-linear-gradient(bottom, #FFA178 0%, #E9743A 100%);
+    background-image: -moz-linear-gradient(bottom, #FFA178 0%, #E9743A 100%);
+    background-image: -webkit-linear-gradient(bottom, #FFA178 0%, #E9743A 100%);
+    background-image: -ms-linear-gradient(bottom, #FFA178 0%, #E9743A 100%);
+    background-image: linear-gradient(to bottom, #FFA178 0%, #E9743A 100%);
+    color: white;
+  }
+
+  .navbar-form {
+    margin: 5px 0 0 0;
+    padding: 0;
+    width: 12.5em;
+
+    .btn-search {
+      width: 2em;
+      border: none;
+      border-radius: 0 5px 5px 0;
+      background-color: rgba(255,255,255,0.05);
+      color: white;
+    }
+  }
+}
+
 ////////////////////////////////
 // Margins
 
@@ -95,6 +150,12 @@ input.form-control[required]:not(:focus) {
   }
 }
 
+.drag-and-drop-area {
+  height: 8.5em;
+  padding: 1em;
+  border: 1px dashed #f47937;
+  border-radius: 5px;
+}
 
 textarea.vertical-only { resize: vertical; }
 
@@ -118,4 +179,107 @@ textarea.vertical-only { resize: vertical; }
     height: auto;
     opacity: 1;
   }
+}
+
+////////////////////////////////
+// Cortex Navbar
+
+.navbar-cortex {
+  background-image: -webkit-gradient(
+  linear,
+  left top,
+  left bottom,
+  color-stop(0, #022745),
+  color-stop(0.7, #104070),
+  color-stop(1, #09335B)
+  );
+  background-image: -o-linear-gradient(bottom, #022745 0%, #104070 70%, #09335B 100%);
+  background-image: -moz-linear-gradient(bottom, #022745 0%, #104070 70%, #09335B 100%);
+  background-image: -webkit-linear-gradient(bottom, #022745 0%, #104070 70%, #09335B 100%);
+  background-image: -ms-linear-gradient(bottom, #022745 0%, #104070 70%, #09335B 100%);
+  background-image: linear-gradient(to bottom, #022745 0%, #104070 70%, #09335B 100%);
+  padding: 0.625em;
+  font-family: 'PT Sans', Arial, sans-serif;
+}
+
+.menu-item-bg {
+  background: transparent url(../assets/admin/header-sprites.png) no-repeat;
+  padding-top: 4.6em;
+  padding-bottom: 0;
+}
+
+.navbar-box {
+  width: 12.5em;
+  padding: .31em;
+  border-radius: 5px;
+  background-color: rgba(255,255,255,0.05);
+}
+
+.form-search{
+  height: 1.67em;
+  width: 12.5em;
+  border: none;
+  border-radius: 5px 0 0 5px;
+  background-color: rgba(255,255,255,0.05);
+  color: white;
+}
+
+.navbar-items-cortex {
+  a {
+    color: white;
+  }
+
+  a.navbar-item-tenant {
+    @extend .menu-item-bg;
+    background-position: center -100px;
+  }
+
+  a.navbar-item-tenant:hover, a.navbar-item-tenant:focus {
+    @extend .menu-item-bg;
+    background-position: center 0px;
+  }
+
+  a.navbar-item-assets {
+    @extend .menu-item-bg;
+    background-position: center -300px;
+  }
+
+  a.navbar-item-assets:hover, a.navbar-item-assets:focus {
+    @extend .menu-item-bg;
+    background-position: center -200px;
+  }
+
+  a.navbar-item-permissions {
+    @extend .menu-item-bg;
+    background-position: center -500px;
+  }
+
+  a.navbar-item-permissions:hover, a.navbar-item-permissions:focus {
+    @extend .menu-item-bg;
+    background-position: center -400px;
+  }
+
+  a.navbar-item-content {
+    @extend .menu-item-bg;
+    background-position: center -700px;
+  }
+
+  a.navbar-item-content:hover, a.navbar-item-content:focus {
+    @extend .menu-item-bg;
+    background-position: center -600px;
+  }
+
+  a.navbar-item-apps {
+    @extend .menu-item-bg;
+    background-position: center -900px;
+  }
+
+  a.navbar-item-apps:hover, a.navbar-item-apps:focus {
+    @extend .menu-item-bg;
+    background-position: center -800px;
+  }
+}
+
+.navbar-right{
+  color: white;
 }
