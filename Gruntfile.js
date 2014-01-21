@@ -354,6 +354,14 @@ module.exports = function ( grunt ) {
         },
         src: [ '<%= app_files.ctpl %>' ],
         dest: '<%= build_dir %>/templates-common.js'
+      },
+
+      vendor: {
+        options: {
+          base: 'src/vendor'
+        },
+        src: [ '<%= app_files.vtpl %>' ],
+        dest: '<%= build_dir %>/templates-vendor.js'
       }
     },
 
@@ -390,6 +398,7 @@ module.exports = function ( grunt ) {
         src: [
           '<%= vendor_files.js %>',
           '<%= build_dir %>/src/**/*.js',
+          '<%= html2js.vendor.dest %>',
           '<%= html2js.common.dest %>',
           '<%= html2js.app.dest %>',
           '<%= vendor_files.css %>',
@@ -422,6 +431,7 @@ module.exports = function ( grunt ) {
           '<%= vendor_files.js %>',
           '<%= html2js.app.dest %>',
           '<%= html2js.common.dest %>',
+          '<%= html2js.vendor.dest %>',
           '<%= test_files.js %>'
         ]
       }
@@ -507,7 +517,8 @@ module.exports = function ( grunt ) {
       tpls: {
         files: [ 
           '<%= app_files.atpl %>', 
-          '<%= app_files.ctpl %>'
+          '<%= app_files.ctpl %>',
+          '<%= app_files.vtpl %>'
         ],
         tasks: [ 'html2js' ]
       },

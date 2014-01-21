@@ -1,6 +1,7 @@
 var cortexModule = angular.module('cortex', [
     'templates-app',
     'templates-common',
+    'templates-vendor',
     'ui.router',
     'ui.router.state',
     'angular-flash.service',
