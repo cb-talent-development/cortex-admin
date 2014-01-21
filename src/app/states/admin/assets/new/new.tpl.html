@@ -1,65 +1,107 @@
-<div class="col-md-6 col-md-offset-3">
-    <div class="panel panel-default"
+<div class="container">
+    <h3>Add Asset</h3>
+
+    <h4 class="vmargin-top-large hr-below">Upload File from Computer</h4>
+
+    <hr>
+
+    <div class="vmargin-bottom-large"
          ng-file-drop="onFileSelect($files)"
          ng-file-drop-available="dropSupported=true">
-        <div class="panel-heading h3">Upload File</div>
 
-        <div class="panel-body">
+        <div class="col-md-2 text-right">
+            <label for="fileSelect">Select File</label>
+        </div>
 
+        <div class="col-md-8">
             <div class="form-group" ng-hide="data.upload.file">
-                <span class="help-block text-center" ng-show="dropSupported" ng-file-drop="onFileSelect($files);" ng-file-drop-available="dropSupported=true">Drag a file into this panel or use the button below to select</span>
-                <span class="help-block text-center" ng-show="!dropSupported">Use the button below to select a file from your computer</span>
-                <span class="btn btn-primary btn-block btn-file">
-                    <span class="fa fa-file"></span> Browse Computer <input type="file" ng-file-select="onFileSelect($files)"/>
+                <span class="btn btn-primary btn-sm btn-file">
+                    <span class="fa fa-file"></span> Browse... <input id="fileSelect" type="file" ng-file-select="onFileSelect($files)">
                 </span>
+
+                <div class="vmargin-top-small drag-and-drop-area text-center" ng-show="dropSupported" ng-file-drop="onFileSelect($files);" ng-file-drop-available="dropSupported=true">
+                    <span class="fa-5x fa fa-file"></span><br>
+                    ...or drag and drop a file here.
+                </div>
+
+                <div class="vmargin-top-small drag-and-drop-area text-center" ng-show="!dropSupported">Use the browse file button above to select a file from your computer.</div>
             </div>
 
-            <div class="form-group input-group" ng-show="data.upload.file">
+            <div class="form-group input-group input-group-sm" ng-show="data.upload.file">
                 <input type="text" class="form-control" ng-model="data.upload.file.name" disabled />
                 <span class="input-group-btn">
-                    <button class="btn btn-default" type="button" ng-click="remove()">
-                        <span class="fa fa-ban"></span> Remove
+                    <button class="btn btn-default btn-sm" type="button" ng-click="remove()">
+                        <span class="fa fa-ban"></span> Remove File
                     </button>
                 </span>
             </div>
 
             <progress percent="data.upload.progress" ng-show="data.upload.file"></progress>
+        </div>
 
-            <form novalidate name="assetForm">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Name (Required)" ng-model="data.asset.name" required />
-                    <span class="help-block">Provide a clean display name</span>
-                </div>
-                <div class="form-group">
-                    <textarea class="form-control vertical-only" rows="3" placeholder="Description" ng-model="data.asset.description"></textarea>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Tags" ng-model="data.asset.tag_list" />
-                    <span class="help-block">Use commas to separate tags</span>
-                </div>
-                <div class="input-group form-group">
-                    <input type="text" class="form-control" datepicker-popup="{{datepicker.format}}"
-                                                            is-open="datepicker.expireAtOpen"
-                                                            show-weeks="false"
-                                                            ng-model="data.asset.deactive_at"
-                                                            placeholder="Expiration Date"/>
-                    <span class="input-group-btn"><button class="btn btn-default" ng-click="datepicker.open('expireAtOpen')"><i class="fa fa-calendar"></i></button></span>
-                </div>
-            </form>
+        <div class="clearfix"></div>
 
-            <div class="row">
-                <div class="col-xs-6">
-                    <button class="btn btn-block btn-danger" ng-disabled="!data.upload.progress" ng-click="upload.abort()">
-                        <span class="fa fa-ban"></span> Cancel
-                    </button>
-                </div>
-                <div class="col-xs-6">
-                    <button class="btn btn-block btn-success" ng-disabled="!data.upload.file || assetForm.$invalid" ng-click="startUpload()">
-                        <span class="fa fa-cloud-upload"></span> Save
-                    </button>
-                </div>
+        <form novalidate name="assetForm">
+            <div class="col-md-2 text-right">
+                <label for="fileDisplayName">Display Name</label>
             </div>
 
+            <div class="col-md-8 input-group-sm">
+                <input id="fileDisplayName" type="text" class="form-control" placeholder="Display Name (Required)" ng-model="data.asset.name" required />
+            </div>
+
+            <div class="clearfix vmargin-bottom-small"></div>
+
+            <h4 class="vmargin-top-large hr-below">Asset Attributes</h4>
+
+            <hr>
+
+            <div class="col-md-2 text-right">
+                <label for="fileDescription">Description</label>
+            </div>
+
+            <div class="col-md-8 input-group-sm">
+                <textarea id="fileDescription" class="form-control vertical-only" rows="3" placeholder="Description of the asset" ng-model="data.asset.description"></textarea>
+            </div>
+
+            <div class="clearfix vmargin-bottom-small"></div>
+
+            <div class="col-md-2 text-right">
+                <label for="fileTags">Tags</label>
+            </div>
+
+            <div class="col-md-8 input-group-sm">
+                <input id="fileTags" type="text" class="form-control" placeholder="Separate tags with commas" ng-model="data.asset.tag_list" />
+            </div>
+
+            <div class="clearfix vmargin-bottom-small"></div>
+
+            <div class="col-md-2 text-right">
+                <label for="fileExpirationDate">Expiration Date</label>
+            </div>
+
+            <div class="col-md-3 input-group input-group-sm">
+                <input id="fileExpirationDate" type="text" class="form-control" datepicker-popup="{{datepicker.format}}" is-open="datepicker.expireAtOpen" show-weeks="false" ng-model="data.asset.deactive_at" placeholder="Asset expiration date"/><span class="input-group-btn"><button class="btn btn-default" ng-click="datepicker.open('expireAtOpen')"><i class="fa fa-calendar"></i></button></span>
+            </div>
+        </form>
+
+        <div class="clearfix vmargin-bottom-small"></div>
+
+        <hr>
+
+        <div class="col-md-2 text-right">
         </div>
+
+        <div class="col-md-8">
+            <button class="btn btn-primary btn-sm" ng-disabled="!data.upload.file || assetForm.$invalid" ng-click="startUpload()">
+                <span class="fa fa-cloud-upload"></span> Add Asset
+            </button>
+
+            <button class="btn btn-sm" ng-disabled="!data.upload.progress" ng-click="upload.abort()">
+                <span class="fa fa-reply"></span> Return to Asset Library
+            </button>
+        </div>
+
+        <div class="clearfix vmargin-bottom-small"></div>
     </div>
 </div>

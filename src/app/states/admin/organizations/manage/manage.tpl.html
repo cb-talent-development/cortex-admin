@@ -1,5 +1,7 @@
 <div class="col-md-4">
 	<div class="row">
+    <h3 class="vmargin-bottom-large">Tenant Management</h3>
+
     <div class="col-md-8">
       <form class="form-inline" role="form">
         <label class="sr-only" for="tenantSearchBar">Search for Organization</label>
@@ -9,62 +11,64 @@
     </div>
         
 		<div class="col-md-4">
-			<button type="button" class="btn btn-sm btn-info pull-right" ui-sref="admin.organizations.edit.tenants({organizationId: ''})">Add New Org.</button>
+			<button type="button" class="btn btn-sm btn-primary pull-right" ui-sref="admin.organizations.edit.tenants({organizationId: ''})">Add New Org.</button>
     </div>
 	</div>
 
-    <div id="filterByLetter" class="text-center text-muted small vmargin-top-small vmargin-bottom-small">
+    <div id="filterByLetter" class="text-center text-muted small vmargin-top-small">
         # A B C D E F G H I J K L M N O P Q <a href="#">R</a> S T U V W X Y Z
     </div>
-    
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">R</h3>
-        </div>
-        <div class="panel-body">
-            <button ng-repeat="organization in data.organizations"
-                    class="btn btn-block"
-                    ui-sref=".tenants({organizationId:organization.id})"
-                    ng-class="{'btn-primary': organization.id == data.organization.id}">
-                {{ organization.name }}
-            </button>
-        </div>
-    </div>
+
+    <hr class="cortex">
+
+    <h3 class="panel-title">R</h3>
+
+    <hr class="cortex">
+
+    <button ng-repeat="organization in data.organizations"
+            class="btn btn-block"
+            ui-sref=".tenants({organizationId:organization.id})"
+            ng-class="{'btn-primary': organization.id == data.organization.id}">
+        {{ organization.name }}
+    </button>
 </div>
 
 <div class="col-md-4">
-  <div class="panel panel-default" ng-show="$state.includes('admin.organizations.manage.tenants')">
-    <div class="panel-heading">
-      <span class="panel-title h3">Hierarchy</span>
-      <div class="btn-group pull-right">
-        <button ng-disabled="!tenantsTreeStatus.isLoaded" type="button" class="btn btn-default btn-xs" ui-sref="admin.organizations.edit.tenants({organizationId: data.organization.id})">
-          <span class="fa fa-plus"></span> Add
-        </button>
-      </div>
+  <div class="vmargin-top-large" ng-show="$state.includes('admin.organizations.manage.tenants')">
+    <span class="panel-title h3">Hierarchy</span>
+      
+    <div class="btn-group pull-right">
+      <button ng-disabled="!tenantsTreeStatus.isLoaded" type="button" class="btn btn-default btn-xs" ui-sref="admin.organizations.edit.tenants({organizationId: data.organization.id})">
+        <span class="fa fa-plus"></span> Add Tenant
+      </button>
     </div>
+
+    <hr>
+
     <div class="panel-body" ui-view="tenants-tree">
     </div>
   </div>
 </div>
 
 <div class="col-md-4">
-  <div class="panel panel-default" ng-show="$state.includes('admin.organizations.manage.tenants') && data.tenants.selected">
-    <div class="panel-heading">
-      <span class="panel-title h3">Details</span>
-
-      <div class="btn-group pull-right">
-        <button type="button" class="btn btn-default btn-xs" ui-sref="admin.organizations.edit.tenants({organizationId: data.organization.id, tenantId: data.tenants.selected.id})">
-          <span class="fa fa-plus"></span> Edit
-        </button>
-      </div>
-
-        <div class="btn-group pull-right">
-            <button type="button" class="btn btn-default btn-xs" ng-click="deleteTenant(data.tenants.selected)">
-                <span class="fa fa-minus"></span> Delete
-            </button>
-        </div>
-
+  <div class="vmargin-top-large" ng-show="$state.includes('admin.organizations.manage.tenants') && data.tenants.selected">
+    <span class="panel-title h3">Details</span>
+    
+    <div class="btn-group pull-right">
+      <button type="button" class="btn btn-default btn-xs" ui-sref="admin.organizations.edit.tenants({organizationId: data.organization.id, tenantId: data.tenants.selected.id})">
+        <span class="fa fa-plus"></span> Edit Details
+      </button>
     </div>
+
+    <div class="btn-group pull-right">
+      <button type="button" class="btn btn-default btn-xs" ng-click="deleteTenant(data.tenants.selected)">
+        <span class="fa fa-minus"></span> Delete Tenant
+      </button>
+      &nbsp;
+    </div>
+
+    <hr>
+
     <div class="panel-body" ui-view="tenants-details">
     </div>
   </div>
