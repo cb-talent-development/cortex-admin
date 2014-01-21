@@ -38,28 +38,15 @@ module.controller('PackagesGridCtrl', function($scope, Posts, templates){
         totalServerItems: 'data.totalServerItems',
         pagingOptions: assetGridPagingOptions,
         columnDefs: [
-            {field: 'title', displayName: 'Title'},
-            {field: 'type', displayName: 'Type'},
-            {field: 'published_at|publishStatus', displayName: 'Status'},
-            {field: 'author.name', displayName: 'Author'},
-            {field: 'categories|tagList', displayName: 'Categories'},
-            {field: 'created_at|date:"d/M/y h:mm:ss a"', displayName: 'Created'},
-            {field: 'updated_at|date:"d/M/y h:mm:ss a"', displayName: 'Modified'},
-            {
-                // Unicode checkmark if delete_date is null
-                field: 'delete_date == null ? "\u2713" : ""',
-                displayName: 'Active',
-                width: 43,
-                cellTemplate: templates.ngGridCells.centerAligned
-            },
-            {field: "tags.join(', ')", displayName: 'Tags'},
-            {
-                field: 'comment_count', 
-                displayName: 'Comments',
-                width: 70,
-                cellTemplate: templates.ngGridCells.centerAligned
-            }
-        ]
+            {field: 'postheadline', displayName: 'Post Headline'},
+            {field: 'posttype', displayName: 'Post Type'},
+            {field: 'postdate', displayName: 'Post Date'},
+            {field: 'postpublished', displayName: 'Post published'},
+            {field: 'postauthor', displayName: 'Post Author'},
+            {field: 'postcategories', displayName: 'Post Categories'},
+            {field: 'posttags', displayName: 'Post tags'},
+            {field: 'postcomments', displayName: 'Post comments'},
+             ]
     };
 });
 
