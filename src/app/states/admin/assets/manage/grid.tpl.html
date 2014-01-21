@@ -84,7 +84,8 @@
 
                     <div class="col-xs-10">
                         <img ng-if="asset.has_thumbs" ng-src="{{ asset.thumbs.mini }}" alt="Thumbnail">
-                        <img ng-if="!asset.has_thumbs" ph-img="100x100" ph-text="{{ asset.general_type | uppercase }}" alt="Thumbnail">
+                        <img ng-if="!asset.has_thumbs" ph-img="100x100" ph-text="{{ asset.general_type | uppercase }}"
+                             alt="Thumbnail">
                     </div>
                 </div>
             </div>
@@ -105,8 +106,10 @@
                 <strong>Status: </strong>{{ asset.deactive_at != null && (Date().new) >
                 moment(asset.deactive_at).toDate() ? 'Deactive' : 'Active' }}<br>
                 <br>
+                <button class="btn btn-sm btn-danger" type="button"><i class="fa fa-trash-o"></i> Delete
+                </button>
                 <button class="btn btn-sm btn-primary" type="button"
-                        ui-sref="admin.assets.edit({assetId: {{asset.id}}})">Edit
+                        ui-sref="admin.assets.edit({assetId: {{asset.id}}})"><i class="fa fa-edit"></i> Edit
                 </button>
             </div>
         </div>
