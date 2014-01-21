@@ -48,7 +48,11 @@ module.controller('AssetsGridCtrl', function($scope, Assets){
         }
     };
 
-    $scope.searchAssets = function(query) {
+    $scope.searchAssets = function(query, isNewSearch) {
+        if (isNewSearch) {
+            $scope.page.page = 1;
+        }
+
         $scope.data.assets = Assets.searchPaged({q: query, page: $scope.page.page, per: $scope.page.per_page}, 
                                                 function(data, headers, paging) {
             $scope.data.paging = paging;
