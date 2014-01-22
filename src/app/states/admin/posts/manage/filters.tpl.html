@@ -1,25 +1,25 @@
-<h6 class="text-muted hr-below">POST TYPE</h6>
+<h4 class="hr-below"><small>POST TYPE</small></h4>
 
 <hr>
 
-<div class="vmargin-top-small">
-    <ul class="list-unstyled smaller">
+<div class="form-group">
+    <ul class="list-unstyled small">
         <li ng-repeat="type in data.assetTypes">
             <input type="checkbox" /> {{ type.name }}
         </li>
     </ul>
 
-    <button type="button" class="pull-right btn btn-default btn-sm vmargin-bottom-large">Clear</button>
+    <button type="button" class="pull-right btn btn-default btn-sm">Clear</button>
 </div>
 
 <div class="clearfix"></div>
 
-<h6 class="text-muted hr-below">CATEGORY</h6>
+<h4 class="hr-below"><small>CATEGORY</small></h4>
 
 <hr>
 
-<div class="vmargin-top-small">
-    <select id="categorySelect" class="form-control smaller">
+<div class="form-group">
+    <select id="categorySelect" class="form-control input-sm">
         <option value="Cover Letters">Cover Letters</option>
         <option value="Job Trends">Job Trends</option>
         <option value="Networking">Networking</option>
@@ -27,33 +27,33 @@
         <option value="Who's Hiring">Who's Hiring</option>
         <option value="Work/Life Balance">Work/Life Balance</option>
     </select>
-
-    <button type="button" class="pull-right btn btn-default btn-sm vmargin-top-small vmargin-bottom-large">Clear</button>
 </div>
+
+<button type="button" class="pull-right btn btn-default btn-sm">Clear</button>
 
 <div class="clearfix"></div>
 
-<h6 class="text-muted hr-below">DATE</h6>
+<h4 class="hr-below"><small>DATE</small></h4>
 
 <hr>
 
-<div class="vmargin-top-small vmargin-bottom-large">
+<div class="form-group">
     <div class="btn-group btn-group-sm">
         <button type="button" class="btn btn-primary" ng-model="data.filters.date.property" btn-radio="'create_date'">Created</button>
         <button type="button" class="btn btn-primary" ng-model="data.filters.date.property" btn-radio="'update_date'">Modified</button>
     </div>
 
-    <label class="h6 vmargin-top-large">From</label>
+    <label class="h6">From</label>
     <div class="input-group input-group-sm">
         <input type="text" class="form-control"/>
         <span class="input-group-btn"><button class="btn btn-default"><i class="fa fa-calendar"></i></button></span>
     </div>
 
-    <label class="h6 vmargin-top-large">To</label>
+    <label class="h6">To</label>
     <div class="input-group input-group-sm">
         <input type="text" class="form-control"/>
         <span class="input-group-btn"><button class="btn btn-default"><i class="fa fa-calendar"></i></button></span>
     </div>
 
-    <button id="post-filter-date-clear-btn" type="button" class="pull-right btn btn-default btn-sm vmargin-top-small vmargin-bottom-large">Clear</button>
+    <button id="post-filter-date-clear-btn" type="button" class="pull-right btn btn-default btn-sm">Clear</button>
 </div>
