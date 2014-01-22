@@ -5,7 +5,7 @@
 <div class="form-group">
     <ul class="list-unstyled small">
         <li ng-repeat="type in data.assetTypes">
-            <input type="checkbox" /> {{ type.name }}
+            <input id="{{type.name}}" type="checkbox" /> <label for="{{type.name}}">{{type.name}}</label>
         </li>
     </ul>
 </div>
