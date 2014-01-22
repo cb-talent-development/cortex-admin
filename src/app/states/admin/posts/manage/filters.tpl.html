@@ -5,7 +5,7 @@
 <div class="form-group">
     <ul class="list-unstyled small">
         <li ng-repeat="type in data.assetTypes">
-            <input id="{{type.name}}" type="checkbox" /> <label for="{{type.name}}">{{type.name}}</label>
+            <input id="{{type.name}}" type="checkbox"> <label for="{{type.name}}">{{type.name}}</label>
         </li>
     </ul>
 </div>
@@ -38,20 +38,22 @@
 <hr>
 
 <div class="form-group">
-    <div class="btn-group btn-group-sm">
-        <button type="button" class="btn btn-primary" ng-model="data.filters.date.property" btn-radio="'create_date'">Created</button>
-        <button type="button" class="btn btn-primary" ng-model="data.filters.date.property" btn-radio="'update_date'">Modified</button>
+    <div class="btn-toolbar">
+        <div class="btn-group btn-group-sm">
+            <button type="button" class="btn btn-primary" ng-model="data.filters.date.property" btn-radio="'create_date'">Created</button>
+            <button type="button" class="btn btn-primary" ng-model="data.filters.date.property" btn-radio="'update_date'">Modified</button>
+        </div>
     </div>
 
     <label class="h6">From</label>
     <div class="input-group input-group-sm">
-        <input type="text" class="form-control"/>
+        <input type="text" class="form-control">
         <span class="input-group-btn"><button class="btn btn-default"><i class="fa fa-calendar"></i></button></span>
     </div>
 
     <label class="h6">To</label>
     <div class="input-group input-group-sm">
-        <input type="text" class="form-control"/>
+        <input type="text" class="form-control">
         <span class="input-group-btn"><button class="btn btn-default"><i class="fa fa-calendar"></i></button></span>
     </div>
 </div>
