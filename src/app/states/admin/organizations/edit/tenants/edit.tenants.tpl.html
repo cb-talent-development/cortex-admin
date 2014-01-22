@@ -1,18 +1,24 @@
-<div class="col-md-2 hidden-xs">
-  <div class="panel panel-default">
-    <div class="panel-heading">Instructions</div>
-    <div class="panel-body">
+<div class="container">
+  <h3 class="hr-below">Add {{creatingOrganization ? 'Organization' : 'Tenant'}}</h3>
+
+  <hr>
+
+  <div class="col-md-2 hidden-xs">
+
+    <h6 class="text-muted hr-below">INSTRUCTIONS</h6>
+
+    <hr>
+
       Create or edit {{creatingOrganization ? 'an organization' : 'a tenant'}}.
-    </div>
+
+
+
   </div>
-</div>
-<!-- /instructions -->
+  <!-- /instructions -->
 
-<div class="col-md-5">
+  <div class="col-md-5">
+      <h4 class="vmargin-top-large">1. {{ levelName.charAt(0).toUpperCase() + levelName.slice(1) }} Information</h4>
 
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <p>1. {{ levelName.charAt(0).toUpperCase() + levelName.slice(1) }} Information</p>
       <form novalidate name="tenantForm">
         <div class="form-group"><input type="text" class="form-control" ng-model="data.tenant.name" name="name" placeholder="Name (Required)" required maxlength="100" /></div>
         <div class="form-group"><input type="text" class="form-control" ng-model="data.tenant.contact_name" placeholder="Contact Name" maxlength="100" /></div>
@@ -41,40 +47,35 @@
         <div class="form-group"><input type="text" class="form-control" ng-model="data.tenant.contract" placeholder="Contract Number" maxlength="100" /></div>
         <div class="form-group"><input type="text" class="form-control" ng-model="data.tenant.did" placeholder="DID" maxlength="100" /></div>
       </form>
+  </div>
+  <!-- /form column -->
+
+  <div class="col-md-5">
+    <h4 class="vmargin-top-large" ng-show="creatingTenant && !creatingOrganization">2. Tenant Location in Organization Hierarchy</h4>
+    <h4 class="vmargin-top-large" ng-hide="creatingTenant && !creatingOrganization">2. {{ levelName.charAt(0).toUpperCase() + levelName.slice(1) }} Settings</h4>
+    <abn-tree ng-show="creatingTenant" tree-data="data.tenants.hierarchy" icon-leaf="icon-file"
+                                                 on-select="selectParent(branch)"
+                                                 expand-level="2"></abn-tree>
+
+
+    <div ng-show="data.tenants.selected">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" ng-model="data.tenant.inherit_from_parent" /> Inherit settings from parent, <span class="text-info">{{ data.tenants.selected.name }}</span>
+        </label>
+      </div>
+    </div>
+
+    <div ng-hide="data.tenant.inherit_from_parent && !creatingOrganization">
+      <tenant-settings></tenant-settings>
+    </div>
+
+    <div class="text-right">
+      <button type="button"
+        class="btn btn-primary btn-sm"
+        ng-disabled="tenantForm.$invalid || (!data.tenants.selected && creatingTenant && !creatingOrganization)"
+        ng-click="save()">{{ creatingTenant ? 'Create' : 'Save' }}</button>
     </div>
   </div>
-
-</div>
-<!-- /form column -->
-
-<div class="col-md-5">
-
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <p ng-show="creatingTenant && !creatingOrganization">2. Tenant Location in Organization Hierarchy</p>
-      <p ng-hide="creatingTenant && !creatingOrganization">2. {{ levelName.charAt(0).toUpperCase() + levelName.slice(1) }} Settings</p>
-      <abn-tree ng-show="creatingTenant" tree-data="data.tenants.hierarchy" icon-leaf="icon-file"
-                                                   on-select="selectParent(branch)"
-                                                   expand-level="2"></abn-tree>
-    </div>
-    <ul class="list-group">
-      <li class="list-group-item" ng-show="data.tenants.selected">
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" ng-model="data.tenant.inherit_from_parent" /> Inherit settings from parent, <span class="text-info">{{ data.tenants.selected.name }}</span>
-          </label>
-        </div>
-      </li>
-      <li class="list-group-item" ng-hide="data.tenant.inherit_from_parent && !creatingOrganization">
-        <tenant-settings></tenant-settings>
-      </li>
-      <li class="list-group-item">
-        <button type="button"
-                class="btn btn-success btn-block"
-                ng-disabled="tenantForm.$invalid || (!data.tenants.selected && creatingTenant && !creatingOrganization)"
-                ng-click="save()">{{ creatingTenant ? 'Create' : 'Save' }}</button>
-      </li>
-    </ul>
-  </div>
-</div>
 <!-- /hierarchy column -->
+</div>
