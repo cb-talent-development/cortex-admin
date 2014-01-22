@@ -103,6 +103,7 @@
                 <strong>Created: </strong> {{ asset.created_at|date:"y/M/d h:mm:ss a" }}<br>
                 <strong>Last Modified: </strong> {{ moment(asset.updated_at).fromNow(); }}<br>
                 <br>
+                <strong>UID: </strong>{{ asset.taxon }}<br>
                 <strong>Status: </strong>{{ asset.deactive_at != null && (Date().new) >
                 moment(asset.deactive_at).toDate() ? 'Deactive' : 'Active' }}<br>
                 <br>
