@@ -65,8 +65,8 @@ module.controller('PostsGridCtrl', function($scope, Posts, templates){
 module.controller('PostsFiltersCtrl', function($scope){
 
     $scope.data = {
-        assetTypes: [
-            {name: 'Article', extensions: ['zip']},
+        postTypes: [
+            {name: 'Article'},
             {name: 'Graphic'},
             {name: 'Promo'},
             {name: 'Video'}

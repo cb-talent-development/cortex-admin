@@ -4,13 +4,15 @@
 
 <div class="form-group">
     <ul class="list-unstyled small">
-        <li ng-repeat="type in data.assetTypes">
+        <li ng-repeat="type in data.postTypes">
             <input id="{{type.name}}" type="checkbox"> <label for="{{type.name}}">{{type.name}}</label>
         </li>
     </ul>
 </div>
 
 <button type="button" class="pull-right btn btn-default btn-sm">Clear</button>
+
+<div class="clearfix"></div>
 
 <h4 class="hr-below"><small>CATEGORY</small></h4>
 
@@ -28,6 +30,8 @@
 </div>
 
 <button type="button" class="pull-right btn btn-default btn-sm">Clear</button>
+
+<div class="clearfix"></div>
 
 <h4 class="hr-below"><small>DATE</small></h4>
 
