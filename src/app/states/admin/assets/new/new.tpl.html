@@ -36,7 +36,7 @@
                 </span>
             </div>
 
-            <progress percent="data.upload.progress" ng-show="data.upload.file"></progress>
+            <progressbar ng-show="data.upload.file" animate="false" max="100" value="data.upload.progress" type="success"><b>{{data.upload.progress}}%</b></progressbar>
         </div>
 
         <div class="clearfix"></div>
