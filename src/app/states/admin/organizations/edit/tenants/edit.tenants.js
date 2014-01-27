@@ -5,7 +5,6 @@ var module = angular.module('cortex.states.admin.organizations.edit.tenants', [
     'angular-underscore',
     'cortex.config',
     'cortex.resources.tenants',
-    'cortex.resources.organizations',
     'cortex.states.admin.organizations.manage.tenants',
     'cortex.directives.tenantSettings'
 ]);
@@ -19,7 +18,7 @@ module.config(function ($stateProvider) {
         });
 });
 
-module.controller('EditTenantsCtrl', function($scope, $stateParams, $state, $timeout, events, Tenants, Organizations, hierarchyUtils, flash) {
+module.controller('EditTenantsCtrl', function($scope, $stateParams, $state, $timeout, events, Tenants, hierarchyUtils, flash) {
 
     // angular-bootstrap datepicker settings
     $scope.datepicker = {
@@ -56,7 +55,7 @@ module.controller('EditTenantsCtrl', function($scope, $stateParams, $state, $tim
 
     // Fetch organization hierarchy
     if ($stateParams.organizationId) {
-        $scope.data.tenants.hierarchy = Organizations.hierarchy({id: $stateParams.organizationId, include_root: true});
+        $scope.data.tenants.hierarchy = Tenants.hierarchy({id: $stateParams.organizationId, include_root: true});
     }
     $scope.creatingTenant = $stateParams.tenantId === '';
 

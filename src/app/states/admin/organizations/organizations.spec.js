@@ -16,12 +16,12 @@ describe('Admin.Organizations State Module', function() {
     describe('OrganizationsCtrl', function() {
         var createController, $scope, $stateParams, $state, $httpBackend;
 
-        beforeEach(inject(function($controller, $rootScope, _$httpBackend_, Organizations) {
+        beforeEach(inject(function($controller, $rootScope, _$httpBackend_, Tenants) {
             $scope = $rootScope.$new();
             $stateParams = {};
 
             $httpBackend = _$httpBackend_;
-            $httpBackend.expectGET('/organizations')
+            $httpBackend.expectGET('/tenants?roots_only=true')
                         .respond(mockData.organizations);
 
             createController = function() {
@@ -29,7 +29,7 @@ describe('Admin.Organizations State Module', function() {
                     $scope: $scope,
                     $stateParams: $stateParams,
                     $state: null,
-                    Organizations: Organizations
+                    Tenants: Tenants
                 });
             };
         }));
