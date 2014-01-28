@@ -2,7 +2,10 @@
   :hooks:
     :pre: npm install grunt-cli karma bower && npm install && ./node_modules/bower/bin/bower cache clean && ./node_modules/bower/bin/bower install && ./node_modules/grunt-cli/bin/grunt build
     :post: grunt ftp-deploy
+  :ruby_version: ruby-2.1.0
+  :sass:
+    :version: '3.2.14'
   :nodejs:
-    :version: '0.10.24'
+    :version: '0.10.25'
   :tests:
     - ./node_modules/grunt-cli/bin/grunt karma
