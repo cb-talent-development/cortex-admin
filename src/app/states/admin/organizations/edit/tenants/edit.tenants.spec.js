@@ -10,25 +10,24 @@ describe('Admin Edit Tenants Module', function() {
 
         beforeEach(inject(function($controller, _$httpBackend_, $rootScope, 
                                    $state, $timeout, Tenants, 
-                                   Organizations, hierarchyUtils, flash){
+                                   hierarchyUtils, flash){
             $scope = $rootScope.$new();
             $httpBackend = _$httpBackend_;
             $stateParams = {organizationId: 1, tenantId: ''};
 
             $scope.data = {};
 
-            $httpBackend.whenGET('/organizations/1/tenants/hierarchy?include_root=true')
+            $httpBackend.whenGET('/tenants/1/hierarchy?include_root=true')
                         .respond(testing.data.tenants.hierarchy_with_root);
 
             constructController = function() {
-                // $scope, $stateParams, $state, $timeout, Tenants, Organizations, hierarchyUtils, flash
+                // $scope, $stateParams, $state, $timeout, Tenants, hierarchyUtils, flash
                 controller = $controller('EditTenantsCtrl', {
                     $scope: $scope,
                     $stateParams: $stateParams,
                     $state: $state,
                     $timeout: $timeout,
                     Tenants: Tenants,
-                    Organizations: Organizations,
                     hierarchyUtils: hierarchyUtils,
                     flash: flash                    
                 });

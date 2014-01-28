@@ -1,4 +1,4 @@
-describe('Organizations Resource Module', function(){
+describe('Tenants Resource Module', function(){
 
     var mock = {
         tenants: [
@@ -29,7 +29,7 @@ describe('Organizations Resource Module', function(){
         ]
     };
 
-    beforeEach(angular.mock.module('cortex.resources.organizations'));
+    beforeEach(angular.mock.module('cortex.resources.tenants'));
 
     describe('hierarchyUtils', function(){
         var hierarchyUtils;
@@ -76,8 +76,8 @@ describe('Organizations Resource Module', function(){
         });
     });
 
-    describe('Organizations Resource', function(){
-        var Organizations, $httpBackend;
+    describe('Tenants Resource', function(){
+        var Tenants, $httpBackend;
 
 
         beforeEach(function(){
@@ -85,19 +85,19 @@ describe('Organizations Resource Module', function(){
 
             inject(function($injector){
                 $httpBackend = $injector.get('$httpBackend');
-                Organizations = $injector.get('Organizations');
+                Tenants = $injector.get('Tenants');
             });
         });
 
         it('should exist', function(){
-            expect(Organizations).toBeTruthy();
+            expect(Tenants).toBeTruthy();
         });
 
         it('should get hierarchy', function(){
-            $httpBackend.expectGET('/organizations/1/tenants/hierarchy')
+            $httpBackend.expectGET('/tenants/1/hierarchy')
                         .respond(mock.tenants);
 
-            var result = Organizations.hierarchy({id: 1});
+            var result = Tenants.hierarchy({id: 1});
 
             $httpBackend.flush();
 
