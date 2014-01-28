@@ -42,47 +42,49 @@
         <div class="clearfix"></div>
 
         <form novalidate name="assetForm">
-            <div class="col-md-2 text-right">
-                <label for="fileDisplayName">Display Name</label>
-            </div>
+            <fieldset ng-disabled="data.upload.progress">
+                <div class="col-md-2 text-right">
+                    <label for="fileDisplayName">Display Name</label>
+                </div>
 
-            <div class="col-md-8 input-group-sm">
-                <input id="fileDisplayName" type="text" class="form-control" placeholder="Display Name (Required)" ng-model="data.asset.name" required />
-            </div>
+                <div class="col-md-8 input-group-sm">
+                    <input id="fileDisplayName" type="text" class="form-control" placeholder="Display Name (Required)" ng-model="data.asset.name" required />
+                </div>
 
-            <div class="clearfix vmargin-bottom-small"></div>
+                <div class="clearfix vmargin-bottom-small"></div>
 
-            <h4 class="vmargin-top-large hr-below">Asset Attributes</h4>
+                <h4 class="vmargin-top-large hr-below">Asset Attributes</h4>
 
-            <hr>
+                <hr>
 
-            <div class="col-md-2 text-right">
-                <label for="fileDescription">Description</label>
-            </div>
+                <div class="col-md-2 text-right">
+                    <label for="fileDescription">Description</label>
+                </div>
 
-            <div class="col-md-8 input-group-sm">
-                <textarea id="fileDescription" class="form-control vertical-only" rows="3" placeholder="Description of the asset" ng-model="data.asset.description"></textarea>
-            </div>
+                <div class="col-md-8 input-group-sm">
+                    <textarea id="fileDescription" class="form-control vertical-only" rows="3" placeholder="Description of the asset" ng-model="data.asset.description"></textarea>
+                </div>
 
-            <div class="clearfix vmargin-bottom-small"></div>
+                <div class="clearfix vmargin-bottom-small"></div>
 
-            <div class="col-md-2 text-right">
-                <label for="fileTags">Tags</label>
-            </div>
+                <div class="col-md-2 text-right">
+                    <label for="fileTags">Tags</label>
+                </div>
 
-            <div class="col-md-8 input-group-sm">
-                <input id="fileTags" type="text" class="form-control" placeholder="Separate tags with commas" ng-model="data.asset.tag_list" />
-            </div>
+                <div class="col-md-8 input-group-sm">
+                    <input id="fileTags" type="text" class="form-control" placeholder="Separate tags with commas" ng-model="data.asset.tag_list" />
+                </div>
 
-            <div class="clearfix vmargin-bottom-small"></div>
+                <div class="clearfix vmargin-bottom-small"></div>
 
-            <div class="col-md-2 text-right">
-                <label for="fileExpirationDate">Expiration Date</label>
-            </div>
+                <div class="col-md-2 text-right">
+                    <label for="fileExpirationDate">Expiration Date</label>
+                </div>
 
-            <div class="col-md-3 input-group input-group-sm">
-                <input id="fileExpirationDate" type="text" class="form-control" datepicker-popup="{{datepicker.format}}" is-open="datepicker.expireAtOpen" show-weeks="false" ng-model="data.asset.deactive_at" placeholder="Asset expiration date"/><span class="input-group-btn"><button class="btn btn-default" ng-click="datepicker.open('expireAtOpen')"><i class="fa fa-calendar"></i></button></span>
-            </div>
+                <div class="col-md-3 input-group input-group-sm">
+                    <input id="fileExpirationDate" type="text" class="form-control" datepicker-popup="{{datepicker.format}}" is-open="datepicker.expireAtOpen" show-weeks="false" ng-model="data.asset.deactive_at" placeholder="Asset expiration date"/><span class="input-group-btn"><button class="btn btn-default" ng-click="datepicker.open('expireAtOpen')"><i class="fa fa-calendar"></i></button></span>
+                </div>
+            </fieldset>
         </form>
 
         <div class="clearfix vmargin-bottom-small"></div>
@@ -93,12 +95,12 @@
         </div>
 
         <div class="col-md-8">
-            <button class="btn btn-primary btn-sm" ng-disabled="!data.upload.file || assetForm.$invalid" ng-click="startUpload()">
+            <button class="btn btn-primary btn-sm" ng-disabled="!data.upload.progress && (!data.upload.file || assetForm.$invalid)" ng-click="startUpload()">
                 <span class="fa fa-cloud-upload"></span> Add Asset
             </button>
 
             <button class="btn btn-sm" ng-disabled="!data.upload.progress" ng-click="upload.abort()">
-                <span class="fa fa-reply"></span> Return to Asset Library
+                <span class="fa fa-reply"></span> Cancel
             </button>
         </div>
 
