@@ -2,7 +2,7 @@ var module = angular.module('cortex.states.admin.organizations.manage.tenants', 
     'ui.router.state',
     'angular-underscore',
     'cortex.config',
-    'cortex.resources.organizations',
+    'cortex.resources.tenants',
     'cortex.directives.tenantSettings',
     'common.angularBootstrapNavTree',
     'ngAnimate'
@@ -33,12 +33,12 @@ module.factory('TenantsTreeStatus', function () {
     };
 });
 
-module.controller('TenantsTreeCtrl', function($scope, $stateParams, events, Organizations, hierarchyUtils, TenantsTreeStatus) {
+module.controller('TenantsTreeCtrl', function($scope, $stateParams, events, Tenants, hierarchyUtils, TenantsTreeStatus) {
 
     var loadTenantHierarchy = function() {
         TenantsTreeStatus.isLoaded = false;
 
-        $scope.data.tenants.hierarchy = Organizations.hierarchy({id: $stateParams.organizationId, include_root: true}, function(hierarchy){
+        $scope.data.tenants.hierarchy = Tenants.hierarchy({id: $stateParams.organizationId, include_root: true}, function(hierarchy){
 
             var flattened = hierarchyUtils.flattenTenantHierarchy(hierarchy);
             $scope.data.tenants.flattened = flattened;

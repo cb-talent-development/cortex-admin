@@ -2,7 +2,7 @@ var module = angular.module('cortex.states.admin.organizations', [
     'ui.router.state',
     'angular-underscore',
     'cortex.config',
-    'cortex.resources.organizations',
+    'cortex.resources.tenants',
     'cortex.states.admin.organizations.manage',
     'cortex.states.admin.organizations.edit'
 ]);
@@ -17,11 +17,11 @@ module.config(function ($stateProvider) {
         });
 });
 
-module.controller('OrganizationsCtrl', function ($scope, $stateParams, $state, events, Organizations) {
+module.controller('OrganizationsCtrl', function ($scope, $stateParams, $state, events, Tenants) {
 
     var loadOrganizations = function () {
         // Fetch organizations from API and set selected, if available
-        $scope.data.organizations = Organizations.query(function(organizations) {
+        $scope.data.organizations = Tenants.query({roots_only: true}, function(organizations) {
             var orgId = $stateParams.organizationId;
             if (orgId) {
                 $scope.data.organization = _.find(organizations, function(o){
