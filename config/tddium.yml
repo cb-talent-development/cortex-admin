@@ -1,4 +1,4 @@
----
 :tddium:
+  :ruby_version: ruby-2.1.0
   :sass:
     :version: '3.2.14'
