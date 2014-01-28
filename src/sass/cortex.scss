@@ -27,7 +27,9 @@
 }
 
 .hr-below {
-  margin-bottom: 5px;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #f47937;
 }
 
 ////////////////////////////////
@@ -35,8 +37,8 @@
 
 .container {
   hr {
-    margin: 5px 0 10px 0;
-    border-top: 1px solid #f47937;
+    /* margin: 5px 0 10px 0;
+    border-top: 1px solid #f47937; */
   }
 
   .btn{
@@ -51,18 +53,7 @@
   }
 
   .btn-primary{
-    background-image: -webkit-gradient(
-      linear,
-      left top,
-      left bottom,
-      color-stop(0, #FFA178),
-      color-stop(100, #E9743A)
-    );
-    background-image: -o-linear-gradient(bottom, #FFA178 0%, #E9743A 100%);
-    background-image: -moz-linear-gradient(bottom, #FFA178 0%, #E9743A 100%);
-    background-image: -webkit-linear-gradient(bottom, #FFA178 0%, #E9743A 100%);
-    background-image: -ms-linear-gradient(bottom, #FFA178 0%, #E9743A 100%);
-    background-image: linear-gradient(to bottom, #FFA178 0%, #E9743A 100%);
+    @include gradient-vertical(#FFA178, #E9743A, 0%, 100%);
     color: white;
   }
 
@@ -184,20 +175,8 @@ textarea.vertical-only { resize: vertical; }
 ////////////////////////////////
 // Cortex Navbar
 
-.navbar-cortex {
-  background-image: -webkit-gradient(
-  linear,
-  left top,
-  left bottom,
-  color-stop(0, #022745),
-  color-stop(0.7, #104070),
-  color-stop(1, #09335B)
-  );
-  background-image: -o-linear-gradient(bottom, #022745 0%, #104070 70%, #09335B 100%);
-  background-image: -moz-linear-gradient(bottom, #022745 0%, #104070 70%, #09335B 100%);
-  background-image: -webkit-linear-gradient(bottom, #022745 0%, #104070 70%, #09335B 100%);
-  background-image: -ms-linear-gradient(bottom, #022745 0%, #104070 70%, #09335B 100%);
-  background-image: linear-gradient(to bottom, #022745 0%, #104070 70%, #09335B 100%);
+.navbar-admin {
+  @include gradient-vertical-three-colors(#022745, #104070, 70%, #09335B);
   padding: 0.625em;
   font-family: 'PT Sans', Arial, sans-serif;
 }
@@ -224,7 +203,7 @@ textarea.vertical-only { resize: vertical; }
   color: white;
 }
 
-.navbar-items-cortex {
+.navbar-items-admin {
   a {
     color: white;
   }

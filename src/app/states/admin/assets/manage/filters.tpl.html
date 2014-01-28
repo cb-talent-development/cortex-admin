@@ -1,8 +1,6 @@
 <h6 class="text-muted hr-below">ASSET TYPE</h6>
 
-<hr>
-
-<div class="vmargin-top-small">
+<div class="vmargin-top-small clearfix">
     <ul class="list-unstyled smaller">
         <li ng-repeat="type in data.assetTypes">
             <input type="checkbox" /> {{ type.name }} ({{ type.extensions.join(', ') }})
@@ -15,11 +13,7 @@
     <button type="button" class="pull-right btn btn-default btn-sm">Clear</button>
 </div>
 
-<div class="clearfix"></div>
-
 <h6 class="text-muted hr-below">DATE</h6>
-
-<hr>
 
 <div class="vmargin-top-small vmargin-bottom-large">
     <div class="btn-group btn-group-sm">
