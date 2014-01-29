@@ -4,8 +4,9 @@ var module = angular.module('cortex.resources.paginated', [
 ]);
 
 module.factory('paginatedResource', function(cortexResource, resourceDefaultActions) {
-    var forEach = angular.forEach;
-    var extend = angular.extend;
+    var forEach    = angular.forEach,
+        extend     = angular.extend,
+        isFunction = angular.isFunction;
 
     return function(url, params, actions) {
         actions = extend(actions, resourceDefaultActions);
@@ -19,7 +20,7 @@ module.factory('paginatedResource', function(cortexResource, resourceDefaultActi
 
                 // Wrap action function in pagination handler
                 resource[name + 'Paged'] = function(params, success, error) {
-                    if (angular.isFunction(params)) {
+                    if (isFunction(params)) {
                         error = success; success = params; params = {};
                     }
 
@@ -34,11 +35,11 @@ module.factory('paginatedResource', function(cortexResource, resourceDefaultActi
                                 throw new RangeError('Content-Range header contained ill-formated pagination data.');
                             }
 
-                            var start = range[1];
-                            var end = range[2];
+                            var start    = range[1];
+                            var end      = range[2];
                             var per_page = range[3];
-                            var count = range[4];
-                            var page = params.page || 1;
+                            var count    = range[4];
+                            var page     = params.page || 1;
 
                             pagination = {
                                 page: page,
@@ -51,7 +52,10 @@ module.factory('paginatedResource', function(cortexResource, resourceDefaultActi
                         }
 
                         // Call original callback
-                        success(data, headers, pagination);
+                        if (isFunction(success)) {
+                            success(data, headers, pagination); 
+                        }
+
                     };
 
                     return resource[name](params, wrappedSuccess, error);
