@@ -12,9 +12,10 @@
     </div>
 
     <div id="asset-search" class="pull-right">
-        <delayed-input class="form-control input-sm"
-                       ng-model='data.query'
-                       ng-change="searchAssets(data.query, true)"
+        <delayed-input 
+                       autofocus="true"
+                       class="form-control input-sm"
+                       ng-model='page.query'
                        placeholder="Search Assets..."
                        delay="500"></delayed-input>
     </div>
@@ -55,15 +56,13 @@
         </div>
 
         <div class="pull-right clearfix">
-            <div>
-                <ul class="pagination pagination-sm" ng-show="data.paging.pages > 1">
-                    <li ng-if="data.paging.page > 1"><a ng-click="page.previous()">&laquo;</a></li>
-                    <li ng-repeat="pageIndex in page.quickPages"><a ng-click="page.flip(pageIndex)">{{ pageIndex }}</a></li>
-                    <li ng-if="data.paging.page < data.paging.pages"><a ng-click="page.next()">&raquo;</a></li>
-                </ul>
-            </div>
+            <ul class="pagination pagination-sm pull-right" ng-show="data.paging.pages > 1">
+                <li ng-if="data.paging.page > 1"><a ng-click="page.previous()">&laquo;</a></li>
+                <li ng-repeat="pageIndex in page.quickPages"><a ng-click="page.flip(pageIndex)">{{ pageIndex }}</a></li>
+                <li ng-if="data.paging.page < data.paging.pages"><a ng-click="page.next()">&raquo;</a></li>
+            </ul>
 
-            <div class="small input-sm">
+            <div class="small input-sm pull-right">
                 Showing {{ data.paging.start }}-{{ data.paging.end }} of {{ data.paging.count }} items &bull; Page {{
                 data.paging.page }} of {{ data.paging.pages }}
             </div>
