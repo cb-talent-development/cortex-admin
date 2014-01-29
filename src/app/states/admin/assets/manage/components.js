@@ -25,30 +25,33 @@ module.config(function($stateProvider){
 });
 
 module.controller('AssetsGridCtrl', function($scope, $stateParams, $state, Assets, config){
-    $scope.page = {
-        query:      $stateParams.query,
-        firstQuery: $stateParams.query,
-        page:       parseInt($stateParams.page) || 1,
-        perPage:    parseInt($stateParams.perPage) || config.pagingDefaults.perPage
+
+    var updatePage = function(page) {
+        $state.go('.', {page: page, perPage: $scope.page.perPage, query: $scope.page.query});
     };
 
-    var updatePage = function() {
-        $state.go('.', {page: $scope.page.page, perPage: $scope.page.perPage, query: $scope.page.query});
+    $scope.page = {
+        query:      $stateParams.query,
+        firstQuery: true, // Urgh... remove this once delayedInput doesn't stink and call ng-changed twice
+        page:       parseInt($stateParams.page) || 1,
+        perPage:    parseInt($stateParams.perPage) || config.pagingDefaults.perPage,
+        next: function() {
+            updatePage($scope.page.page + 1);
+        },
+        previous: function() {
+            updatePage($scope.page.page - 1);
+        },
+        flip: function(page) {
+            updatePage(page);
+        }
     };
 
     $scope.$watch('page.query', function(query) {
-        if ($scope.firstQuery) {
-            $scope.firstQuery = undefined;
+        if ($scope.page.firstQuery) {
+            $scope.page.firstQuery = undefined;
             return;
         }        
         updatePage();
-    });
-
-    $scope.$watch('page.page',    function() { 
-        updatePage(); 
-    });
-    $scope.$watch('page.perPage', function() { 
-        updatePage(); 
     });
 
     $scope.data.assets = Assets.searchPaged({q: $scope.page.query, 

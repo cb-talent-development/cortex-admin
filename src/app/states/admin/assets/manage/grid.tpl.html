@@ -53,9 +53,9 @@
     <div class="pull-right">
         <div>
             <ul class="pagination" ng-show="data.paging.pages > 1">
-                <li ng-if="data.paging.page > 1"><a ng-click="page.page = page.page - 1">&laquo;</a></li>
+                <li ng-if="data.paging.page > 1"><a ng-click="page.previous()">&laquo;</a></li>
                 <li ng-repeat="pageIndex in page.quickPages"><a ng-click="page.flip(pageIndex)">{{ pageIndex }}</a></li>
-                <li ng-if="data.paging.page < data.paging.pages"><a ng-click="page.page = page.page + 1">&raquo;</a></li>
+                <li ng-if="data.paging.page < data.paging.pages"><a ng-click="page.next()">&raquo;</a></li>
             </ul>
         </div>
 
