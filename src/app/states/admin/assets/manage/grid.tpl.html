@@ -1,11 +1,15 @@
-<div id="batch-and-search">
-    <button ui-sref="admin.assets.new" class="btn btn-sm btn-primary" type="button">Upload</button>
+<div id="batch-and-search" class="clearfix">
+    <div class="pull-left hmargin-right-small">
+        <button ui-sref="admin.assets.new" class="btn btn-sm btn-primary" type="button">Upload</button>
+    </div>
 
-    <button class="btn btn-sm dropdown-toggle" type="button">Bulk Action <span class="caret"></span></button>
-    <ul class="dropdown-menu">
-        <li><a>Activate</a></li>
-        <li><a>Deactivate</a></li>
-    </ul>
+    <div class="dropdown pull-left">
+        <button class="btn btn-sm dropdown-toggle" type="button">Bulk Actions <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+            <li><a>Activate</a></li>
+            <li><a>Deactivate</a></li>
+        </ul>
+    </div>
 
     <div id="asset-search" class="pull-right">
         <delayed-input 
@@ -18,66 +22,55 @@
 </div>
 
 <div id="pagination-sorting">
-    <div class="pull-left">
-        <form class="form-inline" role="form">
-            <div class="form-group pull-left">
-                <label class="sr-only" for="page-size">Items per page</label>
-                <select class="form-control input-sm" id="page-size" ng-model="page.perPage">
-                    <option>5</option>
-                    <option>10</option>
-                    <option>25</option>
-                    <option>50</option>
-                </select>
-            </div>
+    <div class="hr-below clearfix">
+        <div class="pull-left">
+            <form class="form-inline" role="form">
+                <div class="form-group pull-left">
+                    <label class="sr-only" for="page-size">Items per page</label>
+                    <select class="form-control input-sm" id="page-size" ng-model="page.per_page">
+                        <option>5</option>
+                        <option>10</option>
+                        <option>25</option>
+                        <option>50</option>
+                    </select>
+                </div>
 
-            <div class="pull-left hmargin-left-small hmargin-right-small">
-                items per page &bull; Sort by
-            </div>
+                <div class="small pull-left input-sm">
+                    items per page &bull; Sort by
+                </div>
 
-            <div class="form-group pull-left">
-                <label class="sr-only" for="sort-order">Sort by</label>
-                <select class="form-control input-sm" id="sort-order">
-                    <option>Last modified (recent first)</option>
-                    <option>Last modified (oldest first)</option>
-                    <option>Creation date (recent first)</option>
-                    <option>Creation date (oldest first)</option>
-                    <option>Display name (ascending)</option>
-                    <option>Display name (descending)</option>
-                    <option>Filename (ascending)</option>
-                    <option>Filename (descending)</option>
-                </select>
-            </div>
-        </form>
-    </div>
+                <div class="form-group pull-left">
+                    <label class="sr-only" for="sort-order">Sort by</label>
+                    <select class="form-control input-sm" id="sort-order">
+                        <option>Last modified (recent first)</option>
+                        <option>Last modified (oldest first)</option>
+                        <option>Creation date (recent first)</option>
+                        <option>Creation date (oldest first)</option>
+                        <option>Display name (ascending)</option>
+                        <option>Display name (descending)</option>
+                        <option>Filename (ascending)</option>
+                        <option>Filename (descending)</option>
+                    </select>
+                </div>
+            </form>
+        </div>
 
-    <div class="pull-right">
-        <div>
-            <ul class="pagination" ng-show="data.paging.pages > 1">
+        <div class="pull-right clearfix">
+            <ul class="pagination pagination-sm pull-right" ng-show="data.paging.pages > 1">
                 <li ng-if="data.paging.page > 1"><a ng-click="page.previous()">&laquo;</a></li>
                 <li ng-repeat="pageIndex in page.quickPages"><a ng-click="page.flip(pageIndex)">{{ pageIndex }}</a></li>
                 <li ng-if="data.paging.page < data.paging.pages"><a ng-click="page.next()">&raquo;</a></li>
             </ul>
-        </div>
 
-        <div>
-            <span ng-if="data.paging.count">
-                Showing 
-                <span ng-if="data.paging.pages > 1">{{ data.paging.start }}-{{ data.paging.end }} of</span>
-                {{ data.paging.count }} item{{ data.paging.count == 1 ? '' : 's' }}
-                <span ng-if="data.paging.pages > 1">&bull; Page {{ data.paging.page }} of {{ data.paging.pages }}</span>
-            </span>
-            <span ng-if="!data.paging.count">
-                No results
-            </span>
+            <div class="small input-sm pull-right">
+                Showing {{ data.paging.start }}-{{ data.paging.end }} of {{ data.paging.count }} items &bull; Page {{
+                data.paging.page }} of {{ data.paging.pages }}
+            </div>
         </div>
     </div>
 
-    <div class="clearfix"></div>
-
-    <hr>
-
     <div ng-repeat="asset in data.assets">
-        <div class="asset-data-row row">
+        <div class="asset-data-row row clearfix hr-below">
             <div class="col-sm-3 col-xs-12">
                 <div class="row">
                     <div class="col-xs-2">
@@ -116,9 +109,5 @@
                 </button>
             </div>
         </div>
-
-        <div class="clearfix"></div>
-
-        <hr/>
     </div>
 </div>
