@@ -206,7 +206,7 @@
 
         <hr>
 
-        <div class="btn-group">
+        <div class="btn-group" ng-model="data.post.display">
             <button type="button" class="btn btn-default btn-sm">Small</button>
             <button type="button" class="btn btn-default btn-sm">Medium</button>
             <button type="button" class="btn btn-default btn-sm">Large</button>
@@ -216,7 +216,7 @@
 
         <hr>
 
-        <button type="button" class="btn btn-primary btn-sm">Browse...</button>
+        <button type="button" class="btn btn-primary btn-sm" ng-model="data.post.featured_image_url">Browse...</button>
 
         <!--here is a button that allows you to pick an image asset from the asset library, I suppose it would work similarly to the file upload control, but it's pulling from the library rather than your computer-->
 

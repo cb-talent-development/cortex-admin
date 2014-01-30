@@ -4,7 +4,7 @@ var module = angular.module('cortex.states.admin.posts.edit', [
     'ui.bootstrap.datepicker',
     'cortex.config',
     'cortex.services.auth',
-    'cortex.config'
+    'cortex.config',
     'ui.router.state',
     'cortex.resources.posts'
 ]);
