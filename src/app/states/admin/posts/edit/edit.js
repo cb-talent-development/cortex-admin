@@ -1,5 +1,6 @@
 var module = angular.module('cortex.states.admin.posts.edit', [
-    'ui.router.state'
+    'ui.router.state',
+    'cortex.resources.posts'
 ]);
 
 module.config(function ($stateProvider) {
@@ -16,7 +17,7 @@ module.config(function ($stateProvider) {
         });
 });
 
-module.controller('EditPostsCtrl', function($scope) {
+module.controller('EditPostsCtrl', function($scope, $stateParams, Posts) {
     $scope.data = {
         savePost: function() {
             $scope.data.post.$save(function(post) {
