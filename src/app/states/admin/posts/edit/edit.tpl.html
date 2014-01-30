@@ -13,11 +13,11 @@
                 </div>
 
                 <div class="col-sm-10 input-group-sm">
-                    <div id="postType" class="btn-group" ng-model="data.post.type">
-                        <button type="button" class="btn btn-default btn-sm">Article</button>
-                        <button type="button" class="btn btn-default btn-sm">Video</button>
-                        <button type="button" class="btn btn-default btn-sm">Infographic</button>
-                        <button type="button" class="btn btn-default btn-sm">Promo</button>
+                    <div id="postType" class="btn-group">
+                        <button type="button" class="btn btn-default btn-sm" ng-model="data.post.type" btn-radio="'article'">Article</button>
+                        <button type="button" class="btn btn-default btn-sm" ng-model="data.post.type" btn-radio="'video'">Video</button>
+                        <button type="button" class="btn btn-default btn-sm" ng-model="data.post.type" btn-radio="'infographic'">Infographic</button>
+                        <button type="button" class="btn btn-default btn-sm" ng-model="data.post.type" btn-radio="'promo'">Promo</button>
                     </div>
                 </div>
 
@@ -157,7 +157,7 @@
         </div>
 
         <div class="col-sm-10">
-            <button class="btn btn-primary btn-sm">
+            <button class="btn btn-primary btn-sm" ng-disabled="postForm.$invalid"  ng-click="data.savePost()">
                 <span class="fa fa-cloud-upload"></span> Publish
             </button>
 
@@ -206,10 +206,10 @@
 
         <hr>
 
-        <div class="btn-group" ng-model="data.post.display">
-            <button type="button" class="btn btn-default btn-sm">Small</button>
-            <button type="button" class="btn btn-default btn-sm">Medium</button>
-            <button type="button" class="btn btn-default btn-sm">Large</button>
+        <div class="btn-group">
+            <button type="button" class="btn btn-default btn-sm" ng-model="data.post.display" btn-radio="'small'">Small</button>
+            <button type="button" class="btn btn-default btn-sm" ng-model="data.post.display" btn-radio="'medium'">Medium</button>
+            <button type="button" class="btn btn-default btn-sm" ng-model="data.post.display" btn-radio="'large'">Large</button>
         </div>
 
         <h4 class="vmargin-top-large hr-below">Featured Image</h4>
