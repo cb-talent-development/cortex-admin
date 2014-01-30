@@ -17,4 +17,12 @@ module.config(function ($stateProvider) {
 });
 
 module.controller('EditPostsCtrl', function($scope) {
+    $scope.data = {
+        savePost: function() {
+            $scope.data.post.$save(function(post) {
+                flash.success = 'Saved "' + post.title + '"';
+            });            
+        },
+        post: $stateParams.postId ? Posts.get({id: $stateParams.postId}) : new Posts()
+    };
 });
