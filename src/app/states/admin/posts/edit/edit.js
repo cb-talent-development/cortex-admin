@@ -1,6 +1,7 @@
 var module = angular.module('cortex.states.admin.posts.edit', [
     'ngCookies',
     'ui.router.state',
+    'ui.bootstrap.buttons',
     'ui.bootstrap.datepicker',
     'cortex.config',
     'cortex.services.auth',
