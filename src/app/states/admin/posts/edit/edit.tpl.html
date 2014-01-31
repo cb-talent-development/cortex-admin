@@ -174,13 +174,17 @@
     </div>
 
     <div class="col-md-4 input-group-sm">
-        <h4 class="vmargin-top-large hr-below" ng-model="data.post.job_phase">Phase</h4>
+        <h4 class="vmargin-top-large hr-below">Phase</h4>
 
         <hr>
 
-        <select id="publishStatus" class="form-control">
-            <option>Discovery</option>
-        </select>
+        <div class="col-sm-10 input-group-sm">
+            <select id="postPhase" class="form-control" ng-model="data.post.job_phase">
+                <option ng-repeat="phase in phases" value="{{ phase }}">
+                    {{phase | humanize}}
+                </option>
+            </select>
+        </div>
 
         <h4 class="vmargin-top-large hr-below">Categories</h4>
 
