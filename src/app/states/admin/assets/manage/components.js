@@ -3,13 +3,14 @@ var module = angular.module('cortex.states.admin.assets.manage.components', [
     'ngGrid',
     'ui.bootstrap',
     'placeholders.img',
+    'cortex.config',
     'cortex.resources.assets',
     'cortex.directives.delayedInput'
 ]);
 
 module.config(function($stateProvider){
     $stateProvider.state('admin.assets.manage.components', {
-        url: '/',
+        url: '/:page/:perPage/:query',
         views: {
             'assets-grid': {
                 templateUrl: 'states/admin/assets/manage/grid.tpl.html',
@@ -23,43 +24,42 @@ module.config(function($stateProvider){
     });
 });
 
-module.controller('AssetsGridCtrl', function($scope, Assets){
+module.controller('AssetsGridCtrl', function($scope, $stateParams, $state, Assets, config){
 
-    $scope.data = {
-        query: ''
+    var updatePage = function(page) {
+        $state.go('.', {page: page, perPage: $scope.page.perPage, query: $scope.page.query});
     };
+
     $scope.page = {
-        per_page: 5,
-        page: 1,
-        quickPages: [],
-        flip: function() {
-        },
+        query:      $stateParams.query,
+        firstQuery: true, // Urgh... remove this once delayedInput doesn't stink and call ng-changed twice
+        page:       parseInt($stateParams.page) || 1,
+        perPage:    parseInt($stateParams.perPage) || config.pagingDefaults.perPage,
         next: function() {
-            $scope.page.page++;
-            $scope.searchAssets($scope.data.query);
+            updatePage($scope.page.page + 1);
         },
         previous: function() {
-            $scope.page.page--;
-            $scope.searchAssets($scope.data.query);
+            updatePage($scope.page.page - 1);
         },
-        first: function() {
-        },
-        last: function() {
+        flip: function(page) {
+            updatePage(page);
         }
     };
 
-    $scope.searchAssets = function(query, isNewSearch) {
-        if (isNewSearch) {
-            $scope.page.page = 1;
-        }
+    $scope.$watch('page.query', function(query) {
+        if ($scope.page.firstQuery) {
+            $scope.page.firstQuery = undefined;
+            return;
+        }        
+        updatePage();
+    });
 
-        $scope.data.assets = Assets.searchPaged({q: query, page: $scope.page.page, per: $scope.page.per_page}, 
-                                                function(data, headers, paging) {
-            $scope.data.paging = paging;
-        });
-    };
-
-    $scope.searchAssets('');
+    $scope.data.assets = Assets.searchPaged({q: $scope.page.query, 
+                                             per_page: $scope.page.perPage, 
+                                             page: $scope.page.page}, 
+                                             function(assets, headers, paging) {
+        $scope.data.paging = paging;
+    });
 });
 
 module.controller('AssetsFiltersCtrl', function($scope){

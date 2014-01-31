@@ -1,9 +1,7 @@
 <h6 class="text-muted hr-below">PACKAGE TYPE</h6>
 
-<hr>
-
-<div class="vmargin-top-small">
-    <ul class="list-unstyled smaller">
+<div class="vmargin-top-small clearfix">
+    <ul class="list-unstyled small">
         <li ng-repeat="type in data.assetTypes">
             <input type="checkbox" /> {{ type.name }}
         </li>
@@ -12,14 +10,10 @@
     <button type="button" class="pull-right btn btn-default btn-sm vmargin-bottom-large">Clear</button>
 </div>
 
-<div class="clearfix"></div>
-
 <h6 class="text-muted hr-below">CATEGORY</h6>
 
-<hr>
-
-<div class="vmargin-top-small">
-    <select id="categorySelect" class="form-control smaller">
+<div class="vmargin-top-small clearfix">
+    <select id="categorySelect" class="form-control input-sm">
         <option value="Cover Letters">Cover Letters</option>
         <option value="Job Trends">Job Trends</option>
         <option value="Networking">Networking</option>
@@ -31,13 +25,9 @@
     <button type="button" class="pull-right btn btn-default btn-sm vmargin-top-small vmargin-bottom-large">Clear</button>
 </div>
 
-<div class="clearfix"></div>
-
 <h6 class="text-muted hr-below">DATE</h6>
 
-<hr>
-
-<div class="vmargin-top-small vmargin-bottom-large">
+<div class="vmargin-top-small vmargin-bottom-large clearfix">
     <div class="btn-group btn-group-sm">
         <button type="button" class="btn btn-primary" ng-model="data.filters.date.property" btn-radio="'create_date'">Created</button>
         <button type="button" class="btn btn-primary" ng-model="data.filters.date.property" btn-radio="'update_date'">Modified</button>
