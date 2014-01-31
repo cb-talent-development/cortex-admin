@@ -1,23 +1,24 @@
 {
-  "name": "cortex-admin",
-  "version": "0.0.1",
-  "devDependencies": {
-    "angular": "~1.2.9",
-    "angular-mocks": "~1.2.9",
-    "angular-resource": "~1.2.9",
-    "angular-cookies": "~1.2.9",
-    "angular-animate": "~1.2.9",
-    "angular-bootstrap": "~0.9.0",
-    "angular-ui-router": "0.2.7",
-    "angular-ui-utils": "~0.1.0",
-    "angular-underscore": "*",
-    "underscore": "~1.5.2",
-    "jquery": "~1.10.2",
-    "ng-grid": "~2.0.7",
-    "bootstrap-sass": "~3.0.2",
-    "angular-flash": "~0.1.11",
-    "angularjs-file-upload": "~1.2.3",
-    "momentjs": "~2.5.0"
-  },
-  "dependencies": {}
+    "name": "cortex-admin",
+    "version": "0.0.1",
+    "dependencies": {
+        "angular": "1.2.x",
+        "angular-resource": "1.2.x",
+        "angular-cookies": "1.2.x",
+        "angular-animate": "1.2.x",
+        "angular-bootstrap": "0.10.x",
+        "angular-ui-router": "0.2.x",
+        "angular-ui-utils": "0.1.x",
+        "angular-underscore": "*",
+        "underscore": "1.5.x",
+        "jquery": "1.x.x",
+        "ng-grid": "2.0.x",
+        "bootstrap-sass": "3.x.x",
+        "angular-flash": "0.x.x",
+        "angularjs-file-upload": "1.x.x",
+        "momentjs": "2.5.x"
+    },
+    "devDependencies": {
+        "angular-mocks": "1.2.x"
+    }
 }
