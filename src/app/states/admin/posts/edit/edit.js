@@ -1,6 +1,7 @@
 var module = angular.module('cortex.states.admin.posts.edit', [
     'ngCookies',
     'ui.router.state',
+    'ui.bootstrap.dropdownToggle',
     'ui.bootstrap.buttons',
     'ui.bootstrap.datepicker',
     'cortex.config',
@@ -46,4 +47,18 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, Posts, $timeou
             });
         }
     };
+
+    $scope.phases = [
+        'discovery',
+        'find_the_job',
+        'get_the_job',
+        'on_the_job'
+    ];
+
+    $scope.phaseSelected = "Phases";
+
+    $scope.OnPhaseClick = function(event) {
+        $scope.phaseSelected = event;
+    };
+
 });
