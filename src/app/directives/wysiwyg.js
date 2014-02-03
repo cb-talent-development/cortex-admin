@@ -7,7 +7,10 @@ module.directive('wysiwyg', function() {
         link: function($scope, elem, attrs, ctrl) {
             elem.redactor({
                 changeCallback: function() {
-                    $scope.$apply(ctrl.$setViewValue(elem.redactor('get')));
+                    if (!$scope.$$phase){
+                        $scope.$apply(ctrl.$setViewValue(elem.redactor('get')));                        
+                    }
+                    $scope.model = elem.redactor('get');
                 }               
             });
             elem.redactor('set', ctrl.$viewValue || '');
