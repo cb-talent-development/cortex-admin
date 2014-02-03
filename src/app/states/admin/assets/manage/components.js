@@ -26,31 +26,29 @@ module.config(function($stateProvider){
 
 module.controller('AssetsGridCtrl', function($scope, $stateParams, $state, Assets, config){
 
-    var updatePage = function(page) {
-        $state.go('.', {page: page, perPage: $scope.page.perPage, query: $scope.page.query});
+    var updatePage = function() {
+        $state.go('.', {page: $scope.page.page, perPage: $scope.page.perPage, query: $scope.page.query});
     };
 
     $scope.page = {
-        query:      $stateParams.query,
-        firstQuery: true, // Urgh... remove this once delayedInput doesn't stink and call ng-changed twice
-        page:       parseInt($stateParams.page) || 1,
-        perPage:    parseInt($stateParams.perPage) || config.pagingDefaults.perPage,
+        query: $stateParams.query,
+        page: parseInt($stateParams.page) || 1,
+        perPage: parseInt($stateParams.perPage) || config.pagingDefaults.perPage,
         next: function() {
-            updatePage($scope.page.page + 1);
+            $scope.page.page++;
+            updatePage();
         },
         previous: function() {
-            updatePage($scope.page.page - 1);
+            $scope.page.page--;
+            updatePage();
         },
         flip: function(page) {
-            updatePage(page);
+            $scope.page.page = page;
+            updatePage();     
         }
     };
 
-    $scope.$watch('page.query', function(query) {
-        if ($scope.page.firstQuery) {
-            $scope.page.firstQuery = undefined;
-            return;
-        }        
+    $scope.$watch('page.query', function() {
         updatePage();
     });
 

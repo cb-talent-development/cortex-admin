@@ -27,7 +27,7 @@
             <form class="form-inline" role="form">
                 <div class="form-group pull-left">
                     <label class="sr-only" for="page-size">Items per page</label>
-                    <select class="form-control input-sm" id="page-size" ng-model="page.per_page">
+                    <select class="form-control input-sm" id="page-size" ng-model="page.perPage">
                         <option>5</option>
                         <option>10</option>
                         <option>25</option>
@@ -62,10 +62,15 @@
                 <li ng-if="data.paging.page < data.paging.pages"><a ng-click="page.next()">&raquo;</a></li>
             </ul>
 
-            <div class="small input-sm pull-right">
-                Showing {{ data.paging.start }}-{{ data.paging.end }} of {{ data.paging.count }} items &bull; Page {{
+            <div ng-if="data.paging.pages > 1" class="small input-sm pull-right">
+                Showing {{ data.paging.count }} items &bull; Page {{
                 data.paging.page }} of {{ data.paging.pages }}
             </div>
+            <div ng-if="data.paging.pages == 1">
+                <span ng-if="data.count == 1">Showing 1 item</span>
+                <span ng-if="data.count != 1">Showing {{ data.paging.count }} items</span>
+            </div>
+            
         </div>
     </div>
 
