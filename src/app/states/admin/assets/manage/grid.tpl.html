@@ -63,14 +63,16 @@
             </ul>
 
             <div ng-if="data.paging.pages > 1" class="small input-sm pull-right">
-                Showing {{ data.paging.count }} items &bull; Page {{
+                <span ng-if="data.assets.length == 1">Showing 1 item</span>
+                <span ng-if="data.assets.length != 1">Showing {{ data.assets.length }} items</span>
+                &bull; Page {{
                 data.paging.page }} of {{ data.paging.pages }}
             </div>
             <div ng-if="data.paging.pages == 1">
-                <span ng-if="data.count == 1">Showing 1 item</span>
-                <span ng-if="data.count != 1">Showing {{ data.paging.count }} items</span>
+                <span ng-if="data.assets.length == 1">Showing 1 item</span>
+                <span ng-if="data.assets.length != 1">Showing {{ data.paging.count }} items</span>
             </div>
-            
+
         </div>
     </div>
 
