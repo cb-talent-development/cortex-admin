@@ -7,7 +7,8 @@ var module = angular.module('cortex.states.admin.posts.edit', [
     'cortex.services.auth',
     'cortex.config',
     'ui.router.state',
-    'cortex.resources.posts'
+    'cortex.resources.posts',
+    'cortex.directives.wysiwyg'
 ]);
 
 module.config(function ($stateProvider) {

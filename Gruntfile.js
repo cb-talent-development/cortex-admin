@@ -288,7 +288,8 @@ module.exports = function ( grunt ) {
      */
     jshint: {
       src: [ 
-        '<%= app_files.js %>'
+        '<%= app_files.js %>',
+        '!src/vendor/redactor/redactor.js'
       ],
       test: [
         '<%= app_files.jsunit %>'
