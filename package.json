@@ -30,7 +30,8 @@
         "grunt-html2js": "~0.2",
         "grunt-coffeelint": "~0.0",
         "grunt-conventional-changelog": "~1",
-        "grunt-bump": "~0.0"
+        "grunt-bump": "~0.0",
+        "grunt-ftp-deploy": "~0.1"
     },
     "engine": "node >= 0.10.25"
 }
