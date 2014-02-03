@@ -48,7 +48,7 @@
                 </div>
 
                 <div class="col-sm-10 input-group-sm">
-                    <input id="postAuthor" type="text" class="form-control" placeholder="Author of post (required)" ng-model="data.post.user" required />
+                    <input id="postAuthor" type="text" class="form-control" placeholder="Author of post (required)" ng-model="data.post.author" required />
                 </div>
 
                 <div class="clearfix vmargin-bottom-small"></div>
@@ -144,7 +144,7 @@
                 </div>
 
                 <div class="col-md-3 input-group input-group-sm">
-                    <input id="postPublishDate" type="text" class="form-control" datepicker-popup="{{datepicker.format}}" is-open="datepicker.publishAtOpen" show-weeks="false" ng-model="data.post.published_at" placeholder="Post publishing date"/><span class="input-group-btn"><button class="btn btn-default" ng-click="datepicker.open('publishAtOpen')"><i class="fa fa-calendar"></i></button></span>
+                    <input id="postPublishDate" type="text" class="form-control" datepicker-popup="{{datepicker.format}}" is-open="datepicker.publishAtOpen" show-weeks="false" ng-model="data.post.published_at" placeholder="YYYY/MM/DD"/><span class="input-group-btn"><button class="btn btn-default" ng-click="datepicker.open('publishAtOpen')"><i class="fa fa-calendar"></i></button></span>
                 </div>
             </fieldset>
         </form>
@@ -175,13 +175,17 @@
     </div>
 
     <div class="col-md-4 input-group-sm">
-        <h4 class="vmargin-top-large hr-below" ng-model="data.post.job_phase">Phase</h4>
+        <h4 class="vmargin-top-large hr-below">Phase</h4>
 
         <hr>
 
-        <select id="publishStatus" class="form-control">
-            <option>Discovery</option>
-        </select>
+        <div class="input-group-md">
+            <select id="postPhase" class="form-control" ng-model="data.post.job_phase">
+                <option ng-repeat="phase in phases" value="{{ phase }}">
+                    {{phase | humanize}}
+                </option>
+            </select>
+        </div>
 
         <h4 class="vmargin-top-large hr-below">Categories</h4>
 
