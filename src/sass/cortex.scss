@@ -43,11 +43,6 @@
 // Container Child-element Restyling/Overrides
 
 .container {
-  hr {
-    /* margin: 5px 0 10px 0;
-    border-top: 1px solid #f47937; */
-  }
-
   .btn{
     border: 1px solid #f47937;
     background: white;
@@ -65,7 +60,7 @@
   }
 
   .navbar-form {
-    margin: 5px 0 0 0;
+    margin: 5px 0 0.625em 0;
     padding: 0;
     width: 12.5em;
 
@@ -188,19 +183,20 @@ textarea.vertical-only { resize: vertical; }
 
 .navbar-admin {
   @include gradient-vertical-three-colors(#022745, #104070, 70%, #09335B);
-  padding: 0.625em;
+  padding: 0; /* 0.625em */
   font-family: 'PT Sans', Arial, sans-serif;
 }
 
 .menu-item-bg {
-  background: transparent url(../assets/admin/header-sprites.png) no-repeat;
-  padding-top: 4.6em;
-  padding-bottom: 0;
+  background: url(../assets/admin/header-sprites.png) no-repeat, url(../assets/admin/header-active.png) repeat-x;
+  padding-top: 5.35em;
+  padding-bottom: 0.75em;
 }
 
 .navbar-box {
   width: 12.5em;
   padding: .31em;
+  margin-top: 0.625em;
   border-radius: 5px;
   background-color: rgba(255,255,255,0.05);
 }
@@ -214,6 +210,10 @@ textarea.vertical-only { resize: vertical; }
   color: white;
 }
 
+@mixin navbar-bg-position($vertical-pos) {
+  background-position: center $vertical-pos;
+}
+
 .navbar-items-admin {
   a {
     color: white;
@@ -221,12 +221,12 @@ textarea.vertical-only { resize: vertical; }
 
   a.navbar-item-tenant {
     @extend .menu-item-bg;
-    background-position: center -100px;
+    @include navbar-bg-position(-100px);
   }
 
   a.navbar-item-tenant:hover, a.navbar-item-tenant:focus {
     @extend .menu-item-bg;
-    background-position: center 0px;
+    background-position: center 0px, center bottom;
   }
 
   a.navbar-item-assets {
@@ -236,7 +236,7 @@ textarea.vertical-only { resize: vertical; }
 
   a.navbar-item-assets:hover, a.navbar-item-assets:focus {
     @extend .menu-item-bg;
-    background-position: center -200px;
+    background-position: center -200px, center bottom;
   }
 
   a.navbar-item-permissions {
@@ -246,7 +246,7 @@ textarea.vertical-only { resize: vertical; }
 
   a.navbar-item-permissions:hover, a.navbar-item-permissions:focus {
     @extend .menu-item-bg;
-    background-position: center -400px;
+    background-position: center -400px, center bottom;
   }
 
   a.navbar-item-content {
@@ -256,7 +256,7 @@ textarea.vertical-only { resize: vertical; }
 
   a.navbar-item-content:hover, a.navbar-item-content:focus {
     @extend .menu-item-bg;
-    background-position: center -600px;
+    background-position: center -600px, center bottom;
   }
 
   a.navbar-item-apps {
@@ -266,7 +266,7 @@ textarea.vertical-only { resize: vertical; }
 
   a.navbar-item-apps:hover, a.navbar-item-apps:focus {
     @extend .menu-item-bg;
-    background-position: center -800px;
+    background-position: center -800px, center bottom;
   }
 }
 
