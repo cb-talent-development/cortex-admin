@@ -119,14 +119,13 @@
                 <h4 class="vmargin-top-large hr-below">Publish Settings</h4>
 
                 <div class="col-sm-2 text-right">
-                    <label for="publishStatus">Publish Status</label>
+                    <label for="publishStatus">Status</label>
                 </div>
 
                 <div class="col-sm-10 input-group-sm">
                     <select id="publishStatus" class="form-control">
                         <option>Draft</option>
-                        <option>Published (Hidden)</option>
-                        <option>Published (Public)</option>
+                        <option>Publish</option>
                     </select>
                 </div>
 
@@ -151,7 +150,7 @@
                     <label for="postPublishDate">Publish Date</label>
                 </div>
 
-                <div class="col-md-3 input-group input-group-sm">
+                <div class="col-sm-3 input-group input-group-sm">
                     <input id="postPublishDate" type="text" class="form-control" datepicker-popup="{{datepicker.format}}" is-open="datepicker.publishAtOpen" show-weeks="false" ng-model="data.post.published_at" placeholder="YYYY/MM/DD"/><span class="input-group-btn"><button class="btn btn-default" ng-click="datepicker.open('publishAtOpen')"><i class="fa fa-calendar"></i></button></span>
                 </div>
 
@@ -165,7 +164,7 @@
 
         <div class="col-sm-10">
             <button class="btn btn-primary btn-sm" ng-disabled="postForm.$invalid"  ng-click="data.savePost()">
-                <span class="fa fa-cloud-upload"></span> Publish
+                <span class="fa fa-cloud-upload"></span> Update
             </button>
 
             <button class="btn btn-sm">
@@ -181,7 +180,7 @@
     </div>
 
     <div class="col-md-4 input-group-sm">
-        <h4 class="vmargin-top-large hr-below">Phase</h4>
+        <h4 class="vmargin-top-large hr-below">Career Phase</h4>
 
         <div class="input-group-md">
             <select id="postPhase" class="form-control" ng-model="data.post.job_phase">
