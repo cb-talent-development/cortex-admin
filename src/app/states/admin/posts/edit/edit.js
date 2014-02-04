@@ -11,8 +11,8 @@ var module = angular.module('cortex.states.admin.posts.edit', [
     'ui.router.state',
     'cortex.resources.posts',
     'cortex.resources.categories',
-    'cortex.directives.wysiwyg',
-    'cortex.filters'
+    'cortex.filters',
+    'angular-redactor'
 ]);
 
 module.config(function ($stateProvider) {
@@ -30,7 +30,7 @@ module.config(function ($stateProvider) {
 });
 
 
-module.controller('PostsEditCtrl', function($scope, $stateParams, Posts, Categories, $timeout, $q, flash) {
+module.controller('PostsEditCtrl', function($scope, $stateParams, Posts, Categories, $timeout, $q, $filter, flash) {
 
     $scope.data = {
         savePost: function() {
@@ -41,7 +41,13 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, Posts, Categor
             $scope.data.post.$save(function(post) {
                 flash.success = 'Saved "' + post.title + '"';
             });
-        }
+        },
+        phases: [
+            'discovery',
+            'find_the_job',
+            'get_the_job',
+            'on_the_job'
+        ]
     };
 
     if ($stateParams.postId) {
@@ -79,11 +85,4 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, Posts, Categor
             });
         }
     };
-
-    $scope.phases = [
-        'discovery',
-        'find_the_job',
-        'get_the_job',
-        'on_the_job'
-    ];
 });

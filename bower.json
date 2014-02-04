@@ -17,7 +17,8 @@
     "bootstrap-sass": "~3.0.2",
     "angular-flash": "~0.1.11",
     "angularjs-file-upload": "~1.2.3",
-    "momentjs": "~2.5.0"
+    "momentjs": "~2.5.0",
+    "angular-redactor": "~1.0"
   },
   "dependencies": {}
 }

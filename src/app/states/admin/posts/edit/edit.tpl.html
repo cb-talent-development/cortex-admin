@@ -58,7 +58,7 @@
                 </div>
 
                 <div class="col-sm-10 input-group-sm">
-                    <textarea id="postBody" class="form-control" rows="10" ng-model="data.post.body" wysiwyg></textarea>
+                    <textarea id="postBody" class="form-control" rows="10" ng-model="data.post.body" redactor></textarea>
                 </div>
 
                 <div class="clearfix vmargin-bottom-small"></div>
@@ -78,7 +78,7 @@
                 </div>
 
                 <div class="col-sm-10 input-group-sm">
-                    <input id="postTags" type="text" class="form-control" placeholder="Separate tags with commas" ng-model="data.post.tag_list">
+                    <input id="postTags" type="text" class="form-control" placeholder="Separate tags with commas" ng-model="data.post.tags">
                 </div>
 
                 <div class="clearfix vmargin-bottom-small"></div>
@@ -180,7 +180,7 @@
 
         <div class="input-group-md">
             <select id="postPhase" class="form-control" ng-model="data.post.job_phase">
-                <option ng-repeat="phase in phases" value="{{ phase }}">
+                <option ng-repeat="phase in data.phases" value="{{ phase }}">
                     {{phase | humanize}}
                 </option>
             </select>
