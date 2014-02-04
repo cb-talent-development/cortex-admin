@@ -191,17 +191,10 @@
         <hr>
 
         <div class="checkbox-list">
-            <div class="checkbox">
+            <div class="checkbox" ng-repeat="category in data.categories">
                 <label>
-                    <input type="checkbox" value="">
-                    Option one is this and that
-                </label>
-            </div>
-
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" value="">
-                    Lorem ipsum dolor sit amet
+                    <input type="checkbox" ng-model="category.$selected">
+                    {{ category.name }}
                 </label>
             </div>
         </div>

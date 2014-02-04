@@ -10,6 +10,7 @@ var module = angular.module('cortex.states.admin.posts.edit', [
     'cortex.config',
     'ui.router.state',
     'cortex.resources.posts',
+    'cortex.resources.categories',
     'cortex.directives.wysiwyg',
     'cortex.filters'
 ]);
@@ -29,15 +30,44 @@ module.config(function ($stateProvider) {
 });
 
 
-module.controller('PostsEditCtrl', function($scope, $stateParams, Posts, $timeout, flash) {
+module.controller('PostsEditCtrl', function($scope, $stateParams, Posts, Categories, $timeout, $q, flash) {
+
     $scope.data = {
         savePost: function() {
+            // Find selected categories
+            var selectedCategories = _.filter($scope.data.categories, function(category) { return category.$selected; });
+            $scope.data.post.category_ids = _.map(selectedCategories, function(category) { return category.id; });
+
             $scope.data.post.$save(function(post) {
                 flash.success = 'Saved "' + post.title + '"';
             });
-        },
-        post: $stateParams.postId ? Posts.get({id: $stateParams.postId}) : new Posts()
+        }
     };
+
+    if ($stateParams.postId) {
+        $q.all([
+            Posts.get({id: $stateParams.postId}).$promise, 
+            Categories.query().$promise])
+          .then(function(res) {
+              var post = res[0];
+              var categories = res[1];
+
+              $scope.data.post = post;
+
+              var selectedCategoryIds = _.map(post.categories, function(c) { return c.id; });
+              _.each(categories, function(category){
+                  if (_.contains(selectedCategoryIds, category.id)) {
+                      category.$selected = true;
+                  }
+              });
+
+              $scope.data.categories = categories;
+          });
+    } 
+    else {
+        $scope.data.post = new Posts();
+        $scope.data.categories = Categories.query();
+    }
 
     // angular-bootstrap datepicker settings
     $scope.datepicker = {
@@ -56,11 +86,4 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, Posts, $timeou
         'get_the_job',
         'on_the_job'
     ];
-
-    $scope.phaseSelected = "Phases";
-
-    $scope.OnPhaseClick = function(event) {
-        $scope.phaseSelected = event;
-    };
-
 });
