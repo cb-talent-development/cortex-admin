@@ -4,8 +4,6 @@
     <div class="col-md-8">
         <h4 class="vmargin-top-large hr-below">Post Details</h4>
 
-        <hr>
-
         <form novalidate name="postForm">
             <fieldset>
                 <div class="col-sm-2 text-right">
@@ -86,8 +84,6 @@
 
                 <h4 class="vmargin-top-large hr-below">SEO Information</h4>
 
-                <hr>
-
                 <div class="col-sm-2 text-right">
                     <label for="seoTitle">Title</label>
                 </div>
@@ -122,8 +118,6 @@
 
                 <h4 class="vmargin-top-large hr-below">Publish Settings</h4>
 
-                <hr>
-
                 <div class="col-sm-2 text-right">
                     <label for="publishStatus">Publish Status</label>
                 </div>
@@ -145,6 +139,7 @@
                 <div class="col-md-3 input-group input-group-sm">
                     <input id="postPublishDate" type="text" class="form-control" datepicker-popup="{{datepicker.format}}" is-open="datepicker.publishAtOpen" show-weeks="false" ng-model="data.post.published_at" placeholder="YYYY/MM/DD"/><span class="input-group-btn"><button class="btn btn-default" ng-click="datepicker.open('publishAtOpen')"><i class="fa fa-calendar"></i></button></span>
                 </div>
+
             </fieldset>
         </form>
 
@@ -152,9 +147,6 @@
         <div class="clearfix vmargin-bottom-small"></div>
 
         <hr>
-
-        <div class="col-sm-2 text-right">
-        </div>
 
         <div class="col-sm-10">
             <button class="btn btn-primary btn-sm" ng-disabled="postForm.$invalid"  ng-click="data.savePost()">
@@ -176,8 +168,6 @@
     <div class="col-md-4 input-group-sm">
         <h4 class="vmargin-top-large hr-below">Phase</h4>
 
-        <hr>
-
         <div class="input-group-md">
             <select id="postPhase" class="form-control" ng-model="data.post.job_phase">
                 <option ng-repeat="phase in data.phases" value="{{ phase }}">
@@ -187,8 +177,6 @@
         </div>
 
         <h4 class="vmargin-top-large hr-below">Categories</h4>
-
-        <hr>
 
         <div class="checkbox-list">
             <div class="checkbox" ng-repeat="category in data.categories">
