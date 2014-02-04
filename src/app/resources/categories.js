@@ -5,5 +5,12 @@ var module = angular.module('cortex.resources.categories', [
 ]);
 
 module.factory('Categories', function (cortexResource, config) {
-    return cortexResource('/categories/:id', {id: '@id'});
+    return cortexResource('/categories/:id', {id: '@id'}, {
+        hierarchy: {
+            method: 'GET',
+            url: config.api.baseUrl + '/categories/:id/hierarchy',
+            isArray: true,
+            paginated: true
+        }
+    });
 });

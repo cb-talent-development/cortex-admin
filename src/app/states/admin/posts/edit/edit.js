@@ -50,10 +50,24 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, Posts, Categor
         ]
     };
 
+    $scope.$watch('data.post.job_phase', function(phase) {
+
+        if (phase === undefined) {
+            $scope.data.jobPhaseCategories = [];
+            return;
+        }
+
+        var jobPhaseCategory = _.find($scope.data.categories, function(category) {
+            var normalizedPhaseName = category.name.split(' ').join('_').toLowerCase();
+            return normalizedPhaseName == phase;
+        });
+        $scope.data.jobPhaseCategories = jobPhaseCategory.children;
+    });
+
     if ($stateParams.postId) {
         $q.all([
             Posts.get({id: $stateParams.postId}).$promise, 
-            Categories.query().$promise])
+            Categories.hierarchy().$promise])
           .then(function(res) {
               var post = res[0];
               var categories = res[1];
@@ -72,7 +86,7 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, Posts, Categor
     } 
     else {
         $scope.data.post = new Posts();
-        $scope.data.categories = Categories.query();
+        $scope.data.categories = Categories.hierarchy();
     }
 
     // angular-bootstrap datepicker settings
