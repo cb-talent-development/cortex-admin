@@ -186,18 +186,20 @@
             </select>
         </div>
 
-        <h4 class="vmargin-top-large hr-below">Categories</h4>
+        <span ng-if="data.jobPhaseCategories.length">
+            <h4 class="vmargin-top-large hr-below">Categories</h4>
 
-        <hr>
+            <hr>
 
-        <div class="checkbox-list">
-            <div class="checkbox" ng-repeat="category in data.categories">
-                <label>
-                    <input type="checkbox" ng-model="category.$selected">
-                    {{ category.name }}
-                </label>
+            <div class="checkbox-list">
+                <div class="checkbox" ng-repeat="category in data.jobPhaseCategories">
+                    <label>
+                        <input type="checkbox" ng-model="category.$selected">
+                        {{ category.name }}
+                    </label>
+                </div>
             </div>
-        </div>
+        </span>
 
         <h4 class="vmargin-top-large hr-below">Home Page Display</h4>
 
