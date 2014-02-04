@@ -1,4 +1,4 @@
-var module = angular.module('cortex.states.admin.assets.new', [
+var module = angular.module('cortex.states.admin.media.new', [
     'ngCookies',
     'ui.router.state',
     'ui.bootstrap.datepicker',
@@ -7,18 +7,18 @@ var module = angular.module('cortex.states.admin.assets.new', [
     'angular-flash.service',
     'cortex.config',
     'cortex.services.auth',
-    'cortex.config',
+    'cortex.config'
 ]);
 
 module.config(function($stateProvider){
-    $stateProvider.state('admin.assets.new', {
+    $stateProvider.state('admin.media.new', {
         url: '/new',
-        templateUrl: 'states/admin/assets/new/new.tpl.html',
-        controller: 'AssetsNewCtrl'
+        templateUrl: 'states/admin/media/new/new.tpl.html',
+        controller: 'MediaNewCtrl'
     });
 });
 
-module.controller('AssetsNewCtrl', function($scope, $timeout, $upload, $state, flash, config, authService) {
+module.controller('MediaNewCtrl', function($scope, $timeout, $upload, $state, flash, config, authService) {
 
     // angular-bootstrap datepicker settings
     $scope.datepicker = {
@@ -36,7 +36,7 @@ module.controller('AssetsNewCtrl', function($scope, $timeout, $upload, $state, f
             progress: 0,
             file: null
         },
-        asset: {}
+        media: {}
     };
 
     $scope.startUpload = function() {
@@ -48,15 +48,15 @@ module.controller('AssetsNewCtrl', function($scope, $timeout, $upload, $state, f
         }
 
         var httpConfig = {
-            url: config.api.baseUrl + '/assets',
+            url: config.api.baseUrl + '/media',
             method: 'POST',
-            data: {asset: $scope.data.asset},
+            data: {media: $scope.data.media},
             file: file,
-            fileFormDataName: 'asset[attachment]',
+            fileFormDataName: 'media[attachment]',
             formDataAppender: function(formData, key, value) {
-                if (key === 'asset') {
+                if (key === 'media') {
                     angular.forEach(value, function(v, k) {
-                        formData.append('asset[' + k + ']', v);
+                        formData.append('media[' + k + ']', v);
                     });
                 }
             }
@@ -68,9 +68,9 @@ module.controller('AssetsNewCtrl', function($scope, $timeout, $upload, $state, f
         .progress(function(e) {
             $scope.data.upload.progress = parseInt(100.0 * e.loaded / e.total);
         })
-        .success(function(asset) {
-            flash.success = asset.name + " created";
-            $state.go('admin.assets.manage.components');
+        .success(function(media) {
+            flash.success = media.name + " created";
+            $state.go('admin.media.manage.components');
         });
     };
 

@@ -1,30 +1,30 @@
-var module = angular.module('cortex.states.admin.assets.manage.components', [
+var module = angular.module('cortex.states.admin.media.manage.components', [
     'ui.router.state',
     'ngGrid',
     'ui.bootstrap',
     'placeholders.img',
     'cortex.config',
-    'cortex.resources.assets',
+    'cortex.resources.media',
     'cortex.directives.delayedInput'
 ]);
 
 module.config(function($stateProvider){
-    $stateProvider.state('admin.assets.manage.components', {
+    $stateProvider.state('admin.media.manage.components', {
         url: '/:page/:perPage/:query',
         views: {
-            'assets-grid': {
-                templateUrl: 'states/admin/assets/manage/grid.tpl.html',
-                controller: 'AssetsGridCtrl'
+            'media-grid': {
+                templateUrl: 'states/admin/media/manage/grid.tpl.html',
+                controller: 'MediaGridCtrl'
             },
-            'assets-filters': {
-                templateUrl: 'states/admin/assets/manage/filters.tpl.html',
-                controller: 'AssetsFiltersCtrl'
+            'media-filters': {
+                templateUrl: 'states/admin/media/manage/filters.tpl.html',
+                controller: 'MediaFiltersCtrl'
             }
         }
     });
 });
 
-module.controller('AssetsGridCtrl', function($scope, $stateParams, $state, Assets, config){
+module.controller('MediaGridCtrl', function($scope, $stateParams, $state, Media, config){
 
     var updatePage = function() {
         $state.go('.', {page: $scope.page.page, perPage: $scope.page.perPage, query: $scope.page.query});
@@ -52,18 +52,18 @@ module.controller('AssetsGridCtrl', function($scope, $stateParams, $state, Asset
         updatePage();
     });
 
-    $scope.data.assets = Assets.searchPaged({q: $scope.page.query, 
+    $scope.data.media = Media.searchPaged({q: $scope.page.query,
                                              per_page: $scope.page.perPage, 
                                              page: $scope.page.page}, 
-                                             function(assets, headers, paging) {
+                                             function(media, headers, paging) {
         $scope.data.paging = paging;
     });
 });
 
-module.controller('AssetsFiltersCtrl', function($scope){
+module.controller('MediaFiltersCtrl', function($scope){
 
     $scope.data = {
-        assetTypes: [
+        mediaTypes: [
             {name: 'Archive', extensions: ['zip']},
             {name: 'Document', extensions: ['doc', 'docx']},
             {name: 'Image', extensions: ['jpg', 'png', 'gif']},

@@ -229,12 +229,12 @@ textarea.vertical-only { resize: vertical; }
     background-position: center 0px, center bottom;
   }
 
-  a.navbar-item-assets {
+  a.navbar-item-media {
     @extend .menu-item-bg;
     background-position: center -300px;
   }
 
-  a.navbar-item-assets:hover, a.navbar-item-assets:focus {
+  a.navbar-item-media:hover, a.navbar-item-media:focus {
     @extend .menu-item-bg;
     background-position: center -200px, center bottom;
   }

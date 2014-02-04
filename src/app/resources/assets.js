@@ -1,14 +1,14 @@
-var module = angular.module('cortex.resources.assets', [
+var module = angular.module('cortex.resources.media', [
     'angular-underscore/utils',
     'cortex.resources.paginated',
     'cortex.config'
 ]);
 
-module.factory('Assets', function (paginatedResource, config) {
-    return paginatedResource('/assets/:id', {id: '@id'}, {
+module.factory('Media', function (paginatedResource, config) {
+    return paginatedResource('/media/:id', {id: '@id'}, {
         search: {
           method: 'GET',
-          url: config.api.baseUrl + '/assets/search',
+          url: config.api.baseUrl + '/media/search',
           isArray: true,
           paginated: true
         }
