@@ -7,7 +7,7 @@ var module = angular.module('cortex.states.admin.assets.new', [
     'angular-flash.service',
     'cortex.config',
     'cortex.services.auth',
-    'cortex.config'
+    'cortex.config',
 ]);
 
 module.config(function($stateProvider){

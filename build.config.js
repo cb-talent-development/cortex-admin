@@ -81,10 +81,12 @@ module.exports = {
       // Angular-file-upload would prefer this file be loaded in dynamically by its library.
       // Unfortunately, for grunt to include it in the built output, it must be loaded on page load too. Perhaps create a separate grunt step for including files in HTML?
       'vendor/angularjs-file-upload/FileAPI.js',
-      'vendor/momentjs/moment.js'
+      'vendor/momentjs/moment.js',
+      'vendor/angular-redactor/angular-redactor.js'
     ],
     css: [
-      'vendor/ng-grid/ng-grid.css'
+      'vendor/ng-grid/ng-grid.css',
+      'src/vendor/redactor/redactor.css'
     ],
     assets: [
       'vendor/bootstrap-sass-official/vendor/assets/fonts/bootstrap/*',

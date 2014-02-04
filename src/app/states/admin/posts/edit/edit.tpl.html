@@ -1,0 +1,250 @@
+<div class="container">
+    <h3>Add Post</h3>
+
+    <div class="col-md-8">
+        <h4 class="vmargin-top-large hr-below">Post Details</h4>
+
+        <hr>
+
+        <form novalidate name="postForm">
+            <fieldset>
+                <div class="col-sm-2 text-right">
+                    <label for="postType">Post Type</label>
+                </div>
+
+                <div class="col-sm-10 input-group-sm">
+                    <div id="postType" class="btn-group">
+                        <button type="button" class="btn btn-default btn-sm" ng-model="data.post.type" btn-radio="'article'">Article</button>
+                        <button type="button" class="btn btn-default btn-sm" ng-model="data.post.type" btn-radio="'video'">Video</button>
+                        <button type="button" class="btn btn-default btn-sm" ng-model="data.post.type" btn-radio="'infographic'">Infographic</button>
+                        <button type="button" class="btn btn-default btn-sm" ng-model="data.post.type" btn-radio="'promo'">Promo</button>
+                    </div>
+                </div>
+
+                <div class="clearfix vmargin-bottom-small"></div>
+
+                <div class="col-sm-2 text-right">
+                    <label for="postHeadline">Headline</label>
+                </div>
+
+                <div class="col-sm-10 input-group-sm">
+                    <input id="postHeadline" type="text" class="form-control" placeholder="Post headline (required)" ng-model="data.post.title" required />
+                </div>
+
+                <div class="clearfix vmargin-bottom-small"></div>
+
+                <div class="col-sm-2 text-right">
+                    <label for="postShortDesc">Description</label>
+                </div>
+
+                <div class="col-sm-10 input-group-sm">
+                    <input id="postShortDesc" type="text" class="form-control" placeholder="Teaser text for post (required)" ng-model="data.post.short_description" required />
+                </div>
+
+                <div class="clearfix vmargin-bottom-small"></div>
+
+                <div class="col-sm-2 text-right">
+                    <label for="postAuthor">Author</label>
+                </div>
+
+                <div class="col-sm-10 input-group-sm">
+                    <input id="postAuthor" type="text" class="form-control" placeholder="Author of post (required)" ng-model="data.post.author" required />
+                </div>
+
+                <div class="clearfix vmargin-bottom-small"></div>
+
+                <div class="col-sm-2 text-right">
+                    <label for="postBody">Body</label>
+                </div>
+
+                <div class="col-sm-10 input-group-sm">
+                    <textarea id="postBody" class="form-control" rows="10" ng-model="data.post.body" redactor></textarea>
+                </div>
+
+                <div class="clearfix vmargin-bottom-small"></div>
+
+                <div class="col-sm-2 text-right">
+                    <label for="postCopyright">Copyright Owner</label>
+                </div>
+
+                <div class="col-sm-10 input-group-sm">
+                    <input id="postCopyright" type="text" class="form-control" placeholder="Copyright owner of this post (if different from author)" ng-model="data.post.copyright_owner">
+                </div>
+
+                <div class="clearfix vmargin-bottom-small"></div>
+
+                <div class="col-sm-2 text-right">
+                    <label for="postTags">Post Tags</label>
+                </div>
+
+                <div class="col-sm-10 input-group-sm">
+                    <input id="postTags" type="text" class="form-control" placeholder="Separate tags with commas" ng-model="data.post.tags">
+                </div>
+
+                <div class="clearfix vmargin-bottom-small"></div>
+
+
+                <h4 class="vmargin-top-large hr-below">SEO Information</h4>
+
+                <hr>
+
+                <div class="col-sm-2 text-right">
+                    <label for="seoTitle">Title</label>
+                </div>
+
+                <div class="col-sm-10 input-group-sm">
+                    <input id="seoTitle" type="text" class="form-control" placeholder="HTML meta title" ng-model="data.post.seo_title">
+                </div>
+
+                <div class="clearfix vmargin-bottom-small"></div>
+
+                <div class="col-sm-2 text-right">
+                    <label for="seoDescription">Description</label>
+                </div>
+
+                <div class="col-sm-10 input-group-sm">
+                    <input id="seoDescription" type="text" class="form-control" placeholder="HTML meta description" ng-model="data.post.seo_description">
+                </div>
+
+                <div class="clearfix vmargin-bottom-small"></div>
+
+                <div class="col-sm-2 text-right">
+                    <label for="seoPreview">Preview of Search Result</label>
+                </div>
+
+                <div class="col-sm-10 input-group-sm">
+                    <textarea id="seoPreview" class="form-control" rows="5" disabled="disabled" ng-model="data.post.seo_preview"></textarea>
+                </div>
+
+                <div class="clearfix vmargin-bottom-small"></div>
+
+
+
+                <h4 class="vmargin-top-large hr-below">Publish Settings</h4>
+
+                <hr>
+
+                <div class="col-sm-2 text-right">
+                    <label for="publishStatus">Publish Status</label>
+                </div>
+
+                <div class="col-sm-10 input-group-sm">
+                    <select id="publishStatus" class="form-control">
+                        <option>Draft</option>
+                        <option>Published (Hidden)</option>
+                        <option>Published (Public)</option>
+                    </select>
+                </div>
+
+                <div class="clearfix vmargin-bottom-small"></div>
+
+                <div class="col-md-2 text-right">
+                    <label for="postPublishDate">Publish Date</label>
+                </div>
+
+                <div class="col-md-3 input-group input-group-sm">
+                    <input id="postPublishDate" type="text" class="form-control" datepicker-popup="{{datepicker.format}}" is-open="datepicker.publishAtOpen" show-weeks="false" ng-model="data.post.published_at" placeholder="YYYY/MM/DD"/><span class="input-group-btn"><button class="btn btn-default" ng-click="datepicker.open('publishAtOpen')"><i class="fa fa-calendar"></i></button></span>
+                </div>
+            </fieldset>
+        </form>
+
+
+        <div class="clearfix vmargin-bottom-small"></div>
+
+        <hr>
+
+        <div class="col-sm-2 text-right">
+        </div>
+
+        <div class="col-sm-10">
+            <button class="btn btn-primary btn-sm" ng-disabled="postForm.$invalid"  ng-click="data.savePost()">
+                <span class="fa fa-cloud-upload"></span> Publish
+            </button>
+
+            <button class="btn btn-sm">
+                <span class="fa fa-search"></span> Preview
+            </button>
+
+            <button class="btn btn-sm">
+                <span class="fa fa-save" ng-model="data.post.draft"></span> Save Draft
+            </button>
+        </div>
+
+        <div class="clearfix vmargin-bottom-small"></div>
+    </div>
+
+    <div class="col-md-4 input-group-sm">
+        <h4 class="vmargin-top-large hr-below">Phase</h4>
+
+        <hr>
+
+        <div class="input-group-md">
+            <select id="postPhase" class="form-control" ng-model="data.post.job_phase">
+                <option ng-repeat="phase in data.phases" value="{{ phase }}">
+                    {{phase | humanize}}
+                </option>
+            </select>
+        </div>
+
+        <h4 class="vmargin-top-large hr-below">Categories</h4>
+
+        <hr>
+
+        <div class="checkbox-list">
+            <div class="checkbox" ng-repeat="category in data.categories">
+                <label>
+                    <input type="checkbox" ng-model="category.$selected">
+                    {{ category.name }}
+                </label>
+            </div>
+        </div>
+
+        <h4 class="vmargin-top-large hr-below">Home Page Display</h4>
+
+        <hr>
+
+        <div class="btn-group">
+            <button type="button" class="btn btn-default btn-sm" ng-model="data.post.display" btn-radio="'small'">Small</button>
+            <button type="button" class="btn btn-default btn-sm" ng-model="data.post.display" btn-radio="'medium'">Medium</button>
+            <button type="button" class="btn btn-default btn-sm" ng-model="data.post.display" btn-radio="'large'">Large</button>
+        </div>
+
+        <h4 class="vmargin-top-large hr-below">Featured Image</h4>
+
+        <hr>
+
+        <button type="button" class="btn btn-primary btn-sm" ng-model="data.post.featured_image_url">Browse...</button>
+
+        <!--here is a button that allows you to pick an image asset from the asset library, I suppose it would work similarly to the file upload control, but it's pulling from the library rather than your computer-->
+
+        <h4 class="vmargin-top-large hr-below">Discussion</h4>
+
+        <hr>
+
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" value="">
+                Allow comments
+            </label>
+        </div>
+
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" value="">
+                Allow trackbacks and pings
+            </label>
+        </div>
+
+        <h4 class="vmargin-top-large hr-below">Admin Notes</h4>
+
+        <hr>
+
+        <textarea id="adminNotes" class="form-control" rows="5" ng-model="data.post.notes"></textarea>
+
+        <!--<h4 class="vmargin-top-large hr-below">Statistics and Tracking</h4>
+
+        <hr>-->
+
+        <!-- implement statistics and tracking later, not in AC for current sprint -->
+    </div>
+</div>
