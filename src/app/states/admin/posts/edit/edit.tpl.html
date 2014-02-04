@@ -123,24 +123,28 @@
                 </div>
 
                 <div class="col-sm-10 input-group-sm">
-                    <select id="publishStatus" class="form-control" ng-model="data.post.draft">
-                        <option>Draft</option>
-                        <option>Publish</option>
+                    <select id="publishStatus" class="form-control" ng-model="data.publish">
+                        <option value="false">Draft</option>
+                        <option value="true">Publish</option>
                     </select>
                 </div>
 
                 <div class="clearfix vmargin-bottom-small"></div>
 
-                <div class="col-sm-2 text-right">
-                    <label for="postVisibility">Visibility</label>
-                </div>
+                <span ng-if="!data.post.draft">
 
-                <div class="col-sm-10 input-group-sm">
-                    <select id="postVisibility" class="form-control">
-                        <option>Hidden</option>
-                        <option>Public</option>
-                    </select>
-                </div>
+                    <div class="col-sm-2 text-right">
+                        <label for="postVisibility">Visibility</label>
+                    </div>
+
+                    <div class="col-sm-10 input-group-sm">
+                        <select id="postVisibility" class="form-control">
+                            <option>Hidden</option>
+                            <option>Public</option>
+                        </select>
+                    </div>
+
+                </span>
 
                 <div class="clearfix vmargin-bottom-small"></div>
 

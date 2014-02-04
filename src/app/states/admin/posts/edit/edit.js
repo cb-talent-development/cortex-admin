@@ -50,6 +50,10 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, Posts, Categor
         ]
     };
 
+    $scope.$watch('data.publish', function(publish) {
+        $scope.data.post.draft = publish ? false : true;
+    });
+
     $scope.$watch('data.post.job_phase', function(phase) {
 
         if (phase === undefined) {
