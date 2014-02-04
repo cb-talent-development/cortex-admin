@@ -4,8 +4,6 @@
     <div class="col-md-8">
         <h4 class="vmargin-top-large hr-below">Post Details</h4>
 
-        <hr>
-
         <form novalidate name="postForm">
             <fieldset>
                 <div class="col-sm-2 text-right">
@@ -86,8 +84,6 @@
 
                 <h4 class="vmargin-top-large hr-below">SEO Information</h4>
 
-                <hr>
-
                 <div class="col-sm-2 text-right">
                     <label for="seoTitle">Title</label>
                 </div>
@@ -122,29 +118,46 @@
 
                 <h4 class="vmargin-top-large hr-below">Publish Settings</h4>
 
-                <hr>
-
                 <div class="col-sm-2 text-right">
-                    <label for="publishStatus">Publish Status</label>
+                    <label for="publishStatus">Status</label>
                 </div>
 
                 <div class="col-sm-10 input-group-sm">
-                    <select id="publishStatus" class="form-control">
-                        <option>Draft</option>
-                        <option>Published (Hidden)</option>
-                        <option>Published (Public)</option>
+                    <select id="publishStatus" class="form-control" ng-model="data.publish">
+                        <option value="false">Draft</option>
+                        <option value="true">Publish</option>
                     </select>
                 </div>
 
                 <div class="clearfix vmargin-bottom-small"></div>
 
-                <div class="col-md-2 text-right">
+                <span ng-if="!data.post.draft">
+
+                    <div class="col-sm-2 text-right">
+                        <label for="postVisibility">Visibility</label>
+                    </div>
+
+                    <div class="col-sm-10 input-group-sm">
+                        <select id="postVisibility" class="form-control">
+                            <option>Hidden</option>
+                            <option>Public</option>
+                        </select>
+                    </div>
+
+                </span>
+
+                <div class="clearfix vmargin-bottom-small"></div>
+
+                <hr>
+
+                <div class="col-sm-2 text-right">
                     <label for="postPublishDate">Publish Date</label>
                 </div>
 
-                <div class="col-md-3 input-group input-group-sm">
+                <div class="col-sm-3 input-group input-group-sm">
                     <input id="postPublishDate" type="text" class="form-control" datepicker-popup="{{datepicker.format}}" is-open="datepicker.publishAtOpen" show-weeks="false" ng-model="data.post.published_at" placeholder="YYYY/MM/DD"/><span class="input-group-btn"><button class="btn btn-default" ng-click="datepicker.open('publishAtOpen')"><i class="fa fa-calendar"></i></button></span>
                 </div>
+
             </fieldset>
         </form>
 
@@ -153,20 +166,13 @@
 
         <hr>
 
-        <div class="col-sm-2 text-right">
-        </div>
-
         <div class="col-sm-10">
             <button class="btn btn-primary btn-sm" ng-disabled="postForm.$invalid"  ng-click="data.savePost()">
-                <span class="fa fa-cloud-upload"></span> Publish
+                <span class="fa fa-cloud-upload"></span> Update
             </button>
 
             <button class="btn btn-sm">
                 <span class="fa fa-search"></span> Preview
-            </button>
-
-            <button class="btn btn-sm">
-                <span class="fa fa-save" ng-model="data.post.draft"></span> Save Draft
             </button>
         </div>
 
@@ -174,11 +180,9 @@
     </div>
 
     <div class="col-md-4 input-group-sm">
-        <h4 class="vmargin-top-large hr-below">Phase</h4>
+        <h4 class="vmargin-top-large hr-below">Career Phase</h4>
 
-        <hr>
-
-        <div class="input-group-md">
+        <div class="input-group-sm">
             <select id="postPhase" class="form-control" ng-model="data.post.job_phase">
                 <option ng-repeat="phase in data.phases" value="{{ phase }}">
                     {{phase | humanize}}
@@ -186,22 +190,20 @@
             </select>
         </div>
 
-        <h4 class="vmargin-top-large hr-below">Categories</h4>
+        <span ng-if="data.jobPhaseCategories.length">
+            <h4 class="vmargin-top-large hr-below">Categories</h4>
 
-        <hr>
-
-        <div class="checkbox-list">
-            <div class="checkbox" ng-repeat="category in data.categories">
-                <label>
-                    <input type="checkbox" ng-model="category.$selected">
-                    {{ category.name }}
-                </label>
+            <div class="checkbox-list">
+                <div class="checkbox" ng-repeat="category in data.jobPhaseCategories">
+                    <label>
+                        <input type="checkbox" ng-model="category.$selected">
+                        {{ category.name }}
+                    </label>
+                </div>
             </div>
-        </div>
+        </span>
 
         <h4 class="vmargin-top-large hr-below">Home Page Display</h4>
-
-        <hr>
 
         <div class="btn-group">
             <button type="button" class="btn btn-default btn-sm" ng-model="data.post.display" btn-radio="'small'">Small</button>
@@ -211,15 +213,11 @@
 
         <h4 class="vmargin-top-large hr-below">Featured Image</h4>
 
-        <hr>
-
         <button type="button" class="btn btn-primary btn-sm" ng-model="data.post.featured_image_url">Browse...</button>
 
         <!--here is a button that allows you to pick an image media from the media library, I suppose it would work similarly to the file upload control, but it's pulling from the library rather than your computer-->
 
         <h4 class="vmargin-top-large hr-below">Discussion</h4>
-
-        <hr>
 
         <div class="checkbox">
             <label>
@@ -236,8 +234,6 @@
         </div>
 
         <h4 class="vmargin-top-large hr-below">Admin Notes</h4>
-
-        <hr>
 
         <textarea id="adminNotes" class="form-control" rows="5" ng-model="data.post.notes"></textarea>
 
