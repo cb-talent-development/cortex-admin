@@ -85,4 +85,18 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, Posts, Categor
             });
         }
     };
+
+    $scope.today = function() {
+        $scope.data.post.published_at = new Date();
+    };
+    $scope.today();
+
+    $scope.showWeeks = true;
+    $scope.toggleWeeks = function () {
+        $scope.showWeeks = ! $scope.showWeeks;
+    };
+    $scope.clear = function () {
+        $scope.data.post.published_at = null;
+    };
+
 });
