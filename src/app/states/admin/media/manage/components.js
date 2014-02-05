@@ -1,6 +1,5 @@
 var module = angular.module('cortex.states.admin.media.manage.components', [
     'ui.router.state',
-    'ngGrid',
     'ui.bootstrap',
     'placeholders.img',
     'angular-flash.service',

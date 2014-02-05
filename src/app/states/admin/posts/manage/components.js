@@ -1,6 +1,6 @@
 var module = angular.module('cortex.states.admin.posts.manage.components', [
     'ui.router.state',
-    'ngGrid',
+    'ngTable',
     'ui.bootstrap',
     'common.templates',
     'cortex.resources.posts'
@@ -21,8 +21,7 @@ module.controller('PostsGridCtrl', function($scope, Posts, templates){
     $scope.data = {};
     $scope.data.totalServerItems = 0;
 
-    $scope.data.posts = Posts.query(function(response) {
-    });
+    $scope.data.posts = Posts.query();
 
     var postGridPagingOptions = {
         pageSizes: [10, 50, 100],
@@ -30,12 +29,14 @@ module.controller('PostsGridCtrl', function($scope, Posts, templates){
         currentPage: 1
     };
 
+    /*
     $scope.data.postGridOptions = {
         data: 'data.posts',
         enablePaging: true,
         showFooter: true,
         totalServerItems: 'data.totalServerItems',
         pagingOptions: postGridPagingOptions,
+        rowTemplate: 'states/admin/posts/manage/edit-post-row-template.tpl.html',
         columnDefs: [
             {field: 'title', displayName: 'Title'},
             {field: 'type', displayName: 'Type'},
@@ -59,7 +60,7 @@ module.controller('PostsGridCtrl', function($scope, Posts, templates){
                 cellTemplate: templates.ngGridCells.centerAligned
             }
         ]
-    };
+    };*/
 });
 
 module.controller('PostsFiltersCtrl', function($scope){

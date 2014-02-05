@@ -74,7 +74,7 @@ module.exports = {
       'vendor/angular-animate/angular-animate.js',
       'vendor/underscore/underscore.js',
       'vendor/angular-underscore/angular-underscore.js',
-      'vendor/ng-grid/build/ng-grid.js',
+      'vendor/ng-table/ng-table.src.js',
       'vendor/angular-flash/dist/angular-flash.js',
       'vendor/bootstrap-sass-official/vendor/assets/javascripts/bootstrap.js',
       'vendor/angularjs-file-upload/angular-file-upload.js',
@@ -85,7 +85,7 @@ module.exports = {
       'vendor/angular-redactor/angular-redactor.js'
     ],
     css: [
-      'vendor/ng-grid/ng-grid.css',
+      'vendor/ng-table/ng-table.css',
       'src/vendor/redactor/redactor.css'
     ],
     assets: [

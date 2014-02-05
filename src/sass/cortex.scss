@@ -276,4 +276,4 @@ textarea.vertical-only { resize: vertical; }
 
 ////////////////////////////////
 // AngularJS
-[ng-click] { cursor: pointer; }
+[ng-click], [ui-sref] { cursor: pointer; }

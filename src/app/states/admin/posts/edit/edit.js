@@ -50,23 +50,28 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, Posts, Categor
         ]
     };
 
-    $scope.$watch('data.publish', function(publish) {
-        $scope.data.post.draft = publish ? false : true;
-    });
+    var initializePost  = function() {
 
-    $scope.$watch('data.post.job_phase', function(phase) {
+        $scope.data.post.published_at = $scope.data.post.published_at || new Date();
+
+        $scope.$watch('data.post.job_phase', function(phase) {
 
         if (phase === undefined) {
             $scope.data.jobPhaseCategories = [];
             return;
         }
 
-        var jobPhaseCategory = _.find($scope.data.categories, function(category) {
-            var normalizedPhaseName = category.name.split(' ').join('_').toLowerCase();
-            return normalizedPhaseName == phase;
+            var jobPhaseCategory = _.find($scope.data.categories, function(category) {
+                var normalizedPhaseName = category.name.split(' ').join('_').toLowerCase();
+                return normalizedPhaseName == phase;
+            });
+            $scope.data.jobPhaseCategories = jobPhaseCategory.children;
         });
-        $scope.data.jobPhaseCategories = jobPhaseCategory.children;
-    });
+
+        $scope.$watch('data.publish', function(publish) {
+            $scope.data.post.draft = publish == 'true' ? false : true;
+        });
+    };
 
     if ($stateParams.postId) {
         $q.all([
@@ -77,6 +82,7 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, Posts, Categor
               var categories = res[1];
 
               $scope.data.post = post;
+              initializePost();
 
               var selectedCategoryIds = _.map(post.categories, function(c) { return c.id; });
               _.each(categories, function(category){
@@ -89,7 +95,9 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, Posts, Categor
           });
     } 
     else {
-        $scope.data.post = new Posts();
+        $scope.data.post = new Posts(function() {
+            initializePost();
+        });
         $scope.data.categories = Categories.hierarchy();
     }
 
@@ -103,18 +111,4 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, Posts, Categor
             });
         }
     };
-
-    $scope.today = function() {
-        $scope.data.post.published_at = new Date();
-    };
-    $scope.today();
-
-    $scope.showWeeks = true;
-    $scope.toggleWeeks = function () {
-        $scope.showWeeks = ! $scope.showWeeks;
-    };
-    $scope.clear = function () {
-        $scope.data.post.published_at = null;
-    };
-
 });
