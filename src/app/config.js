@@ -1,15 +1,15 @@
 var configModule = angular.module('cortex.config', []);
 
     var environmentConfigs = {
-        localConfig: {
-            api: {
-                    baseUrl: 'http://localhost:3000',
-                        environmentName: 'Local'
-                },
-            pagingDefaults: {
-                    perPage: 10
-                }
-        },
+    localConfig: {
+        api: {
+                baseUrl: 'http://localhost:3000',
+                    environmentName: 'Local'
+            },
+        pagingDefaults: {
+                perPage: 10
+            }
+    },
     devConfig: {
             api: {
                     baseUrl: 'http://dev.api.cbcortex.com',
