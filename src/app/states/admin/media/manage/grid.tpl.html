@@ -85,9 +85,10 @@
                     </div>
 
                     <div class="col-xs-10">
-                        <img ng-if="media.has_thumbs" ng-src="{{ media.thumbs.mini }}" alt="Thumbnail">
+                        <a href="{{media.attachment_url}}">   <img ng-if="media.has_thumbs" ng-src="{{ media.thumbs.mini }}" alt="Thumbnail">
                         <img ng-if="!media.has_thumbs" ph-img="100x100" ph-text="{{ media.general_type | uppercase }}"
                              alt="Thumbnail">
+                        </a>
                     </div>
                 </div>
             </div>

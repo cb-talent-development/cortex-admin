@@ -95,10 +95,9 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, Posts, Categor
           });
     } 
     else {
-        $scope.data.post = new Posts(function() {
-            initializePost();
-        });
+        $scope.data.post = new Posts();
         $scope.data.categories = Categories.hierarchy();
+        initializePost();
     }
 
     // angular-bootstrap datepicker settings
