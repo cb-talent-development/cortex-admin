@@ -58,6 +58,12 @@ module.controller('MediaGridCtrl', function($scope, $stateParams, $state, Media,
                                              function(media, headers, paging) {
         $scope.data.paging = paging;
     });
+
+    $scope.deleteMedia = function(media) {
+        Media.delete({id: media.id}, function() {
+            $scope.data.media = _.reject($scope.data.media, function(m) { return m.id == media.id; });
+        });
+    };
 });
 
 module.controller('MediaFiltersCtrl', function($scope){
