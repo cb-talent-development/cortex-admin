@@ -3,6 +3,7 @@ var module = angular.module('cortex.states.admin.media.manage.components', [
     'ngGrid',
     'ui.bootstrap',
     'placeholders.img',
+    'angular-flash.service',
     'cortex.config',
     'cortex.resources.media',
     'cortex.directives.delayedInput'
@@ -24,7 +25,7 @@ module.config(function($stateProvider){
     });
 });
 
-module.controller('MediaGridCtrl', function($scope, $stateParams, $state, Media, config){
+module.controller('MediaGridCtrl', function($scope, $stateParams, $state, Media, config, flash){
 
     var updatePage = function() {
         $state.go('.', {page: $scope.page.page, perPage: $scope.page.perPage, query: $scope.page.query});
@@ -60,9 +61,12 @@ module.controller('MediaGridCtrl', function($scope, $stateParams, $state, Media,
     });
 
     $scope.deleteMedia = function(media) {
-        Media.delete({id: media.id}, function() {
-            $scope.data.media = _.reject($scope.data.media, function(m) { return m.id == media.id; });
-        });
+        if (confirm('Are you sure you want to delete "' +  media.name + '?"')) {
+            Media.delete({id: media.id}, function() {
+                $scope.data.media = _.reject($scope.data.media, function(m) { return m.id == media.id; });
+                flash.info = media.name + " deleted.";
+            });
+        }
     };
 });
 
