@@ -55,7 +55,9 @@ module.controller('EditTenantsCtrl', function($scope, $stateParams, $state, $tim
 
     // Fetch organization hierarchy
     if ($stateParams.organizationId) {
-        $scope.data.tenants.hierarchy = Tenants.hierarchy({id: $stateParams.organizationId, include_root: true});
+        Tenants.get({id: $stateParams.organizationId, include_children: true}, function(tenant) {
+            $scope.data.tenants.hierarchy = [tenant];
+        });
     }
     $scope.creatingTenant = $stateParams.tenantId === '';
 

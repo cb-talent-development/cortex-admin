@@ -21,7 +21,7 @@ describe('Admin.Organizations State Module', function() {
             $stateParams = {};
 
             $httpBackend = _$httpBackend_;
-            $httpBackend.expectGET('/tenants?roots_only=true')
+            $httpBackend.expectGET('/tenants')
                         .respond(mockData.organizations);
 
             createController = function() {
