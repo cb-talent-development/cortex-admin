@@ -1,6 +1,6 @@
 <div id="batch-and-search" class="clearfix">
     <div class="pull-left hmargin-right-small">
-        <button ui-sref="admin.assets.new" class="btn btn-sm btn-primary" type="button">Upload</button>
+        <button ui-sref="admin.media.new" class="btn btn-sm btn-primary" type="button">Upload</button>
     </div>
 
     <div class="dropdown pull-left">
@@ -11,12 +11,12 @@
         </ul>
     </div>
 
-    <div id="asset-search" class="pull-right">
+    <div id="media-search" class="pull-right">
         <delayed-input 
                        autofocus="true"
                        class="form-control input-sm"
                        ng-model='page.query'
-                       placeholder="Search Assets..."
+                       placeholder="Search Media..."
                        delay="500"></delayed-input>
     </div>
 </div>
@@ -27,7 +27,7 @@
             <form class="form-inline" role="form">
                 <div class="form-group pull-left">
                     <label class="sr-only" for="page-size">Items per page</label>
-                    <select class="form-control input-sm" id="page-size" ng-model="page.per_page">
+                    <select class="form-control input-sm" id="page-size" ng-model="page.perPage">
                         <option>5</option>
                         <option>10</option>
                         <option>25</option>
@@ -62,15 +62,22 @@
                 <li ng-if="data.paging.page < data.paging.pages"><a ng-click="page.next()">&raquo;</a></li>
             </ul>
 
-            <div class="small input-sm pull-right">
-                Showing {{ data.paging.start }}-{{ data.paging.end }} of {{ data.paging.count }} items &bull; Page {{
+            <div ng-if="data.paging.pages > 1" class="small input-sm pull-right">
+                <span ng-if="data.media.length == 1">Showing 1 item</span>
+                <span ng-if="data.media.length != 1">Showing {{ data.media.length }} items</span>
+                &bull; Page {{
                 data.paging.page }} of {{ data.paging.pages }}
             </div>
+            <div ng-if="data.paging.pages == 1">
+                <span ng-if="data.media.length == 1">Showing 1 item</span>
+                <span ng-if="data.media.length != 1">Showing {{ data.paging.count }} items</span>
+            </div>
+
         </div>
     </div>
 
-    <div ng-repeat="asset in data.assets">
-        <div class="asset-data-row row clearfix hr-below">
+    <div ng-repeat="media in data.media">
+        <div class="media-data-row row clearfix hr-below">
             <div class="col-sm-3 col-xs-12">
                 <div class="row">
                     <div class="col-xs-2">
@@ -78,34 +85,35 @@
                     </div>
 
                     <div class="col-xs-10">
-                        <img ng-if="asset.has_thumbs" ng-src="{{ asset.thumbs.mini }}" alt="Thumbnail">
-                        <img ng-if="!asset.has_thumbs" ph-img="100x100" ph-text="{{ asset.general_type | uppercase }}"
+                        <a href="{{media.attachment_url}}">   <img ng-if="media.has_thumbs" ng-src="{{ media.thumbs.mini }}" alt="Thumbnail">
+                        <img ng-if="!media.has_thumbs" ph-img="100x100" ph-text="{{ media.general_type | uppercase }}"
                              alt="Thumbnail">
+                        </a>
                     </div>
                 </div>
             </div>
 
-            <div class="col-sm-5 col-xs-6 asset-data-row-desc">
-                <strong>{{ asset.name }}</strong><br>
-                {{ asset.file_name }}<br>
+            <div class="col-sm-5 col-xs-6 media-data-row-desc">
+                <strong>{{ media.name }}</strong><br>
+                {{ media.file_name }}<br>
                 <br>
-                <strong>Author: </strong>{{ asset.creator.name }}<br>
-                <strong>Description: </strong>{{ asset.description }}<br>
-                <strong>Tags: </strong>{{ asset.tags|tagList }}
+                <strong>Author: </strong>{{ media.creator.name }}<br>
+                <strong>Description: </strong>{{ media.description }}<br>
+                <strong>Tags: </strong>{{ media.tags|tagList }}
             </div>
 
-            <div class="col-sm-4 col-xs-6 text-right asset-data-row-action-status">
-                <strong>Created: </strong> {{ asset.created_at|date:"y/M/d h:mm:ss a" }}<br>
-                <strong>Last Modified: </strong> {{ moment(asset.updated_at).fromNow(); }}<br>
+            <div class="col-sm-4 col-xs-6 text-right media-data-row-action-status">
+                <strong>Created: </strong> {{ media.created_at|date:"y/M/d h:mm:ss a" }}<br>
+                <strong>Last Modified: </strong> {{ moment(media.updated_at).fromNow(); }}<br>
                 <br>
-                <strong>UID: </strong>{{ asset.taxon }}<br>
-                <strong>Status: </strong>{{ asset.deactive_at != null && (Date().new) >
-                moment(asset.deactive_at).toDate() ? 'Deactive' : 'Active' }}<br>
+                <strong>UID: </strong>{{ media.taxon }}<br>
+                <strong>Status: </strong>{{ media.deactive_at != null && (Date().new) >
+                moment(media.deactive_at).toDate() ? 'Deactive' : 'Active' }}<br>
                 <br>
-                <button class="btn btn-sm btn-danger" type="button"><i class="fa fa-trash-o"></i> Delete
+                <button class="btn btn-sm btn-danger" type="button" ng-click="deleteMedia(media)" ng-if="!media.consumed"><i class="fa fa-trash-o"></i> Delete
                 </button>
                 <button class="btn btn-sm btn-primary" type="button"
-                        ui-sref="admin.assets.edit({assetId: {{asset.id}}})"><i class="fa fa-edit"></i> Edit
+                        ui-sref="admin.media.edit({mediaId: {{media.id}}})"><i class="fa fa-edit"></i> Edit
                 </button>
             </div>
         </div>

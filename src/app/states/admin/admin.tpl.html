@@ -12,9 +12,9 @@
 
             <ul class="nav navbar-nav navbar-items-admin small">
                 <li ng-class="{ active: $state.includes('admin.organizations') }"><a class="navbar-item-tenant" ui-sref="admin.organizations.manage">Tenant Management</a></li>
-                <li ng-class="{ active: $state.includes('admin.assets') }"><a class="navbar-item-assets" ui-sref="admin.assets.manage.components">Asset Library</a></li>
+                <li ng-class="{ active: $state.includes('admin.media') }"><a class="navbar-item-media" ui-sref="admin.media.manage.components">Media Library</a></li>
                 <li ng-class="{ active: $state.includes('admin.permissions') }"><a class="navbar-item-permissions" ui-sref="admin.permissions">Roles/Permissions</a></li>
-                <li ng-class="{ active: $state.includes('admin.packages') }"><a class="navbar-item-content" ui-sref="admin.packages.manage.components">Posts</a></li>
+                <li ng-class="{ active: $state.includes('admin.posts') }"><a class="navbar-item-content" ui-sref="admin.posts.manage.components">Posts</a></li>
                 <li ng-class="{ active: $state.includes('admin.products') }"><a class="navbar-item-apps" ui-sref="admin.products">Apps/Products</a></li>
             </ul>
         </div>
@@ -33,7 +33,7 @@
                 </div>
             </div>
 
-            <div class="navbar-form">
+            <div class="navbar-form clearfix">
                 <div class="form-group">
                     <form role="search">
                         <input type="text" class="form-control input-sm form-search" placeholder="Search Cortex"><button type="submit" class="btn btn-xs btn-search"><i class="fa fa-search"></i></button>

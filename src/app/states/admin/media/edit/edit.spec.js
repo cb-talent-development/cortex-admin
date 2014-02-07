@@ -1,14 +1,14 @@
-describe('Admin Edit Asset Module', function() {
+describe('Admin Edit Media Module', function() {
 
     beforeEach(function(){
-        angular.mock.module('cortex.states.admin.assets.edit');
+        angular.mock.module('cortex.states.admin.media.edit');
         testing.provideConfig(testing.config.withEmptyApiBaseUrl);
     });
 
-    describe('Edit Asset Controller', function() {
+    describe('Edit Media Controller', function() {
         var constructController, $httpBackend, $scope, $stateParams;
 
-        beforeEach(inject(function($controller, _$httpBackend_, $rootScope, Assets){
+        beforeEach(inject(function($controller, _$httpBackend_, $rootScope, Media){
             $scope = $rootScope.$new();
             $httpBackend = _$httpBackend_;
             $stateParams = {};
@@ -16,10 +16,10 @@ describe('Admin Edit Asset Module', function() {
             $scope.data = {};
 
             constructController = function() {
-                controller = $controller('AssetsEditCtrl', {
+                controller = $controller('MediaEditCtrl', {
                     $scope: $scope,
                     $stateParams: $stateParams,
-                    Assets: Assets
+                    Media: Media
                 });
             };
         }));
@@ -29,15 +29,15 @@ describe('Admin Edit Asset Module', function() {
             $httpBackend.verifyNoOutstandingRequest();
         });
 
-        it('should fetch the existing resource for an Asset if assetId exists', function() {
-            $stateParams.assetId = 1;
-            $httpBackend.expectGET('/assets/1').respond({id: 1});
+        it('should fetch the existing resource for an Media if mediaId exists', function() {
+            $stateParams.mediaId = 1;
+            $httpBackend.expectGET('/media/1').respond({id: 1});
 
             constructController();
             $httpBackend.flush();
 
-            expect($scope.asset).toBeTruthy();
-            expect($scope.asset.id).toEqual(1);
+            expect($scope.media).toBeTruthy();
+            expect($scope.media.id).toEqual(1);
         });
     });
 });

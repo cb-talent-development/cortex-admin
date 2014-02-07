@@ -27,7 +27,7 @@ cortexModule.factory('httpInterceptorService', function($q, $rootScope, events) 
 
 cortexModule.config(function ($urlRouterProvider, $httpProvider, flashProvider) {
 
-    $urlRouterProvider.when('/admin/assets', '/admin/assets/');
+    $urlRouterProvider.when('/admin/media', '/admin/media/');
 
     $urlRouterProvider.otherwise('/login');
 
