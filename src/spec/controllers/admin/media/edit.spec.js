@@ -29,7 +29,7 @@ describe('Admin Edit Media Module', function() {
             $httpBackend.verifyNoOutstandingRequest();
         });
 
-        it('should fetch the existing resource for an Media if mediaId exists', function() {
+        it('should fetch the existing resource for a Media if mediaId exists', function() {
             $stateParams.mediaId = 1;
             $httpBackend.expectGET('/media/1').respond({id: 1});
 
