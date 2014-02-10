@@ -7,8 +7,7 @@ var cortexModule = angular.module('cortex', [
     'angular-flash.service',
     'angular-flash.flash-alert-directive',
     'cortex.config',
-    'cortex.states.admin',
-    'cortex.states.users.login'
+    'cortex.states'
 ]);
 
 cortexModule.factory('httpInterceptorService', function($q, $rootScope, events) {
