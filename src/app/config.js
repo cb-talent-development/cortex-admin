@@ -48,7 +48,9 @@ configModule.constant('events', {
     USER_LOGIN_SUCCESS: 'userLoginSuccess',
     HTTP_RESPONSE_ERROR: 'httpResponseError',
     TENANT_HIERARCHY_CHANGE: 'tenantHierarchyChange',
-    ORGANIZATIONS_CHANGE: 'organizationsChange'
+    ORGANIZATIONS_CHANGE: 'organizationsChange',
+    FETCHED_CURRENT_USER: 'fetchedCurrentUser',
+    UNAUTHORIZED: 'unauthorized'
 });
 
 configModule.constant('resourceDefaultActions', {
