@@ -136,17 +136,14 @@ module.config(function ($stateProvider) {
             controller: 'OrganizationsManageCtrl'
         })
 
-        .state('admin.organizations.manage.tenants',{
+        .state('admin.organizations.manage.tenants', {
             url: '/tenants/:tenantId',
-            views:
-            {
-                'tenants-tree':
-                {
+            views: {
+                'tenants-tree': {
                     templateUrl: 'views/admin/tenants/manage.tree.tpl.html',
                     controller: 'TenantsTreeCtrl'
                 },
-                'tenants-details':
-                {
+                'tenants-details': {
                     templateUrl: 'views/admin/tenants/manage.details.tpl.html'
                 }
             }
