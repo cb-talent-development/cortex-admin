@@ -10,6 +10,8 @@ var module = angular.module('cortex.controllers.admin.media.grid', [
 
 module.controller('MediaGridCtrl', function($scope, $stateParams, $state, Media, config, flash){
 
+    $scope.data = {};
+
     var updatePage = function() {
         $state.go('.', {page: $scope.page.page, perPage: $scope.page.perPage, query: $scope.page.query});
     };

@@ -39,10 +39,10 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, Posts, Categor
 
         $scope.$watch('data.post.job_phase', function(phase) {
 
-        if (phase === undefined) {
-            $scope.data.jobPhaseCategories = [];
-            return;
-        }
+            if (phase === undefined) {
+                $scope.data.jobPhaseCategories = [];
+                return;
+            }
 
             var jobPhaseCategory = _.find($scope.data.categories, function(category) {
                 var normalizedPhaseName = category.name.split(' ').join('_').toLowerCase();

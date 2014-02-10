@@ -4,14 +4,12 @@ var module = angular.module('cortex.states', [
     'cortex.controllers.admin.media.edit',
     'cortex.controllers.admin.media.filters',
     'cortex.controllers.admin.media.grid',
-    'cortex.controllers.admin.media.manage',
     'cortex.controllers.admin.media.new',
     'cortex.controllers.admin.organizations',
     'cortex.controllers.admin.organizations.manage',
     'cortex.controllers.admin.posts.edit',
     'cortex.controllers.admin.posts.filters',
     'cortex.controllers.admin.posts.grid',
-    'cortex.controllers.admin.posts.manage',
     'cortex.controllers.admin.tenants.edit',
     'cortex.controllers.admin.tenants.manage'
 ]);
@@ -54,8 +52,7 @@ module.config(function ($stateProvider) {
         .state('admin.media.manage', {
             url: '',
             abstract: true,
-            templateUrl: 'views/admin/media/manage.tpl.html',
-            controller: 'MediaManageCtrl'
+            templateUrl: 'views/admin/media/manage.tpl.html'
         })
 
         .state('admin.media.manage.components', {
@@ -95,8 +92,7 @@ module.config(function ($stateProvider) {
         .state('admin.posts.manage', {
             url: '',
             abstract: true,
-            templateUrl: 'views/admin/posts/manage.tpl.html',
-            controller: 'PostsEditCtrl'
+            templateUrl: 'views/admin/posts/manage.tpl.html'
         })
 
         .state('admin.posts.manage.components', {
