@@ -18,7 +18,7 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, Posts, Categor
     $scope.data = {
         savePost: function() {
             // Find selected categories
-            var selectedCategories = _.filter($scope.data.categories, function(category) { return category.$selected; });
+            var selectedCategories = _.filter($scope.data.jobPhaseCategories, function(category) { return category.$selected; });
             $scope.data.post.category_ids = _.map(selectedCategories, function(category) { return category.id; });
 
             $scope.data.post.$save(function(post) {
@@ -65,16 +65,18 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, Posts, Categor
               var categories = res[1];
 
               $scope.data.post = post;
-              initializePost();
 
               var selectedCategoryIds = _.map(post.categories, function(c) { return c.id; });
               _.each(categories, function(category){
-                  if (_.contains(selectedCategoryIds, category.id)) {
-                      category.$selected = true;
-                  }
+                  _.each(category.children, function(child){
+                      if (_.contains(selectedCategoryIds, child.id)) {
+                          child.$selected = true;
+                      }
+                  });
               });
 
               $scope.data.categories = categories;
+              initializePost();
           });
     } 
     else {
