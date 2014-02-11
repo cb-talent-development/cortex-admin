@@ -106,6 +106,11 @@ cortexModule.controller('CortexAdminCtrl', function ($scope, $rootScope, $state,
         }
     });
 
+    $scope.logout = function() {
+        authService.logout();
+        $state.go('login');
+    };
+
     authService.fetchCurrentUser(function() {
         $state.go('admin.organizations.manage');
     });

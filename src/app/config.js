@@ -3,40 +3,40 @@ var configModule = angular.module('cortex.config', []);
     var environmentConfigs = {
     localConfig: {
         api: {
-                baseUrl: 'http://localhost:3000',
-                    environmentName: 'Local'
-            },
+            baseUrl: 'http://localhost:3000',
+            environmentName: 'Local'
+        },
         pagingDefaults: {
-                perPage: 10
-            }
+            perPage: 10
+        }
     },
     devConfig: {
-            api: {
-                    baseUrl: 'http://dev.api.cbcortex.com',
-                        environmentName: 'Development'
-                },
-            pagingDefaults: {
-                    perPage: 10
-                }
+        api: {
+            baseUrl: 'http://dev.api.cbcortex.com',
+            environmentName: 'Development'
         },
-    stgConfig: {
-            api: {
-                    baseUrl: 'http://staging.api.cbcortex.com',
-                        environmentName: 'Staging'
-                },
-            pagingDefaults: {
-                    perPage: 10
-                }
-        },
-    prdConfig: {
-            api: {
-                    baseUrl: 'http://api.cbcortex.com',
-                        environmentName: 'Production'
-                },
-            pagingDefaults: {
-                    perPage: 10
-                }
+        pagingDefaults: {
+            perPage: 10
         }
+    },
+    stgConfig: {
+        api: {
+            baseUrl: 'http://staging.api.cbcortex.com',
+            environmentName: 'Staging'
+        },
+        pagingDefaults: {
+            perPage: 10
+        }
+    },
+    prdConfig: {
+        api: {
+            baseUrl: 'http://api.cbcortex.com',
+            environmentName: 'Production'
+        },
+        pagingDefaults: {
+            perPage: 10
+        }
+    }
 };
 
 // In the future this will be replaced with a grunt step to provide
