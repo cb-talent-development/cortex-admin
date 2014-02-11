@@ -1,0 +1,58 @@
+<header class="navbar navbar-admin navbar-static-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="#">{Cortex Logo}</a>
+
+            <ul class="nav navbar-nav navbar-items-admin small">
+                <li ng-class="{ active: $state.includes('admin.organizations') }"><a class="navbar-item-tenant" ui-sref="admin.organizations.manage">Tenant Management</a></li>
+                <li ng-class="{ active: $state.includes('admin.media') }"><a class="navbar-item-media" ui-sref="admin.media.manage.components">Media Library</a></li>
+                <li ng-class="{ active: $state.includes('admin.permissions') }"><a class="navbar-item-permissions" ui-sref="admin.permissions">Roles/Permissions</a></li>
+                <li ng-class="{ active: $state.includes('admin.posts') }"><a class="navbar-item-content" ui-sref="admin.posts.manage.components">Posts</a></li>
+                <li ng-class="{ active: $state.includes('admin.products') }"><a class="navbar-item-apps" ui-sref="admin.products">Apps/Products</a></li>
+            </ul>
+        </div>
+
+        <div class="navbar-collapse collapse navbar-right">
+            <div class="navbar-box clearfix">
+                <div class="pull-left">
+                    <img src="assets/admin/navbar-profile.jpg" width="40" height="40" alt="">
+                </div>
+
+                <div class="pull-left hmargin-left-small">
+                    <strong>Jane Smith</strong><br>
+                    <span class="smaller">
+                        <a href="#">My Profile</a> &bull; <a ng-click="logout()">Log Out</a>
+                    </span>
+                </div>
+            </div>
+
+            <div class="navbar-form clearfix">
+                <div class="form-group">
+                    <form role="search">
+                        <input type="text" class="form-control input-sm form-search" placeholder="Search Cortex"><button type="submit" class="btn btn-xs btn-search"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div><!--/.navbar-collapse-->
+
+    </div>
+</header>
+
+<main class="container content">
+  <div class="col-md-4 col-md-offset-4">
+    <div flash-alert active-class="in alert" class="fade-slow">
+      <span class="alert-message">{{flash.message}}</span>
+    </div>
+  </div>
+
+  <div class="col-md-12" ui-view></div>
+</main>
+
+<footer></footer>

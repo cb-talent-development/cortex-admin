@@ -7,8 +7,8 @@ var cortexModule = angular.module('cortex', [
     'angular-flash.service',
     'angular-flash.flash-alert-directive',
     'cortex.config',
-    'cortex.states.admin',
-    'cortex.states.users.login'
+    'cortex.states',
+    'cortex.services.auth'
 ]);
 
 cortexModule.factory('httpInterceptorService', function($q, $rootScope, events) {
@@ -46,13 +46,22 @@ cortexModule.config(function ($urlRouterProvider, $httpProvider, flashProvider) 
     flashProvider.errorClassnames.push('alert-danger');
 });
 
-cortexModule.controller('CortexAdminCtrl', function ($scope, $rootScope, $state, $stateParams, flash, events) {
+cortexModule.controller('CortexAdminCtrl', function ($scope, $rootScope, $state, $stateParams, $timeout, flash, events, authService) {
     var isDefined = angular.isDefined;
 
     // Add $state and $stateParams to root scope for universal access within views
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
     $rootScope.moment = window.moment;
+
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+        if (!authService.stateAuthorized(toState)) {
+            event.preventDefault();
+            $timeout(function() {
+                $state.go('login');
+            }, 300);
+        }
+    });
 
     $scope.$on(events.STATE_CHANGE_SUCCESS, function (event, toState, toParams, fromState, fromParams) {
         if (isDefined(toState.data) && isDefined(toState.data.pageTitle)) {
@@ -95,5 +104,14 @@ cortexModule.controller('CortexAdminCtrl', function ($scope, $rootScope, $state,
             default:
                 flash.error = 'Unhandled HTTP response exception!';
         }
+    });
+
+    $scope.logout = function() {
+        authService.logout();
+        $state.go('login');
+    };
+
+    authService.fetchCurrentUser(function() {
+        $state.go('admin.organizations.manage');
     });
 });
