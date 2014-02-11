@@ -68,7 +68,7 @@ module.factory('authService', function ($cookieStore, $rootScope, $resource, bas
         },
 
         stateAuthorized: function(state) {
-            return this.loggedIn() || state.name.contains('login');
+            return this.loggedIn() || (state.name.indexOf('login') != -1);
         },
 
         credentials: credentials
