@@ -106,5 +106,7 @@ cortexModule.controller('CortexAdminCtrl', function ($scope, $rootScope, $state,
         }
     });
 
-    authService.fetchCurrentUser();
+    authService.fetchCurrentUser(function() {
+        $state.go('admin.organizations.manage');
+    });
 });
