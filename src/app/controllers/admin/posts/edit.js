@@ -30,11 +30,6 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, Posts, Categor
             'find_the_job',
             'get_the_job',
             'on_the_job'
-        ],
-
-        status: [
-            'draft',
-            'publish'
         ]
     };
 
@@ -56,9 +51,19 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, Posts, Categor
             $scope.data.jobPhaseCategories = jobPhaseCategory.children;
         });
 
+        $scope.status = [
+            { "label":"Draft", "value":"true" },
+            { "label":"Publish", "value":"false" }
+        ];
+
+        $scope.data.post.draft = $scope.status[0];
+
+        /*
         $scope.$watch('data.publish', function(publish) {
             $scope.data.post.draft = publish == 'true' ? false : true;
         });
+        */
+
     };
 
     if ($stateParams.postId) {
