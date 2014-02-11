@@ -41,7 +41,7 @@ var configModule = angular.module('cortex.config', []);
 
 // In the future this will be replaced with a grunt step to provide
 // environment specific configuration.
-configModule.constant('config', environmentConfigs.stgConfig);
+configModule.constant('config', environmentConfigs.localConfig);
 
 configModule.constant('events', {
     STATE_CHANGE_SUCCESS: '$stateChangeSuccess',
