@@ -3,7 +3,8 @@ var module = angular.module('cortex.controllers.users.login', [
 ]);
 
 module.controller('LoginCtrl', function ($scope, authService) {
-    $scope.login = function (username, password) {
-        authService.login($scope, username, password);
+    $scope.login = function(username, password) {
+        authService.login(username, password, $scope);
     };
+    $scope.logout = authService.logout();
 });

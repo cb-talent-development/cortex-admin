@@ -112,14 +112,20 @@ module.config(function ($stateProvider) {
             controller: 'OrganizationsCtrl'
         })
 
-        .state('admin.organizations.edit', {
+        .state('admin.organizations.tenants', {
             url: '',
             template: '<ui-view/>',
             abstract: true
         })
 
-        .state('admin.organizations.edit.tenants', {
+        .state('admin.organizations.tenants.edit', {
             url: '/tenants/:tenantId/edit',
+            templateUrl: 'views/admin/tenants/edit.tpl.html',
+            controller: 'EditTenantsCtrl'
+        })
+
+        .state('admin.organizations.tenants.new', {
+            url: '/tenants/new',
             templateUrl: 'views/admin/tenants/edit.tpl.html',
             controller: 'EditTenantsCtrl'
         })
@@ -130,17 +136,14 @@ module.config(function ($stateProvider) {
             controller: 'OrganizationsManageCtrl'
         })
 
-        .state('admin.organizations.manage.tenants',{
+        .state('admin.organizations.manage.tenants', {
             url: '/tenants/:tenantId',
-            views:
-            {
-                'tenants-tree':
-                {
+            views: {
+                'tenants-tree': {
                     templateUrl: 'views/admin/tenants/manage.tree.tpl.html',
                     controller: 'TenantsTreeCtrl'
                 },
-                'tenants-details':
-                {
+                'tenants-details': {
                     templateUrl: 'views/admin/tenants/manage.details.tpl.html'
                 }
             }

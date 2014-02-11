@@ -30,6 +30,11 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, Posts, Categor
             'find_the_job',
             'get_the_job',
             'on_the_job'
+        ],
+
+        status: [
+            'draft',
+            'publish'
         ]
     };
 
