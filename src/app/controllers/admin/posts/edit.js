@@ -94,6 +94,7 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, Posts, Categor
     $scope.datepicker = {
         format: 'yyyy/MM/dd',
         publishAtOpen: false,
+        expireAtOpen: false,
         open: function(datepicker) {
             $timeout(function(){
                 $scope.datepicker[datepicker] = true;
