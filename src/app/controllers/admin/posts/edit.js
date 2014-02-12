@@ -30,11 +30,6 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, Posts, Categor
             'find_the_job',
             'get_the_job',
             'on_the_job'
-        ],
-
-        status: [
-            'draft',
-            'publish'
         ]
     };
 
@@ -53,17 +48,14 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, Posts, Categor
                 var normalizedPhaseName = category.name.split(' ').join('_').toLowerCase();
                 return normalizedPhaseName == phase;
             });
-            $scope.data.jobPhaseCategories = jobPhaseCategory.children;
-        });
 
-        $scope.$watch('data.publish', function(publish) {
-            $scope.data.post.draft = publish == 'true' ? false : true;
+            $scope.data.jobPhaseCategories = jobPhaseCategory.children;
         });
     };
 
     if ($stateParams.postId) {
         $q.all([
-            Posts.get({id: $stateParams.postId}).$promise, 
+            Posts.get({id: $stateParams.postId}).$promise,
             Categories.hierarchy().$promise])
           .then(function(res) {
               var post = res[0];
@@ -83,7 +75,7 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, Posts, Categor
               $scope.data.categories = categories;
               initializePost();
           });
-    } 
+    }
     else {
         $scope.data.post = new Posts();
         $scope.data.categories = Categories.hierarchy();
@@ -94,6 +86,7 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, Posts, Categor
     $scope.datepicker = {
         format: 'yyyy/MM/dd',
         publishAtOpen: false,
+        expireAtOpen: false,
         open: function(datepicker) {
             $timeout(function(){
                 $scope.datepicker[datepicker] = true;

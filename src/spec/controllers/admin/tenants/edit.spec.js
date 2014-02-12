@@ -17,7 +17,7 @@ describe('Admin Edit Tenants Module', function() {
 
             $scope.data = {};
 
-            $httpBackend.whenGET('/tenants/1/hierarchy?include_root=true')
+            $httpBackend.whenGET('/tenants/1?include_children=true')
                         .respond(testing.data.tenants.hierarchy_with_root);
 
             constructController = function() {
