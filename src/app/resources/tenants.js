@@ -4,7 +4,14 @@ var module = angular.module('cortex.resources.tenants', [
 ]);
 
 module.factory('Tenants', function (cortexResource, config) {
-    return cortexResource('/tenants/:id', {id: '@id'});
+    return cortexResource('/tenants/:id', {id: '@id'}, {
+        hierarchy: {
+            method: 'GET',
+            url: config.api.baseUrl + '/tenants/:id/hierarchy',
+            isArray: true,
+            paginated: true
+        }
+    });
 });
 
 module.factory('hierarchyUtils', function(){
@@ -13,7 +20,7 @@ module.factory('hierarchyUtils', function(){
             var flatten = function(tenants, result){
                 _.each(tenants, function(tenant){
                     result.push(tenant);
-                    if (tenant.children && tenant.children.length > 0){
+                    if (tenant.children.length > 0){
                         flatten(tenant.children, result);
                     }
                 });

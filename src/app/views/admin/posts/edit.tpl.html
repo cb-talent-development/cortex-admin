@@ -72,17 +72,16 @@
                 <dl class="dl-horizontal">
                     <dt><label for="publishStatus">Status</label></dt>
                     <dd class="input-group-sm vmargin-bottom-small">
-                        <div id="publishStatus" class="btn-group btn-group-sm">
-                            <button type="button" class="btn btn-primary" ng-model="data.post.draft" btn-radio="true">Draft</button>
-                            <button type="button" class="btn btn-primary" ng-model="data.post.draft" btn-radio="false">Publish</button>
-                        </div>
+                        <select id="publishStatus" class="form-control" ng-model="data.publish">
+                            <option value="false">Draft</option>
+                            <option value="true">Publish</option>
+                        </select>
                     </dd>
                 </dl>
 
-                <h4 class="vmargin-top-large hr-below" ng-if="(data.post.draft === false || data.post.published_at === nil)">Publish Schedule</h4>
+                <h4 class="vmargin-top-large hr-below" ng-if="!data.post.draft">Publish Schedule</h4>
 
-                <dl class="dl-horizontal hr-below" ng-if="(data.post.draft === false || data.post.published_at === nil)">
-
+                <dl class="dl-horizontal hr-below" ng-if="!data.post.draft">
                     <dt><label for="postPublishDate">Publish Date</label></dt>
                     <dd class="input-group input-group-sm vmargin-bottom-small">
                         <input id="postPublishDate" type="text" class="form-control" datepicker-popup="{{datepicker.format}}" is-open="datepicker.publishAtOpen" show-weeks="false" ng-model="data.post.published_at" placeholder="Immediately"/>
@@ -101,7 +100,7 @@
 
                     <dt></dt>
                     <dd>
-                        <em>This post will be published to <strong>Advice &amp; Resources</strong> on <strong>{{ data.post.published_at | date:'yyyy/MM/dd' }}</strong> <span ng-if="!data.post.expired_at"> and will not expire.</span> <span ng-if="data.post.expired_at">and will expire on <strong>{{ data.post.expired_at | date:'yyyy/MM/dd' }}.</strong></span></em>
+                        <em>This post will be published to <strong>Advice &amp; Resources</strong> on <strong>{{ data.post.published_at | date:'yyyy/MM/dd' }}</strong> <span ng-if="data.post.expired_at == nil"> and will not expire </span> <span ng-if="data.post.expired_at != nil">and will expire on <strong>{{ data.post.expired_at | date:'yyyy/MM/dd' }}</strong></span>.</em>
                     </dd>
                 </dl>
             </fieldset>
