@@ -72,10 +72,10 @@
                 <dl class="dl-horizontal">
                     <dt><label for="publishStatus">Status</label></dt>
                     <dd class="input-group-sm vmargin-bottom-small">
-                        <select id="publishStatus" class="form-control" ng-model="data.publish">
-                            <option value="false">Draft</option>
-                            <option value="true">Publish</option>
-                        </select>
+                        <div id="publishStatus" class="btn-group btn-group-sm">
+                            <button type="button" class="btn btn-primary" ng-model="data.post.draft" btn-radio="true">Draft</button>
+                            <button type="button" class="btn btn-primary" ng-model="data.post.draft" btn-radio="false">Publish</button>
+                        </div>
                     </dd>
                 </dl>
 
