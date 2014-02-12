@@ -79,9 +79,9 @@
                     </dd>
                 </dl>
 
-                <h4 class="vmargin-top-large hr-below" ng-if="!data.post.draft">Publish Schedule</h4>
+                <h4 class="vmargin-top-large hr-below" ng-if="(data.post.draft === false || data.post.published_at === nil)">Publish Schedule</h4>
 
-                <dl class="dl-horizontal hr-below" ng-if="!data.post.draft">
+                <dl class="dl-horizontal hr-below" ng-if="(data.post.draft === false || data.post.published_at === nil)">
                     <dt><label for="postPublishDate">Publish Date</label></dt>
                     <dd class="input-group input-group-sm vmargin-bottom-small">
                         <input id="postPublishDate" type="text" class="form-control" datepicker-popup="{{datepicker.format}}" is-open="datepicker.publishAtOpen" show-weeks="false" ng-model="data.post.published_at" placeholder="Immediately"/>
