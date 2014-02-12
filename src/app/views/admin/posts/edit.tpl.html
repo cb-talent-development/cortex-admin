@@ -72,7 +72,10 @@
                 <dl class="dl-horizontal">
                     <dt><label for="publishStatus">Status</label></dt>
                     <dd class="input-group-sm vmargin-bottom-small">
-                        <select id="publishStatus" class="form-control" ng-model="data.post.draft" ng-options="opt as opt.label for opt in status"></select>
+                        <div class="btn-group btn-group-sm">
+                            <button type="button" class="btn btn-primary" ng-model="data.post.draft" btn-radio="true">Draft</button>
+                            <button type="button" class="btn btn-primary" ng-model="data.post.draft" btn-radio="false">Published</button>
+                        </div>
                     </dd>
                 </dl>
 
@@ -97,7 +100,7 @@
 
                     <dt></dt>
                     <dd>
-                        <em>This post will be published to <strong>Advice &amp; Resources</strong> on <strong>{{ data.post.published_at | date:'yyyy/MM/dd' }}</strong> <span ng-if="data.post.expired_at == nil"> and will not expire </span> <span ng-if="data.post.expired_at != nil">and will expire on <strong>{{ data.post.expired_at | date:'yyyy/MM/dd' }}</strong></span>.</em>
+                        <em>This post will be published to <strong>Advice &amp; Resources</strong> on <strong>{{ data.post.published_at | date:'yyyy/MM/dd' }}</strong> <span ng-if="!data.post.expired_at"> and will not expire.</span> <span ng-if="data.post.expired_at">and will expire on <strong>{{ data.post.expired_at | date:'yyyy/MM/dd' }}.</strong></span></em>
                     </dd>
                 </dl>
             </fieldset>

@@ -48,27 +48,14 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, Posts, Categor
                 var normalizedPhaseName = category.name.split(' ').join('_').toLowerCase();
                 return normalizedPhaseName == phase;
             });
+
             $scope.data.jobPhaseCategories = jobPhaseCategory.children;
         });
-
-        $scope.status = [
-            { "label":"Draft", "value":"true" },
-            { "label":"Publish", "value":"false" }
-        ];
-
-        $scope.data.post.draft = $scope.status[0];
-
-        /*
-        $scope.$watch('data.publish', function(publish) {
-            $scope.data.post.draft = publish == 'true' ? false : true;
-        });
-        */
-
     };
 
     if ($stateParams.postId) {
         $q.all([
-            Posts.get({id: $stateParams.postId}).$promise, 
+            Posts.get({id: $stateParams.postId}).$promise,
             Categories.hierarchy().$promise])
           .then(function(res) {
               var post = res[0];
@@ -88,7 +75,7 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, Posts, Categor
               $scope.data.categories = categories;
               initializePost();
           });
-    } 
+    }
     else {
         $scope.data.post = new Posts();
         $scope.data.categories = Categories.hierarchy();
