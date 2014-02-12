@@ -100,7 +100,7 @@
 
                     <dt></dt>
                     <dd>
-                        <em>This post will be published to <strong>Advice &amp; Resources</strong> on <strong>{{ data.post.published_at | date:'yyyy/MM/dd' }}</strong> <span ng-if="data.post.expired_at == nil"> and will not expire </span> <span ng-if="data.post.expired_at != nil">and will expire on <strong>{{ data.post.expired_at | date:'yyyy/MM/dd' }}</strong></span>.</em>
+                        <em>This post will be published to <strong>Advice &amp; Resources</strong> on <strong>{{ data.post.published_at | date:'yyyy/MM/dd' }}</strong> <span ng-if="!data.post.expired_at"> and will not expire.</span> <span ng-if="data.post.expired_at">and will expire on <strong>{{ data.post.expired_at | date:'yyyy/MM/dd' }}.</strong></span></em>
                     </dd>
                 </dl>
             </fieldset>
