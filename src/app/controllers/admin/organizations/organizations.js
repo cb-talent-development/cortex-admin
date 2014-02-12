@@ -9,7 +9,7 @@ module.controller('OrganizationsCtrl', function ($scope, $stateParams, $state, e
 
     var loadOrganizations = function () {
         // Fetch organizations from API and set selected, if available
-        $scope.data.organizations = Tenants.query({roots_only: true}, function(organizations) {
+        $scope.data.organizations = Tenants.query(function(organizations) {
             var orgId = $stateParams.organizationId;
             if (orgId) {
                 $scope.data.organization = _.find(organizations, function(o){

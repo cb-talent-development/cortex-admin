@@ -93,15 +93,15 @@ describe('Tenants Resource Module', function(){
             expect(Tenants).toBeTruthy();
         });
 
-        it('should get hierarchy', function(){
-            $httpBackend.expectGET('/tenants/1/hierarchy')
-                        .respond(mock.tenants);
+        it('should get children', function(){
+            $httpBackend.expectGET('/tenants/1?include_children=true')
+                        .respond(mock.tenants[0]);
 
-            var result = Tenants.hierarchy({id: 1});
+            var result = Tenants.get({id: 1, include_children: true});
 
             $httpBackend.flush();
 
-            expect(result[0].id).toEqual(1);
+            expect(result.id).toEqual(1);
         });
     });
 });

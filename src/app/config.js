@@ -3,7 +3,7 @@ var configModule = angular.module('cortex.config', []);
     var environmentConfigs = {
     localConfig: {
         api: {
-            baseUrl: 'http://localhost:3000',
+            baseUrl: 'http://localhost:3000/api/v1',
             environmentName: 'Local'
         },
         pagingDefaults: {
@@ -12,7 +12,7 @@ var configModule = angular.module('cortex.config', []);
     },
     devConfig: {
         api: {
-            baseUrl: 'http://dev.api.cbcortex.com',
+            baseUrl: 'http://dev.api.cbcortex.com/api/v1',
             environmentName: 'Development'
         },
         pagingDefaults: {
@@ -21,7 +21,7 @@ var configModule = angular.module('cortex.config', []);
     },
     stgConfig: {
         api: {
-            baseUrl: 'http://staging.api.cbcortex.com',
+            baseUrl: 'http://staging.api.cbcortex.com/api/v1',
             environmentName: 'Staging'
         },
         pagingDefaults: {
@@ -30,7 +30,7 @@ var configModule = angular.module('cortex.config', []);
     },
     prdConfig: {
         api: {
-            baseUrl: 'http://api.cbcortex.com',
+            baseUrl: 'http://api.cbcortex.com/api/v1',
             environmentName: 'Production'
         },
         pagingDefaults: {
