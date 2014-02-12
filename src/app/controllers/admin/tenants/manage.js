@@ -19,9 +19,9 @@ module.controller('TenantsTreeCtrl', function($scope, $stateParams, events, Tena
     var loadTenantHierarchy = function() {
         TenantsTreeStatus.isLoaded = false;
 
-        $scope.data.tenants.hierarchy = Tenants.hierarchy({id: $stateParams.organizationId, include_root: true}, function(hierarchy){
-
-            var flattened = hierarchyUtils.flattenTenantHierarchy(hierarchy);
+        Tenants.get({id: $stateParams.organizationId, include_children: true}, function(hierarchy){
+            $scope.data.tenants.hierarchy = [hierarchy];
+            var flattened = hierarchyUtils.flattenTenantHierarchy([hierarchy]);
             $scope.data.tenants.flattened = flattened;
 
             // Set $scope.data.tenants.selected if tenantId was specified in URL
