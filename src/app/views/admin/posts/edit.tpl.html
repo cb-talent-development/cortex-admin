@@ -9,27 +9,36 @@
                 <dl class="dl-horizontal">
                     <dt><label for="postType">Post Type</label></dt>
                     <dd class="vmargin-bottom-small">
-                        <div id="postType" class="btn-group">
+                        <div id="postType" name="type" class="btn-group">
                             <button type="button" class="btn btn-default btn-sm" ng-model="data.post.type" btn-radio="'article'">Article</button>
                             <button type="button" class="btn btn-default btn-sm" ng-model="data.post.type" btn-radio="'video'">Video</button>
                             <button type="button" class="btn btn-default btn-sm" ng-model="data.post.type" btn-radio="'infographic'">Infographic</button>
                             <button type="button" class="btn btn-default btn-sm" ng-model="data.post.type" btn-radio="'promo'">Promo</button>
                         </div>
+                        <p ng-show="postForm.type.$invalid && !postForm.type.$pristine" class="error">Required.</p>
                     </dd>
 
                     <dt><label for="postHeadline">Headline</label></dt>
-                    <dd class="input-group-sm vmargin-bottom-small">
-                        <input id="postHeadline" type="text" class="form-control" placeholder="Post headline (required)" ng-model="data.post.title" required>
+                    <dd class="input-group-sm vmargin-bottom-small" ng-class="{ 'has-error' : postForm.title.$invalid && !postForm.title.$pristine }">
+                        <input id="postHeadline" name="title" type="text" class="form-control" placeholder="Headline (required)" ng-model="data.post.title" ng-minlength="1" ng-maxlength="255" required>
+                        <p ng-show="postForm.title.$invalid && !postForm.title.$pristine" class="error">Required.</p>
+                        <p ng-show="postForm.title.$error.minlength" class="error">Headline is too short.</p>
+                        <p ng-show="postForm.title.$error.maxlength" class="error">Headline is too long.</p>
                     </dd>
 
                     <dt><label for="postShortDesc">Description</label></dt>
-                    <dd class="input-group-sm vmargin-bottom-small">
-                        <input id="postShortDesc" type="text" class="form-control" placeholder="Teaser text for post (required)" ng-model="data.post.short_description" required>
+                    <dd class="input-group-sm vmargin-bottom-small" ng-class="{ 'has-error' : postForm.short_description.$invalid && !postForm.short_description.$pristine }">
+                        <input id="postShortDesc" name="short_description" type="text" class="form-control" placeholder="Teaser text (required)" ng-model="data.post.short_description" ng-trim="false" ng-minlength="25" ng-maxlength="255" required>
+                        <em><h6 class="text-right"><small><span>{{255 - data.post.short_description.length}} left</span></small></h6></em>
+                        <p ng-show="postForm.short_description.$invalid && !postForm.short_description.$pristine" class="error">Required.</p>
+                        <p ng-show="postForm.short_description.$error.minlength" class="error">Description is too short.</p>
+                        <p ng-show="postForm.short_description.$error.maxlength" class="error">Description is too long.</p>
                     </dd>
 
                     <dt><label for="postAuthor">Author</label></dt>
-                    <dd class="input-group-sm vmargin-bottom-small">
-                        <input id="postAuthor" type="text" class="form-control" placeholder="Author of post (required)" ng-model="data.post.author" required>
+                    <dd class="input-group-sm vmargin-bottom-small" ng-class="{ 'has-error' : postForm.author.$invalid && !postForm.author.$pristine }">
+                        <input id="postAuthor" name="author" type="text" class="form-control" placeholder="Author of post (required)" ng-model="data.post.author" ng-minlength="1" ng-maxlength="255" required>
+                        <p ng-show="postForm.author.$invalid && !postForm.author.$pristine" class="error">Required.</p>
                     </dd>
 
                     <dt><label for="postBody">Body</label></dt>
@@ -38,8 +47,9 @@
                     </dd>
 
                     <dt><label for="postCopyright">Copyright Owner</label></dt>
-                    <dd class="input-group-sm vmargin-bottom-small">
-                        <input id="postCopyright" type="text" class="form-control" placeholder="Copyright owner of this post (if different from author)" ng-model="data.post.copyright_owner">
+                    <dd class="input-group-sm vmargin-bottom-small" ng-class="{ 'has-error' : postForm.copyright_owner.$invalid && !postForm.copyright_owner.$pristine }">
+                        <input id="postCopyright" name="copyright_owner" type="text" class="form-control" placeholder="Copyright owner of this post (if different from author)" ng-model="data.post.copyright_owner" ng-minlength="1" ng-maxlength="255" required>
+                        <p ng-show="postForm.copyright_owner.$invalid && !postForm.copyright_owner.$pristine" class="error">Required.</p>
                     </dd>
 
                     <dt><label for="postTags">Post Tags</label></dt>
