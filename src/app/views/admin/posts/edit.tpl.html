@@ -3,6 +3,9 @@
 
     <div class="col-md-8">
         <h4 class="vmargin-top-large hr-below">Post Details</h4>
+    <form name="postForm" ng-submit="data.savePost()" novalidate>
+        <div class="col-md-8">
+            <h4 class="vmargin-top-large hr-below">Post Details</h4>
 
             <fieldset>
                 <dl class="dl-horizontal">
@@ -113,22 +116,20 @@
                         <em>This post will be published to <strong>Advice &amp; Resources</strong> on <strong>{{ data.post.published_at | date:'yyyy/MM/dd' }}</strong> <span ng-if="!data.post.expired_at"> and will not expire.</span> <span ng-if="data.post.expired_at">and will expire on <strong>{{ data.post.expired_at | date:'yyyy/MM/dd' }}.</strong></span></em>
                     </dd>
                 </dl>
+
+                <dl class="dl-horizontal">
+                    <dt></dt>
+                    <dd class="input-group-sm vmargin-bottom-small">
+                        <button type="submit" class="btn btn-primary btn-sm" ng-disabled="postForm.$invalid">
+                            <span class="fa fa-cloud-upload"></span> Update
+                        </button>
+
+                        <button class="btn btn-sm">
+                            <span class="fa fa-search"></span> Preview
+                        </button>
+                    </dd>
                 </dl>
             </fieldset>
-
-        <dl class="dl-horizontal">
-            <dt></dt>
-            <dd class="input-group-sm vmargin-bottom-small">
-                <button class="btn btn-primary btn-sm" ng-disabled="postForm.$invalid"  ng-click="data.savePost()">
-                    <span class="fa fa-cloud-upload"></span> Update
-                </button>
-
-                <button class="btn btn-sm">
-                    <span class="fa fa-search"></span> Preview
-                </button>
-            </dd>
-        </dl>
-    </div>
 
     <div class="col-md-4 input-group-sm">
         <h4 class="vmargin-top-large hr-below">Career Phase</h4>
