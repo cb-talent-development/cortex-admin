@@ -1,8 +1,6 @@
 <div class="container">
     <h3>Add Post</h3>
 
-    <div class="col-md-8">
-        <h4 class="vmargin-top-large hr-below">Post Details</h4>
     <form name="postForm" ng-submit="data.savePost()" novalidate>
         <div class="col-md-8">
             <h4 class="vmargin-top-large hr-below">Post Details</h4>
@@ -130,72 +128,73 @@
                     </dd>
                 </dl>
             </fieldset>
-
-    <div class="col-md-4 input-group-sm">
-        <h4 class="vmargin-top-large hr-below">Career Phase</h4>
-
-        <div class="input-group-sm">
-            <select id="postPhase" class="form-control" ng-model="data.post.job_phase">
-                <option ng-repeat="phase in data.phases" value="{{ phase }}">
-                    {{phase | humanize}}
-                </option>
-            </select>
         </div>
 
-        <span ng-if="data.jobPhaseCategories.length">
-            <h4 class="vmargin-top-large hr-below">Categories</h4>
+        <div class="col-md-4 input-group-sm">
 
-            <div class="checkbox-list">
-                <div class="checkbox" ng-repeat="category in data.jobPhaseCategories">
-                    <label>
-                        <input type="checkbox" ng-model="category.$selected">
-                        {{ category.name }}
-                    </label>
             <fieldset>
+                <h4 class="vmargin-top-large hr-below">Career Phase</h4>
+
+                <div class="input-group-sm">
+                    <select id="postPhase" class="form-control" ng-model="data.post.job_phase">
+                        <option ng-repeat="phase in data.phases" value="{{ phase }}">
+                            {{phase | humanize}}
+                        </option>
+                    </select>
                 </div>
-            </div>
-        </span>
 
-        <h4 class="vmargin-top-large hr-below">Home Page Display</h4>
+                <span ng-if="data.jobPhaseCategories.length">
+                    <h4 class="vmargin-top-large hr-below">Categories</h4>
 
-        <div class="btn-group">
-            <button type="button" class="btn btn-default btn-sm" ng-model="data.post.display" btn-radio="'small'">Small</button>
-            <button type="button" class="btn btn-default btn-sm" ng-model="data.post.display" btn-radio="'medium'">Medium</button>
-            <button type="button" class="btn btn-default btn-sm" ng-model="data.post.display" btn-radio="'large'">Large</button>
-        </div>
+                    <div class="checkbox-list">
+                        <div class="checkbox" ng-repeat="category in data.jobPhaseCategories">
+                            <label>
+                                <input type="checkbox" ng-model="category.$selected">
+                                {{ category.name }}
+                            </label>
+                        </div>
+                    </div>
+                </span>
 
-        <h4 class="vmargin-top-large hr-below">Featured Image</h4>
+                <h4 class="vmargin-top-large hr-below">Home Page Display</h4>
 
-        <button type="button" class="btn btn-primary btn-sm" ng-model="data.post.featured_image_url">Browse...</button>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default btn-sm" ng-model="data.post.display" btn-radio="'small'">Small</button>
+                    <button type="button" class="btn btn-default btn-sm" ng-model="data.post.display" btn-radio="'medium'">Medium</button>
+                    <button type="button" class="btn btn-default btn-sm" ng-model="data.post.display" btn-radio="'large'">Large</button>
+                </div>
 
-        <!--here is a button that allows you to pick an image media from the media library, I suppose it would work similarly to the file upload control, but it's pulling from the library rather than your computer-->
+                <h4 class="vmargin-top-large hr-below">Featured Image</h4>
 
-        <h4 class="vmargin-top-large hr-below">Discussion</h4>
+                <button type="button" class="btn btn-primary btn-sm" ng-model="data.post.featured_image_url">Browse...</button>
 
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" value="">
-                Allow comments
-            </label>
-        </div>
+                <!--here is a button that allows you to pick an image media from the media library, I suppose it would work similarly to the file upload control, but it's pulling from the library rather than your computer-->
 
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" value="">
-                Allow trackbacks and pings
-            </label>
-        </div>
+                <h4 class="vmargin-top-large hr-below">Discussion</h4>
 
-        <h4 class="vmargin-top-large hr-below">Admin Notes</h4>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="">
+                        Allow comments
+                    </label>
+                </div>
 
-        <textarea id="adminNotes" class="form-control" rows="5" ng-model="data.post.notes"></textarea>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="">
+                        Allow trackbacks and pings
+                    </label>
+                </div>
 
-        <!--<h4 class="vmargin-top-large hr-below">Statistics and Tracking</h4>
+                <h4 class="vmargin-top-large hr-below">Admin Notes</h4>
 
-        <hr>-->
+                <textarea id="adminNotes" class="form-control" rows="5" ng-model="data.post.notes"></textarea>
 
-        <!-- implement statistics and tracking later, not in AC for current sprint -->
-    </div>
+                <!--<h4 class="vmargin-top-large hr-below">Statistics and Tracking</h4>
+
+                <hr>-->
+
+                <!-- implement statistics and tracking later, not in AC for current sprint -->
             </fieldset>
         </div>
     </form>
