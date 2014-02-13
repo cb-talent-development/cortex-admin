@@ -8,6 +8,7 @@ var module = angular.module('cortex.services.auth', [
 module.factory('authService', function ($cookieStore, $rootScope, $resource, base64, config, events) {
 
     var credentials = $cookieStore.get('credentials') || {encoded: ''};
+    var initialized = false;
 
     return {
         login: function (username, password, scope) {
@@ -52,9 +53,11 @@ module.factory('authService', function ($cookieStore, $rootScope, $resource, bas
                     if (success) {
                         success(user);                        
                     }
+                    initialized = true; 
                 }, function() {
                     credentials.encoded = '';
-                    $cookieStore.put('credentials', credentials);                    
+                    $cookieStore.put('credentials', credentials);
+                    initialized = true;                    
                 }); 
             }
         },
@@ -67,10 +70,12 @@ module.factory('authService', function ($cookieStore, $rootScope, $resource, bas
             return ($rootScope.user == null) || ($rootScope.user === undefined) ? false : true;
         },
 
-        stateAuthorized: function(state) {
+        stateAuthorized: function(state, cb) {
             return this.loggedIn() || (state.name.indexOf('login') != -1);
         },
 
-        credentials: credentials
+        credentials: credentials,
+
+        initialized: initialized
     };
 });

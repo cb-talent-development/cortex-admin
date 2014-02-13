@@ -55,11 +55,12 @@ cortexModule.controller('CortexAdminCtrl', function ($scope, $rootScope, $state,
     $rootScope.moment = window.moment;
 
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-        if (!authService.stateAuthorized(toState)) {
+
+        if (authService.initialized && !authService.stateAuthorized(toState)) {
             event.preventDefault();
-            $timeout(function() {
-                $state.go('login');
-            }, 300);
+                $timeout(function() {
+                    $state.go('login');
+                }, 300);         
         }
     });
 
@@ -112,6 +113,8 @@ cortexModule.controller('CortexAdminCtrl', function ($scope, $rootScope, $state,
     };
 
     authService.fetchCurrentUser(function() {
-        $state.go('admin.organizations.manage');
+        if ($state.current.name.indexOf('login') > -1) {
+            $state.go('admin.organizations.manage');
+        }
     });
 });
