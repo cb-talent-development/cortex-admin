@@ -20,7 +20,7 @@
 
                     <dt><label for="postHeadline">Headline</label></dt>
                     <dd class="input-group-sm vmargin-bottom-small" ng-class="{ 'has-error' : postForm.title.$invalid && !postForm.title.$pristine }">
-                        <input id="postHeadline" name="title" type="text" class="form-control" placeholder="Headline (required)" ng-model="data.post.title" ng-minlength="1" ng-maxlength="255" required>
+                        <input id="postHeadline" name="title" type="text" class="form-control" placeholder="Headline (required)" ng-model="data.post.title" ng-trim="false" ng-minlength="1" ng-maxlength="255" required>
                         <p ng-show="(postForm.short_description.$dirty && postForm.title.$invalid) || (postForm.title.$dirty && !postForm.title.$error.minlength && !postForm.title.$error.maxlength && postForm.title.$invalid)" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Required.</p>
                         <p ng-show="postForm.title.$error.minlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Too short.</p>
                         <p ng-show="postForm.title.$error.maxlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Too long.</p>
