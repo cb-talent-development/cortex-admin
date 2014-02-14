@@ -63,7 +63,7 @@ module.exports = {
    */
   vendor_files: {
     js: [
-      'vendor/jquery/jquery.js',
+      'vendor/jquery/dist/jquery.js',
       'vendor/angularjs-file-upload/angular-file-upload-shim.js',
       'vendor/angular/angular.js',
       'vendor/angular-resource/angular-resource.js',
