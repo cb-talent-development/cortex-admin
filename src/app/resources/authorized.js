@@ -1,10 +1,10 @@
 var module = angular.module('cortex.resources.authorized', [
     'ngResource',
-    'cortex.config',
+    'cortex.settings',
     'cortex.services.auth'
 ]);
 
-module.factory('authorizedResource', function ($resource, auth, config) {
+module.factory('authorizedResource', function ($resource, auth, settings) {
     var forEach = angular.forEach,
         extend = angular.extend;
 
@@ -26,6 +26,6 @@ module.factory('authorizedResource', function ($resource, auth, config) {
             httpConfig = extend(auth.buildConfig(), httpConfig);
         });
 
-        return $resource(config.api.baseUrl + url, params, actions);
+        return $resource(settings.apiBaseUrl + url, params, actions);
     };
 });

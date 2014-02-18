@@ -1,8 +1,8 @@
 var module = angular.module('cortex.controllers.admin.organizations', [
     'ui.router.state',
     'angular-underscore',
-    'cortex.config',
-    'cortex.resources.tenants'
+    'cortex.resources.tenants',
+    'cortex.constants'
 ]);
 
 module.controller('OrganizationsCtrl', function ($scope, $stateParams, $state, events, Tenants) {

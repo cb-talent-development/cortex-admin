@@ -2,23 +2,24 @@ var module = angular.module('cortex.services.auth', [
     'ngResource',
     'ngCookies',
     'common.base64',
-    'cortex.config'
+    'cortex.settings'
 ]);
 
-
-module.factory('auth', function($q, $http, base64, config) {
+// Auth Service
+// ------------
+module.factory('auth', function($q, $http, $log, base64, settings) {
 
     var DEFAULT_AUTH_METHOD = 'basic';
 
     // Request the current user from Cortex's API, resolve promise
     var getCurrentUser = function(httpConfig, credentials, defer) {
-        $http.get(config.api.baseUrl + '/users/me', httpConfig)
+        $http.get(settings.apiBaseUrl + '/users/me', httpConfig)
              .success(function(user) {
-                 // TODO: log
+                 $log.debug('Retrieved current user, id: ' + user.id);
                  defer.resolve({user: user, credentials: credentials});
              })
              .error(function(response) {
-                 // TODO: log
+                 $log.warn('Unable to retrieve current user, id: ' + response);
                  defer.reject({response: response, credentials: credentials});
              });
     };
@@ -29,8 +30,7 @@ module.factory('auth', function($q, $http, base64, config) {
     };
 
     return {
-        // Supported authorization methods
-        // Returns promises
+        // Supported authorization methods, return promise
         methods: {
             // HTTP Basic Auth
             basic: function(credentials) {
@@ -58,13 +58,13 @@ module.factory('auth', function($q, $http, base64, config) {
         // an authorized request
         buildConfig: buildConfig,
 
-        // Basic Auth shortcut
+        // Basic Auth shortcut, returns promise
         login: function(username, password) {
             var encoded = base64.encode(username + ':' + password);
             return this.methods.basic({encoded: encoded});
         },
 
-        // Authorize and return the current user
+        // Authorize and return the current user, returns promise
         authorize: function(credentials) {
             method = credentials.method || DEFAULT_AUTH_METHOD;
             if (!(method in this.methods)) {

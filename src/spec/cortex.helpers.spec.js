@@ -1,13 +1,13 @@
 // Testing Helpers
 
 var testing = {
-    provideConfig: function(config) {
+    provideConfig: function(settings) {
        angular.mock.module(function($provide){
-            $provide.constant('config', config);
+            $provide.constant('settings', settings);
         });
     },
     config: {
-        withEmptyApiBaseUrl: {api: {baseUrl: ''}}
+        withEmptyApiBaseUrl: {apiBaseUrl: ''}
     },
     data: {
         tenants: {

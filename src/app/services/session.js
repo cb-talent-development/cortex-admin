@@ -1,5 +1,5 @@
 var module = angular.module('cortex.services.session', [
-  'cortex.config', 
+  'cortex.constants',
   'cortex.services.auth'
 ]);
 
