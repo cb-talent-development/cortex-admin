@@ -76,7 +76,7 @@ module.factory('session', function($q, $http, $cookieStore, $rootScope, auth, ev
 
     var onLoadUserError = function(resp) {
       loadRememberedUserResolver.reject(resp);
-    }
+    };
 
     auth.authorize(session.credentials)
         .then(onAuthSuccess, onAuthError)

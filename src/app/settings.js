@@ -9,7 +9,7 @@ var local = {
     }
 };
 
-development = {
+var development = {
     environmentName: 'Development',
     oauthUrl: 'http://dev.api.cbcortex.com/oauth',
     apiBaseUrl: 'http://dev.api.cbcortex.com/api/v1',
@@ -18,7 +18,7 @@ development = {
     }
 };
 
-staging = {
+var staging = {
     environmentName: 'Staging',
     oauthUrl: 'http://raccoon.cb-cortex-stg.staging.c66.me/oauth',
     apiBaseUrl: 'http://raccoon.cb-cortex-stg.staging.c66.me/api/v1',
@@ -27,7 +27,7 @@ staging = {
     }
 };
 
-production = {
+var production = {
     environmentName: 'Production',
     oauthUrl: 'http://api.cbcortex.com/oauth',
     apiBaseUrl: 'http://api.cbcortex.com/api/v1',
