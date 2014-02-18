@@ -1,5 +1,7 @@
 var module = angular.module('cortex.states', [
     'ui.router.state',
+    'cortex.services.session',
+
     'cortex.controllers.users.login',
     'cortex.controllers.admin.media.edit',
     'cortex.controllers.admin.media.filters',

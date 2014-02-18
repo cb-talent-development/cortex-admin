@@ -46,7 +46,8 @@ cortexModule.config(function ($urlRouterProvider, $httpProvider, flashProvider) 
     flashProvider.errorClassnames.push('alert-danger');
 });
 
-cortexModule.controller('CortexAdminCtrl', function ($scope, $rootScope, $state, $stateParams, $timeout, flash, events, authService) {
+cortexModule.controller('CortexAdminCtrl', function ($scope, $rootScope, $state, $stateParams, $timeout, flash, events, auth, session) {
+
     var isDefined = angular.isDefined;
 
     // Add $state and $stateParams to root scope for universal access within views
@@ -54,24 +55,10 @@ cortexModule.controller('CortexAdminCtrl', function ($scope, $rootScope, $state,
     $rootScope.$stateParams = $stateParams;
     $rootScope.moment = window.moment;
 
-    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-
-        if (authService.initialized && !authService.stateAuthorized(toState)) {
-            event.preventDefault();
-                $timeout(function() {
-                    $state.go('login');
-                }, 300);         
-        }
-    });
-
     $scope.$on(events.STATE_CHANGE_SUCCESS, function (event, toState, toParams, fromState, fromParams) {
         if (isDefined(toState.data) && isDefined(toState.data.pageTitle)) {
             $scope.pageTitle = toState.data.pageTitle + " | Cortex";
         }
-    });
-
-    $scope.$on(events.USER_LOGIN_SUCCESS, function (event, user, oldUser) {
-        $state.go('admin.organizations.manage');
     });
 
     $scope.$on(events.HTTP_RESPONSE_ERROR, function (event, statusCode, errorMessage) {
@@ -108,13 +95,20 @@ cortexModule.controller('CortexAdminCtrl', function ($scope, $rootScope, $state,
     });
 
     $scope.logout = function() {
-        authService.logout();
-        $state.go('login');
+        session.logout().then(function() {
+            $state.go('login');            
+        });
     };
 
-    authService.fetchCurrentUser(function() {
-        if ($state.current.name.indexOf('login') > -1) {
-            $state.go('admin.organizations.manage');
-        }
-    });
+    var onLoginPage = function() {
+        return $state.current.name.indexOf('login') > -1;
+    };
+
+    // Go to login page if unauthorized
+    session.promises.loadRememberedUser.then(null, 
+        function() {
+            if (!onLoginPage()) {
+                $state.go('login');
+            }
+        });
 });

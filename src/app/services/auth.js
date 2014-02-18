@@ -5,77 +5,74 @@ var module = angular.module('cortex.services.auth', [
     'cortex.config'
 ]);
 
-module.factory('authService', function ($cookieStore, $rootScope, $resource, base64, config, events) {
 
-    var credentials = $cookieStore.get('credentials') || {encoded: ''};
-    var initialized = false;
+module.factory('auth', function($q, $http, base64, config) {
+
+    var DEFAULT_AUTH_METHOD = 'basic';
+
+    // Request the current user from Cortex's API, resolve promise
+    var getCurrentUser = function(httpConfig, credentials, defer) {
+        $http.get(config.api.baseUrl + '/users/me', httpConfig)
+             .success(function(user) {
+                 // TODO: log
+                 defer.resolve({user: user, credentials: credentials});
+             })
+             .error(function(response) {
+                 // TODO: log
+                 defer.reject({response: response, credentials: credentials});
+             });
+    };
+
+    var buildConfig = function(value, scheme) {
+        scheme = scheme || 'Basic';
+        return {headers: {Authorization: scheme + ' ' + value}};
+    };
 
     return {
-        login: function (username, password, scope) {
-            // Persist plaintext encoded credentials for HTTP Basic auth.
-            // This is a placeholder until OAuth is implemented.
-            scope = scope || $rootScope;
-            credentials.encoded = base64.encode(username + ':' + password);
-            $cookieStore.put('credentials', credentials);
+        // Supported authorization methods
+        // Returns promises
+        methods: {
+            // HTTP Basic Auth
+            basic: function(credentials) {
+                var d = $q.defer();
+                var httpConfig = buildConfig(credentials.encoded, 'Basic');
+                getCurrentUser(httpConfig, {encoded: credentials.encoded, method: 'basic'}, d);
+                return d.promise;
+            },
+            // OAuth 2.0
+            oauth: function(credentials) {
+                var d = $q.defer();
 
-            var oldUser = $rootScope.user;
+                d.reject('OAuth not implemented');
 
-            this.fetchCurrentUser(function(user){
-                scope.$emit(events.USER_LOGIN_SUCCESS, user, oldUser);
-            });
-        },
+                // TODO
+                // 1) Initiate web-flow with cortex
+                // 2) Wait to receive access token 
+                // 3) Fetch currentUser and resolve promise
 
-        logout: function() {
-            user = $rootScope.user;
-            if (user) {
-                credentials.encoded = '';
-                $cookieStore.put('credentials', credentials);
-                $rootScope.user = null;
-                $rootScope.$emit(events.USER_LOGOUT, user);
+                return d.promise;
             }
         },
 
-        fetchCurrentUser: function(success) {
-            if (credentials.encoded && (credentials.encoded !== '') && !$rootScope.user) {
+        // Create a $http config object that may be merged with others to provide
+        // an authorized request
+        buildConfig: buildConfig,
 
-                var meHttpConfig = {
-                    method: 'GET',
-                    params: {id: 'me'}
-                };
+        // Basic Auth shortcut
+        login: function(username, password) {
+            var encoded = base64.encode(username + ':' + password);
+            return this.methods.basic({encoded: encoded});
+        },
 
-                this.addAuth(meHttpConfig);
-
-                var userResource = $resource(config.api.baseUrl + '/users/:id', {id: '@id'}, {me: meHttpConfig});
-
-                userResource.me(function(user) {
-                    $rootScope.user = user;
-                    $rootScope.$emit(events.FETCHED_CURRENT_USER, user);
-                    if (success) {
-                        success(user);                        
-                    }
-                    initialized = true; 
-                }, function() {
-                    credentials.encoded = '';
-                    $cookieStore.put('credentials', credentials);
-                    initialized = true;                    
-                }); 
+        // Authorize and return the current user
+        authorize: function(credentials) {
+            method = credentials.method || DEFAULT_AUTH_METHOD;
+            if (!(method in this.methods)) {
+                var d = $q.defer();
+                d.reject('Authorization method ' +  credentials.method + ' not supported.');
+                return d.promise;
             }
-        },
-
-        addAuth: function (httpConfig) {
-            httpConfig.headers = angular.extend({}, {Authorization: "Basic " + this.credentials.encoded}, httpConfig.headers);
-        },
-
-        loggedIn: function() {
-            return ($rootScope.user == null) || ($rootScope.user === undefined) ? false : true;
-        },
-
-        stateAuthorized: function(state, cb) {
-            return this.loggedIn() || (state.name.indexOf('login') != -1);
-        },
-
-        credentials: credentials,
-
-        initialized: initialized
+            return this.methods[method](credentials);
+        }
     };
 });

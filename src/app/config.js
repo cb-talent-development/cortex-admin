@@ -3,6 +3,7 @@ var configModule = angular.module('cortex.config', []);
     var environmentConfigs = {
     localConfig: {
         api: {
+            oauthUrl: 'http://localhost:3000/oauth',
             baseUrl: 'http://localhost:3000/api/v1',
             environmentName: 'Local'
         },
@@ -44,13 +45,11 @@ var configModule = angular.module('cortex.config', []);
 configModule.constant('config', environmentConfigs.stgConfig);
 
 configModule.constant('events', {
-    STATE_CHANGE_SUCCESS: '$stateChangeSuccess',
-    USER_LOGIN_SUCCESS: 'userLoginSuccess',
-    HTTP_RESPONSE_ERROR: 'httpResponseError',
-    TENANT_HIERARCHY_CHANGE: 'tenantHierarchyChange',
-    ORGANIZATIONS_CHANGE: 'organizationsChange',
-    FETCHED_CURRENT_USER: 'fetchedCurrentUser',
-    UNAUTHORIZED: 'unauthorized'
+    LOGIN_START:   '$loginStart',
+    LOGIN_SUCCESS: '$loginSuccess',
+    LOGIN_ERROR:   '$loginError',
+    LOGOUT:        '$logout',
+    USER_LOADED:   '$userLoaded'
 });
 
 configModule.constant('resourceDefaultActions', {

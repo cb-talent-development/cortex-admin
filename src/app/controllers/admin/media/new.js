@@ -9,7 +9,7 @@ var module = angular.module('cortex.controllers.admin.media.new', [
     'cortex.services.auth'
 ]);
 
-module.controller('MediaNewCtrl', function($scope, $timeout, $upload, $state, flash, config, authService) {
+module.controller('MediaNewCtrl', function($scope, $timeout, $upload, $state, flash, config, auth) {
 
     // angular-bootstrap datepicker settings
     $scope.datepicker = {
@@ -53,7 +53,7 @@ module.controller('MediaNewCtrl', function($scope, $timeout, $upload, $state, fl
             }
         };
 
-        authService.addAuth(httpConfig);
+        httpConfig = angular.extend(httpConfig, auth.buildConfig());
 
         $scope.upload = $upload.upload(httpConfig)
         .progress(function(e) {
