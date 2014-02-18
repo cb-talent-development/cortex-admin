@@ -28,16 +28,18 @@ CortexSession.prototype.load = function() {
 CortexSession.prototype.nuke = function() {
   this.currentUser = null;
   this.credentials = null;
-  this.store.remove();
+  this.store.nuke();
 };
 
 module.factory('session', function($q, $http, $cookieStore, $rootScope, auth, events) {
 
   STORE_KEY = 'cortex-session';
 
+  // Promises
   var sessionResolver = $q.defer();
   var loadRememberedUserResolver = $q.defer();
 
+  // Persistence
   var cookieSessionStore = {
     save: function(session) {
       $cookieStore.put(STORE_KEY, session);
@@ -45,7 +47,7 @@ module.factory('session', function($q, $http, $cookieStore, $rootScope, auth, ev
     load: function() {
       return $cookieStore.get(STORE_KEY) || {credentials: null};
     },
-    remove: function() {
+    nuke: function() {
       $cookieStore.remove(STORE_KEY);
     }
   };
@@ -67,48 +69,59 @@ module.factory('session', function($q, $http, $cookieStore, $rootScope, auth, ev
   };
 
   // Load user from cookie credentials
-  if (session.credentials && session.credentials.method) {    
+  if (session.credentials && session.credentials.method) {
+    var onLoadUserSuccess = function(resp) {
+      loadRememberedUserResolver.resolve(resp.user);
+    };
+
+    var onLoadUserError = function(resp) {
+      loadRememberedUserResolver.reject(resp);
+    }
+
     auth.authorize(session.credentials)
         .then(onAuthSuccess, onAuthError)
-        .then(function(resp) {
-          loadRememberedUserResolver.resolve(resp.user);
-        });
+        .then(onLoadUserSuccess, onLoadUserError);
   }
   else {
+    // Reject if there is no user to load
     loadRememberedUserResolver.reject();
   }
 
   return {
+    
     promises: {
       load: sessionResolver.promise,
       loadRememberedUser: loadRememberedUserResolver.promise
     },
+
     login: function(username, password, scope) {
       scope = scope || $rootScope;
       var d = $q.defer();
 
+      var onLoginSuccess = function(resp) {
+        scope.$emit(events.LOGIN_SUCCESS, resp.user);
+        d.resolve(resp.user);
+      };
+
+      var onLoginError = function(resp) {
+        scope.$emit(events.LOGIN_ERROR, resp.message);
+        d.reject(resp);
+      };
+
       auth.login(username, password)
           .then(onAuthSuccess, onAuthError)
-          .then(
-            // Authorization Success
-            function(resp) {
-              scope.$emit(events.LOGIN_SUCCESS, resp.user);
-              d.resolve(resp.user);
-            },
-            // Authorization Error
-            function(resp) {
-              scope.$emit(events.LOGIN_ERROR, resp.message);
-              d.reject(resp);
-            });
+          .then(onLoginSuccess, onLoginError);
 
       return d.promise;
     },
+
     logout: function() {
       var d = $q.defer();
       session.nuke();
       d.resolve();
       return d.promise;
     },
+
     currentUser: function() {
       return session.currentUser;
     }
