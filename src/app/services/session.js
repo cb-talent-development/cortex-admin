@@ -47,12 +47,15 @@ module.factory('session', function($q, $http, $cookieStore, $rootScope, auth, ev
 
   // Persistence
   var cookieSessionStore = {
+    
     save: function(session) {
       $cookieStore.put(STORE_KEY, session);
     },
+
     load: function() {
       return $cookieStore.get(STORE_KEY) || {credentials: null};
     },
+
     nuke: function() {
       $cookieStore.remove(STORE_KEY);
     }

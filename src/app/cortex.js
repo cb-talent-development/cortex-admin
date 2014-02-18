@@ -39,7 +39,7 @@ module.config(function ($urlRouterProvider, $httpProvider, flashProvider) {
 // Cortex-admin's root-level application controller
 module.controller('CortexAdminCtrl', function ($scope, $rootScope, $state, $stateParams, $timeout, events, auth, session) {
 
-    // Config function: $rootScope and $scope
+    // Config: $rootScope and $scope
     var configureScopes = function() {
         // Add $state and $stateParams to root scope for universal access within views
         $rootScope.$state = $state;
@@ -56,7 +56,7 @@ module.controller('CortexAdminCtrl', function ($scope, $rootScope, $state, $stat
         };
     };
 
-    // Config function: event listeners
+    // Config: event listeners
     var configureListeners = function() {
         var isDefined = angular.isDefined;
 
@@ -67,7 +67,7 @@ module.controller('CortexAdminCtrl', function ($scope, $rootScope, $state, $stat
         });
     };
 
-    // Config function: promise chains and callbacks
+    // Config: promise chains and callbacks
     var configurePromises = function() {
 
         // Checks whether the app is displaying the login page
