@@ -3,6 +3,9 @@ var module = angular.module('cortex.services.session', [
   'cortex.services.auth'
 ]);
 
+// CortexSession
+// -------------
+// Handles serialization/deserialization of user session
 var CortexSession = function(store) {
   this.store = store;
   this.currentUser = null;
@@ -31,9 +34,12 @@ CortexSession.prototype.nuke = function() {
   this.store.nuke();
 };
 
+// Session Service
+// ---------------
 module.factory('session', function($q, $http, $cookieStore, $rootScope, auth, events) {
 
-  STORE_KEY = 'cortex-session';
+  // Key used to store cortex-admin's session
+  STORE_KEY = 'cortex-admin-session';
 
   // Promises
   var sessionResolver = $q.defer();
@@ -52,10 +58,12 @@ module.factory('session', function($q, $http, $cookieStore, $rootScope, auth, ev
     }
   };
 
+  // Build a new session and attempt to load
   session = new CortexSession(cookieSessionStore);
   session.load();
   sessionResolver.resolve(session);
 
+  // Shared authorization callbacks
   var onAuthSuccess = function(resp) {
     session.credentials = resp.credentials;
     session.currentUser = resp.user;
@@ -89,11 +97,13 @@ module.factory('session', function($q, $http, $cookieStore, $rootScope, auth, ev
 
   return {
     
+    // Promises relating to session events
     promises: {
       load: sessionResolver.promise,
       loadRememberedUser: loadRememberedUserResolver.promise
     },
 
+    // Login user with username and password, returns a promise
     login: function(username, password, scope) {
       scope = scope || $rootScope;
       var d = $q.defer();
@@ -115,6 +125,7 @@ module.factory('session', function($q, $http, $cookieStore, $rootScope, auth, ev
       return d.promise;
     },
 
+    // Logout current user, returns a promise
     logout: function() {
       var d = $q.defer();
       session.nuke();
@@ -122,6 +133,7 @@ module.factory('session', function($q, $http, $cookieStore, $rootScope, auth, ev
       return d.promise;
     },
 
+    // Fetch the current user
     currentUser: function() {
       return session.currentUser;
     }
