@@ -111,15 +111,14 @@
                             <button name="draft" type="button" class="btn btn-default" ng-model="data.post.draft" btn-radio="true">Draft</button>
                             <button name="draft" type="button" class="btn btn-default" ng-model="data.post.draft" btn-radio="false">Publish</button>
                         </div>
-                        <p ng-show="postForm.$valid && !data.post.draft" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Please select a publish status for this post.</p>
                     </dd>
                 </dl>
             </fieldset>
 
-            <fieldset>
-                <legend ng-if="(data.post.draft === false || data.post.published_at === nil)">Publish Schedule</legend>
+            <fieldset ng-if="(data.post.draft === false || data.post.published_at === nil)">
+                <legend>Publish Schedule</legend>
 
-                <dl class="dl-horizontal" ng-if="(data.post.draft === false || data.post.published_at === nil)">
+                <dl class="dl-horizontal">
                     <dt><label for="postPublishDate">Publish Date</label></dt>
                     <dd class="input-group input-group-sm vmargin-bottom-small">
                         <input id="postPublishDate" name="published_at" type="text" class="form-control" datepicker-popup="{{datepicker.format}}" is-open="datepicker.publishAtOpen" show-weeks="false" ng-model="data.post.published_at" placeholder="Immediately"/>
