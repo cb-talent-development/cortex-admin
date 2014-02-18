@@ -41,6 +41,11 @@ module.factory('session', function($q, $http, $cookieStore, $rootScope, auth, ev
   // Key used to store cortex-admin's session
   STORE_KEY = 'cortex-admin-session';
 
+  // Trigger authorization after long-lived credential fetch (OAuth)
+  $rootScope.$on(events.CREDENTIALS_LOADED, function(event, credentials) {
+    auth.authorize(credentials);
+  });
+
   // Promises
   var sessionResolver = $q.defer();
   var loadRememberedUserResolver = $q.defer();

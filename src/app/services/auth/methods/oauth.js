@@ -2,7 +2,20 @@ var module = angular.module('cortex.services.auth.methods.oauth', [
     'cortex.util'
 ]);
 
-module.factory('oauth', function($rootScope, $location, util) {
+module.factory('oauth', function($rootScope, $location, $q, $http, $log, util) {
+
+  $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+    if (toParams.access_token && toParams.state) {
+      var oauthCookie = $cookieStore.get('cortex-oauth');
+      // Ensure state matches last
+      if (oauthCookie.state != toParams.state) {
+        $log.warning('OAuth state mismatch');
+        return;
+      }
+
+      $rootScope.emit(events.CREDENTIALS_LOADED, {accessToken: credentials.accessToken, method: 'oauth'});
+    }    
+  });
 
   return {
     // Name of auth method
@@ -20,6 +33,7 @@ module.factory('oauth', function($rootScope, $location, util) {
 
       // Generate a random state for use with OAuth
       var state = util.randomString(32);
+      var redirectUrl = $location.absUrl();
 
       // Construct OAuth authorize call URL
       var authorizeUrl = util.supplant(
@@ -32,7 +46,7 @@ module.factory('oauth', function($rootScope, $location, util) {
     });
 
       // Persist state for use after redirect
-      $cookieStore.put('cortex-admin-oauth-state', state);
+      $cookieStore.put('cortex-oauth', {state: state});
 
       // Start OAuth flow, note: promise is unused
       window.location.href = authorizeUrl;

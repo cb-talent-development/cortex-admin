@@ -8,7 +8,7 @@ var module = angular.module('cortex.services.auth', [
 
 // Auth Service
 // ------------
-module.factory('auth', function($q, $http, $log, $cookieStore, base64, settings, basicAuth, oauth) {
+module.factory('auth', function($q, $http, $log, $cookieStore, $rootScope, base64, settings, basicAuth, oauth) {
 
     var DEFAULT_AUTH_METHOD = 'basic';
 
