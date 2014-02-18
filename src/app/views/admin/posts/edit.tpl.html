@@ -111,6 +111,7 @@
                             <button name="draft" type="button" class="btn btn-default" ng-model="data.post.draft" btn-radio="true">Draft</button>
                             <button name="draft" type="button" class="btn btn-default" ng-model="data.post.draft" btn-radio="false">Publish</button>
                         </div>
+                        <p ng-show="postForm.$valid && !data.post.draft" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Please select a publish status for this post.</p>
                     </dd>
                 </dl>
             </fieldset>
