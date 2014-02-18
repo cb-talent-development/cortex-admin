@@ -21,7 +21,7 @@ var configModule = angular.module('cortex.config', []);
     },
     stgConfig: {
         api: {
-            baseUrl: 'http://staging.api.cbcortex.com/api/v1',
+            baseUrl: 'http://raccoon.cb-cortex-stg.staging.c66.me/api/v1',
             environmentName: 'Staging'
         },
         pagingDefaults: {
@@ -41,7 +41,7 @@ var configModule = angular.module('cortex.config', []);
 
 // In the future this will be replaced with a grunt step to provide
 // environment specific configuration.
-configModule.constant('config', environmentConfigs.localConfig);
+configModule.constant('config', environmentConfigs.stgConfig);
 
 configModule.constant('events', {
     STATE_CHANGE_SUCCESS: '$stateChangeSuccess',
