@@ -2,10 +2,10 @@
     <h3>Add Post</h3>
 
     <form name="postForm" ng-submit="data.savePost()" novalidate>
-        <div class="col-md-8 hr-below">
-            <fieldset>
-                <legend>Post Details</legend>
+        <div class="col-md-8">
+            <h4 class="vmargin-top-large hr-below">Post Details</h4>
 
+            <fieldset>
                 <dl class="dl-horizontal">
                     <dt><label for="postType">Post Type</label></dt>
                     <dd class="vmargin-bottom-small">
@@ -14,68 +14,54 @@
                             <button name="type" type="button" class="btn btn-default btn-sm" ng-model="data.post.type" btn-radio="'video'">Video</button>
                             <button name="type" type="button" class="btn btn-default btn-sm" ng-model="data.post.type" btn-radio="'infographic'">Infographic</button>
                             <button name="type" type="button" class="btn btn-default btn-sm" ng-model="data.post.type" btn-radio="'promo'">Promo</button>
+                            <p ng-show="!data.post.type && postForm.title.$dirty" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Required.</p>
                         </div>
-                        <p ng-show="!data.post.type && postForm.title.$dirty" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Please select a post type.</p>
                     </dd>
-                </dl>
-            
-                <dl class="dl-horizontal">
+
                     <dt><label for="postHeadline">Headline</label></dt>
                     <dd class="input-group-sm vmargin-bottom-small" ng-class="{ 'has-error' : postForm.title.$invalid && !postForm.title.$pristine }">
                         <input id="postHeadline" name="title" type="text" class="form-control" placeholder="Headline (required)" ng-model="data.post.title" ng-trim="false" ng-minlength="1" ng-maxlength="255" required>
-                        <p ng-show="(postForm.short_description.$dirty && postForm.title.$invalid) || (postForm.title.$dirty && !postForm.title.$error.minlength && !postForm.title.$error.maxlength && postForm.title.$invalid)" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;A post headline is required.</p>
-                        <p ng-show="postForm.title.$error.minlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Your headline is too short.</p>
-                        <p ng-show="postForm.title.$error.maxlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Your headline is too long.</p>
+                        <p ng-show="(postForm.short_description.$dirty && postForm.title.$invalid) || (postForm.title.$dirty && !postForm.title.$error.minlength && !postForm.title.$error.maxlength && postForm.title.$invalid)" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Required.</p>
+                        <p ng-show="postForm.title.$error.minlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Too short.</p>
+                        <p ng-show="postForm.title.$error.maxlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Too long.</p>
                     </dd>
-                </dl>
-            
-                <dl class="dl-horizontal">
+
                     <dt><label for="postShortDesc">Description</label></dt>
                     <dd class="input-group-sm vmargin-bottom-small" ng-class="{ 'has-error' : postForm.short_description.$invalid && !postForm.short_description.$pristine }">
                         <input id="postShortDesc" name="short_description" type="text" class="form-control" placeholder="Teaser text (required)" ng-model="data.post.short_description" ng-trim="false" ng-minlength="25" ng-maxlength="255" required>
-                        <p ng-show="(postForm.author.$dirty && postForm.short_description.$invalid) || (postForm.short_description.$dirty && !postForm.short_description.$error.minlength && !postForm.short_description.$error.maxlength && postForm.short_description.$invalid)" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;A post description is required.</p>
-                        <h5 ng-show="postForm.short_description.$valid" class="text-right"><em><small>{{255 - data.post.short_description.length}} characters left</small></em></h5>
-                        <p ng-show="postForm.short_description.$error.minlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Your description is too short.</p>
-                        <p ng-show="postForm.short_description.$error.maxlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Your description is too long.</p>
+                        <p ng-show="(postForm.author.$dirty && postForm.short_description.$invalid) || (postForm.short_description.$dirty && !postForm.short_description.$error.minlength && !postForm.short_description.$error.maxlength && postForm.short_description.$invalid)" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Required.</p>
+                        <h5 ng-show="postForm.short_description.$valid" class="text-right"><em><small>{{255 - data.post.short_description.length}} left</small></em></h5>
+                        <p ng-show="postForm.short_description.$error.minlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Too short.</p>
+                        <p ng-show="postForm.short_description.$error.maxlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Too long.</p>
                     </dd>
-                </dl>
 
-                <dl class="dl-horizontal">
                     <dt><label for="postAuthor">Author</label></dt>
                     <dd class="input-group-sm vmargin-bottom-small" ng-class="{ 'has-error' : postForm.author.$invalid && !postForm.author.$pristine }">
                         <input id="postAuthor" name="author" type="text" class="form-control" placeholder="Author of post (required)" ng-model="data.post.author" ng-minlength="1" ng-maxlength="255" required>
-                        <p ng-show="(postForm.copyright_owner.$dirty && postForm.author.$invalid) || (postForm.author.$invalid && !postForm.author.$pristine)" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;An author is required.</p>
-                        <p ng-show="postForm.author.$error.maxlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;The author name is too long.</p>
+                        <p ng-show="(postForm.copyright_owner.$dirty && postForm.author.$invalid) || (postForm.author.$invalid && !postForm.author.$pristine)" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Required.</p>
+                        <p ng-show="postForm.author.$error.maxlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Too long.</p>
                     </dd>
-                </dl>
 
-                <dl class="dl-horizontal">
                     <dt><label for="postBody">Body</label></dt>
                     <dd class="input-group-sm vmargin-bottom-small">
                         <textarea id="postBody" name="body" class="form-control" rows="10" ng-model="data.post.body" redactor></textarea>
                     </dd>
-                </dl>
 
-                <dl class="dl-horizontal">
                     <dt><label for="postCopyright">Copyright Owner</label></dt>
                     <dd class="input-group-sm vmargin-bottom-small" ng-class="{ 'has-error' : postForm.copyright_owner.$invalid && !postForm.copyright_owner.$pristine }">
                         <input id="postCopyright" name="copyright_owner" type="text" class="form-control" placeholder="Copyright owner of this post (if different from author)" ng-model="data.post.copyright_owner" ng-minlength="1" ng-maxlength="255" required>
-                        <p ng-show="(postForm.tag_list.$dirty && postForm.copyright_owner.$invalid) || (postForm.copyright_owner.$invalid && !postForm.copyright_owner.$pristine)" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;A copyright owner is required.</p>
-                        <p ng-show="postForm.copyright_owner.$error.maxlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;The copyright owner name long.</p>
+                        <p ng-show="(postForm.tag_list.$dirty && postForm.copyright_owner.$invalid) || (postForm.copyright_owner.$invalid && !postForm.copyright_owner.$pristine)" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Required.</p>
+                        <p ng-show="postForm.copyright_owner.$error.maxlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Too long.</p>
                     </dd>
-                </dl>
 
-                <dl class="dl-horizontal">
                     <dt><label for="postTags">Post Tags</label></dt>
                     <dd class="input-group-sm vmargin-bottom-small">
                         <input id="postTags" name="tag_list" type="text" class="form-control" placeholder="Separate tags with commas" ng-model="data.post.tag_list" ng-maxlength="255">
-                        <p ng-show="postForm.tag_list.$error.maxlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;.</p>
+                        <p ng-show="postForm.tag_list.$error.maxlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Too long.</p>
                     </dd>
                 </dl>
-            </fieldset>
 
-            <fieldset>
-                <legend>SEO Information</legend>
+                <h4 class="vmargin-top-large hr-below">SEO Information</h4>
 
                 <dl class="dl-horizontal">
                     <dt><label for="seoTitle">Title</label></dt>
@@ -83,43 +69,36 @@
                         <input id="seoTitle" name="seo_title" type="text" class="form-control" placeholder="HTML meta title" ng-model="data.post.seo_title" ng-maxlength="255">
                         <p ng-show="postForm.seo_title.$error.maxlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Too long.</p>
                     </dd>
-                </dl>
 
-                <dl class="dl-horizontal">
                     <dt><label for="seoDescription">Description</label></dt>
                     <dd class="input-group-sm vmargin-bottom-small">
                         <input id="seoDescription" name="seo_description" type="text" class="form-control" placeholder="HTML meta description" ng-model="data.post.seo_description" ng-maxlength="255">
                         <p ng-show="postForm.seo_description.$error.maxlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Too long.</p>
                     </dd>
-                </dl>
 
-                <dl class="dl-horizontal">
                     <dt><label for="seoPreview">Search Display Preview</label></dt>
                     <dd class="input-group-sm vmargin-bottom-small">
                         <textarea id="seoPreview" name="seo_preview" class="form-control" rows="5" disabled="disabled" ng-model="data.post.seo_preview"></textarea>
                     </dd>
                 </dl>
-            </fieldset>
 
-            <fieldset>
-                <legend>Publish Status</legend>
+                <h4 class="vmargin-top-large hr-below">Publish Status</h4>
 
                 <dl class="dl-horizontal">
                     <dt><label for="publishStatus">Status</label></dt>
                     <dd class="input-group-sm vmargin-bottom-small">
                         <div id="publishStatus" name="draft" class="btn-group btn-group-sm">
-                            <button name="draft" type="button" class="btn btn-default" ng-model="data.post.draft" btn-radio="true">Draft</button>
-                            <button name="draft" type="button" class="btn btn-default" ng-model="data.post.draft" btn-radio="false">Publish</button>
+                            <button name="draft" type="button" class="btn btn-primary" ng-model="data.post.draft" btn-radio="true">Draft</button>
+                            <button name="draft" type="button" class="btn btn-primary" ng-model="data.post.draft" btn-radio="false">Publish</button>
+                            <p ng-show="postForm.$valid && !data.post.draft" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Required.</p>
                         </div>
-                        <p ng-show="postForm.$valid && !data.post.draft" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Please select a publish status for this post.</p>
                     </dd>
                 </dl>
-            </fieldset>
 
-            <fieldset>
-                <legend ng-if="(data.post.draft === false || data.post.published_at === nil)">Publish Schedule</legend>
+                <h4 class="vmargin-top-large hr-below" ng-if="(data.post.draft === false || data.post.published_at === nil)">Publish Schedule</h4>
 
-                <dl class="dl-horizontal" ng-if="(data.post.draft === false || data.post.published_at === nil)">
+                <dl class="dl-horizontal hr-below" ng-if="(data.post.draft === false || data.post.published_at === nil)">
+
                     <dt><label for="postPublishDate">Publish Date</label></dt>
                     <dd class="input-group input-group-sm vmargin-bottom-small">
                         <input id="postPublishDate" name="published_at" type="text" class="form-control" datepicker-popup="{{datepicker.format}}" is-open="datepicker.publishAtOpen" show-weeks="false" ng-model="data.post.published_at" placeholder="Immediately"/>
@@ -127,9 +106,7 @@
                             <button class="btn btn-default" ng-click="datepicker.open('publishAtOpen')"><i class="fa fa-calendar"></i></button>
                         </span>
                     </dd>
-                </dl>
 
-                <dl class="dl-horizontal">
                     <dt><label for="postExpireDate">Expiration Date</label></dt>
                     <dd class="input-group input-group-sm vmargin-bottom-small">
                         <input id="postExpireDate" name="expired_at" type="text" class="form-control" datepicker-popup="{{datepicker.format}}" is-open="datepicker.expireAtOpen" show-weeks="false" ng-model="data.post.expired_at" placeholder="No expiration date"/>
@@ -137,95 +114,13 @@
                             <button class="btn btn-default" ng-click="datepicker.open('expireAtOpen')"><i class="fa fa-calendar"></i></button>
                         </span>
                     </dd>
-                </dl>
 
-                <dl class="dl-horizontal">
                     <dt></dt>
                     <dd>
                         <em>This post will be published to <strong>Advice &amp; Resources</strong> on <strong>{{ data.post.published_at | date:'yyyy/MM/dd' }}</strong> <span ng-if="!data.post.expired_at"> and will not expire.</span> <span ng-if="data.post.expired_at">and will expire on <strong>{{ data.post.expired_at | date:'yyyy/MM/dd' }}.</strong></span></em>
                     </dd>
                 </dl>
-            </fieldset>
-        </div>
 
-        <div class="col-md-4 input-group-sm">
-            <fieldset>
-                <legend>Career Phase</legend>
-
-                <div class="input-group-sm" name="job_phase">
-                    <select name="job_phase" class="form-control" ng-model="data.post.job_phase" required>
-                        <option value="" default selected>Select a career phase</option>
-                        <option ng-repeat="phase in data.phases" value="{{ phase }}">
-                            {{phase | humanize}}
-                        </option>
-                    </select>
-                    <p ng-show="!data.post.job_phase && postForm.copyright_owner.$valid" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Required.</p>
-                </div>
-            
-                <span ng-if="data.jobPhaseCategories.length">
-                    <legend>Categories</legend>
-
-                    <div class="checkbox-list">
-                        <div class="checkbox" ng-repeat="category in data.jobPhaseCategories">
-                            <label>
-                                <input type="checkbox" ng-model="category.$selected">
-                                {{ category.name }}
-                            </label>
-                        </div>
-                    </div>
-                </span>
-            </fieldset>
-
-            <fieldset>
-                <legend>Home Page Display</legend>
-
-                <div class="btn-group" name="display">
-                    <button name="display" type="button" class="btn btn-default btn-sm" ng-model="data.post.display" btn-radio="'small'">Small</button>
-                    <button name="display" type="button" class="btn btn-default btn-sm" ng-model="data.post.display" btn-radio="'medium'">Medium</button>
-                    <button name="display" type="button" class="btn btn-default btn-sm" ng-model="data.post.display" btn-radio="'large'">Large</button>
-                </div>
-                <p ng-show="!data.post.display && postForm.$valid" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Required.</p>
-            </fieldset>
-
-            <fieldset>
-                <legend>Featured Image</legend>
-
-                <button type="button" class="btn btn-primary btn-sm" ng-model="data.post.featured_image_url">Browse...</button>
-
-                <!--here is a button that allows you to pick media from the media library, I suppose it would work similarly to the file upload control, but it's pulling from the library rather than your computer-->
-            </fieldset>
-
-            <fieldset>
-                <legend>Discussion</legend>
-
-                <div class="checkbox-list">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" value="">
-                            Allow comments
-                        </label>
-                    </div>
-
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" value="">
-                            Allow trackbacks and pings
-                        </label>
-                    </div>
-                </div>
-            </fieldset>
-
-            <fieldset>
-                <legend>Admin Notes</legend>
-
-                <textarea name="notes" class="form-control vmargin-bottom-small" rows="5" ng-model="data.post.notes"></textarea>
-
-                <!--<h4 class="vmargin-top-large hr-below">Statistics and Tracking</h4>-->
-            </fieldset>
-        </div>
-
-        <div class="col-md-8">
-            <fieldset>
                 <dl class="dl-horizontal">
                     <dt></dt>
                     <dd class="input-group-sm vmargin-bottom-small">
@@ -238,6 +133,76 @@
                         </button>
                     </dd>
                 </dl>
+            </fieldset>
+        </div>
+
+        <div class="col-md-4 input-group-sm">
+
+            <fieldset>
+                <h4 class="vmargin-top-large hr-below">Career Phase</h4>
+
+                <div class="input-group-sm" name="job_phase">
+                    <select id="postPhase" name="job_phase" class="form-control" ng-model="data.post.job_phase">
+                        <option ng-repeat="phase in data.phases" value="{{ phase }}">
+                            {{phase | humanize}}
+                        </option>
+                    </select>
+                    <p ng-show="!data.post.job_phase && postForm.copyright_owner.$valid" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Required.</p>
+                </div>
+
+                <span ng-if="data.jobPhaseCategories.length">
+                    <h4 class="vmargin-top-large hr-below">Categories</h4>
+
+                    <div class="checkbox-list">
+                        <div class="checkbox" ng-repeat="category in data.jobPhaseCategories">
+                            <label>
+                                <input type="checkbox" ng-model="category.$selected">
+                                {{ category.name }}
+                            </label>
+                        </div>
+                    </div>
+                </span>
+
+                <h4 class="vmargin-top-large hr-below">Home Page Display</h4>
+
+                <div class="btn-group" name="display">
+                    <button name="display" type="button" class="btn btn-default btn-sm" ng-model="data.post.display" btn-radio="'small'">Small</button>
+                    <button name="display" type="button" class="btn btn-default btn-sm" ng-model="data.post.display" btn-radio="'medium'">Medium</button>
+                    <button name="display" type="button" class="btn btn-default btn-sm" ng-model="data.post.display" btn-radio="'large'">Large</button>
+                    <p ng-show="!data.post.display && postForm.$valid" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Required.</p>
+                </div>
+
+                <h4 class="vmargin-top-large hr-below">Featured Image</h4>
+
+                <button type="button" class="btn btn-primary btn-sm" ng-model="data.post.featured_image_url">Browse...</button>
+
+                <!--here is a button that allows you to pick an image media from the media library, I suppose it would work similarly to the file upload control, but it's pulling from the library rather than your computer-->
+
+                <h4 class="vmargin-top-large hr-below">Discussion</h4>
+
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="">
+                        Allow comments
+                    </label>
+                </div>
+
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="">
+                        Allow trackbacks and pings
+                    </label>
+                </div>
+
+                <h4 class="vmargin-top-large hr-below">Admin Notes</h4>
+
+                <textarea id="adminNotes" name="notes" class="form-control" rows="5" ng-model="data.post.notes"></textarea>
+
+                <!--<h4 class="vmargin-top-large hr-below">Statistics and Tracking</h4>
+
+                <hr>-->
+
+                <!-- implement statistics and tracking later, not in AC for current sprint -->
             </fieldset>
         </div>
     </form>
