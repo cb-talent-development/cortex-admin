@@ -40,7 +40,7 @@
 }
 
 ////////////////////////////////
-// Container Child-element Restyling/Overrides
+// Bootstrap Restyling/Overrides
 
 .container {
   .btn{
@@ -49,12 +49,12 @@
     color: black;
   }
 
-  .btn:hover{
+  .btn:hover {
     background: #FFA178;
     color: white;
   }
 
-  .btn-primary{
+  button.active, .btn-primary {
     @include gradient-vertical(#FFA178, #E9743A, 0%, 100%);
     color: white;
   }
@@ -78,8 +78,23 @@
   }
 }
 
+legend {
+  font-size: 18px;
+  font-weight: 500;
+  border-bottom: 1px solid #f47937;
+  margin: 10px 0 10px 0;
+}
+
+dl.dl-horizontal {
+  margin-bottom: 10px;
+}
+
 ////////////////////////////////
 // Margins
+
+@mixin hmargin-left-sm($hmargin-left) {
+  margin-left: $hmargin-left;
+}
 
 .hmargin-left-small {
 	margin-left: 10px;
@@ -217,6 +232,10 @@ textarea.vertical-only { resize: vertical; }
 .navbar-items-admin {
   a {
     color: white;
+  }
+
+  li.active{
+    background: url(../assets/admin/header-active.png) center bottom repeat-x;
   }
 
   a.navbar-item-tenant {
