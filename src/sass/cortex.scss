@@ -31,6 +31,49 @@
 }
 
 ////////////////////////////////
+// Margins
+
+@mixin hmargin-left($margin) {
+  margin-left: $margin;
+}
+
+@mixin hmargin-right($margin) {
+  margin-right: $margin;
+}
+
+@mixin vmargin-top($margin) {
+  margin-top: $margin;
+}
+
+@mixin vmargin-bot($margin) {
+  margin-bottom: $margin;
+}
+
+.hmargin-left-small {
+  margin-left: 10px;
+}
+
+.hmargin-right-small {
+  margin-right: 10px;
+}
+
+.vmargin-top-small {
+  margin-top: 10px; 
+}
+
+.vmargin-top-large {
+  margin-top: 20px; 
+}
+
+.vmargin-bottom-small {
+  margin-bottom: 10px;  
+}
+
+.vmargin-bottom-large {
+  margin-bottom: 20px;  
+}
+
+////////////////////////////////
 // Decorative Styles
 
 .hr-below {
@@ -40,7 +83,7 @@
 }
 
 ////////////////////////////////
-// Container Child-element Restyling/Overrides
+// Bootstrap Restyling/Overrides
 
 .container {
   .btn{
@@ -49,12 +92,12 @@
     color: black;
   }
 
-  .btn:hover{
+  .btn:hover {
     background: #FFA178;
     color: white;
   }
 
-  .btn-primary{
+  button.active, .btn-primary {
     @include gradient-vertical(#FFA178, #E9743A, 0%, 100%);
     color: white;
   }
@@ -78,31 +121,15 @@
   }
 }
 
-////////////////////////////////
-// Margins
-
-.hmargin-left-small {
-	margin-left: 10px;
+legend {
+  font-size: 18px;
+  font-weight: 500;
+  border-bottom: 1px solid #f47937;
+  margin: 10px 0 10px 0;
 }
 
-.hmargin-right-small {
-	margin-right: 10px;
-}
-
-.vmargin-top-small {
-	margin-top: 10px;	
-}
-
-.vmargin-top-large {
-	margin-top: 20px;	
-}
-
-.vmargin-bottom-small {
-	margin-bottom: 10px;	
-}
-
-.vmargin-bottom-large {
-	margin-bottom: 20px;	
+dl.dl-horizontal {
+  @include vmargin-bot(10px);
 }
 
 ////////////////////////////////
@@ -217,6 +244,10 @@ textarea.vertical-only { resize: vertical; }
 .navbar-items-admin {
   a {
     color: white;
+  }
+
+  li.active{
+    background: url(../assets/admin/header-active.png) center bottom repeat-x;
   }
 
   a.navbar-item-tenant {
