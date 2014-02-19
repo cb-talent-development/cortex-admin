@@ -44,4 +44,4 @@ var production = {
   }
 };
 
-module.constant('settings', local);
+module.constant('settings', staging);
