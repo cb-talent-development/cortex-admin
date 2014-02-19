@@ -15,15 +15,15 @@
                             <button name="type" type="button" class="btn btn-default btn-sm" ng-model="data.post.type" btn-radio="'infographic'">Infographic</button>
                             <button name="type" type="button" class="btn btn-default btn-sm" ng-model="data.post.type" btn-radio="'promo'">Promo</button>
                         </div>
-                        <p ng-show="!data.post.type && postForm.title.$dirty" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Please select a post type.</p>
+                        <p ng-show="!data.post.type && postForm.title.$dirty" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;A post type is required.</p>
                     </dd>
                 </dl>
             
                 <dl class="dl-horizontal">
                     <dt><label for="postHeadline">Headline</label></dt>
                     <dd class="input-group-sm vmargin-bottom-small" ng-class="{ 'has-error' : postForm.title.$invalid && !postForm.title.$pristine }">
-                        <input id="postHeadline" name="title" type="text" class="form-control" placeholder="Headline (required)" ng-model="data.post.title" ng-trim="false" ng-minlength="1" ng-maxlength="255" required>
-                        <p ng-show="(postForm.short_description.$dirty && postForm.title.$invalid) || (postForm.title.$dirty && !postForm.title.$error.minlength && !postForm.title.$error.maxlength && postForm.title.$invalid)" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;A post headline is required.</p>
+                        <input id="postHeadline" name="title" type="text" class="form-control" placeholder="enter a headline for this post (required)" ng-model="data.post.title" ng-trim="false" ng-minlength="1" ng-maxlength="255" required>
+                        <p ng-show="(postForm.short_description.$dirty && postForm.title.$invalid) || (postForm.title.$dirty && !postForm.title.$error.minlength && !postForm.title.$error.maxlength && postForm.title.$invalid)" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;A headline for this post is required.</p>
                         <p ng-show="postForm.title.$error.minlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Your headline is too short.</p>
                         <p ng-show="postForm.title.$error.maxlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Your headline is too long.</p>
                     </dd>
@@ -32,8 +32,8 @@
                 <dl class="dl-horizontal">
                     <dt><label for="postShortDesc">Description</label></dt>
                     <dd class="input-group-sm vmargin-bottom-small" ng-class="{ 'has-error' : postForm.short_description.$invalid && !postForm.short_description.$pristine }">
-                        <input id="postShortDesc" name="short_description" type="text" class="form-control" placeholder="Teaser text (required)" ng-model="data.post.short_description" ng-trim="false" ng-minlength="25" ng-maxlength="255" required>
-                        <p ng-show="(postForm.author.$dirty && postForm.short_description.$invalid) || (postForm.short_description.$dirty && !postForm.short_description.$error.minlength && !postForm.short_description.$error.maxlength && postForm.short_description.$invalid)" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;A post description is required.</p>
+                        <input id="postShortDesc" name="short_description" type="text" class="form-control" placeholder="enter a short description about this post (required)" ng-model="data.post.short_description" ng-trim="false" ng-minlength="25" ng-maxlength="255" required>
+                        <p ng-show="(postForm.author.$dirty && postForm.short_description.$invalid) || (postForm.short_description.$dirty && !postForm.short_description.$error.minlength && !postForm.short_description.$error.maxlength && postForm.short_description.$invalid)" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;A short description for this post is required.</p>
                         <h5 ng-show="postForm.short_description.$valid" class="text-right"><em><small>{{255 - data.post.short_description.length}} characters left</small></em></h5>
                         <p ng-show="postForm.short_description.$error.minlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Your description is too short.</p>
                         <p ng-show="postForm.short_description.$error.maxlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Your description is too long.</p>
@@ -43,8 +43,8 @@
                 <dl class="dl-horizontal">
                     <dt><label for="postAuthor">Author</label></dt>
                     <dd class="input-group-sm vmargin-bottom-small" ng-class="{ 'has-error' : postForm.author.$invalid && !postForm.author.$pristine }">
-                        <input id="postAuthor" name="author" type="text" class="form-control" placeholder="Author of post (required)" ng-model="data.post.author" ng-minlength="1" ng-maxlength="255" required>
-                        <p ng-show="(postForm.copyright_owner.$dirty && postForm.author.$invalid) || (postForm.author.$invalid && !postForm.author.$pristine)" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;An author is required.</p>
+                        <input id="postAuthor" name="author" type="text" class="form-control" placeholder="enter an author for this post (required)" ng-model="data.post.author" ng-minlength="1" ng-maxlength="255" required>
+                        <p ng-show="(postForm.copyright_owner.$dirty && postForm.author.$invalid) || (postForm.author.$invalid && !postForm.author.$pristine)" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;An author for this post is required.</p>
                         <p ng-show="postForm.author.$error.maxlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;The author name is too long.</p>
                     </dd>
                 </dl>
@@ -59,17 +59,17 @@
                 <dl class="dl-horizontal">
                     <dt><label for="postCopyright">Copyright Owner</label></dt>
                     <dd class="input-group-sm vmargin-bottom-small" ng-class="{ 'has-error' : postForm.copyright_owner.$invalid && !postForm.copyright_owner.$pristine }">
-                        <input id="postCopyright" name="copyright_owner" type="text" class="form-control" placeholder="Copyright owner of this post (if different from author)" ng-model="data.post.copyright_owner" ng-minlength="1" ng-maxlength="255" required>
-                        <p ng-show="(postForm.tag_list.$dirty && postForm.copyright_owner.$invalid) || (postForm.copyright_owner.$invalid && !postForm.copyright_owner.$pristine)" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;A copyright owner is required.</p>
-                        <p ng-show="postForm.copyright_owner.$error.maxlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;The copyright owner name long.</p>
+                        <input id="postCopyright" name="copyright_owner" type="text" class="form-control" placeholder="enter a copyright owner for this post (required)" ng-model="data.post.copyright_owner" ng-minlength="1" ng-maxlength="255" required>
+                        <p ng-show="(postForm.tag_list.$dirty && postForm.copyright_owner.$invalid) || (postForm.copyright_owner.$invalid && !postForm.copyright_owner.$pristine)" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;A copyright owner for this post is required.</p>
+                        <p ng-show="postForm.copyright_owner.$error.maxlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;The copyright owner name is too long.</p>
                     </dd>
                 </dl>
 
                 <dl class="dl-horizontal">
                     <dt><label for="postTags">Post Tags</label></dt>
                     <dd class="input-group-sm vmargin-bottom-small">
-                        <input id="postTags" name="tag_list" type="text" class="form-control" placeholder="Separate tags with commas" ng-model="data.post.tag_list" ng-maxlength="255">
-                        <p ng-show="postForm.tag_list.$error.maxlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;.</p>
+                        <input id="postTags" name="tag_list" type="text" class="form-control" placeholder="enter the tags for this post separated by commas" ng-model="data.post.tag_list" ng-maxlength="255">
+                        <p ng-show="postForm.tag_list.$error.maxlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;You've entered too many tags.</p>
                     </dd>
                 </dl>
             </fieldset>
@@ -80,16 +80,16 @@
                 <dl class="dl-horizontal">
                     <dt><label for="seoTitle">Title</label></dt>
                     <dd class="input-group-sm vmargin-bottom-small">
-                        <input id="seoTitle" name="seo_title" type="text" class="form-control" placeholder="HTML meta title" ng-model="data.post.seo_title" ng-maxlength="255">
-                        <p ng-show="postForm.seo_title.$error.maxlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Too long.</p>
+                        <input id="seoTitle" name="seo_title" type="text" class="form-control" placeholder="enter an HTML meta title for this post" ng-model="data.post.seo_title" ng-maxlength="255">
+                        <p ng-show="postForm.seo_title.$error.maxlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Your seo title is too long.</p>
                     </dd>
                 </dl>
 
                 <dl class="dl-horizontal">
                     <dt><label for="seoDescription">Description</label></dt>
                     <dd class="input-group-sm vmargin-bottom-small">
-                        <input id="seoDescription" name="seo_description" type="text" class="form-control" placeholder="HTML meta description" ng-model="data.post.seo_description" ng-maxlength="255">
-                        <p ng-show="postForm.seo_description.$error.maxlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Too long.</p>
+                        <input id="seoDescription" name="seo_description" type="text" class="form-control" placeholder="enter an HTML meta description for this post" ng-model="data.post.seo_description" ng-maxlength="255">
+                        <p ng-show="postForm.seo_description.$error.maxlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Your seo description is too long.</p>
                     </dd>
                 </dl>
 
@@ -153,14 +153,14 @@
 
                 <div class="input-group-sm" name="job_phase">
                     <select name="job_phase" class="form-control" ng-model="data.post.job_phase" required>
-                        <option value="" default selected>Select a career phase</option>
+                        <option value="" default selected>Select a career phase for this post</option>
                         <option ng-repeat="phase in data.phases" value="{{ phase }}">
                             {{phase | humanize}}
                         </option>
                     </select>
-                    <p ng-show="!data.post.job_phase && postForm.copyright_owner.$valid" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Required.</p>
+                    <p ng-show="!data.post.job_phase && postForm.author.$valid" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;A career phase for this post is required.</p>
                 </div>
-            
+
                 <span ng-if="data.jobPhaseCategories.length">
                     <legend>Categories</legend>
 
@@ -183,7 +183,7 @@
                     <button name="display" type="button" class="btn btn-default btn-sm" ng-model="data.post.display" btn-radio="'medium'">Medium</button>
                     <button name="display" type="button" class="btn btn-default btn-sm" ng-model="data.post.display" btn-radio="'large'">Large</button>
                 </div>
-                <p ng-show="!data.post.display && postForm.$valid" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Required.</p>
+                <p ng-show="!data.post.display && postForm.$valid" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;A display size for this post is required.</p>
             </fieldset>
 
             <fieldset>
