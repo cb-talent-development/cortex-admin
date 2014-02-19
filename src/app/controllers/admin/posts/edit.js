@@ -79,6 +79,7 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, Posts, Categor
     else {
         $scope.data.post = new Posts();
         $scope.data.post.draft = true;
+        $scope.data.post.copyright_owner = $scope.data.post.copyright_owner || "CareerBuilder, LLC";
         $scope.data.categories = Categories.hierarchy();
         initializePost();
     }
