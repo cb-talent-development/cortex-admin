@@ -24,6 +24,44 @@ $ grunt build
 
 Tada! Tests should be run, templates compiled and you should now be able to run the admin by accessing `build/index.html` from your web brower.
 
+Project Structure
+---------
+
+.src
+├── app
+│   ├── controllers
+│   │   ├── admin
+│   │   │   ├── media
+│   │   │   ├── organizations
+│   │   │   ├── posts
+│   │   │   └── tenants
+│   │   └── users
+│   ├── directives
+│   ├── resources
+│   ├── services
+│   └── views
+│       ├── admin
+│       │   ├── media
+│       │   ├── organizations
+│       │   ├── posts
+│       │   └── tenants
+│       └── users
+├── assets
+│   └── admin
+├── common
+├── sass
+│   └── states
+├── spec
+│   ├── controllers
+│   │   └── admin
+│   │       ├── media
+│   │       ├── organizations
+│   │       └── tenants
+│   └── resources
+└── vendor
+    ├── angular-bootstrap-nav-tree
+    └── redactor
+
 Resources
 ---------
 
