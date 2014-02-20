@@ -26,7 +26,7 @@ Tada! Tests should be run, templates compiled and you should now be able to run 
 
 Project Structure
 ---------
-
+```
 .src
 ├── app
 │   ├── controllers
@@ -61,7 +61,7 @@ Project Structure
 └── vendor
     ├── angular-bootstrap-nav-tree
     └── redactor
-
+```
 Resources
 ---------
 
