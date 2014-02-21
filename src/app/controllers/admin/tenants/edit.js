@@ -3,9 +3,9 @@ var module = angular.module('cortex.controllers.admin.tenants.edit', [
     'ui.bootstrap.datepicker',
     'angular-flash.service',
     'angular-underscore',
-    'cortex.config',
     'cortex.resources.tenants',
-    'cortex.directives.tenantSettings'
+    'cortex.directives.tenantSettings',
+    'cortex.constants'
 ]);
 
 module.controller('EditTenantsCtrl', function($scope, $stateParams, $state, $timeout, events, Tenants, hierarchyUtils, flash) {

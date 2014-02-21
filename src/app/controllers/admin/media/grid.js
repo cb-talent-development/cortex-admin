@@ -3,12 +3,12 @@ var module = angular.module('cortex.controllers.admin.media.grid', [
     'ui.bootstrap',
     'placeholders.img',
     'angular-flash.service',
-    'cortex.config',
+    'cortex.settings',
     'cortex.resources.media',
     'cortex.directives.delayedInput'
 ]);
 
-module.controller('MediaGridCtrl', function($scope, $stateParams, $state, Media, config, flash){
+module.controller('MediaGridCtrl', function($scope, $stateParams, $state, Media, settings, flash){
 
     $scope.data = {};
 
@@ -19,7 +19,7 @@ module.controller('MediaGridCtrl', function($scope, $stateParams, $state, Media,
     $scope.page = {
         query: $stateParams.query,
         page: parseInt($stateParams.page) || 1,
-        perPage: parseInt($stateParams.perPage) || config.pagingDefaults.perPage,
+        perPage: parseInt($stateParams.perPage) || settings.paging.defaultPerPage,
         next: function() {
             $scope.page.page++;
             updatePage();

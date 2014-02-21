@@ -1,6 +1,6 @@
 var module = angular.module('cortex.resources.paginated', [
     'cortex.resources.resource',
-    'cortex.config'
+    'cortex.constants'
 ]);
 
 module.factory('paginatedResource', function(cortexResource, resourceDefaultActions) {

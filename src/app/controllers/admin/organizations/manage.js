@@ -3,8 +3,8 @@ var module = angular.module('cortex.controllers.admin.organizations.manage', [
     'angular-underscore',
     'angular-flash.service',
     'angular-flash.flash-alert-directive',
-    'cortex.config',
-    'cortex.resources.tenants'
+    'cortex.resources.tenants',
+    'cortex.constants'
 ]);
 
 module.controller('OrganizationsManageCtrl', function($scope, $stateParams, $state, flash, events, Tenants, TenantsTreeStatus) {

@@ -1,4 +1,6 @@
-var module = angular.module('cortex.resources.resource', ['cortex.resources.authorized']);
+var module = angular.module('cortex.resources.resource', [
+    'cortex.resources.authorized'
+]);
 
 module.constant('defaultActions', {
     update: {method: 'PUT', inArray: false},

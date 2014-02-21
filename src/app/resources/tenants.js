@@ -3,7 +3,7 @@ var module = angular.module('cortex.resources.tenants', [
     'cortex.resources.resource'
 ]);
 
-module.factory('Tenants', function (cortexResource, config) {
+module.factory('Tenants', function (cortexResource) {
     return cortexResource('/tenants/:id', {id: '@id'});
 });
 

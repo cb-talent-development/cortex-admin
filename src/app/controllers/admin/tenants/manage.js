@@ -1,11 +1,11 @@
 var module = angular.module('cortex.controllers.admin.tenants.manage', [
     'ui.router.state',
     'angular-underscore',
-    'cortex.config',
     'cortex.resources.tenants',
     'cortex.directives.tenantSettings',
     'common.angularBootstrapNavTree',
-    'ngAnimate'
+    'ngAnimate',
+    'cortex.constants'
  ]);
 
 module.factory('TenantsTreeStatus', function () {
