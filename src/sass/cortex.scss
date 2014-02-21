@@ -105,19 +105,19 @@
   .navbar-form {
     margin: 5px 0 0.625em 0;
     padding: 0;
-    width: 12.5em;
+    width: 15em;
 
     .btn-search {
       width: 2em;
       border: none;
-      border-radius: 0 5px 5px 0;
+      @include border-right-radius(5px);
       background-color: rgba(255,255,255,0.05);
       color: white;
     }
   }
 
   .pagination {
-    margin-top: 0;
+    @include vmargin-top(0);
   }
 }
 
@@ -125,7 +125,8 @@ legend {
   font-size: 18px;
   font-weight: 500;
   border-bottom: 1px solid #f47937;
-  margin: 10px 0 10px 0;
+  @include vmargin-top(10px);
+  @include vmargin-bot(10px);
 }
 
 dl.dl-horizontal {
@@ -179,6 +180,7 @@ input.form-control[required]:not(:focus) {
   padding: 1em;
   border: 1px dashed #f47937;
   border-radius: 5px;
+  @include vmargin-top(10px);
 }
 
 textarea.vertical-only { resize: vertical; }
@@ -210,7 +212,7 @@ textarea.vertical-only { resize: vertical; }
 
 .navbar-admin {
   @include gradient-vertical-three-colors(#022745, #104070, 70%, #09335B);
-  padding: 0; /* 0.625em */
+  padding: 0;
   font-family: 'PT Sans', Arial, sans-serif;
 }
 
@@ -220,25 +222,40 @@ textarea.vertical-only { resize: vertical; }
   padding-bottom: 0.75em;
 }
 
-.navbar-box {
-  width: 12.5em;
+.navbar-profile-box {
+  width: 15em;
   padding: .31em;
   margin-top: 0.625em;
   border-radius: 5px;
   background-color: rgba(255,255,255,0.05);
+  @include text-overflow();
+
+  .navbar-profile-avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .navbar-profile-text {
+    width: 10.5em;
+    @include hmargin-left(5px);
+  }
 }
 
 .form-search{
   height: 1.67em;
-  width: 12.5em;
+  width: 15.5em !important;
   border: none;
-  border-radius: 5px 0 0 5px;
+  @include border-left-radius(5px);
   background-color: rgba(255,255,255,0.05);
   color: white;
 }
 
 @mixin navbar-bg-position($vertical-pos) {
   background-position: center $vertical-pos;
+}
+
+@mixin navbar-bg-position-dual($vertical-pos) {
+  background-position: center $vertical-pos, center bottom;
 }
 
 .navbar-items-admin {
@@ -257,47 +274,47 @@ textarea.vertical-only { resize: vertical; }
 
   a.navbar-item-tenant:hover, a.navbar-item-tenant:focus {
     @extend .menu-item-bg;
-    background-position: center 0px, center bottom;
+    @include navbar-bg-position-dual(0);
   }
 
   a.navbar-item-media {
     @extend .menu-item-bg;
-    background-position: center -300px;
+    @include navbar-bg-position(-300px);
   }
 
   a.navbar-item-media:hover, a.navbar-item-media:focus {
     @extend .menu-item-bg;
-    background-position: center -200px, center bottom;
+    @include navbar-bg-position-dual(-200px);
   }
 
   a.navbar-item-permissions {
     @extend .menu-item-bg;
-    background-position: center -500px;
+    @include navbar-bg-position(-500px);
   }
 
   a.navbar-item-permissions:hover, a.navbar-item-permissions:focus {
     @extend .menu-item-bg;
-    background-position: center -400px, center bottom;
+    @include navbar-bg-position-dual(-400px);
   }
 
   a.navbar-item-content {
     @extend .menu-item-bg;
-    background-position: center -700px;
+    @include navbar-bg-position(-700px);
   }
 
   a.navbar-item-content:hover, a.navbar-item-content:focus {
     @extend .menu-item-bg;
-    background-position: center -600px, center bottom;
+    @include navbar-bg-position-dual(-600px);
   }
 
   a.navbar-item-apps {
     @extend .menu-item-bg;
-    background-position: center -900px;
+    @include navbar-bg-position(-900px);
   }
 
   a.navbar-item-apps:hover, a.navbar-item-apps:focus {
     @extend .menu-item-bg;
-    background-position: center -800px, center bottom;
+    @include navbar-bg-position-dual(-800px);
   }
 }
 

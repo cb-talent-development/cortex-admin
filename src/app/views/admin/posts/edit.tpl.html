@@ -8,7 +8,7 @@
 
                 <dl class="dl-horizontal">
                     <dt><label for="postType">Post Type</label></dt>
-                    <dd class="vmargin-bottom-small">
+                    <dd>
                         <div id="postType" name="type" class="btn-group">
                             <button name="type" type="button" class="btn btn-default btn-sm" ng-model="data.post.type" btn-radio="'article'">Article</button>
                             <button name="type" type="button" class="btn btn-default btn-sm" ng-model="data.post.type" btn-radio="'video'">Video</button>
@@ -21,7 +21,7 @@
             
                 <dl class="dl-horizontal">
                     <dt><label for="postHeadline">Headline</label></dt>
-                    <dd class="input-group-sm vmargin-bottom-small" ng-class="{ 'has-error' : postForm.title.$invalid && !postForm.title.$pristine }">
+                    <dd class="input-group-sm" ng-class="{ 'has-error' : postForm.title.$invalid && !postForm.title.$pristine }">
                         <input id="postHeadline" name="title" type="text" class="form-control" placeholder="enter a headline for this post (required)" ng-model="data.post.title" ng-trim="false" ng-minlength="1" ng-maxlength="255" required>
                         <p ng-show="(postForm.short_description.$dirty && postForm.title.$invalid) || (postForm.title.$dirty && !postForm.title.$error.minlength && !postForm.title.$error.maxlength && postForm.title.$invalid)" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;A headline for this post is required.</p>
                         <p ng-show="postForm.title.$error.minlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Your headline is too short.</p>
@@ -31,7 +31,7 @@
             
                 <dl class="dl-horizontal">
                     <dt><label for="postShortDesc">Description</label></dt>
-                    <dd class="input-group-sm vmargin-bottom-small" ng-class="{ 'has-error' : postForm.short_description.$invalid && !postForm.short_description.$pristine }">
+                    <dd class="input-group-sm" ng-class="{ 'has-error' : postForm.short_description.$invalid && !postForm.short_description.$pristine }">
                         <input id="postShortDesc" name="short_description" type="text" class="form-control" placeholder="enter a short description about this post (required)" ng-model="data.post.short_description" ng-trim="false" ng-minlength="25" ng-maxlength="255" required>
                         <p ng-show="(postForm.author.$dirty && postForm.short_description.$invalid) || (postForm.short_description.$dirty && !postForm.short_description.$error.minlength && !postForm.short_description.$error.maxlength && postForm.short_description.$invalid)" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;A short description for this post is required.</p>
                         <h5 ng-show="postForm.short_description.$valid" class="text-right"><em><small>{{255 - data.post.short_description.length}} characters left</small></em></h5>
@@ -42,7 +42,7 @@
 
                 <dl class="dl-horizontal">
                     <dt><label for="postAuthor">Author</label></dt>
-                    <dd class="input-group-sm vmargin-bottom-small" ng-class="{ 'has-error' : postForm.author.$invalid && !postForm.author.$pristine }">
+                    <dd class="input-group-sm" ng-class="{ 'has-error' : postForm.author.$invalid && !postForm.author.$pristine }">
                         <input id="postAuthor" name="author" type="text" class="form-control" placeholder="enter an author for this post (required)" ng-model="data.post.author" ng-minlength="1" ng-maxlength="255" required>
                         <p ng-show="(postForm.copyright_owner.$dirty && postForm.author.$invalid) || (postForm.author.$invalid && !postForm.author.$pristine)" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;An author for this post is required.</p>
                         <p ng-show="postForm.author.$error.maxlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;The author name is too long.</p>
@@ -51,14 +51,14 @@
 
                 <dl class="dl-horizontal">
                     <dt><label for="postBody">Body</label></dt>
-                    <dd class="input-group-sm vmargin-bottom-small">
+                    <dd class="input-group-sm">
                         <textarea id="postBody" name="body" class="form-control" redactor="{ minHeight: 400 }" ng-model="data.post.body" redactor></textarea>
                     </dd>
                 </dl>
 
                 <dl class="dl-horizontal">
                     <dt><label for="postCopyright">Copyright Owner</label></dt>
-                    <dd class="input-group-sm vmargin-bottom-small" ng-class="{ 'has-error' : postForm.copyright_owner.$invalid && !postForm.copyright_owner.$pristine }">
+                    <dd class="input-group-sm" ng-class="{ 'has-error' : postForm.copyright_owner.$invalid && !postForm.copyright_owner.$pristine }">
                         <input id="postCopyright" name="copyright_owner" type="text" class="form-control" placeholder="enter a copyright owner for this post (required)" ng-model="data.post.copyright_owner" ng-minlength="1" ng-maxlength="255" required>
                         <p ng-show="(postForm.tag_list.$dirty && postForm.copyright_owner.$invalid) || (postForm.copyright_owner.$invalid && !postForm.copyright_owner.$pristine)" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;A copyright owner for this post is required.</p>
                         <p ng-show="postForm.copyright_owner.$error.maxlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;The copyright owner name is too long.</p>
@@ -67,7 +67,7 @@
 
                 <dl class="dl-horizontal">
                     <dt><label for="postTags">Post Tags</label></dt>
-                    <dd class="input-group-sm vmargin-bottom-small">
+                    <dd class="input-group-sm">
                         <input id="postTags" name="tag_list" type="text" class="form-control" placeholder="enter the tags for this post separated by commas" ng-model="data.post.tag_list" ng-maxlength="255">
                         <p ng-show="postForm.tag_list.$error.maxlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;You've entered too many tags.</p>
                     </dd>
@@ -79,7 +79,7 @@
 
                 <dl class="dl-horizontal">
                     <dt><label for="seoTitle">Title</label></dt>
-                    <dd class="input-group-sm vmargin-bottom-small">
+                    <dd class="input-group-sm">
                         <input id="seoTitle" name="seo_title" type="text" class="form-control" placeholder="enter an HTML meta title for this post" ng-model="data.post.seo_title" ng-maxlength="255">
                         <p ng-show="postForm.seo_title.$error.maxlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Your seo title is too long.</p>
                     </dd>
@@ -87,7 +87,7 @@
 
                 <dl class="dl-horizontal">
                     <dt><label for="seoDescription">Description</label></dt>
-                    <dd class="input-group-sm vmargin-bottom-small">
+                    <dd class="input-group-sm">
                         <input id="seoDescription" name="seo_description" type="text" class="form-control" placeholder="enter an HTML meta description for this post" ng-model="data.post.seo_description" ng-maxlength="255">
                         <p ng-show="postForm.seo_description.$error.maxlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;Your seo description is too long.</p>
                     </dd>
@@ -95,7 +95,7 @@
 
                 <dl class="dl-horizontal">
                     <dt><label for="seoPreview">Search Display Preview</label></dt>
-                    <dd class="input-group-sm vmargin-bottom-small">
+                    <dd class="input-group-sm">
                         <textarea id="seoPreview" name="seo_preview" class="form-control" rows="5" disabled="disabled" ng-model="data.post.seo_preview"></textarea>
                     </dd>
                 </dl>
@@ -106,7 +106,7 @@
 
                 <dl class="dl-horizontal">
                     <dt><label for="publishStatus">Status</label></dt>
-                    <dd class="input-group-sm vmargin-bottom-small">
+                    <dd class="input-group-sm">
                         <div id="publishStatus" name="draft" class="btn-group btn-group-sm">
                             <button name="draft" type="button" class="btn btn-default" ng-model="data.post.draft" btn-radio="true">Draft</button>
                             <button name="draft" type="button" class="btn btn-default" ng-model="data.post.draft" btn-radio="false">Publish</button>
@@ -120,7 +120,7 @@
 
                 <dl class="dl-horizontal">
                     <dt><label for="postPublishDate">Publish Date</label></dt>
-                    <dd class="input-group input-group-sm vmargin-bottom-small">
+                    <dd class="input-group input-group-sm">
                         <input id="postPublishDate" name="published_at" type="text" class="form-control" datepicker-popup="{{datepicker.format}}" is-open="datepicker.publishAtOpen" show-weeks="false" ng-model="data.post.published_at" placeholder="Immediately"/>
                         <span class="input-group-btn">
                             <button class="btn btn-default" ng-click="datepicker.open('publishAtOpen')"><i class="fa fa-calendar"></i></button>
@@ -130,7 +130,7 @@
 
                 <dl class="dl-horizontal">
                     <dt><label for="postExpireDate">Expiration Date</label></dt>
-                    <dd class="input-group input-group-sm vmargin-bottom-small">
+                    <dd class="input-group input-group-sm">
                         <input id="postExpireDate" name="expired_at" type="text" class="form-control" datepicker-popup="{{datepicker.format}}" is-open="datepicker.expireAtOpen" show-weeks="false" ng-model="data.post.expired_at" placeholder="No expiration date"/>
                         <span class="input-group-btn">
                             <button class="btn btn-default" ng-click="datepicker.open('expireAtOpen')"><i class="fa fa-calendar"></i></button>
@@ -219,7 +219,7 @@
 
                 <textarea name="notes" class="form-control vmargin-bottom-small" rows="5" ng-model="data.post.notes"></textarea>
 
-                <!--<h4 class="vmargin-top-large hr-below">Statistics and Tracking</h4>-->
+                <!--<legend>Statistics and Tracking</legend>-->
             </fieldset>
         </div>
 
@@ -227,7 +227,7 @@
             <fieldset>
                 <dl class="dl-horizontal">
                     <dt></dt>
-                    <dd class="input-group-sm vmargin-bottom-small">
+                    <dd class="input-group-sm">
                         <button type="submit" class="btn btn-primary btn-sm" ng-disabled="postForm.$invalid || !data.post.type || !data.post.job_phase || !data.post.display || data.post.draft==false">
                             <span class="fa fa-cloud-upload"></span> Update
                         </button>

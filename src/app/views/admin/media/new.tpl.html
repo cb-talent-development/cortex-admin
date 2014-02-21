@@ -1,29 +1,26 @@
 <div class="container">
     <h3>Add Media</h3>
 
-    <h4 class="vmargin-top-large hr-below">Upload File from Computer</h4>
-
-    <div class="vmargin-bottom-large"
-         ng-file-drop="onFileSelect($files)"
+    <fieldset ng-file-drop="onFileSelect($files)"
          ng-file-drop-available="dropSupported=true">
+        <legend>Upload File from Computer</legend>
 
-        <div class="clearfix vmargin-bottom-small">
-            <div class="col-md-2 text-right">
+        <dl class="dl-horizontal">
+            <dt>
                 <label for="fileSelect">Select File</label>
-            </div>
-
-            <div class="col-md-8">
+            </dt>
+            <dd>
                 <div class="form-group" ng-hide="data.upload.file">
                     <span class="btn btn-primary btn-sm btn-file">
                         <span class="fa fa-file"></span> Browse... <input id="fileSelect" type="file" ng-file-select="onFileSelect($files)">
                     </span>
 
-                    <div class="vmargin-top-small drag-and-drop-area text-center" ng-show="dropSupported" ng-file-drop="onFileSelect($files);" ng-file-drop-available="dropSupported=true">
+                    <div class="drag-and-drop-area text-center" ng-show="dropSupported" ng-file-drop="onFileSelect($files);" ng-file-drop-available="dropSupported=true">
                         <span class="fa-5x fa fa-file"></span><br>
                         ...or drag and drop a file here.
                     </div>
 
-                    <div class="vmargin-top-small drag-and-drop-area text-center" ng-show="!dropSupported">Use the browse file button above to select a file from your computer.</div>
+                    <div class="drag-and-drop-area text-center" ng-show="!dropSupported">Use the browse file button above to select a file from your computer.</div>
                 </div>
 
                 <div class="form-group input-group input-group-sm" ng-show="data.upload.file">
@@ -36,67 +33,56 @@
                 </div>
 
                 <progressbar ng-show="data.upload.file" animate="false" max="100" value="data.upload.progress" type="success"><strong>{{data.upload.progress}}%</strong></progressbar>
-            </div>
-        </div>
+            </dd>
+        </dl>
+    </fieldset>
 
-        <div class="clearfix vmargin-bottom-small hr-below">
-            <form novalidate name="mediaForm">
-                <fieldset ng-disabled="data.upload.progress">
-                    <div class="clearfix vmargin-bottom-small">
-                        <div class="col-md-2 text-right">
-                            <label for="fileDisplayName">Display Name</label>
-                        </div>
+    <form novalidate name="mediaForm">
+        <fieldset ng-disabled="data.upload.progress">
+            <dl class="dl-horizontal">
+                <dt><label for="fileDisplayName">Display Name</label></dt>
+                <dd class="input-group-sm">
+                    <input id="fileDisplayName" type="text" class="form-control" placeholder="Display Name (Required)" ng-model="data.media.name" required />
+                </dd>
+            </dl>
+        </fieldset>
 
-                        <div class="col-md-8 input-group-sm clearfix vmargin-bottom-small">
-                            <input id="fileDisplayName" type="text" class="form-control" placeholder="Display Name (Required)" ng-model="data.media.name" required />
-                        </div>
-                    </div>
+        <fieldset ng-disabled="data.upload.progress">
+            <legend>Media Attributes</legend>
 
-                    <h4 class="vmargin-top-large hr-below">Media Attributes</h4>
+            <dl class="dl-horizontal">
+                <dt><label for="fileDescription">Description</label></dt>
+                <dd class="input-group-sm">
+                    <textarea id="fileDescription" class="form-control vertical-only" rows="3" placeholder="Description of the media" ng-model="data.media.description"></textarea>
+                </dd>
+            </dl>
 
-                    <div class="clearfix vmargin-bottom-small">
-                        <div class="col-md-2 text-right">
-                            <label for="fileDescription">Description</label>
-                        </div>
+            <dl class="dl-horizontal">
+                <dt><label for="fileTags">Tags</label></dt>
+                <dd class="input-group-sm">
+                    <input id="fileTags" type="text" class="form-control" placeholder="Separate tags with commas" ng-model="data.media.tag_list" />
+                </dd>
+            </dl>
 
-                        <div class="col-md-8 input-group-sm">
-                            <textarea id="fileDescription" class="form-control vertical-only" rows="3" placeholder="Description of the media" ng-model="data.media.description"></textarea>
-                        </div>
-                    </div>
+            <dl class="dl-horizontal">
+                <dt><label for="fileExpirationDate">Expiration Date</label></dt>
+                <dd class="input-group input-group-sm">
+                    <input id="fileExpirationDate" type="text" class="form-control" datepicker-popup="{{datepicker.format}}" is-open="datepicker.expireAtOpen" show-weeks="false" ng-model="data.media.deactive_at" placeholder="Media expiration date"/><span class="input-group-btn"><button class="btn btn-default" ng-click="datepicker.open('expireAtOpen')"><i class="fa fa-calendar"></i></button></span>
+                </dd>
+            </dl>
+        </fieldset>
+    </form>
 
-                    <div class="clearfix vmargin-bottom-small">
-                        <div class="col-md-2 text-right">
-                            <label for="fileTags">Tags</label>
-                        </div>
+    <dl class="dl-horizontal">
+        <dt></dt>
+        <dd>
+            <button class="btn btn-primary btn-sm" ng-disabled="!data.upload.progress && (!data.upload.file || mediaForm.$invalid)" ng-click="startUpload()">
+                <span class="fa fa-cloud-upload"></span> Add Media
+            </button>
 
-                        <div class="col-md-8 input-group-sm">
-                            <input id="fileTags" type="text" class="form-control" placeholder="Separate tags with commas" ng-model="data.media.tag_list" />
-                        </div>
-                    </div>
-
-                    <div class="clearfix vmargin-bottom-small">
-                        <div class="col-md-2 text-right">
-                            <label for="fileExpirationDate">Expiration Date</label>
-                        </div>
-
-                        <div class="col-md-3 input-group input-group-sm">
-                            <input id="fileExpirationDate" type="text" class="form-control" datepicker-popup="{{datepicker.format}}" is-open="datepicker.expireAtOpen" show-weeks="false" ng-model="data.media.deactive_at" placeholder="Media expiration date"/><span class="input-group-btn"><button class="btn btn-default" ng-click="datepicker.open('expireAtOpen')"><i class="fa fa-calendar"></i></button></span>
-                        </div>
-                    </div>
-                </fieldset>
-            </form>
-        </div>
-
-        <div class="clearfix vmargin-bottom-small">
-            <div class="col-md-offset-2 col-md-8">
-                <button class="btn btn-primary btn-sm" ng-disabled="!data.upload.progress && (!data.upload.file || mediaForm.$invalid)" ng-click="startUpload()">
-                    <span class="fa fa-cloud-upload"></span> Add Media
-                </button>
-
-                <button class="btn btn-sm" ng-disabled="!data.upload.progress" ng-click="upload.abort()">
-                    <span class="fa fa-reply"></span> Return to Media Library
-                </button>
-            </div>
-        </div>
-    </div>
+            <button class="btn btn-sm" ng-disabled="!data.upload.progress" ng-click="upload.abort()">
+                <span class="fa fa-reply"></span> Return to Media Library
+            </button>
+        </dd>
+    </dl>
 </div>
