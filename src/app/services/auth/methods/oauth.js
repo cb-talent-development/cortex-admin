@@ -37,7 +37,7 @@ module.factory('oauth', function($rootScope, $location, $q, $http, $log, util) {
 
       // Construct OAuth authorize call URL
       var authorizeUrl = util.supplant(
-        '{baseUrl}/authorize?client_id={clientId}&redirect_url={redirectUrl}&scope={scope}&state={state}', {
+        '{baseUrl}/authorize?response_type=token&client_id={clientId}&redirect_url={redirectUrl}&scope={scope}&state={state}', {
         clientId:    settings.apiClientId,
         baseUrl:     settings.oauthBaseUrl,
         redirectUrl: $location.absUrl(),
