@@ -6,10 +6,10 @@ var module = angular.module('cortex.controllers.admin.media.new', [
     'angularFileUpload',
     'angular-flash.service',
     'cortex.settings',
-    'cortex.services.auth'
+    'cortex.services.session'
 ]);
 
-module.controller('MediaNewCtrl', function($scope, $timeout, $upload, $state, flash, settings, auth) {
+module.controller('MediaNewCtrl', function($scope, $timeout, $upload, $state, flash, settings, session) {
 
     // angular-bootstrap datepicker settings
     $scope.datepicker = {
@@ -39,7 +39,7 @@ module.controller('MediaNewCtrl', function($scope, $timeout, $upload, $state, fl
         }
 
         var httpConfig = {
-            url: config.apiBaseUrl + '/media',
+            url: settings.apiBaseUrl + '/media',
             method: 'POST',
             data: {media: $scope.data.media},
             file: file,
@@ -53,7 +53,7 @@ module.controller('MediaNewCtrl', function($scope, $timeout, $upload, $state, fl
             }
         };
 
-        httpConfig = angular.extend(httpConfig, auth.buildConfig());
+        httpConfig = angular.extend(httpConfig, session.buildConfig());
 
         $scope.upload = $upload.upload(httpConfig)
         .progress(function(e) {

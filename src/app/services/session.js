@@ -144,6 +144,10 @@ module.factory('session', function($q, $http, $cookieStore, $rootScope, auth, ev
     // Fetch the current user
     currentUser: function() {
       return session.currentUser;
+    },
+
+    buildConfig: function() {
+      return auth.buildConfig(session.credentials);
     }
   };
 });

@@ -3,6 +3,7 @@ describe('Admin Edit Media Module', function() {
     beforeEach(function(){
         angular.mock.module('cortex.controllers.admin.media.edit');
         testing.provideConfig(testing.config.withEmptyApiBaseUrl);
+        testing.provideSession();
     });
 
     describe('Edit Media Controller', function() {

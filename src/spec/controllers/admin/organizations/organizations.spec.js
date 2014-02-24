@@ -10,6 +10,7 @@ describe('Admin.Organizations State Module', function() {
     beforeEach(function() {
         angular.mock.module('cortex.controllers.admin.organizations');
         testing.provideConfig(testing.config.withEmptyApiBaseUrl);
+        testing.provideSession();
     });
 
     // $scope, $stateParams, $state, Organizations

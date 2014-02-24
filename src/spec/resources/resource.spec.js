@@ -7,6 +7,7 @@ describe('Cortex Resources Resource Module', function(){
 
         beforeEach(function() {
             testing.provideConfig(testing.config.withEmptyApiBaseUrl);
+            testing.provideSession();
 
             inject(function($injector){
                 $httpBackend = $injector.get('$httpBackend');

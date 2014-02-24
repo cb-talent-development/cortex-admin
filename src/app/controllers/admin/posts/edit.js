@@ -12,7 +12,7 @@ var module = angular.module('cortex.controllers.admin.posts.edit', [
     'cortex.filters'
 ]);
 
-module.controller('PostsEditCtrl', function($scope, $stateParams, Posts, Categories, $timeout, $q, $filter, flash) {
+module.controller('PostsEditCtrl', function($scope, $stateParams, $timeout, $q, $filter, flash, Posts, post, categories) {
 
     $scope.data = {
         savePost: function() {
@@ -52,34 +52,26 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, Posts, Categor
         });
     };
 
-    if ($stateParams.postId) {
-        $q.all([
-            Posts.get({id: $stateParams.postId}).$promise,
-            Categories.hierarchy().$promise])
-          .then(function(res) {
-              var post = res[0];
-              var categories = res[1];
+    if (post) {
+        $scope.data.post = post;
 
-              $scope.data.post = post;
-
-              var selectedCategoryIds = _.map(post.categories, function(c) { return c.id; });
-              _.each(categories, function(category){
-                  _.each(category.children, function(child){
-                      if (_.contains(selectedCategoryIds, child.id)) {
-                          child.$selected = true;
-                      }
-                  });
-              });
-
-              $scope.data.categories = categories;
-              initializePost();
+        var selectedCategoryIds = _.map(post.categories, function(c) { return c.id; });
+        _.each(categories, function(category){
+          _.each(category.children, function(child){
+              if (_.contains(selectedCategoryIds, child.id)) {
+                  child.$selected = true;
+              }
           });
+        });
+
+        $scope.data.categories = categories;
+        initializePost();
     }
     else {
         $scope.data.post = new Posts();
         $scope.data.post.draft = true;
         $scope.data.post.copyright_owner = $scope.data.post.copyright_owner || "CareerBuilder, LLC";
-        $scope.data.categories = Categories.hierarchy();
+        $scope.data.categories = categories;
         initializePost();
     }
 

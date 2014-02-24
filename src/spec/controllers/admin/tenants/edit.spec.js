@@ -3,6 +3,7 @@ describe('Admin Edit Tenants Module', function() {
     beforeEach(function(){
         angular.mock.module('cortex.controllers.admin.tenants.edit');
         testing.provideConfig(testing.config.withEmptyApiBaseUrl);
+        testing.provideSession();
     });
 
     describe('Edit Tenants Controller', function() {

@@ -82,13 +82,29 @@ module.config(function ($stateProvider) {
         .state('admin.posts.new', {
             url: '/new',
             templateUrl: 'views/admin/posts/edit.tpl.html',
-            controller: 'PostsEditCtrl'
+            controller: 'PostsEditCtrl',
+            resolve: {
+                post: function() {
+                    return null;
+                },
+                categories: function(Categories) {
+                    return Categories.hierarchy().$promise;
+                }
+            }
         })
 
         .state('admin.posts.edit', {
             url: '/:postId/edit',
             templateUrl: 'views/admin/posts/edit.tpl.html',
-            controller: 'PostsEditCtrl'
+            controller: 'PostsEditCtrl',
+            resolve: {
+                post: function(Posts, $stateParams) {
+                    return Posts.get({id: $stateParams.postId}).$promise;                
+                },
+                categories: function(Categories) {
+                    return Categories.hierarchy().$promise;
+                }
+            }
         })
 
         .state('admin.posts.manage', {

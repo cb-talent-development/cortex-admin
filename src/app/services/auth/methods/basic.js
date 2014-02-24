@@ -11,16 +11,22 @@ module.factory('basicAuth', function($q, base64) {
         authorize: function(credentials) {
             var d = $q.defer();
 
-            if (credentials.login && credentials.password) {
-                credentials.encoded = base64.encode(credentials.login + ':' + credentials.password);
-            }
-            else if (!credentials.encoded) {
-                return $q.reject('Plain or encoded login and password required for HTTP Basic auth.');
+            if (!credentials.encoded) {
+                if (credentials.login && credentials.password) {
+                    credentials.encoded = base64.encode(credentials.login + ':' + credentials.password);                    
+                }
+                else {
+                    return $q.reject('Plain or encoded login and password required for HTTP Basic auth.');
+                }
             }
 
-            var httpConfig = {headers: {Authorization: 'Basic ' + credentials.encoded}};
+            var httpConfig = this.buildConfig(credentials);
             d.resolve({httpConfig: httpConfig, credentials: {encoded: credentials.encoded, method: 'basic'}});            
             return d.promise;
+        },
+
+        buildConfig: function(credentials) {
+            return {headers: {Authorization: 'Basic ' + credentials.encoded}};
         }
     };
 });

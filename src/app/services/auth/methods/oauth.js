@@ -26,7 +26,7 @@ module.factory('oauth', function($rootScope, $location, $q, $http, $log, util) {
       var d = $q.defer();
 
       if (credentials.accessToken) {
-        var httpConfig = buildConfig(credentials.accessToken, 'OAuth');
+        var httpConfig = this.buildConfig(credentials);
         d.resolve({httpConfig: httpConfig, credentials: {accessToken: credentials.accessToken, method: 'oauth'}});
         return d.promise;
       }
@@ -50,6 +50,10 @@ module.factory('oauth', function($rootScope, $location, $q, $http, $log, util) {
 
       // Start OAuth flow, note: promise is unused
       window.location.href = authorizeUrl;
+    },
+
+    buildConfig: function(credentials) {
+      return {headers: {Authorization: 'OAuth ' + credentials.accessToken}};
     }
   };
 });

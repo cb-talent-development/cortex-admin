@@ -25,11 +25,6 @@ module.factory('auth', function($q, $http, $log, $cookieStore, $rootScope, base6
              });
     };
 
-    var buildConfig = function(value, scheme) {
-        scheme = scheme || 'Basic';
-        return {headers: {Authorization: scheme + ' ' + value}};
-    };
-
     var onAuthMethodSuccess = function(resp) {
         var d = $q.defer();
         getCurrentUser(resp.httpConfig, resp.credentials, d);
@@ -44,10 +39,7 @@ module.factory('auth', function($q, $http, $log, $cookieStore, $rootScope, base6
     // Iterate over auth methods, supplying callbacks to trigger user load
     // and returning a promise
     angular.forEach([basicAuth, oauth], function(method){
-        methods[method.name] = function(credentials) {
-            return method.authorize(credentials)
-                         .then(onAuthMethodSuccess, onAuthMethodError);
-        };
+        methods[method.name] = method;
     });
 
     return {
@@ -57,11 +49,13 @@ module.factory('auth', function($q, $http, $log, $cookieStore, $rootScope, base6
 
         // Create a $http config object that may be merged with others to provide
         // an authorized request
-        buildConfig: buildConfig,
+        buildConfig: function(credentials) {
+            return this.methods[credentials.method || 'basic'].buildConfig(credentials);
+        },
 
         // Basic Auth shortcut, returns promise
         login: function(login, password) {
-            return this.methods['basic']({login: login, password: password});
+            return this.methods['basic'].authorize({login: login, password: password});
         },
 
         // Authorize and return the current user, returns promise
@@ -72,7 +66,7 @@ module.factory('auth', function($q, $http, $log, $cookieStore, $rootScope, base6
                 d.reject('Authorization method ' +  credentials.method + ' not supported.');
                 return d.promise;
             }
-            return this.methods[method](credentials);
+            return this.methods[method].authorize(credentials);
         }
     };
 });

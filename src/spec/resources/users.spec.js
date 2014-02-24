@@ -7,6 +7,7 @@ describe('Cortex Resources User Module', function() {
 
         beforeEach(function() {
             testing.provideConfig(testing.config.withEmptyApiBaseUrl);
+            testing.provideSession();
 
             inject(function($injector) {
                 Users = $injector.get('Users');

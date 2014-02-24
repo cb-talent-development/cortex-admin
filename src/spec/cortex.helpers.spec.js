@@ -6,6 +6,17 @@ var testing = {
             $provide.constant('settings', settings);
         });
     },
+    provideSession: function() {
+        angular.mock.module(function($provide){
+            $provide.factory('session', function() {
+                return {
+                    buildConfig: function() {
+                        return {};
+                    }
+                };
+            });
+        });
+    },
     config: {
         withEmptyApiBaseUrl: {apiBaseUrl: ''}
     },
