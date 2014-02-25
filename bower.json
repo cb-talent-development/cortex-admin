@@ -13,7 +13,6 @@
         "underscore": "~1.5",
         "jquery": "~1",
         "bootstrap-sass-official": "~3",
-        "bootstrap": "~3",
         "angular-flash": "~0",
         "angularjs-file-upload": "~1",
         "momentjs": "~2.5",
