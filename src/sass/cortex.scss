@@ -19,6 +19,14 @@
   &:-ms-input-placeholder { @content; }
 }
 
+@mixin navbar-bg-position($vertical-pos) {
+  background-position: center $vertical-pos;
+}
+
+@mixin navbar-bg-position-dual($vertical-pos) {
+  background-position: center $vertical-pos, center bottom;
+}
+
 ////////////////////////////////
 // Typography
 
@@ -48,6 +56,8 @@
 @mixin vmargin-bot($margin) {
   margin-bottom: $margin;
 }
+
+// Keeping the hard-defined margins until refactoring is complete
 
 .hmargin-left-small {
   margin-left: 10px;
@@ -85,6 +95,12 @@
 ////////////////////////////////
 // Bootstrap Restyling/Overrides
 
+header div.container {
+  @media (min-width: 768px) and (max-width: 991px) {
+    width: 100%;
+  }
+}
+
 .container {
   .btn{
     border: 1px solid #f47937;
@@ -102,10 +118,15 @@
     color: white;
   }
 
+  .navbar-collapse {
+    @media (max-width: 768px) {
+      box-shadow: none;
+    }
+  }
+
   .navbar-form {
     margin: 5px 0 0.625em 0;
     padding: 0;
-    width: 15em;
 
     .btn-search {
       width: 2em;
@@ -210,24 +231,46 @@ textarea.vertical-only { resize: vertical; }
 ////////////////////////////////
 // Cortex Navbar
 
+.nav li a { 
+  padding: 10px;
+}
+
 .navbar-admin {
   @include gradient-vertical-three-colors(#022745, #104070, 70%, #09335B);
   padding: 0;
   font-family: 'PT Sans', Arial, sans-serif;
 }
 
+.nav-button {
+  color: white;
+  font-size: 22px;
+}
+
 .menu-item-bg {
   background: url(../assets/admin/header-sprites.png) no-repeat, url(../assets/admin/header-active.png) repeat-x;
   padding-top: 5.35em;
   padding-bottom: 0.75em;
+  @media (max-width: 767px) {
+      background: none;
+      padding: 0.5em 0.5em 0.5em 2em;
+  }
+}
+
+.profile-search {
+  width: 12.5em;
+
+  @media (max-width: 991px) {
+    @include hmargin-left(5px);
+      }
 }
 
 .navbar-profile-box {
-  width: 15em;
+  width: 11.6em;
   padding: .31em;
   margin-top: 0.625em;
   border-radius: 5px;
   background-color: rgba(255,255,255,0.05);
+  color: white;
   @include text-overflow();
 
   .navbar-profile-avatar {
@@ -236,26 +279,18 @@ textarea.vertical-only { resize: vertical; }
   }
 
   .navbar-profile-text {
-    width: 10.5em;
+    width: 7.5em;
     @include hmargin-left(5px);
   }
 }
 
 .form-search{
   height: 1.67em;
-  width: 15.5em !important;
+  width: 11.7em !important;
   border: none;
-  @include border-left-radius(5px);
   background-color: rgba(255,255,255,0.05);
   color: white;
-}
-
-@mixin navbar-bg-position($vertical-pos) {
-  background-position: center $vertical-pos;
-}
-
-@mixin navbar-bg-position-dual($vertical-pos) {
-  background-position: center $vertical-pos, center bottom;
+  @include border-left-radius(5px);
 }
 
 .navbar-items-admin {
@@ -263,63 +298,67 @@ textarea.vertical-only { resize: vertical; }
     color: white;
   }
 
+  a:hover {
+    @media (max-width: 767px) {
+      color: #f47937;
+    }
+  }
+
   li.active{
     background: url(../assets/admin/header-active.png) center bottom repeat-x;
+    @media (max-width: 767px) {
+      background: #eee;
+      font-weight: bold;
+
+      a {
+        color: #f47937;
+      }
+    }
+  }
+
+  a.navbar-item, a.navbar-item:hover, a.navbar-item:focus {
+    @extend .menu-item-bg;
   }
 
   a.navbar-item-tenant {
-    @extend .menu-item-bg;
     @include navbar-bg-position(-100px);
   }
 
   a.navbar-item-tenant:hover, a.navbar-item-tenant:focus {
-    @extend .menu-item-bg;
     @include navbar-bg-position-dual(0);
   }
 
   a.navbar-item-media {
-    @extend .menu-item-bg;
     @include navbar-bg-position(-300px);
   }
 
   a.navbar-item-media:hover, a.navbar-item-media:focus {
-    @extend .menu-item-bg;
     @include navbar-bg-position-dual(-200px);
   }
 
   a.navbar-item-permissions {
-    @extend .menu-item-bg;
     @include navbar-bg-position(-500px);
   }
 
   a.navbar-item-permissions:hover, a.navbar-item-permissions:focus {
-    @extend .menu-item-bg;
     @include navbar-bg-position-dual(-400px);
   }
 
-  a.navbar-item-content {
-    @extend .menu-item-bg;
+  a.navbar-item-posts {
     @include navbar-bg-position(-700px);
   }
 
-  a.navbar-item-content:hover, a.navbar-item-content:focus {
-    @extend .menu-item-bg;
+  a.navbar-item-posts:hover, a.navbar-item-posts:focus {
     @include navbar-bg-position-dual(-600px);
   }
 
   a.navbar-item-apps {
-    @extend .menu-item-bg;
     @include navbar-bg-position(-900px);
   }
 
   a.navbar-item-apps:hover, a.navbar-item-apps:focus {
-    @extend .menu-item-bg;
     @include navbar-bg-position-dual(-800px);
   }
-}
-
-.navbar-right{
-  color: white;
 }
 
 ////////////////////////////////
