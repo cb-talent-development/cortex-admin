@@ -1,14 +1,4 @@
 ////////////////////////////////
-// Container
-
-// Wow, people have screens *much* larger than 1200px
-@media (min-width: 1400px) {
-  .container.content {
-    width: 1400px;
-  }
-}
-
-////////////////////////////////
 // Mixins (Should be moved to separate file)
 
 @mixin placeholder {
@@ -27,20 +17,6 @@
   background-position: center $vertical-pos, center bottom;
 }
 
-////////////////////////////////
-// Typography
-
-.smaller {
-  font-size: 75%;
-}
-
-.word-break-all {
-  word-break: break-all;
-}
-
-////////////////////////////////
-// Margins
-
 @mixin hmargin-left($margin) {
   margin-left: $margin;
 }
@@ -56,6 +32,30 @@
 @mixin vmargin-bot($margin) {
   margin-bottom: $margin;
 }
+
+////////////////////////////////
+// Container
+
+// Wow, people have screens *much* larger than 1200px
+@media (min-width: 1400px) {
+  .container.content {
+    width: 1400px;
+  }
+}
+
+////////////////////////////////
+// Typography
+
+.smaller {
+  font-size: 75%;
+}
+
+.word-break-all {
+  word-break: break-all;
+}
+
+////////////////////////////////
+// Margins
 
 // Keeping the hard-defined margins until refactoring is complete
 
@@ -164,6 +164,32 @@ dl.dl-horizontal {
 }
 
 ////////////////////////////////
+// Sidebar Filters
+
+.filter-group {
+  button{
+    @include vmargin-top(10px);
+    @include vmargin-bot(10px);
+  }
+
+  legend {
+    color: #999;
+    padding-bottom: 3px;
+    @extend .small;
+    @include vmargin-bot(10px);
+  }
+
+  .input-group button {
+    @include vmargin-top(0);
+    @include vmargin-bot(0);
+  }
+
+  label {
+    font-weight: normal;
+  }
+}
+
+////////////////////////////////
 // Inputs
 
 /*
@@ -226,6 +252,22 @@ textarea.vertical-only { resize: vertical; }
     height: auto;
     opacity: 1;
   }
+}
+
+////////////////////////////////
+// Posts Index Table
+
+.posts-table th{
+  cursor: default;
+  background: white;
+}
+
+.posts-table thead tr:hover {
+  color: black;
+}
+
+.posts-table tbody tr:hover {
+  @extend .btn:hover;
 }
 
 ////////////////////////////////
