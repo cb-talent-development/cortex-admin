@@ -81,7 +81,7 @@ module.factory('session', function($q, $http, $cookieStore, $rootScope, auth, ev
 
   var onAuthError = function(resp) {
     session.nuke();
-    $q.reject(resp);
+    return $q.reject(resp);
   };
 
   // Load user from cookie credentials

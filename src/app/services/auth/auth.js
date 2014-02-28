@@ -40,6 +40,10 @@ module.factory('auth', function($q, $http, $log, $cookieStore, $rootScope, base6
     // and returning a promise
     angular.forEach([basicAuth, oauth], function(method){
         methods[method.name] = method;
+        methods[method.name].authorizeAndFetchUser = function(credentials) {
+            return method.authorize(credentials)
+                .then(onAuthMethodSuccess, onAuthMethodError);       
+        };
     });
 
     return {
@@ -55,7 +59,7 @@ module.factory('auth', function($q, $http, $log, $cookieStore, $rootScope, base6
 
         // Basic Auth shortcut, returns promise
         login: function(login, password) {
-            return this.methods['basic'].authorize({login: login, password: password});
+            return this.methods['basic'].authorizeAndFetchUser({login: login, password: password});
         },
 
         // Authorize and return the current user, returns promise
@@ -66,7 +70,7 @@ module.factory('auth', function($q, $http, $log, $cookieStore, $rootScope, base6
                 d.reject('Authorization method ' +  credentials.method + ' not supported.');
                 return d.promise;
             }
-            return this.methods[method].authorize(credentials);
+            return this.methods[method].authorizeAndFetchUser(credentials);
         }
     };
 });
