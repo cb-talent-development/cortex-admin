@@ -1,8 +1,9 @@
 var module = angular.module('cortex.services.auth.methods.oauth', [
-    'cortex.util'
+    'cortex.util',
+    'cortex.settings'
 ]);
 
-module.factory('oauth', function($rootScope, $location, $q, $http, $log, util) {
+module.factory('oauth', function($rootScope, $location, $q, $http, $log, $cookieStore, util, settings) {
 
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
     if (toParams.access_token && toParams.state) {
@@ -38,10 +39,10 @@ module.factory('oauth', function($rootScope, $location, $q, $http, $log, util) {
       // Construct OAuth authorize call URL
       var authorizeUrl = util.supplant(
         '{baseUrl}/authorize?response_type=token&client_id={clientId}&redirect_url={redirectUrl}&scope={scope}&state={state}', {
-        clientId:    settings.apiClientId,
-        baseUrl:     settings.oauthBaseUrl,
-        redirectUrl: $location.absUrl(),
-        scope:       settings.oauthScope,
+        clientId:    escape(settings.apiClientId),
+        baseUrl:     settings.oauthUrl,
+        redirectUrl: escape($location.absUrl()),
+        scope:       escape(settings.oauthScopes.join(' ')),
         state:       state
     });
 
