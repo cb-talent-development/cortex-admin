@@ -146,7 +146,7 @@ legend {
   font-size: 18px;
   font-weight: 500;
   border-bottom: 1px solid #f47937;
-  @include vmargin-top(10px);
+  padding-top: 10px;
   @include vmargin-bot(10px);
 }
 
