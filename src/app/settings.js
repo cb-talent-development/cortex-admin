@@ -45,7 +45,7 @@ var staging = {
     'view:media', 'modify:media'
   ],
   apiBaseUrl: 'http://raccoon.cb-cortex-stg.staging.c66.me/api/v1',
-  apiClientId: 'cortex-admin-staging',
+  apiClientId: 'c85f7f5ce7b44a67bf36b6faadffda38d2dc16bb7057590031c92205e082d660',
   paging: {
       defaultPerPage: 10
   }

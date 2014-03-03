@@ -1,12 +1,17 @@
 var module = angular.module('cortex.controllers.users.login', [
     'cortex.services.auth',
     'cortex.services.session',
-    'angular-flash.service'
+    'angular-flash.service',
+    'cortex.constants'
 ]);
 
-module.controller('LoginCtrl', function ($scope, $state, session, auth, flash) {
+module.controller('LoginCtrl', function ($rootScope, $scope, $state, session, auth, events, flash) {
 
     session.promises.loadRememberedUser.then(function() {
+        $state.go('admin.organizations.manage');
+    });
+
+    $rootScope.$on(events.USER_LOADED, function() {
         $state.go('admin.organizations.manage');
     });
 
