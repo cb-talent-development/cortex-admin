@@ -173,9 +173,9 @@ dl.dl-horizontal {
   }
 
   legend {
-    color: #999;
     padding-bottom: 3px;
     @extend .small;
+    @extend .text-muted;
     @include vmargin-bot(10px);
   }
 
