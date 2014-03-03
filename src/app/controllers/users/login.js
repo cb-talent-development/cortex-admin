@@ -4,7 +4,7 @@ var module = angular.module('cortex.controllers.users.login', [
     'angular-flash.service'
 ]);
 
-module.controller('LoginCtrl', function ($scope, $state, session, auth) {
+module.controller('LoginCtrl', function ($scope, $state, session, auth, flash) {
 
     session.promises.loadRememberedUser.then(function() {
         $state.go('admin.organizations.manage');
@@ -19,8 +19,8 @@ module.controller('LoginCtrl', function ($scope, $state, session, auth) {
         })
             //Error
             .catch(function(flash) {
-                flash.error = "Invalid email or password.";
         });
+                flash.error = 'Invalid email or password.';
     };
 
     $scope.cortexLogin = function() {
