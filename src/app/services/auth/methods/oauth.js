@@ -85,7 +85,7 @@ module.provider('oauth', function() {
         },
 
         buildConfig: function(credentials) {
-          return {headers: {Authorization: 'OAuth ' + credentials.accessToken}};
+          return {headers: {Authorization: 'Bearer ' + credentials.accessToken}};
         }
       };
     }
