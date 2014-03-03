@@ -102,12 +102,12 @@
             </fieldset>
 
             <fieldset>
-                <legend>Publish Status</legend>
+                <legend>Publishing</legend>
 
                 <dl class="dl-horizontal">
-                    <dt><label for="publishStatus">Status</label></dt>
-                    <dd class="input-group-sm">
-                        <div id="publishStatus" name="draft" class="btn-group btn-group-sm">
+                    <dt><label for="postPublishStatus">Status</label></dt>
+                    <dd class="input-group input-group-sm">
+                        <div id="postPublishStatus" name="draft" class="btn-group btn-group-sm">
                             <button name="draft" type="button" class="btn btn-default" ng-model="data.post.draft" btn-radio="true">Draft</button>
                             <button name="draft" type="button" class="btn btn-default" ng-model="data.post.draft" btn-radio="false">Publish</button>
                         </div>
@@ -116,7 +116,15 @@
             </fieldset>
 
             <fieldset ng-if="(data.post.draft === false || data.post.published_at === nil)">
-                <legend>Publish Schedule</legend>
+                <dl class="dl-horizontal">
+                    <dt><label for="postPublishScheduling">Publish Scheduling</label></dt>
+                    <dd class="input-group input-group-sm">
+                        <div id="postPublishScheduling" name="post-scheduling" class="btn-group btn-group-sm">
+                            <button name="post-scheduling" type="button" class="btn btn-default">Now</button>
+                            <button name="post-scheduling" type="button" class="btn btn-default">Later</button>
+                        </div>
+                    </dd>
+                </dl>
 
                 <dl class="dl-horizontal">
                     <dt><label for="postPublishDate">Publish Date</label></dt>
