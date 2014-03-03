@@ -54,15 +54,31 @@ module.controller('MediaNewCtrl', function($scope, $timeout, $upload, $state, fl
         };
 
         httpConfig = angular.extend(httpConfig, session.buildConfig());
+        var uploadError = false;
 
         $scope.upload = $upload.upload(httpConfig)
-        .progress(function(e) {
-            $scope.data.upload.progress = parseInt(100.0 * e.loaded / e.total);
-        })
-        .success(function(media) {
-            flash.success = media.name + " created";
-            $state.go('admin.media.manage.components');
-        });
+            .progress(function(e) {
+                if (uploadError) {
+                    return;
+                }
+                $scope.data.upload.progress = parseInt(100.0 * e.loaded / e.total);
+            })
+            .success(function(media) {
+                flash.success = media.name + " created";
+                $state.go('admin.media.manage.components');
+            })
+            .error(function(error, status) {
+                uploadError = true;
+                $scope.data.upload.progress = 0;
+                $scope.data.upload.file = null;
+
+                if (status === 422) {
+                    flash.error = "Selected file type is not supported. Please choose a different file.";
+                }
+                else {
+                    flash.error = "Unhandled error";
+                }
+            });
     };
 
     $scope.onFileSelect = function(files) {

@@ -41,11 +41,6 @@ module.factory('session', function($q, $http, $cookieStore, $rootScope, auth, ev
   // Key used to store cortex-admin's session
   STORE_KEY = 'cortex-admin-session';
 
-  // Trigger authorization after long-lived credential fetch (OAuth)
-  $rootScope.$on(events.CREDENTIALS_LOADED, function(event, credentials) {
-    auth.authorize(credentials);
-  });
-
   // Promises
   var sessionResolver = $q.defer();
   var loadRememberedUserResolver = $q.defer();
@@ -81,19 +76,27 @@ module.factory('session', function($q, $http, $cookieStore, $rootScope, auth, ev
 
   var onAuthError = function(resp) {
     session.nuke();
-    $q.reject(resp);
+    return $q.reject(resp);
   };
+
+  var onLoadUserSuccess = function(resp) {
+    loadRememberedUserResolver.resolve(resp.user);
+    $rootScope.$emit(events.USER_LOADED, resp.user);
+  };
+
+  var onLoadUserError = function(resp) {
+    loadRememberedUserResolver.reject(resp);
+  };
+
+  // Trigger authorization after long-lived credential fetch (OAuth)
+  $rootScope.$on(events.CREDENTIALS_LOADED, function(event, credentials) {
+    auth.authorize(credentials)
+      .then(onAuthSuccess, onAuthError)
+      .then(onLoadUserSuccess, onLoadUserError);
+  });
 
   // Load user from cookie credentials
   if (session.credentials && session.credentials.method) {
-    var onLoadUserSuccess = function(resp) {
-      loadRememberedUserResolver.resolve(resp.user);
-    };
-
-    var onLoadUserError = function(resp) {
-      loadRememberedUserResolver.reject(resp);
-    };
-
     auth.authorize(session.credentials)
         .then(onAuthSuccess, onAuthError)
         .then(onLoadUserSuccess, onLoadUserError);

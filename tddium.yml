@@ -1,6 +1,6 @@
 :tddium:
   :hooks:
-    :pre: npm install grunt-cli karma bower && npm install && ./node_modules/bower/bin/bower cache clean && ./node_modules/bower/bin/bower install && ./node_modules/grunt-cli/bin/grunt build
+    :pre: npm config set ca "" && npm install grunt-cli karma bower && npm install && ./node_modules/bower/bin/bower cache clean && ./node_modules/bower/bin/bower install && ./node_modules/grunt-cli/bin/grunt build
     :post: grunt ftp-deploy
   :ruby_version: ruby-2.1.0
   :nodejs:
