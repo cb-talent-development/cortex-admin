@@ -12,18 +12,20 @@ module.controller('LoginCtrl', function ($scope, $state, session, auth, flash) {
 
     $scope.login = function(username, password) {
         session.login(username, password, $scope).then(
-
             //Success
-            function(){
-            $state.go('admin.organizations.manage');
-        })
+            function() {
+                $state.go('admin.organizations.manage');
+            },
             //Error
-            .catch(function(flash) {
-        });
+            function() {
+                $scope.loginError = true;
                 flash.error = 'Invalid email or password.';
+            }
+        );
     };
 
     $scope.cortexLogin = function() {
         auth.methods.oauth.authorize({});
     };
 });
+
