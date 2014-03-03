@@ -1,6 +1,7 @@
 var module = angular.module('cortex.controllers.users.login', [
     'cortex.services.auth',
-    'cortex.services.session'
+    'cortex.services.session',
+    'angular-flash.service'
 ]);
 
 module.controller('LoginCtrl', function ($scope, $state, session, auth) {
@@ -10,8 +11,15 @@ module.controller('LoginCtrl', function ($scope, $state, session, auth) {
     });
 
     $scope.login = function(username, password) {
-        session.login(username, password, $scope).then(function(){
+        session.login(username, password, $scope).then(
+
+            //Success
+            function(){
             $state.go('admin.organizations.manage');
+        })
+            //Error
+            .catch(function(flash) {
+                flash.error = "Invalid email or password.";
         });
     };
 
