@@ -90,6 +90,7 @@ module.exports = {
       /**
       * Bootstrap JS sources
       */
+      'vendor/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/transition.js',
       'vendor/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/collapse.js'
     ],
     css: [
