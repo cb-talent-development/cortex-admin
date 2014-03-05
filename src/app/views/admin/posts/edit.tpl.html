@@ -64,14 +64,6 @@
                         <p ng-show="postForm.copyright_owner.$error.maxlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;The copyright owner name is too long.</p>
                     </dd>
                 </dl>
-
-                <dl class="dl-horizontal">
-                    <dt><label for="postTags">Post Tags</label></dt>
-                    <dd class="input-group-sm">
-                        <input id="postTags" name="tag_list" type="text" class="form-control" placeholder="enter the tags for this post separated by commas" ng-model="data.post.tag_list" ng-maxlength="255">
-                        <p ng-show="postForm.tag_list.$error.maxlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;You've entered too many tags.</p>
-                    </dd>
-                </dl>
             </fieldset>
 
             <fieldset>
@@ -181,6 +173,15 @@
                         </div>
                     </div>
                 </span>
+            </fieldset>
+
+            <fieldset>
+                <legend>Post Tags</legend>
+
+                <div class="input-group-sm" name="job_phase">
+                    <input id="postTags" name="tag_list" type="text" class="form-control" placeholder="enter the tags for this post separated by commas" ng-model="data.post.tag_list" ng-maxlength="255">
+                        <p ng-show="postForm.tag_list.$error.maxlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;You've entered too many tags.</p>
+                 </div>
             </fieldset>
 
             <fieldset>
