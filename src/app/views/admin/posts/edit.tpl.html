@@ -107,7 +107,7 @@
                 </dl>
             </fieldset>
 
-            <fieldset ng-if="(data.post.draft === false || data.post.published_at === nil)">
+            <fieldset ng-if="!data.post.draft">
                 <dl class="dl-horizontal">
                     <dt><label for="postPublishScheduling">Publish Scheduling</label></dt>
                     <dd class="input-group input-group-sm">
@@ -118,27 +118,31 @@
                     </dd>
                 </dl>
 
-                <dl class="dl-horizontal">
-                    <dt><label for="postPublishDate">Publish Date</label></dt>
-                    <dd class="input-group input-group-sm">
-                        <input id="postPublishDate" name="published_at" type="text" class="form-control" datepicker-popup="{{datepicker.format}}" is-open="datepicker.publishAtOpen" show-weeks="false" ng-model="data.post.published_at" placeholder="Immediately"/>
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" ng-click="datepicker.open('publishAtOpen')"><i class="fa fa-calendar"></i></button>
-                        </span>
-                    </dd>
-                </dl>
+                <fieldset ng-if="data.post.scheduled">
+                    <dl class="dl-horizontal">
+                        <dt><label for="postPublishDate">Publish Date</label></dt>
+                        <dd class="input-group input-group-sm">
+                            <input id="postPublishDate" name="published_at" type="text" class="form-control" datepicker-popup="{{datepicker.format}}" is-open="datepicker.publishAtOpen" show-weeks="false" ng-model="data.post.published_at" placeholder="select a publishing date for this post"/>
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" ng-click="datepicker.open('publishAtOpen')"><span class="fa fa-calendar"></span></button>
+                            </span>
+                        </dd>
+                    </dl>
+                </fieldset>
 
-                <dl class="dl-horizontal">
-                    <dt><label for="postExpireDate">Expiration Date</label></dt>
-                    <dd class="input-group input-group-sm">
-                        <input id="postExpireDate" name="expired_at" type="text" class="form-control" datepicker-popup="{{datepicker.format}}" is-open="datepicker.expireAtOpen" show-weeks="false" ng-model="data.post.expired_at" placeholder="No expiration date"/>
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" ng-click="datepicker.open('expireAtOpen')"><i class="fa fa-calendar"></i></button>
-                        </span>
-                    </dd>
-                </dl>
+                <fieldset ng-if="data.post.scheduled || !data.post.scheduled">
+                    <dl class="dl-horizontal">
+                        <dt><label for="postExpireDate">Expiration Date</label></dt>
+                        <dd class="input-group input-group-sm">
+                            <input id="postExpireDate" name="expired_at" type="text" class="form-control" datepicker-popup="{{datepicker.format}}" is-open="datepicker.expireAtOpen" show-weeks="false" ng-model="data.post.expired_at" placeholder="select an expiration date, if blank post will not expire"/>
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" ng-click="datepicker.open('expireAtOpen')"><span class="fa fa-calendar"></span></button>
+                            </span>
+                        </dd>
+                    </dl>
+                </fieldset>
 
-                <dl class="dl-horizontal">
+                <dl class="dl-horizontal" ng-if="!data.post.draft">
                     <dt></dt>
                     <dd>
                         <em>This post will be published to <strong>Advice &amp; Resources</strong>
