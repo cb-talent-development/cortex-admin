@@ -44,6 +44,7 @@ module.controller('CortexAdminCtrl', function ($scope, $rootScope, $state, $stat
         // Add $state and $stateParams to root scope for universal access within views
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
+        $rootScope.currentUser = null;
 
         // Moment.js
         $rootScope.moment = window.moment;
@@ -78,7 +79,9 @@ module.controller('CortexAdminCtrl', function ($scope, $rootScope, $state, $stat
         // Go to login page if unauthorized
         session.promises.loadRememberedUser.then(
             // Success
-            null, 
+            function(user) {
+                $rootScope.currentUser = user;
+            }, 
             // Error
             function() {
                 if (!onLoginPage()) {
