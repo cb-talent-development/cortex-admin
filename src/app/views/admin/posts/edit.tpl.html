@@ -237,8 +237,11 @@
                 <dl class="dl-horizontal">
                     <dt></dt>
                     <dd class="input-group-sm">
-                        <button type="submit" class="btn btn-primary btn-sm" ng-disabled="postForm.$invalid || !data.post.type || !data.post.job_phase || !data.post.display || data.post.draft==false">
-                            <span class="fa fa-cloud-upload"></span> Update
+                        <button type="submit" class="btn btn-primary btn-sm" ng-disabled="postForm.$invalid || !data.post.type || !data.post.job_phase || !data.post.display">
+                            <span class="fa fa-cloud-upload"></span>
+                            <span ng-if="data.post.draft && !data.post.scheduled">Save as Draft</span>
+                            <span ng-if="!data.post.draft && !data.post.scheduled">Save and Publish Now</span>
+                            <span ng-if="data.post.scheduled">Save and Schedule Publish</span>
                         </button>
 
                         <button class="btn btn-sm">
