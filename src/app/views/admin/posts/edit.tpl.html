@@ -141,7 +141,12 @@
                 <dl class="dl-horizontal">
                     <dt></dt>
                     <dd>
-                        <em>This post will be published to <strong>Advice &amp; Resources</strong> on <strong>{{ data.post.published_at | date:'yyyy/MM/dd' }}</strong> <span ng-if="!data.post.expired_at"> and will not expire.</span> <span ng-if="data.post.expired_at">and will expire on <strong>{{ data.post.expired_at | date:'yyyy/MM/dd' }}.</strong></span></em>
+                        <em>This post will be published to <strong>Advice &amp; Resources</strong>
+                            <span ng-if="!data.post.scheduled"><strong> immediately</strong></span>
+                            <span ng-if="data.post.scheduled && data.post.published_at"> on<strong> {{ data.post.published_at | date:'yyyy/MM/dd' }}</strong></span>
+                            <span ng-if="!data.post.expired_at"> and will not expire.</span>
+                            <span ng-if="data.post.expired_at">and will expire on <strong>{{ data.post.expired_at | date:'yyyy/MM/dd' }}.</strong></span>
+                        </em>
                     </dd>
                 </dl>
             </fieldset>
