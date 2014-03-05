@@ -33,9 +33,6 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, $timeout, $q, 
     };
 
     var initializePost  = function() {
-
-        $scope.data.post.published_at = $scope.data.post.published_at || new Date();
-
         $scope.$watch('data.post.job_phase', function(phase) {
 
             if (phase === undefined) {
@@ -84,6 +81,15 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, $timeout, $q, 
             $timeout(function(){
                 $scope.datepicker[datepicker] = true;
             });
+        }
+    };
+
+    $scope.postScheduling = {
+        now: function() {
+            $scope.data.post.published_at = Date.now();
+        },
+        scheduled: function() {
+            $scope.data.post.published_at = null;
         }
     };
 });
