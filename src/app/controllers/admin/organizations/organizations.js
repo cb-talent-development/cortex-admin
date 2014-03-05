@@ -5,22 +5,18 @@ var module = angular.module('cortex.controllers.admin.organizations', [
     'cortex.constants'
 ]);
 
-module.controller('OrganizationsCtrl', function ($scope, $stateParams, $state, events, Tenants) {
+module.controller('OrganizationsCtrl', function ($scope, $stateParams, $state, events, Tenants, organizations) {
 
-    var loadOrganizations = function () {
-        // Fetch organizations from API and set selected, if available
-        $scope.data.organizations = Tenants.query(function(organizations) {
-            var orgId = $stateParams.organizationId;
-            if (orgId) {
-                $scope.data.organization = _.find(organizations, function(o){
-                    return o.id == orgId;
-                });
-            }
-        });
+    $scope.data = {
+        organizations: organizations        
     };
 
-    $scope.data = {};
-    loadOrganizations();
+    var orgId = $stateParams.organizationId;
+    if (orgId) {
+        $scope.data.organization = _.find(organizations, function(o){
+            return o.id == orgId;
+        });
+    }
 
     $scope.$on(events.ORGANIZATIONS_CHANGE, function (event) {
         loadOrganizations();

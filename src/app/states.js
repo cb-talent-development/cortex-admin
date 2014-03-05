@@ -127,7 +127,12 @@ module.config(function ($stateProvider) {
             url: '/organizations/:organizationId',
             template: '<ui-view/>',
             abstract: true,
-            controller: 'OrganizationsCtrl'
+            controller: 'OrganizationsCtrl',
+            resolve: {
+                organizations: function(Tenants) {
+                    return Tenants.query().$promise;
+                }
+            }
         })
 
         .state('admin.organizations.tenants', {
@@ -163,6 +168,11 @@ module.config(function ($stateProvider) {
                 },
                 'tenants-details': {
                     templateUrl: 'views/admin/tenants/manage.details.tpl.html'
+                }
+            },
+            resolve: {
+                organization: function($stateParams, Tenants) {
+                    return Tenants.get({id: $stateParams.organizationId, include_children: true}).$promise;
                 }
             }
         })

@@ -68,4 +68,4 @@ var production = {
   }
 };
 
-module.constant('settings', staging);
+module.constant('settings', local);
