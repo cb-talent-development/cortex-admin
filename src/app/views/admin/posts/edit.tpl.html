@@ -162,7 +162,7 @@
 
                 <div class="input-group-sm" name="job_phase">
                     <select name="job_phase" class="form-control" ng-model="data.post.job_phase" required>
-                        <option value="" default selected>Select a career phase for this post</option>
+                        <span ng-if="!data.post.job_phase"><option value="" selected>Select a career phase for this post</option></span>
                         <option ng-repeat="phase in data.phases" value="{{ phase }}">
                             {{phase | humanize}}
                         </option>
@@ -244,7 +244,6 @@
         <div class="col-md-8">
             <fieldset>
                 <dl class="dl-horizontal">
-                    <dt></dt>
                     <dd class="input-group-sm">
                         <button type="submit" class="btn btn-primary btn-sm" ng-disabled="postForm.$invalid || !data.post.type || !data.post.job_phase || !data.post.display">
                             <span class="fa fa-cloud-upload"></span>
@@ -254,7 +253,8 @@
                         </button>
 
                         <button class="btn btn-sm">
-                            <span class="fa fa-search"></span> Preview
+                            <span class="fa fa-search"></span>
+                            Preview
                         </button>
                     </dd>
                 </dl>
