@@ -111,9 +111,9 @@
                 <dl class="dl-horizontal">
                     <dt><label for="postPublishScheduling">Publish Scheduling</label></dt>
                     <dd class="input-group input-group-sm">
-                        <div id="postPublishScheduling" name="post-scheduling" class="btn-group btn-group-sm">
-                            <button name="post-scheduling" type="button" class="btn btn-default">Now</button>
-                            <button name="post-scheduling" type="button" class="btn btn-default">Later</button>
+                        <div id="postPublishScheduling" name="post_scheduling" class="btn-group btn-group-sm">
+                            <button name="post_scheduling" type="button" class="btn btn-default" ng-model="data.post.scheduled" btn-radio="false" ng-click="postScheduling.now">Now</button>
+                            <button name="post_scheduling" type="button" class="btn btn-default" ng-model="data.post.scheduled" btn-radio="true" ng-click="postScheduling.scheduled">Schedule</button>
                         </div>
                     </dd>
                 </dl>
