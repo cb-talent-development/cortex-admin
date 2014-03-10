@@ -12,7 +12,7 @@ var module = angular.module('cortex.controllers.admin.posts.edit', [
     'cortex.filters'
 ]);
 
-module.controller('PostsEditCtrl', function($scope, $stateParams, $timeout, $q, $filter, flash, Posts, post, categories) {
+module.controller('PostsEditCtrl', function($scope, $stateParams, $timeout, $q, $filter, flash, Posts, post, categories, session) {
 
     $scope.data = {
         savePost: function() {
@@ -67,6 +67,7 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, $timeout, $q, 
     else {
         $scope.data.post = new Posts();
         $scope.data.post.draft = true;
+        $scope.data.post.author = session.currentUser().fullname;
         $scope.data.post.copyright_owner = $scope.data.post.copyright_owner || "CareerBuilder, LLC";
         $scope.data.categories = categories;
         initializePost();

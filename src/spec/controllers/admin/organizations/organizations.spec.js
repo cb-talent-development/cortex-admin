@@ -22,15 +22,14 @@ describe('Admin.Organizations State Module', function() {
             $stateParams = {};
 
             $httpBackend = _$httpBackend_;
-            $httpBackend.expectGET('/tenants')
-                        .respond(mockData.organizations);
 
             createController = function() {
                 return organizationsCtrl = $controller('OrganizationsCtrl', {
                     $scope: $scope,
                     $stateParams: $stateParams,
                     $state: null,
-                    Tenants: Tenants
+                    Tenants: Tenants,
+                    organizations: mockData.organizations
                 });
             };
         }));
@@ -43,8 +42,6 @@ describe('Admin.Organizations State Module', function() {
         it('has set $scope.data.organizations', function() {
             var controller = createController();
 
-            $httpBackend.flush();
-
             expect($scope.data.organizations[0].id).toEqual(1);
             expect($scope.data.organizations.length).toEqual(2);
         });
@@ -52,7 +49,6 @@ describe('Admin.Organizations State Module', function() {
         it('has set $scope.data.organization if $stateParams.organizationId set', function() {
             $stateParams.organizationId = 1;
             var controller = createController();
-            $httpBackend.flush();
             expect($scope.data.organization.id).toEqual(1);
         });
     });
