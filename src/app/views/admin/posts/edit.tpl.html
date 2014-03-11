@@ -161,13 +161,10 @@
                 <legend>Career Phase</legend>
 
                 <div class="input-group-sm" name="job_phase">
-                    <select name="job_phase" class="form-control" ng-model="data.post.job_phase" required>
-                        <span ng-if="!data.post.job_phase"><option value="" selected>Select a career phase for this post</option></span>
-                        <option ng-repeat="phase in data.phases" value="{{ phase }}">
-                            {{phase | humanize}}
-                        </option>
+                    <select name="job_phase" class="form-control" ng-model="data.post.job_phase" ng-options="(phase | humanize) for phase in data.phases" value="{{ phase }}" required>
+                        <option value="" selected> select a career phase for this post </option>
                     </select>
-                    <p ng-show="!data.post.job_phase && postForm.author.$valid" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;A career phase for this post is required.</p>
+                    <p ng-show="!data.post.job_phase && postForm.$valid" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;A career phase for this post is required.</p>
                 </div>
 
                 <span ng-if="data.jobPhaseCategories.length">
