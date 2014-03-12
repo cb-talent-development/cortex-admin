@@ -29,6 +29,10 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, $timeout, $q, 
             'find_the_job',
             'get_the_job',
             'on_the_job'
+        ],
+        scheduled: [
+            true,
+            false
         ]
     };
 
@@ -62,6 +66,15 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, $timeout, $q, 
         });
 
         $scope.data.categories = categories;
+
+        var todayDate = moment(new Date());
+        var postDate = moment($scope.data.post.published_at);
+
+        if ($scope.data.post.draft === false && postDate.diff(todayDate, 'days') < 1 ) {
+            $scope.data.scheduled = false;
+        } else {
+            $scope.data.scheduled = true;
+        }
         initializePost();
     }
     else {
@@ -87,10 +100,10 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, $timeout, $q, 
 
     $scope.postScheduling = {
         now: function() {
-            $scope.data.post.published_at = Date.now();
+            $scope.data.post.published_at = new Date();
         },
         scheduled: function() {
-            $scope.data.post.published_at = null;
+            $scope.data.post.published_at = null || $scope.data.post.published_at;
         }
     };
 });
