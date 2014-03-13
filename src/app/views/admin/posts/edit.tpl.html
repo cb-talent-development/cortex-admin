@@ -64,14 +64,6 @@
                         <p ng-show="postForm.copyright_owner.$error.maxlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;The copyright owner name is too long.</p>
                     </dd>
                 </dl>
-
-                <dl class="dl-horizontal">
-                    <dt><label for="postTags">Post Tags</label></dt>
-                    <dd class="input-group-sm">
-                        <input id="postTags" name="tag_list" type="text" class="form-control" placeholder="enter the tags for this post separated by commas" ng-model="data.post.tag_list" ng-maxlength="255">
-                        <p ng-show="postForm.tag_list.$error.maxlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;You've entered too many tags.</p>
-                    </dd>
-                </dl>
             </fieldset>
 
             <fieldset>
@@ -102,12 +94,12 @@
             </fieldset>
 
             <fieldset>
-                <legend>Publish Status</legend>
+                <legend>Publishing</legend>
 
                 <dl class="dl-horizontal">
-                    <dt><label for="publishStatus">Status</label></dt>
-                    <dd class="input-group-sm">
-                        <div id="publishStatus" name="draft" class="btn-group btn-group-sm">
+                    <dt><label for="postPublishStatus">Status</label></dt>
+                    <dd class="input-group input-group-sm">
+                        <div id="postPublishStatus" name="draft" class="btn-group btn-group-sm">
                             <button name="draft" type="button" class="btn btn-default" ng-model="data.post.draft" btn-radio="true">Draft</button>
                             <button name="draft" type="button" class="btn btn-default" ng-model="data.post.draft" btn-radio="false">Publish</button>
                         </div>
@@ -115,33 +107,50 @@
                 </dl>
             </fieldset>
 
-            <fieldset ng-if="(data.post.draft === false || data.post.published_at === nil)">
-                <legend>Publish Schedule</legend>
-
+            <fieldset ng-if="!data.post.draft">
                 <dl class="dl-horizontal">
-                    <dt><label for="postPublishDate">Publish Date</label></dt>
+                    <dt><label for="postPublishScheduling">Publish Scheduling</label></dt>
                     <dd class="input-group input-group-sm">
-                        <input id="postPublishDate" name="published_at" type="text" class="form-control" datepicker-popup="{{datepicker.format}}" is-open="datepicker.publishAtOpen" show-weeks="false" ng-model="data.post.published_at" placeholder="Immediately"/>
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" ng-click="datepicker.open('publishAtOpen')"><i class="fa fa-calendar"></i></button>
-                        </span>
+                        <div id="postPublishScheduling" name="post_scheduling" class="btn-group btn-group-sm">
+                            <button name="post_scheduling" type="button" class="btn btn-default" ng-model="data.scheduled" btn-radio="false" ng-click="postScheduling.now()">Now</button>
+                            <button name="post_scheduling" type="button" class="btn btn-default" ng-model="data.scheduled" btn-radio="true" ng-click="postScheduling.scheduled()">Schedule</button>
+                        </div>
                     </dd>
                 </dl>
 
-                <dl class="dl-horizontal">
-                    <dt><label for="postExpireDate">Expiration Date</label></dt>
-                    <dd class="input-group input-group-sm">
-                        <input id="postExpireDate" name="expired_at" type="text" class="form-control" datepicker-popup="{{datepicker.format}}" is-open="datepicker.expireAtOpen" show-weeks="false" ng-model="data.post.expired_at" placeholder="No expiration date"/>
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" ng-click="datepicker.open('expireAtOpen')"><i class="fa fa-calendar"></i></button>
-                        </span>
-                    </dd>
-                </dl>
+                <fieldset ng-if="data.scheduled">
+                    <dl class="dl-horizontal">
+                        <dt><label for="postPublishDate">Publish Date</label></dt>
+                        <dd class="input-group input-group-sm">
+                            <input id="postPublishDate" name="published_at" type="text" class="form-control" datepicker-popup="{{datepicker.format}}" is-open="datepicker.publishAtOpen" show-weeks="false" ng-model="data.post.published_at" placeholder="select a publishing date for this post"/>
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" ng-click="datepicker.open('publishAtOpen')"><span class="fa fa-calendar"></span></button>
+                            </span>
+                        </dd>
+                    </dl>
+                </fieldset>
 
-                <dl class="dl-horizontal">
+                <fieldset ng-if="data.scheduled || !data.scheduled">
+                    <dl class="dl-horizontal">
+                        <dt><label for="postExpireDate">Expiration Date</label></dt>
+                        <dd class="input-group input-group-sm">
+                            <input id="postExpireDate" name="expired_at" type="text" class="form-control" datepicker-popup="{{datepicker.format}}" is-open="datepicker.expireAtOpen" show-weeks="false" ng-model="data.post.expired_at" placeholder="select an expiration date, if blank post will not expire"/>
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" ng-click="datepicker.open('expireAtOpen')"><span class="fa fa-calendar"></span></button>
+                            </span>
+                        </dd>
+                    </dl>
+                </fieldset>
+
+                <dl class="dl-horizontal" ng-if="!data.post.draft">
                     <dt></dt>
                     <dd>
-                        <em>This post will be published to <strong>Advice &amp; Resources</strong> on <strong>{{ data.post.published_at | date:'yyyy/MM/dd' }}</strong> <span ng-if="!data.post.expired_at"> and will not expire.</span> <span ng-if="data.post.expired_at">and will expire on <strong>{{ data.post.expired_at | date:'yyyy/MM/dd' }}.</strong></span></em>
+                        <em>This post will be published to <strong>Advice &amp; Resources</strong>
+                            <span ng-if="!data.scheduled"><strong> immediately</strong></span>
+                            <span ng-if="data.scheduled && data.post.published_at"> on<strong> {{ data.post.published_at | date:'yyyy/MM/dd' }}</strong></span>
+                            <span ng-if="!data.post.expired_at"> and will not expire.</span>
+                            <span ng-if="data.post.expired_at">and will expire on <strong>{{ data.post.expired_at | date:'yyyy/MM/dd' }}.</strong></span>
+                        </em>
                     </dd>
                 </dl>
             </fieldset>
@@ -152,13 +161,10 @@
                 <legend>Career Phase</legend>
 
                 <div class="input-group-sm" name="job_phase">
-                    <select name="job_phase" class="form-control" ng-model="data.post.job_phase" required>
-                        <option value="" default selected>Select a career phase for this post</option>
-                        <option ng-repeat="phase in data.phases" value="{{ phase }}">
-                            {{phase | humanize}}
-                        </option>
+                    <select name="job_phase" class="form-control" ng-model="data.post.job_phase" ng-options="(phase | humanize) for phase in data.phases" value="{{ phase }}" required>
+                        <option value="" selected> select a career phase for this post </option>
                     </select>
-                    <p ng-show="!data.post.job_phase && postForm.author.$valid" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;A career phase for this post is required.</p>
+                    <p ng-show="!data.post.job_phase && postForm.$valid" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;A career phase for this post is required.</p>
                 </div>
 
                 <span ng-if="data.jobPhaseCategories.length">
@@ -173,6 +179,15 @@
                         </div>
                     </div>
                 </span>
+            </fieldset>
+
+            <fieldset>
+                <legend>Post Tags</legend>
+
+                <div class="input-group-sm" name="job_phase">
+                    <input id="postTags" name="tag_list" type="text" class="form-control" placeholder="enter the tags for this post separated by commas" ng-model="data.post.tag_list" ng-maxlength="255">
+                        <p ng-show="postForm.tag_list.$error.maxlength" class="has-error"><span class="glyphicon glyphicon-remove form-control-feedback"></span>&nbsp;You've entered too many tags.</p>
+                 </div>
             </fieldset>
 
             <fieldset>
@@ -226,14 +241,17 @@
         <div class="col-md-8">
             <fieldset>
                 <dl class="dl-horizontal">
-                    <dt></dt>
                     <dd class="input-group-sm">
-                        <button type="submit" class="btn btn-primary btn-sm" ng-disabled="postForm.$invalid || !data.post.type || !data.post.job_phase || !data.post.display || data.post.draft==false">
-                            <span class="fa fa-cloud-upload"></span> Update
+                        <button type="submit" class="btn btn-primary btn-sm" ng-disabled="postForm.$invalid || !data.post.type || !data.post.job_phase || !data.post.display">
+                            <span class="fa fa-cloud-upload"></span>
+                            <span ng-if="data.post.draft && !data.post.scheduled">Save as Draft</span>
+                            <span ng-if="!data.post.draft && !data.post.scheduled">Save and Publish Now</span>
+                            <span ng-if="data.post.scheduled">Save and Schedule Publish</span>
                         </button>
 
                         <button class="btn btn-sm">
-                            <span class="fa fa-search"></span> Preview
+                            <span class="fa fa-search"></span>
+                            Preview
                         </button>
                     </dd>
                 </dl>
