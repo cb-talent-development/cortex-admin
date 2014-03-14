@@ -36,7 +36,7 @@ var development = {
 
 var staging = {
   environmentName: 'Staging',
-  oauthUrl: 'http://raccoon.cb-cortex-stg.staging.c66.me/oauth',
+  oauthUrl: 'http://swordfish.cb-cortex-stg.staging.c66.me/oauth',
   oauthScopes: [
     'view:profile', 'modify:profile',
     'view:tenants', 'modify:tenants',
@@ -44,7 +44,7 @@ var staging = {
     'view:posts', 'modify:posts',
     'view:media', 'modify:media'
   ],
-  apiBaseUrl: 'http://raccoon.cb-cortex-stg.staging.c66.me/api/v1',
+  apiBaseUrl: 'http://swordfish.cb-cortex-stg.staging.c66.me/api/v1',
   apiClientId: 'c85f7f5ce7b44a67bf36b6faadffda38d2dc16bb7057590031c92205e082d660',
   paging: {
       defaultPerPage: 10
