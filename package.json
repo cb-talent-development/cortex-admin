@@ -24,7 +24,7 @@
         "grunt-contrib-uglify": "~0.3",
         "grunt-contrib-coffee": "~0.9",
         "grunt-contrib-sass": "~0.7",
-        "grunt-karma": "~0.6",
+        "grunt-karma": "~0.8",
         "grunt-ngmin": "~0.0",
         "grunt-html2js": "~0.2",
         "grunt-coffeelint": "~0.0",
