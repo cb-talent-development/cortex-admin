@@ -1,5 +1,5 @@
-module.exports = function ( karma ) {
-  karma.configure({
+module.exports = function ( config ) {
+  config.set({
     /** 
      * From where to look for files, starting with the location of this file.
      */
