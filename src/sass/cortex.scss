@@ -404,5 +404,11 @@ textarea.vertical-only { resize: vertical; }
 }
 
 ////////////////////////////////
+// Modal Dialogs
+@media (min-width: 992px) {
+  .modal-xl {
+    width: 1200px; } }
+
+////////////////////////////////
 // AngularJS
 [ng-click], [ui-sref] { cursor: pointer; }

@@ -1,6 +1,6 @@
 <div id="batch-and-search" class="clearfix">
     <div class="pull-left hmargin-right-small">
-        <button ui-sref="admin.media.new" class="btn btn-sm btn-primary" type="button">Upload</button>
+        <button ui-sref="^.^.new" class="btn btn-sm btn-primary" type="button">Upload</button>
     </div>
 
     <div class="dropdown pull-left">
@@ -116,7 +116,10 @@
                 <button class="btn btn-sm btn-danger" type="button" ng-click="deleteMedia(media)" ng-if="!media.consumed"><i class="fa fa-trash-o"></i> Delete
                 </button>
                 <button class="btn btn-sm btn-primary" type="button"
-                        ui-sref="admin.media.edit({mediaId: {{media.id}}})"><i class="fa fa-edit"></i> Edit
+                        ui-sref="^.^.edit({mediaId: {{media.id}}})"><i class="fa fa-edit"></i> Edit
+                </button>
+                <button ng-if="$state.includes('admin.posts')" class="btn btn-sm btn-primary" type="button" ng-click="insertMedia(media)">
+                    <i class="fa fa-plus"></i> Insert Asset
                 </button>
             </div>
         </div>

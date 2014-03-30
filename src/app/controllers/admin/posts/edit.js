@@ -6,13 +6,14 @@ var module = angular.module('cortex.controllers.admin.posts.edit', [
     'ui.bootstrap.datepicker',
     'angular-flash.service',
     'angular-redactor',
+    'cortex.directives.modalShow',
     'cortex.services.auth',
     'cortex.resources.posts',
     'cortex.resources.categories',
     'cortex.filters'
 ]);
 
-module.controller('PostsEditCtrl', function($scope, $stateParams, $timeout, $q, $filter, flash, Posts, post, categories, session) {
+module.controller('PostsEditCtrl', function($scope, $state, $stateParams, $timeout, $q, $filter, flash, Posts, post, categories, session, PostBodyEditorService) {
 
     $scope.data = {
         savePost: function() {
@@ -75,7 +76,6 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, $timeout, $q, 
         } else {
             $scope.data.scheduled = true;
         }
-        initializePost();
     }
     else {
         $scope.data.post = new Posts();
@@ -83,8 +83,8 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, $timeout, $q, 
         $scope.data.post.author = session.currentUser().fullname;
         $scope.data.post.copyright_owner = $scope.data.post.copyright_owner || "CareerBuilder, LLC";
         $scope.data.categories = categories;
-        initializePost();
     }
+    initializePost();
 
     // angular-bootstrap datepicker settings
     $scope.datepicker = {
@@ -104,6 +104,51 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, $timeout, $q, 
         },
         scheduled: function() {
             $scope.data.post.published_at = null || $scope.data.post.published_at;
+        }
+    };
+
+    $scope.postBodyEditorService = PostBodyEditorService;
+
+    $scope.addMediaPopup = function() {
+        $scope.postBodyEditorService.postMedia = $scope.data.post.media;
+
+        // Note: This will get the wrong cursor position if there are multiple Redactor areas and the user selects a different one.
+        console.log(this.getCaretOffset(this.getCurrent()));
+
+        $scope.postBodyEditorService.postBody = $scope.data.post.body;
+
+        $scope.$watch('postBodyEditorService.postBody', function(postBody) {
+            $scope.data.post.body = postBody;
+        });
+
+        $scope.$watch('postBodyEditorService.postMedia', function(postMedia) {
+            $scope.data.post.media = postMedia;
+        });
+
+        $state.go('.media.manage.components');
+    };
+
+    $scope.redactorOptions = {
+        buttons: ['html', '|', 'formatting', '|', 'bold', 'italic', 'deleted', '|',
+            'unorderedlist', 'orderedlist', 'outdent', 'indent', '|',
+            'media', 'image', 'file', 'table', 'link', '|', 'alignment', '|', 'horizontalrule'],
+        buttonsCustom: {
+            media: {
+                title: 'Media',
+                callback: $scope.addMediaPopup
+            }
+        },
+        minHeight: 400
+    };
+});
+
+module.factory('PostBodyEditorService', function($filter) {
+    return {
+        postCursorPosition: '',
+        postBody: '',
+        postMedia: [],
+        addMedia: function(media) {
+            this.postBody = this.postBody.replace('$MEDIA_PLACEHOLDER$', $filter('mediaToHtml')(media));
         }
     };
 });

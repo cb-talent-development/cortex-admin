@@ -91,7 +91,8 @@ module.exports = {
       * Bootstrap JS sources
       */
       'vendor/bootstrap-sass/vendor/assets/javascripts/bootstrap/transition.js',
-      'vendor/bootstrap-sass/vendor/assets/javascripts/bootstrap/collapse.js'
+      'vendor/bootstrap-sass/vendor/assets/javascripts/bootstrap/collapse.js',
+      'vendor/bootstrap-sass/vendor/assets/javascripts/bootstrap/modal.js'
     ],
     css: [
       'vendor/ng-table/ng-table.css',
