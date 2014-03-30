@@ -95,6 +95,7 @@ module.exports = {
     ],
     css: [
       'vendor/ng-table/ng-table.css',
+      'vendor/font-awesome/css/font-awesome.css',
       'src/vendor/redactor/redactor.css'
     ],
     assets: [
