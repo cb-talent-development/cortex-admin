@@ -34,7 +34,7 @@
     "karma-phantomjs-launcher": "~0.1",
     "karma-jasmine": "~0.1",
     "karma-firefox-launcher": "~0.1",
-    "karma-chrome-launcher": "~0.1",
+    "karma-chrome-launcher": "~0.1"
   },
   "engine": "node >= 0.10.26"
 }
