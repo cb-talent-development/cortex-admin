@@ -24,13 +24,13 @@ module.exports = function ( grunt ) {
      * pairs are evaluated based on this very configuration object.
      */
     meta: {
-      banner: 
+      banner:
         '/**\n' +
         ' * <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>\n' +
         ' * <%= pkg.homepage %>\n' +
         ' *\n' +
         ' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
-        ' * Licensed <%= pkg.licenses.type %> <<%= pkg.licenses.url %>>\n' +
+        ' * License: <%= pkg.license %>\n' +
         ' */\n'
     },
 
@@ -43,6 +43,16 @@ module.exports = function ( grunt ) {
         },
         src: 'build',
         dest: 'cb/cortex-admin',
+        exclusions: ['path/to/source/folder/**/.DS_Store', 'path/to/source/folder/**/Thumbs.db', 'dist/tmp']
+      },
+      compile: {
+        auth: {
+          host: 'whump.net',
+          port: 21,
+          authKey: 'key1'
+        },
+        src: 'bin',
+        dest: 'cb/cortex-admin-bin',
         exclusions: ['path/to/source/folder/**/.DS_Store', 'path/to/source/folder/**/Thumbs.db', 'dist/tmp']
       }
     },
@@ -180,35 +190,16 @@ module.exports = function ( grunt ) {
         options: {
           banner: '<%= meta.banner %>'
         },
-        src: [ 
-          '<%= vendor_files.js %>', 
-          'module.prefix', 
-          '<%= build_dir %>/src/**/*.js', 
-          '<%= html2js.app.dest %>', 
-          '<%= html2js.common.dest %>', 
-          'module.suffix' 
+        src: [
+          '<%= vendor_files.js %>',
+          'module.prefix',
+          '<%= build_dir %>/src/**/*.js',
+          '<%= html2js.vendor.dest %>',
+          '<%= html2js.app.dest %>',
+          '<%= html2js.common.dest %>',
+          'module.suffix'
         ],
         dest: '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.js'
-      }
-    },
-
-    /**
-     * `grunt coffee` compiles the CoffeeScript sources. To work well with the
-     * rest of the build, we have a separate compilation task for sources and
-     * specs so they can go to different places. For example, we need the
-     * sources to live with the rest of the copied JavaScript so we can include
-     * it in the final build, but we don't want to include our specs there.
-     */
-    coffee: {
-      source: {
-        options: {
-          bare: true
-        },
-        expand: true,
-        cwd: '.',
-        src: [ '<%= app_files.coffee %>' ],
-        dest: '<%= build_dir %>',
-        ext: '.js'
       }
     },
 
@@ -290,24 +281,6 @@ module.exports = function ( grunt ) {
         debug: true
       },
       globals: {}
-    },
-
-    /**
-     * `coffeelint` does the same as `jshint`, but for CoffeeScript.
-     * CoffeeScript is not the default in ngBoilerplate, so we're just using
-     * the defaults here.
-     */
-    coffeelint: {
-      src: {
-        files: {
-          src: [ '<%= app_files.coffee %>' ]
-        }
-      },
-      test: {
-        files: {
-          src: [ '<%= app_files.coffeeunit %>' ]
-        }
-      }
     },
 
     /**
@@ -465,17 +438,6 @@ module.exports = function ( grunt ) {
       },
 
       /**
-       * When our CoffeeScript source files change, we want to run lint them and
-       * run our unit tests.
-       */
-      coffeesrc: {
-        files: [ 
-          '<%= app_files.coffee %>'
-        ],
-        tasks: [ 'coffeelint:src', 'coffee:source', 'karma:unit:run', 'copy:build_appjs' ]
-      },
-
-      /**
        * When assets are changed, copy them. Note that this will *not* copy new
        * files, so this is probably not very useful.
        */
@@ -526,20 +488,6 @@ module.exports = function ( grunt ) {
         options: {
           livereload: false
         }
-      },
-
-      /**
-       * When a CoffeeScript unit test file changes, we only want to lint it and
-       * run the unit tests. We don't want to do any live reloading.
-       */
-      coffeeunit: {
-        files: [
-          '<%= app_files.coffeeunit %>'
-        ],
-        tasks: [ 'coffeelint:test', 'karma:unit:run' ],
-        options: {
-          livereload: false
-        }
       }
     }
   };
@@ -565,7 +513,7 @@ module.exports = function ( grunt ) {
    * The `build` task gets your app ready to run for development and testing.
    */
   grunt.registerTask( 'build', [
-    'clean', 'html2js', 'jshint', 'coffeelint', 'coffee', 'sass:build',
+    'clean', 'html2js', 'jshint', 'sass:build',
     'concat:build_css', 'copy:build_app_assets', 'copy:build_vendor_assets',
     'copy:build_appjs','copy:build_vendorjs', 'copy:build_vendor_css',
     'index:build', 'karmaconfig', 'karma:continuous'
@@ -575,7 +523,7 @@ module.exports = function ( grunt ) {
    * The `build` task gets your app ready to run for development and testing.
    */
   grunt.registerTask( 'build_without_karma', [
-    'clean', 'html2js', 'jshint', 'coffeelint', 'coffee', 'sass:build',
+    'clean', 'html2js', 'jshint', 'sass:build',
     'concat:build_css', 'copy:build_app_assets', 'copy:build_vendor_assets',
     'copy:build_appjs','copy:build_vendorjs', 'copy:build_vendor_css',
     'index:build', 'karmaconfig'
