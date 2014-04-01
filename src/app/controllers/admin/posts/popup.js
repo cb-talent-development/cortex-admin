@@ -9,11 +9,11 @@ module.controller('PostsPopupCtrl', function($scope, $timeout, $state, PostsPopu
         if (!popupOpen) {
             // We are arbitrary levels deep, so we can't transition relative to our current state.
             if ($state.includes('admin.posts.new')) {
-                // We need to wait 250ms, long enough for bootstrap-modal to fade away, otherwise we're stuck with a blocked-out page
-                $timeout(function () { $state.go('admin.posts.new'); }, 250);
+                // We need to wait long enough for bootstrap-modal to fade away, otherwise we're stuck with a blocked-out page
+                $timeout(function () { $state.go('admin.posts.new'); }, 500);
             }
             else {
-                $timeout(function () { $state.go('admin.posts.edit'); }, 250);
+                $timeout(function () { $state.go('admin.posts.edit'); }, 500);
             }
         }
     });

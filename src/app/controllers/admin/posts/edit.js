@@ -117,7 +117,9 @@ module.controller('PostsEditCtrl', function($scope, $state, $stateParams, $windo
     $window.RedactorPlugins.media = {
         init: function ()
         {
-            this.buttonAddAfter('image', 'media', 'Media', this.addMediaPopup);
+            this.buttonAdd('media', 'Media', this.addMediaPopup);
+            this.buttonAwesome('media', 'fa-picture-o');
+
             this.buttonRemove('image');
             this.buttonRemove('video');
         },
