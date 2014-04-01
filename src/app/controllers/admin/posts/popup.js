@@ -4,6 +4,7 @@ var module = angular.module('cortex.controllers.admin.posts.popup', [
 
 module.controller('PostsPopupCtrl', function($scope, $timeout, $state, PostsPopupService){
     $scope.postsPopupService = PostsPopupService;
+    $scope.postsPopupService.popupOpen = true;
 
     $scope.$watch('postsPopupService.popupOpen', function(popupOpen) {
         if (!popupOpen) {
