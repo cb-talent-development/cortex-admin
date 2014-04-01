@@ -230,6 +230,22 @@ input.form-control[required]:not(:focus) {
   @include vmargin-top(10px);
 }
 
+.form-inline .form-group .post-datepicker {
+  min-width: 20em;
+}
+
+.form-inline .form-group table.input-group-sm tr:first-child, .form-inline .form-group table.input-group-sm tr:last-child {
+  display: none;
+}
+
+.form-inline .form-group table.input-group-sm td.form-group {
+  @extend .input-group-sm;
+}
+
+.form-inline .form-group table.input-group-sm input.form-control {
+  width: 50px;
+}
+
 textarea.vertical-only { resize: vertical; }
 
 ////////////////////////////////
@@ -303,7 +319,7 @@ textarea.vertical-only { resize: vertical; }
 
   @media (max-width: 991px) {
     @include hmargin-left(5px);
-      }
+  }
 }
 
 .navbar-profile-box {
