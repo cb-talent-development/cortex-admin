@@ -23,9 +23,6 @@ module.exports = {
     js: [ 'src/**/*.js', '!src/**/*.spec.js', '!src/assets/**/*.js' ],
     jsunit: [ 'src/**/*.spec.js' ],
 
-    coffee: [ 'src/**/*.coffee', '!src/**/*.spec.coffee' ],
-    coffeeunit: [ 'src/**/*.spec.coffee' ],
-
     atpl: [ 'src/app/**/*.tpl.html' ],
     ctpl: [ 'src/common/**/*.tpl.html' ],
     vtpl: [ 'src/vendor/**/*.tpl.html' ],
@@ -95,7 +92,6 @@ module.exports = {
     ],
     css: [
       'vendor/ng-table/ng-table.css',
-      'vendor/font-awesome/css/font-awesome.css',
       'src/vendor/redactor/redactor.css'
     ],
     assets: [
