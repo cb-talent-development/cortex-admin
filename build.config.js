@@ -100,7 +100,8 @@ module.exports = {
     ],
     assets: [
       'vendor/bootstrap-sass-official/vendor/assets/fonts/bootstrap/*',
-      'vendor/angularjs-file-upload/FileAPI.flash.swf'
+      'vendor/angularjs-file-upload/FileAPI.flash.swf',
+      'src/vendor/redactor/redactor-font.eot'
     ]
   }
 };
