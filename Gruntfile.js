@@ -376,6 +376,41 @@ module.exports = function ( grunt ) {
       }
     },
 
+    styleguide: {
+
+      /**
+       * During development, we don't want to have wait for compilation,
+       * concatenation, minification, etc. So to avoid these steps, we simply
+       * add all script files directly to the `<head>` of `style.html`. The
+       * `src` property contains the list of included files.
+       */
+      build: {
+        dir: '<%= build_dir %>',
+        src: [
+          '<%= vendor_files.js %>',
+          '<%= build_dir %>/src/**/*.js',
+          '<%= html2js.vendor.dest %>',
+          '<%= html2js.common.dest %>',
+          '<%= html2js.app.dest %>',
+          '<%= vendor_files.css %>',
+          '<%= sass.build._dest %>'
+        ]
+      },
+
+      /**
+       * When it is time to have a completely compiled application, we can
+       * alter the above to include only a single JavaScript and a single CSS
+       * file. Now we're back!
+       */
+      compile: {
+        dir: '<%= compile_dir %>',
+        src: [
+          '<%= concat.compile_js.dest %>',
+          '<%= sass.compile._dest %>'
+        ]
+      }
+    },
+
     /**
      * This task compiles the karma template so that changes to its file array
      * don't have to be managed manually.
@@ -453,7 +488,7 @@ module.exports = function ( grunt ) {
        */
       html: {
         files: [ '<%= app_files.html %>' ],
-        tasks: [ 'index:build' ]
+        tasks: [ 'index:build', 'styleguide:build' ]
       },
 
       /**
@@ -516,7 +551,7 @@ module.exports = function ( grunt ) {
     'clean', 'html2js', 'jshint', 'sass:build',
     'concat:build_css', 'copy:build_app_assets', 'copy:build_vendor_assets',
     'copy:build_appjs','copy:build_vendorjs', 'copy:build_vendor_css',
-    'index:build', 'karmaconfig', 'karma:continuous'
+    'index:build', 'styleguide:build', 'karmaconfig', 'karma:continuous'
   ]);
 
     /**
@@ -526,7 +561,7 @@ module.exports = function ( grunt ) {
     'clean', 'html2js', 'jshint', 'sass:build',
     'concat:build_css', 'copy:build_app_assets', 'copy:build_vendor_assets',
     'copy:build_appjs','copy:build_vendorjs', 'copy:build_vendor_css',
-    'index:build', 'karmaconfig'
+    'index:build', 'styleguide:build', 'karmaconfig'
   ]);
 
   /**
@@ -572,6 +607,34 @@ module.exports = function ( grunt ) {
     });
 
     grunt.file.copy('src/index.html', this.data.dir + '/index.html', { 
+      process: function ( contents, path ) {
+        return grunt.template.process( contents, {
+          data: {
+            scripts: jsFiles,
+            styles: cssFiles,
+            version: grunt.config( 'pkg.version' )
+          }
+        });
+      }
+    });
+  });
+
+  /** 
+   * The style.html template includes the stylesheet and javascript sources
+   * based on dynamic names calculated in this Gruntfile. This task assembles
+   * the list into variables for the template to use and then runs the
+   * compilation.
+   */
+  grunt.registerMultiTask( 'styleguide', 'Process style.html template', function () {
+    var dirRE = new RegExp( '^('+grunt.config('build_dir')+'|'+grunt.config('compile_dir')+')\/', 'g' );
+    var jsFiles = filterForJS( this.filesSrc ).map( function ( file ) {
+      return file.replace( dirRE, '' );
+    });
+    var cssFiles = filterForCSS( this.filesSrc ).map( function ( file ) {
+      return file.replace( dirRE, '' );
+    });
+
+    grunt.file.copy('src/style.html', this.data.dir + '/style.html', { 
       process: function ( contents, path ) {
         return grunt.template.process( contents, {
           data: {
