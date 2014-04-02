@@ -5,10 +5,12 @@ var module = angular.module('cortex.controllers.admin.media.grid', [
     'angular-flash.service',
     'cortex.settings',
     'cortex.resources.media',
-    'cortex.directives.delayedInput'
+    'cortex.directives.delayedInput',
+    'cortex.controllers.admin.posts.edit',
+    'cortex.controllers.admin.posts.popup'
 ]);
 
-module.controller('MediaGridCtrl', function($scope, $stateParams, $state, Media, settings, flash){
+module.controller('MediaGridCtrl', function($scope, $stateParams, $state, Media, settings, flash, PostBodyEditorService, PostsPopupService){
 
     $scope.data = {};
 
@@ -52,5 +54,10 @@ module.controller('MediaGridCtrl', function($scope, $stateParams, $state, Media,
                 flash.info = media.name + " deleted.";
             });
         }
+    };
+
+    $scope.insertMedia = function(media) {
+        PostBodyEditorService.addMedia(media);
+        PostsPopupService.popupOpen = false;
     };
 });
