@@ -11,6 +11,82 @@
   </head>
 
   <body>
+    <div class="container">
+      <h3>Cortex Style Guide</h3>
+
+      <h4>Introduction</h4>
+
+      <p>The aesthetic style of Cortex is built on the official Sass port of <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a>. Bootstrap's built-in responsive layout system simplifies the task of building a site that is compatible and usable on multiple computing and mobile device platforms. To minimize the writing of redundant stylesheet code in our custom Cortex-specific stylesheet, native Bootstrap-defined styles are used whenever possible and style definitions are overwritten with Cortex-specific customizations as needed. There are instances when one-off style definitions may be needed to control the look and feel of a specific element. These definitions should be created sparingly and used only when no appropriate, semantic native Bootstrap-defined style is available.</p>
+
+
+      <h4>Navigation</h4>
+
+      <p>Site navigation within Cortex is defined at three levels:</p>
+
+      <ol>
+        <li>Header (Primary) Navigation</li>
+        <li>Breadcrumb (Hierarchical) Navigation</li>
+        <li>Left (Categorical) Navigation</li>
+      </ol>
+
+      <p><strong>Header navigation</strong> is present on all pages within the Cortex application following user authentication with the exception of transitional, modal page states. From here, a Cortex user can access all modules of the Cortex application. Also accessible from the header navigation is a link to the user's profile as well as the ability to log out of Cortex.</p>
+
+      <p><strong>Breadcrumb navigation</strong> is also present on all pages within the Cortex application following user authentication. The breadcrumb trail of hyperlinks allows the user to see where in the Cortex site hierarchy they are currently located.</p>
+
+      <p><strong>Left navigation</strong> is available on pages where additional functionality is available to manipulate the current page view to highlight or filter its contents down to a smaller subset of information. Any hyperlinks found in left navigation should link to either a child page or a child function of the current page view.</p>
+
+
+      <h4>Color</h4>
+
+      <p>The primary color scheme of Cortex is black text on a white background with a three-color gradient header spanning hex <code>#022745, #104070, #09335B</code> blues and decorative elements colored hex <code>#f47937</code> orange.</p>
+
+
+      <h4>Typography</h4>
+
+      <p>The Cortex page header uses the PT Sans font with a base font size of <code>14px</code>.</p>
+
+      <p>All body typography is declared as <code>font-family: "Helvetica Neue", Helvetica, Arial, sans-serif</code> with a base font size of <code>14px</code> as defined by Bootstrap.</p>
+
+      <h5>Headings</h5>
+
+      <p>Cortex uses the default Bootstrap heading styles. The page heading at the top of each page is <code>&lt;h3&gt;</code>.
+
+
+      <h4>Forms</h4>
+
+      <p>Forms in Cortex are structured using HTML5 description lists. Bootstrap provides a horizontal-flowing description list class <code>dl-horizontal</code> that allows a label to be placed side-by-side with the form field when the form label is placed within <code>&lt;dt&gt;</code> and the form field within <code>&lt;dd&gt;</code>. This horizontal description list is responsive-friendly and semanatically correct design for side-by-side label/field form layouts.</p>
+
+      <p>Preceding each group of form elements within a description list is a <code>&lt;legend&gt;</code> that serves as a heading to the grouped form elements. It has a style defined with an orange border below the text.</p>
+
+
+      <h4>Buttons</h4>
+
+      <p>Buttons in Cortex use the Bootstrap button style definitions. Each button uses the <code>btn</code> and <code>btn-sm</code> classes for sizing. Buttons are further styled using classes <code>btn-default</code> for standard buttons and <code>btn-primary</code> for primary highlighted buttons. Primary highlighted buttons are used to guide the user to a desired form action. When multiple choices are presented at the end of a form, such as in the case of <strong>Save</strong> and <strong>Cancel</strong>, the action for proceeding, assuming the form is correctly filled out, will be highlighted. In this case, <strong>Save</strong> is the primary highlighted button.</p>
+
+      <p>For <code>btn-default</code>, the Bootstrap default button border color has been replaced with <code>color: #f47937</code>. Primary buttons use the background mixin <code>@include gradient-vertical(#FFA178, #E9743A, 0%, 100%)</code></p>
+
+      <p>Buttons also have defined styles for a disabled state as well as a <code>:hover</code> pseudoclass.</p>
+
+      <button class="btn btn-sm btn-primary">Primary Button</button>
+      <button class="btn btn-sm btn-default">Default Button</button>
+
+      <pre><code class="html">
+        <span class="nt">&lt;button class="btn btn-sm btn-primary"&gt;</span>Primary Button<span class="nt">&lt;/button&gt;</span>
+        <span class="nt">&lt;button class="btn btn-sm btn-default"&gt;</span>Default Button<span class="nt">&lt;/button&gt;</span>
+      </code></pre>
+
+      <h5>Button Icons and Labels</h5>
+
+      <p>Button icons in Cortex buttons utilize the <a href="http://fortawesome.github.io/Font-Awesome/" target="_blank">Font Awesome</a> icon library. These icons may be placed to the left of a button label and match the button text color, or they may be placed by themselves in a non-ambiguous manner as an icon that represents the button's function. For instance, a button that consists of only the magnifying glass icon <code>fa-search</code> signifies a Search button.</p>
+
+      <p>Button labels should be used whenever possible, though it is okay to leave off button labels in lieu of only an icon given that:</p>
+
+      <ol>
+        <li>The button is used to supplement an adjacent form field <strong>AND</strong></li>
+        <li>The button is not used for navigation from one distinct page state to another.</li>
+      </ol>
+    </div>
+
     <script type="text/javascript">
         FileAPI = {
             staticPath: '/media/FileAPI.flash.swf'
