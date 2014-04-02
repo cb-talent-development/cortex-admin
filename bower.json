@@ -24,7 +24,7 @@
     "angular-mocks": "1.2.15"
   },
   "resolutions": {
-    "jquery": "~1",
-    "angular": "~1.2.15"
+    "angular": "1.2.15",
+    "jquery": "~1"
   }
 }
