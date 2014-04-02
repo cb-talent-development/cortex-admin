@@ -80,6 +80,7 @@ module.controller('PostsEditCtrl', function($scope, $state, $stateParams, $windo
     }
     else {
         $scope.data.post = new Posts();
+        $scope.data.post.body = '';
         $scope.data.post.draft = true;
         $scope.data.post.author = session.currentUser().fullname;
         $scope.data.post.copyright_owner = $scope.data.post.copyright_owner || "CareerBuilder, LLC";
