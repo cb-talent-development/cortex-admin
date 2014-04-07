@@ -4,7 +4,7 @@ var module = angular.module('cortex.controllers.admin.posts.edit', [
     'ui.bootstrap.dropdownToggle',
     'ui.bootstrap.buttons',
     'ui.bootstrap.datepicker',
-    'ui.bootstrap.timepicker',
+    'ui.bootstrap.datetimepicker',
     'angular-flash.service',
     'angular-redactor',
     'cortex.services.auth',
