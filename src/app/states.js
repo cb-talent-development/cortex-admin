@@ -12,6 +12,7 @@ var module = angular.module('cortex.states', [
     'cortex.controllers.admin.posts.edit',
     'cortex.controllers.admin.posts.filters',
     'cortex.controllers.admin.posts.grid',
+    'cortex.controllers.admin.posts.popup',
     'cortex.controllers.admin.tenants.edit',
     'cortex.controllers.admin.tenants.manage'
 ]);
@@ -106,6 +107,89 @@ module.config(function ($stateProvider) {
                 }
             }
         })
+
+        // Posts Edit + Media Popup
+        // **********************
+
+        .state('admin.posts.edit.media', {
+            url: '/media',
+            abstract: true,
+            templateUrl: 'views/admin/posts/popup.tpl.html',
+            controller: 'PostsPopupCtrl'
+        })
+
+        .state('admin.posts.edit.media.new', {
+            url: '/new',
+            templateUrl: 'views/admin/media/new.tpl.html',
+            controller: 'MediaNewCtrl'
+        })
+
+        .state('admin.posts.edit.media.edit', {
+            url: '/:mediaId/edit',
+            templateUrl: 'views/admin/media/edit.tpl.html',
+            controller: 'MediaEditCtrl'
+        })
+
+        .state('admin.posts.edit.media.manage', {
+            url: '',
+            abstract: true,
+            templateUrl: 'views/admin/media/manage.tpl.html'
+        })
+
+        .state('admin.posts.edit.media.manage.components', {
+            url: '/:page/:perPage/:query',
+            views: {
+                'media-grid': {
+                    templateUrl: 'views/admin/media/grid.tpl.html',
+                    controller: 'MediaGridCtrl'
+                },
+                'media-filters': {
+                    templateUrl: 'views/admin/media/filters.tpl.html',
+                    controller: 'MediaFiltersCtrl'
+                }
+            }
+        })
+
+        .state('admin.posts.new.media', {
+            url: '/media',
+            abstract: true,
+            templateUrl: 'views/admin/posts/popup.tpl.html',
+            controller: 'PostsPopupCtrl'
+        })
+
+        .state('admin.posts.new.media.new', {
+            url: '/new',
+            templateUrl: 'views/admin/media/new.tpl.html',
+            controller: 'MediaNewCtrl'
+        })
+
+        .state('admin.posts.new.media.edit', {
+            url: '/:mediaId/edit',
+            templateUrl: 'views/admin/media/edit.tpl.html',
+            controller: 'MediaEditCtrl'
+        })
+
+        .state('admin.posts.new.media.manage', {
+            url: '',
+            abstract: true,
+            templateUrl: 'views/admin/media/manage.tpl.html'
+        })
+
+        .state('admin.posts.new.media.manage.components', {
+            url: '/:page/:perPage/:query',
+            views: {
+                'media-grid': {
+                    templateUrl: 'views/admin/media/grid.tpl.html',
+                    controller: 'MediaGridCtrl'
+                },
+                'media-filters': {
+                    templateUrl: 'views/admin/media/filters.tpl.html',
+                    controller: 'MediaFiltersCtrl'
+                }
+            }
+        })
+
+        // **********************
 
         .state('admin.posts.manage', {
             url: '',

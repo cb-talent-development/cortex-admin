@@ -34,11 +34,11 @@ module.controller('MediaEditCtrl', function($scope, $filter, $stateParams, $stat
             unsavedChanges.fnListen($scope, $scope.media);
 
             flash.success = 'Saved media "' +  media.name + '"';
-            $state.go('admin.media.manage.components');
+            $state.go('^.manage.components');
         });
     };
 
     $scope.cancel = function() {
-        $state.go('admin.media.manage.components');
+        $state.go('^.manage.components');
     };
 });

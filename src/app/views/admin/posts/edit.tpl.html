@@ -51,8 +51,8 @@
 
                 <dl class="dl-horizontal">
                     <dt><label for="postBody">Body</label></dt>
-                    <dd class="input-group-sm">
-                        <textarea id="postBody" name="body" class="form-control" redactor="{ minHeight: 400 }" ng-model="data.post.body" redactor></textarea>
+                    <dd class="input-group-sm" id="dumb">
+                        <textarea id="postBody" name="body" class="form-control" ng-model="data.post.body" redactor="redactorOptions"></textarea>
                     </dd>
                 </dl>
 
@@ -277,3 +277,4 @@
         </div>
     </form>
 </div>
+<ui-view/>

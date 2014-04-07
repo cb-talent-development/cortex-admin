@@ -65,7 +65,7 @@ module.controller('MediaNewCtrl', function($scope, $timeout, $upload, $state, fl
             })
             .success(function(media) {
                 flash.success = media.name + " created";
-                $state.go('admin.media.manage.components');
+                $state.go('^.manage.components');
             })
             .error(function(error, status) {
                 uploadError = true;

@@ -23,9 +23,6 @@ module.exports = {
     js: [ 'src/**/*.js', '!src/**/*.spec.js', '!src/assets/**/*.js' ],
     jsunit: [ 'src/**/*.spec.js' ],
 
-    coffee: [ 'src/**/*.coffee', '!src/**/*.spec.coffee' ],
-    coffeeunit: [ 'src/**/*.spec.coffee' ],
-
     atpl: [ 'src/app/**/*.tpl.html' ],
     ctpl: [ 'src/common/**/*.tpl.html' ],
     vtpl: [ 'src/vendor/**/*.tpl.html' ],
@@ -93,7 +90,8 @@ module.exports = {
       */
       'vendor/bootstrap-sass/vendor/assets/javascripts/bootstrap/transition.js',
       'vendor/bootstrap-sass/vendor/assets/javascripts/bootstrap/collapse.js',
-      'vendor/bootstrap-sass/vendor/assets/javascripts/bootstrap/dropdown.js'
+      'vendor/bootstrap-sass/vendor/assets/javascripts/bootstrap/dropdown.js',
+      'vendor/bootstrap-sass/vendor/assets/javascripts/bootstrap/modal.js'
     ],
     css: [
       'vendor/ng-table/ng-table.css',
@@ -104,6 +102,9 @@ module.exports = {
     assets: [
       'vendor/bootstrap-sass-official/vendor/assets/fonts/bootstrap/*',
       'vendor/angularjs-file-upload/FileAPI.flash.swf'
+    ],
+    fonts: [
+      'vendor/font-awesome/fonts/*'
     ]
   }
 };
