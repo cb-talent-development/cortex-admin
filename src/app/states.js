@@ -101,6 +101,9 @@ module.config(function ($stateProvider) {
             resolve: {
                 post: function(Posts, $stateParams) {
                     return Posts.get({id: $stateParams.postId}).$promise;                
+                },
+                categories: function(Categories) {
+                    return Categories.hierarchy().$promise;
                 }
             }
         })

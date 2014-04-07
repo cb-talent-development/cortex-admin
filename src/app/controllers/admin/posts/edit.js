@@ -14,7 +14,7 @@ var module = angular.module('cortex.controllers.admin.posts.edit', [
     'cortex.util'
 ]);
 
-module.controller('PostsEditCtrl', function($scope, $state, $stateParams, $window, $timeout, $q, $filter, flash, Posts, post, Categories, session, PostBodyEditorService) {
+module.controller('PostsEditCtrl', function($scope, $state, $stateParams, $window, $timeout, $q, $filter, flash, Posts, post, categories, session, PostBodyEditorService) {
 
     $scope.data = {
         savePost: function() {
@@ -59,7 +59,7 @@ module.controller('PostsEditCtrl', function($scope, $state, $stateParams, $windo
         $scope.data.post = post;
 
         var selectedCategoryIds = _.map(post.categories, function(c) { return c.id; });
-        _.each(post.categories, function(category){
+        _.each(categories, function(category){
           _.each(category.children, function(child){
               if (_.contains(selectedCategoryIds, child.id)) {
                   child.$selected = true;
@@ -67,7 +67,7 @@ module.controller('PostsEditCtrl', function($scope, $state, $stateParams, $windo
           });
         });
 
-        $scope.data.categories = Categories;
+        $scope.data.categories = categories;
 
         var todayDate = moment(new Date());
         var postDate = moment($scope.data.post.published_at);
@@ -84,7 +84,7 @@ module.controller('PostsEditCtrl', function($scope, $state, $stateParams, $windo
         $scope.data.post.draft = true;
         $scope.data.post.author = session.currentUser().fullname;
         $scope.data.post.copyright_owner = $scope.data.post.copyright_owner || "CareerBuilder, LLC";
-        $scope.data.categories = Categories;
+        $scope.data.categories = categories;
     }
     initializePost();
 
