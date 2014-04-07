@@ -121,14 +121,19 @@
                 <fieldset ng-if="data.scheduled">
                     <dl class="dl-horizontal">
                         <dt><label for="postPublishDate">Publish Date</label></dt>
-
-                        <dd class="form-inline">
-                            <div class="form-group input-group-sm">
-                                <input id="postPublishDate" name="published_at" type="text" class="form-control post-datepicker" datepicker-popup="{{datepicker.format}}" is-open="datepicker.publishAtOpen" show-weeks="false" ng-model="data.post.published_at" placeholder="select date">
-                            </div>
-                                
-                            <div class="form-group input-group-sm">
-                                <timepicker hour-step="1" minute-step="15" show-meridian="true" class="input-group-sm"></timepicker>
+                        <dd class="input-group input-group-sm">
+                            <div class="dropdown">
+                                <a class="dropdown-toggle" id="postPublishDate" role="button" data-toggle="dropdown">
+                                    <div class="input-group input-group-sm">
+                                        <input name="published_at" type="text" class="form-control post-datepicker" ng-model="data.post.published_at" placeholder="select an publish date and time" />
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default"><span class="fa fa-calendar"></span></button>
+                                        </span>
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <datetimepicker ng-model="data.post.published_at" datetimepicker-config="{ dropdownSelector: '#postPublishDate' }"></datetimepicker>
+                                </ul>
                             </div>
                         </dd>
                     </dl>
@@ -137,14 +142,19 @@
                 <fieldset ng-if="data.scheduled || !data.scheduled">
                     <dl class="dl-horizontal">
                         <dt><label for="postExpireDate">Expiration Date</label></dt>
-
-                        <dd class="form-inline">
-                            <div class="form-group input-group-sm">
-                                <input id="postExpireDate" name="expired_at" type="text" class="form-control post-datepicker" datepicker-popup="{{datepicker.format}}" is-open="datepicker.expireAtOpen" show-weeks="false" ng-model="data.post.expired_at" placeholder="select date; leave blank for no expiration">
-                            </div>
-
-                            <div class="form-group input-group-sm">
-                                <timepicker hour-step="1" minute-step="15" show-meridian="true" class="input-group-sm"></timepicker>
+                        <dd class="input-group input-group-sm">
+                            <div class="dropdown">
+                                <a class="dropdown-toggle" id="postExpireDate" role="button" data-toggle="dropdown">
+                                    <div class="input-group input-group-sm">
+                                        <input name="expired_at" type="text" class="form-control post-datepicker" ng-model="data.post.expired_at" placeholder="select an expiration date and time, or will not expire" />
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default"><span class="fa fa-calendar"></span></button>
+                                        </span>
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <datetimepicker ng-model="data.post.expired_at" datetimepicker-config="{ dropdownSelector: '#postExpireDate' }"></datetimepicker>
+                                </ul>
                             </div>
                         </dd>
                     </dl>
