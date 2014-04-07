@@ -73,8 +73,6 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, $timeout, $q, 
 
         if ($scope.data.post.draft === false && postDate.diff(todayDate, 'days') < 1 ) {
             $scope.data.scheduled = false;
-        } else {
-            $scope.data.scheduled = true;
         }
         initializePost();
     }
@@ -86,18 +84,6 @@ module.controller('PostsEditCtrl', function($scope, $stateParams, $timeout, $q, 
         $scope.data.categories = categories;
         initializePost();
     }
-
-    // angular-bootstrap datepicker settings
-    $scope.datepicker = {
-        format: 'yyyy/MM/dd',
-        publishAtOpen: false,
-        expireAtOpen: false,
-        open: function(datepicker) {
-            $timeout(function(){
-                $scope.datepicker[datepicker] = true;
-            });
-        }
-    };
 
     $scope.postScheduling = {
         now: function() {
