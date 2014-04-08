@@ -230,10 +230,6 @@ input.form-control[required]:not(:focus) {
   @include vmargin-top(10px);
 }
 
-.input-group .post-datepicker {
-  min-width: 25em;
-}
-
 .form-inline .form-group table.input-group-sm tr:first-child, .form-inline .form-group table.input-group-sm tr:last-child {
   display: none;
 }
