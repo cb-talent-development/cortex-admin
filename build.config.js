@@ -77,6 +77,7 @@ module.exports = {
       'vendor/momentjs/moment.js',
       'vendor/angular-redactor/angular-redactor.js',
       'vendor/angular-bootstrap-datetimepicker/src/js/datetimepicker.js',
+      'vendor/angular-date-time-input/src/dateTimeInput.js',
 
       /**
       * Angular-file-upload would prefer this file be loaded in dynamically by its library.
