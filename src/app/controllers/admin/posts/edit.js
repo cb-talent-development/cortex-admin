@@ -5,6 +5,7 @@ var module = angular.module('cortex.controllers.admin.posts.edit', [
     'ui.bootstrap.buttons',
     'ui.bootstrap.datepicker',
     'ui.bootstrap.datetimepicker',
+    'ui.dateTimeInput',
     'angular-flash.service',
     'angular-redactor',
     'cortex.directives.modalShow',
