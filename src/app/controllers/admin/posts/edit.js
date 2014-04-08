@@ -88,6 +88,11 @@ module.controller('PostsEditCtrl', function($scope, $state, $stateParams, $windo
     }
     initializePost();
 
+    // angular-bootstrap datetimepicker settings
+    $scope.datetimepicker = {
+        format: 'MMMM Do YYYY, h:mm:ss a'
+    };
+
     $scope.postScheduling = {
         now: function() {
             $scope.data.post.published_at = new Date();
