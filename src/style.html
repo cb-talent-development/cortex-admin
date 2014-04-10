@@ -12,12 +12,11 @@
 
   <body>
     <div class="container">
-      <h3>Cortex Style Guide</h3>
+      <h3 class="heading-decorative">Cortex Style Guide</h3>
 
       <h4>Introduction</h4>
 
       <p>The aesthetic style of Cortex is built on the official Sass port of <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a>. Bootstrap's built-in responsive layout system simplifies the task of building a site that is compatible and usable on multiple computing and mobile device platforms. To minimize the writing of redundant stylesheet code in our custom Cortex-specific stylesheet, native Bootstrap-defined styles are used whenever possible and style definitions are overwritten with Cortex-specific customizations as needed. There are instances when one-off style definitions may be needed to control the look and feel of a specific element. These definitions should be created sparingly and used only when no appropriate, semantic native Bootstrap-defined style is available.</p>
-
 
       <h4>Navigation</h4>
 
@@ -36,20 +35,60 @@
       <p><strong>Left navigation</strong> is available on pages where additional functionality is available to manipulate the current page view to highlight or filter its contents down to a smaller subset of information. Any hyperlinks found in left navigation should link to either a child page or a child function of the current page view.</p>
 
 
+      <h4>Responsive Layout</h4>
+
+      <p>The Cortex interface uses a responsive layout based on Bootstrap's built-in responsive breakpoints. At a browser window width of greater than 1200 pixels, Cortex displays the standard Bootstrap responsive large display view. At browser window widths narrower than 1200 pixels, Cortex uses a responsive dropdown menu for primary navigation. This responsive menu shows all primary navigation items and account functions and is accessible by the menu icon at the top right of the header bar.</p>
+
+
       <h4>Color</h4>
 
       <p>The primary color scheme of Cortex is black text on a white background with a three-color gradient header spanning hex <code>#022745, #104070, #09335B</code> blues and decorative elements colored hex <code>#f47937</code> orange.</p>
 
 
+      <h4>Hyperlinks</h4>
+
+      <p>Text-based hyperlinks are defined as follows:</p>
+
+      <p><strong>Header navigation</strong> is <code>#ffffff</code> white with white icon image sprites. The active and hover states use a semi-transparent white background image with an orange bottom edge.</p>
+
+      <p><strong>The header user panel and body</strong> use the default Bootstrap link coloring, which is <code>#428bca</code> with no text-decoration for the default state and <code>#2a6496</code> with underline text-decoration for the hover and focus states.
+
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <a href="#">This is an example of a text hyperlink in the body.</a>
+        </div>
+      </div>
+
+
       <h4>Typography</h4>
 
-      <p>The Cortex page header uses the PT Sans font with a base font size of <code>14px</code>.</p>
+      <p>The Cortex page header uses the PT Sans font with a base font size of <code>14px</code>. Any type that is contained within the class <code>navbar-admin</code> (for purposes of placing elements within the Cortex header) or within the class <code>font-humanist</code> will be styled with PT Sans.</p>
+
+      <div class="panel panel-default">
+        <div class="panel-body font-humanist">
+          This is an example of text inside a block level element styled with the <code>font-humanist</code> class.
+        </div>
+      </div>
 
       <p>All body typography is declared as <code>font-family: "Helvetica Neue", Helvetica, Arial, sans-serif</code> with a base font size of <code>14px</code> as defined by Bootstrap.</p>
 
+      <div class="panel panel-default">
+        <div class="panel-body">
+          This is an example of text in the body.
+        </div>
+      </div>
+
       <h5>Headings</h5>
 
-      <p>Cortex uses the default Bootstrap heading styles. The page heading at the top of each page is <code>&lt;h3&gt;</code>.
+      <p>Cortex uses the default Bootstrap heading styles. The page heading at the top of each page is <code>&lt;h3&gt;</code>. An additional style definition for headings is available to create better visual separation between headings and other content. This style is defined with class <code>heading-decorative</code>.
+
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h3>This is a page heading.</h3>
+
+          <h3 class="heading-decorative">This is a page heading with the decorative heading class applied.</h3>
+        </div>
+      </div>
 
 
       <h4>Forms</h4>
@@ -58,21 +97,53 @@
 
       <p>Preceding each group of form elements within a description list is a <code>&lt;legend&gt;</code> that serves as a heading to the grouped form elements. It has a style defined with an orange border below the text.</p>
 
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <fieldset>
+            <legend>Field Group Header</legend>
+
+            <dl class="dl-horizontal">
+              <dt><label for="exampleField">Field Label</label></dt>
+              <dd class="input-group-sm">
+                <input id="exampleField" name="title" type="text" class="form-control" placeholder="Placeholder text">
+              </dd>
+            </dl>
+          </fieldset>
+        </div>
+      </div>
+
+      <pre><code class="html">
+  &lt;fieldset&gt;
+    &lt;legend&gt;Field Group Header&lt;/legend&gt;
+
+    &lt;dl class="dl-horizontal"&gt;
+      &lt;dt&gt;&lt;label for="exampleField"&gt;Field Label&lt;/label&gt;&lt;/dt&gt;
+      &lt;dd class="input-group-sm"&gt;
+        &lt;input id="exampleField" name="title" type="text" class="form-control" placeholder="Placeholder text"&gt;
+      &lt;/dd&gt;
+    &lt;/dl&gt;
+  &lt;/fieldset&gt;
+      </code></pre>
+
 
       <h4>Buttons</h4>
 
       <p>Buttons in Cortex use the Bootstrap button style definitions. Each button uses the <code>btn</code> and <code>btn-sm</code> classes for sizing. Buttons are further styled using classes <code>btn-default</code> for standard buttons and <code>btn-primary</code> for primary highlighted buttons. Primary highlighted buttons are used to guide the user to a desired form action. When multiple choices are presented at the end of a form, such as in the case of <strong>Save</strong> and <strong>Cancel</strong>, the action for proceeding, assuming the form is correctly filled out, will be highlighted. In this case, <strong>Save</strong> is the primary highlighted button.</p>
 
-      <p>For <code>btn-default</code>, the Bootstrap default button border color has been replaced with <code>color: #f47937</code>. Primary buttons use the background mixin <code>@include gradient-vertical(#FFA178, #E9743A, 0%, 100%)</code></p>
+      <p>For <code>btn-default</code>, the Bootstrap default button border color has been replaced with <code>color: #f47937</code>. For <code>btn-primary</code>, primary buttons use the background mixin <code>@include gradient-vertical(#FFA178, #E9743A, 0%, 100%)</code></p>
 
       <p>Buttons also have defined styles for a disabled state as well as a <code>:hover</code> pseudoclass.</p>
 
-      <button class="btn btn-sm btn-primary">Primary Button</button>
-      <button class="btn btn-sm btn-default">Default Button</button>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <button class="btn btn-sm btn-primary">Primary Button</button>
+          <button class="btn btn-sm btn-default">Default Button</button>
+        </div>
+      </div>
 
       <pre><code class="html">
-        <span class="nt">&lt;button class="btn btn-sm btn-primary"&gt;</span>Primary Button<span class="nt">&lt;/button&gt;</span>
-        <span class="nt">&lt;button class="btn btn-sm btn-default"&gt;</span>Default Button<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;button class="btn btn-sm btn-primary"&gt;</span>Primary Button<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;button class="btn btn-sm btn-default"&gt;</span>Default Button<span class="nt">&lt;/button&gt;</span>
       </code></pre>
 
       <h5>Button Icons and Labels</h5>
@@ -85,6 +156,18 @@
         <li>The button is used to supplement an adjacent form field <strong>AND</strong></li>
         <li>The button is not used for navigation from one distinct page state to another.</li>
       </ol>
+
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <button class="btn btn-sm btn-primary"><i class="fa fa-upload"></i> Upload</button>
+          <button class="btn btn-sm btn-default"><i class="fa fa-times"></i> Cancel</button>
+        </div>
+      </div>
+
+      <pre><code class="html">
+  <span class="nt">&lt;button class="btn btn-sm btn-primary"&gt;&lt;i class="fa fa-upload"&gt;&lt;/i&gt;</span> Upload<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;button class="btn btn-sm btn-default"&gt;&lt;i class="fa fa-times"&gt;&lt;/i&gt;</span> Cancel<span class="nt">&lt;/button&gt;</span>
+      </code></pre>
     </div>
 
     <script type="text/javascript">

@@ -1,51 +1,49 @@
 <header class="navbar navbar-admin navbar-static-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <i class="fa fa-bars nav-button"></i>
-            </button>
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <i class="fa fa-bars nav-button"></i>
+      </button>
 
-            <a class="navbar-brand" href="#">{Cortex}</a>
+      <a class="navbar-brand" href="#">{Cortex}</a>
+    </div>
+
+    <nav class="collapse navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav navbar-items-admin small">
+        <li ng-class="{ active: $state.includes('admin.organizations') }"><a class="navbar-item navbar-item-tenant" ui-sref="admin.organizations.manage">Tenant Management</a></li>
+        <li ng-class="{ active: $state.includes('admin.media') }"><a class="navbar-item navbar-item-media" ui-sref="admin.media.manage.components">Media Library</a></li>
+        <li ng-class="{ active: $state.includes('admin.permissions') }"><a class="navbar-item navbar-item-permissions" ui-sref="admin.permissions">Roles/Permissions</a></li>
+        <li ng-class="{ active: $state.includes('admin.posts') }"><a class="navbar-item navbar-item-posts" ui-sref="admin.posts.manage.components">Posts</a></li>
+        <li ng-class="{ active: $state.includes('admin.products') }"><a class="navbar-item navbar-item-apps" ui-sref="admin.products">Apps/Products</a></li>
+        <li class="visible-xs"><a class="navbar-item" href="#">My Profile</a></li>
+        <li class="visible-xs"><a class="navbar-item" ng-click="logout()">Log Out</a></li>
+      </ul>
+
+      <div class="hidden-xs profile-search pull-right">
+        <div class="navbar-profile-box clearfix">
+          <div class="navbar-profile-avatar pull-left">
+            <img src="assets/admin/navbar-profile.jpg" width="40" height="40" alt="">
+          </div>
+
+          <div class="navbar-profile-text pull-left">
+            <strong>{{ currentUser.firstname }}</strong><br>
+            <span class="smaller">
+              <a href="#">My Profile</a> &bull; <a ng-click="logout()">Log Out</a>
+            </span>
+          </div>
         </div>
 
-        <nav class="collapse navbar-collapse" role="navigation">
-            <ul class="nav navbar-nav navbar-items-admin small">
-                <li ng-class="{ active: $state.includes('admin.organizations') }"><a class="navbar-item navbar-item-tenant" ui-sref="admin.organizations.manage">Tenant Management</a></li>
-                <li ng-class="{ active: $state.includes('admin.media') }"><a class="navbar-item navbar-item-media" ui-sref="admin.media.manage.components">Media Library</a></li>
-                <li ng-class="{ active: $state.includes('admin.permissions') }"><a class="navbar-item navbar-item-permissions" ui-sref="admin.permissions">Roles/Permissions</a></li>
-                <li ng-class="{ active: $state.includes('admin.posts') }"><a class="navbar-item navbar-item-posts" ui-sref="admin.posts.manage.components">Posts</a></li>
-                <li ng-class="{ active: $state.includes('admin.products') }"><a class="navbar-item navbar-item-apps" ui-sref="admin.products">Apps/Products</a></li>
-                <li class="visible-xs"><a class="navbar-item" href="#">My Profile</a></li>
-                <li class="visible-xs"><a class="navbar-item" ng-click="logout()">Log Out</a></li>
-            </ul>
-
-            <div class="hidden-xs profile-search pull-right">
-                <div class="navbar-profile-box clearfix">
-                    <div class="navbar-profile-avatar pull-left">
-                        <img src="assets/admin/navbar-profile.jpg" width="40" height="40" alt="">
-                    </div>
-
-                    <div class="navbar-profile-text pull-left">
-                        <strong>{{ currentUser.firstname }}</strong><br>
-                        <span class="smaller">
-                            <a href="#">My Profile</a> &bull; <a ng-click="logout()">Log Out</a>
-                        </span>
-                    </div>
-                </div>
-
-                <div class="navbar-form clearfix">
-                    <div class="input-group input-group-sm">
-                        <form role="search">
-                            <input type="text" class="form-control input-sm form-search" placeholder="Search Cortex"><span class="input-group-btn"><button type="submit" class="btn btn-xs btn-search"><i class="fa fa-search"></i></button></span>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </nav>
-
-        
-    </div>
+        <div class="navbar-form clearfix">
+          <div class="input-group input-group-sm">
+            <form role="search">
+              <input type="text" class="form-control input-sm form-search" placeholder="Search Cortex"><span class="input-group-btn"><button type="submit" class="btn btn-xs btn-search"><i class="fa fa-search"></i></button></span>
+            </form>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
 </header>
 
 <main class="container content">
