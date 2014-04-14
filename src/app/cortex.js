@@ -13,7 +13,9 @@ var module = angular.module('cortex', [
     // Cortex
     'cortex.states',
     'cortex.services.auth',
-    'cortex.constants'
+    'cortex.constants',
+
+    'cortex.directives.uiBreadcrumbs'
 ]);
 
 module.config(function ($urlRouterProvider, $httpProvider, flashProvider) {
