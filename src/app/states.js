@@ -29,7 +29,10 @@ module.config(function ($stateProvider) {
         .state('admin', {
             abstract: true,
             url: '/admin',
-            templateUrl: 'views/admin/admin.tpl.html'
+            templateUrl: 'views/admin/admin.tpl.html',
+            data: {
+              displayName: false
+            }
         })
 
         // Media
@@ -37,25 +40,37 @@ module.config(function ($stateProvider) {
         .state('admin.media', {
             url: '/media',
             abstract: true,
-            template: '<div class="admin-media" ui-view></div>'
+            template: '<div class="admin-media" ui-view></div>',
+            data: {
+              displayName: 'Media'
+            }
         })
 
         .state('admin.media.new', {
             url: '/new',
             templateUrl: 'views/admin/media/new.tpl.html',
-            controller: 'MediaNewCtrl'
+            controller: 'MediaNewCtrl',
+            data: {
+              displayName: 'New'
+            }
         })
 
         .state('admin.media.edit', {
             url: '/:mediaId/edit',
             templateUrl: 'views/admin/media/edit.tpl.html',
-            controller: 'MediaEditCtrl'
+            controller: 'MediaEditCtrl',
+            data: {
+              displayName: 'Edit'
+            }
         })
 
         .state('admin.media.manage', {
             url: '',
             abstract: true,
-            templateUrl: 'views/admin/media/manage.tpl.html'
+            templateUrl: 'views/admin/media/manage.tpl.html',
+            data: {
+              displayName: false
+            }
         })
 
         .state('admin.media.manage.components', {
@@ -69,6 +84,9 @@ module.config(function ($stateProvider) {
                     templateUrl: 'views/admin/media/filters.tpl.html',
                     controller: 'MediaFiltersCtrl'
                 }
+            },
+            data: {
+              displayName: false
             }
         })
 
@@ -77,7 +95,10 @@ module.config(function ($stateProvider) {
         .state('admin.posts', {
             url: '/posts',
             abstract: true,
-            template: '<div class="admin-posts" ui-view></div>'
+            template: '<div class="admin-posts" ui-view></div>',
+            data: {
+              displayName: 'Posts'
+            }
         })
 
         .state('admin.posts.new', {
@@ -91,6 +112,9 @@ module.config(function ($stateProvider) {
                 categories: function(Categories) {
                     return Categories.hierarchy().$promise;
                 }
+            },
+            data: {
+              displayName: 'New'
             }
         })
 
@@ -105,6 +129,9 @@ module.config(function ($stateProvider) {
                 categories: function(Categories) {
                     return Categories.hierarchy().$promise;
                 }
+            },
+            data: {
+              displayName: 'Edit'
             }
         })
 
@@ -115,25 +142,37 @@ module.config(function ($stateProvider) {
             url: '/media',
             abstract: true,
             templateUrl: 'views/admin/posts/popup.tpl.html',
-            controller: 'PostsPopupCtrl'
+            controller: 'PostsPopupCtrl',
+            data: {
+              displayName: false
+            }
         })
 
         .state('admin.posts.edit.media.new', {
             url: '/new',
             templateUrl: 'views/admin/media/new.tpl.html',
-            controller: 'MediaNewCtrl'
+            controller: 'MediaNewCtrl',
+            data: {
+              displayName: false
+            }
         })
 
         .state('admin.posts.edit.media.edit', {
             url: '/:mediaId/edit',
             templateUrl: 'views/admin/media/edit.tpl.html',
-            controller: 'MediaEditCtrl'
+            controller: 'MediaEditCtrl',
+            data: {
+              displayName: false
+            }
         })
 
         .state('admin.posts.edit.media.manage', {
             url: '',
             abstract: true,
-            templateUrl: 'views/admin/media/manage.tpl.html'
+            templateUrl: 'views/admin/media/manage.tpl.html',
+            data: {
+              displayName: false
+            }
         })
 
         .state('admin.posts.edit.media.manage.components', {
@@ -147,6 +186,9 @@ module.config(function ($stateProvider) {
                     templateUrl: 'views/admin/media/filters.tpl.html',
                     controller: 'MediaFiltersCtrl'
                 }
+            },
+            data: {
+              displayName: false
             }
         })
 
@@ -154,25 +196,37 @@ module.config(function ($stateProvider) {
             url: '/media',
             abstract: true,
             templateUrl: 'views/admin/posts/popup.tpl.html',
-            controller: 'PostsPopupCtrl'
+            controller: 'PostsPopupCtrl',
+            data: {
+              displayName: false
+            }
         })
 
         .state('admin.posts.new.media.new', {
             url: '/new',
             templateUrl: 'views/admin/media/new.tpl.html',
-            controller: 'MediaNewCtrl'
+            controller: 'MediaNewCtrl',
+            data: {
+              displayName: false
+            }
         })
 
         .state('admin.posts.new.media.edit', {
             url: '/:mediaId/edit',
             templateUrl: 'views/admin/media/edit.tpl.html',
-            controller: 'MediaEditCtrl'
+            controller: 'MediaEditCtrl',
+            data: {
+              displayName: false
+            }
         })
 
         .state('admin.posts.new.media.manage', {
             url: '',
             abstract: true,
-            templateUrl: 'views/admin/media/manage.tpl.html'
+            templateUrl: 'views/admin/media/manage.tpl.html',
+            data: {
+              displayName: false
+            }
         })
 
         .state('admin.posts.new.media.manage.components', {
@@ -186,6 +240,9 @@ module.config(function ($stateProvider) {
                     templateUrl: 'views/admin/media/filters.tpl.html',
                     controller: 'MediaFiltersCtrl'
                 }
+            },
+            data: {
+              displayName: false
             }
         })
 
@@ -194,14 +251,26 @@ module.config(function ($stateProvider) {
         .state('admin.posts.manage', {
             url: '',
             abstract: true,
-            templateUrl: 'views/admin/posts/manage.tpl.html'
+            templateUrl: 'views/admin/posts/manage.tpl.html',
+            data: {
+              displayName: false
+            }
         })
 
         .state('admin.posts.manage.components', {
             url: '/',
             views: {
-                'posts-grid': { templateUrl: 'views/admin/posts/grid.tpl.html', controller: 'PostsGridCtrl' },
-                'posts-filters': { templateUrl: 'views/admin/posts/filters.tpl.html', controller: 'PostsFiltersCtrl' }
+                'posts-grid': {
+                  templateUrl: 'views/admin/posts/grid.tpl.html',
+                  controller: 'PostsGridCtrl'
+                },
+                'posts-filters': {
+                  templateUrl: 'views/admin/posts/filters.tpl.html',
+                  controller: 'PostsFiltersCtrl'
+                }
+            },
+            data: {
+              displayName: false
             }
         })
 
@@ -216,31 +285,46 @@ module.config(function ($stateProvider) {
                 organizations: function(Tenants) {
                     return Tenants.query().$promise;
                 }
+            },
+            data: {
+              displayName: false
             }
         })
 
         .state('admin.organizations.tenants', {
             url: '',
             template: '<ui-view/>',
-            abstract: true
+            abstract: true,
+            data: {
+              displayName: false
+            }
         })
 
         .state('admin.organizations.tenants.edit', {
             url: '/tenants/:tenantId/edit',
             templateUrl: 'views/admin/tenants/edit.tpl.html',
-            controller: 'EditTenantsCtrl'
+            controller: 'EditTenantsCtrl',
+            data: {
+              displayName: false
+            }
         })
 
         .state('admin.organizations.tenants.new', {
             url: '/tenants/new',
             templateUrl: 'views/admin/tenants/edit.tpl.html',
-            controller: 'EditTenantsCtrl'
+            controller: 'EditTenantsCtrl',
+            data: {
+              displayName: false
+            }
         })
 
         .state('admin.organizations.manage', {
             url: '',
             templateUrl: 'views/admin/organizations/manage.tpl.html',
-            controller: 'OrganizationsManageCtrl'
+            controller: 'OrganizationsManageCtrl',
+            data: {
+              displayName: false
+            }
         })
 
         .state('admin.organizations.manage.tenants', {
@@ -258,6 +342,9 @@ module.config(function ($stateProvider) {
                 organization: function($stateParams, Tenants) {
                     return Tenants.get({id: $stateParams.organizationId, include_children: true}).$promise;
                 }
+            },
+            data: {
+              displayName: false
             }
         })
 
@@ -265,13 +352,19 @@ module.config(function ($stateProvider) {
 
         .state('admin.products', {
             url: '/products',
-            template: '<div class="container">Here ly thy beast, Products</div>'
+            template: '<div class="container">Here ly thy beast, Products</div>',
+            data: {
+              displayName: false
+            }
         })
 
         // Permissions
 
         .state('admin.permissions', {
             url: '/permissions',
-            template: '<div class="container">Here ly thy beast, Permissions</div>'
+            template: '<div class="container">Here ly thy beast, Permissions</div>',
+            data: {
+              displayName: false
+            }
         });
 });
