@@ -64,27 +64,27 @@
 // Keeping the hard-defined margins until refactoring is complete
 
 .hmargin-left-small {
-  margin-left: 10px;
+  margin-left: $standard-margin;
 }
 
 .hmargin-right-small {
-  margin-right: 10px;
+  margin-right: $standard-margin;
 }
 
 .vmargin-top-small {
-  margin-top: 10px; 
+  margin-top: $standard-margin; 
 }
 
 .vmargin-top-large {
-  margin-top: 20px; 
+  margin-top: $standard-margin * 2; 
 }
 
 .vmargin-bottom-small {
-  margin-bottom: 10px;  
+  margin-bottom: $standard-margin;  
 }
 
 .vmargin-bottom-large {
-  margin-bottom: 20px;  
+  margin-bottom: $standard-margin * 2;
 }
 
 ////////////////////////////////
@@ -93,7 +93,7 @@
 .hr-below, .heading-decorative {
   padding-bottom: $standard-margin / 2;
   margin-bottom: $standard-margin;
-  border-bottom: 1px solid #f47937;
+  border-bottom: $standard-border;
 }
 
 ////////////////////////////////
@@ -107,7 +107,7 @@ header div.container {
 
 .container {
   .btn{
-    border: 1px solid #f47937;
+    border: $standard-border;
     background: white;
     color: black;
   }
@@ -142,20 +142,20 @@ header div.container {
   }
 
   .pagination {
-    @include vmargin-top(0);
+    margin-top: 0;
   }
 }
 
 legend {
   font-size: 18px;
   font-weight: 500;
-  border-bottom: 1px solid #f47937;
-  padding-top: 10px;
-  @include vmargin-bot(10px);
+  @extend .heading-decorative;
+  margin-top: $standard-margin;
+  padding-bottom: 0;
 }
 
 dl.dl-horizontal {
-  @include vmargin-bot(10px);
+  margin-bottom: $standard-margin;
 }
 
 ////////////////////////////////
@@ -172,20 +172,20 @@ dl.dl-horizontal {
 
 .filter-group {
   button{
-    @include vmargin-top(10px);
-    @include vmargin-bot(10px);
+    margin-top: $standard-margin;
+    margin-bottom: $standard-margin;
   }
 
   legend {
     padding-bottom: 3px;
     @extend .small;
     @extend .text-muted;
-    @include vmargin-bot(10px);
+    margin-bottom: $standard-margin;
   }
 
   .input-group button {
-    @include vmargin-top(0);
-    @include vmargin-bot(0);
+    margin-top: 0;
+    margin-bottom: 0;
   }
 
   label {
@@ -231,7 +231,7 @@ input.form-control[required]:not(:focus) {
   padding: 1em;
   border: 1px dashed #f47937;
   border-radius: 5px;
-  @include vmargin-top(10px);
+  margin-top: $standard-margin;
 }
 
 ////////////////////////////////
@@ -275,6 +275,10 @@ input.form-control[required]:not(:focus) {
 ////////////////////////////////
 // Cortex Navbar
 
+.navbar { 
+  margin-bottom: 0;
+}
+
 .nav li a { 
   padding: 10px;
 }
@@ -304,7 +308,7 @@ input.form-control[required]:not(:focus) {
   width: 12.5em;
 
   @media (max-width: 991px) {
-    @include hmargin-left(5px);
+    margin-left: $standard-margin / 2;
   }
 }
 
@@ -324,7 +328,7 @@ input.form-control[required]:not(:focus) {
 
   .navbar-profile-text {
     width: 7.5em;
-    @include hmargin-left(5px);
+    margin-left: $standard-margin / 2;
   }
 }
 
@@ -402,6 +406,25 @@ input.form-control[required]:not(:focus) {
 
   a.navbar-item-apps:hover, a.navbar-item-apps:focus {
     @include navbar-bg-position-dual(-800px);
+  }
+}
+
+////////////////////////////////
+// Cortex Breadcrumb Bar
+
+div.breadcrumb-container {
+  width: 100%;
+  background: #f5f5f5;
+
+  .breadcrumb {
+    font: 13px $humanist;
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: 0;
+  }
+
+  .breadcrumb > li + li:before {
+    content: "\00a0\00BB";
   }
 }
 

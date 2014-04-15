@@ -31,7 +31,7 @@ module.config(function ($stateProvider) {
             url: '/admin',
             templateUrl: 'views/admin/admin.tpl.html',
             data: {
-              displayName: false
+              displayName: 'Home'
             }
         })
 
@@ -42,7 +42,7 @@ module.config(function ($stateProvider) {
             abstract: true,
             template: '<div class="admin-media" ui-view></div>',
             data: {
-              displayName: 'Media'
+              displayName: 'Media Library'
             }
         })
 
@@ -51,7 +51,7 @@ module.config(function ($stateProvider) {
             templateUrl: 'views/admin/media/new.tpl.html',
             controller: 'MediaNewCtrl',
             data: {
-              displayName: 'New'
+              displayName: 'Add Media'
             }
         })
 
@@ -60,7 +60,7 @@ module.config(function ($stateProvider) {
             templateUrl: 'views/admin/media/edit.tpl.html',
             controller: 'MediaEditCtrl',
             data: {
-              displayName: 'Edit'
+              displayName: 'Edit Media'
             }
         })
 
@@ -114,7 +114,7 @@ module.config(function ($stateProvider) {
                 }
             },
             data: {
-              displayName: 'New'
+              displayName: 'New Post'
             }
         })
 
@@ -131,7 +131,7 @@ module.config(function ($stateProvider) {
                 }
             },
             data: {
-              displayName: 'Edit'
+              displayName: 'Edit Post'
             }
         })
 
@@ -287,7 +287,7 @@ module.config(function ($stateProvider) {
                 }
             },
             data: {
-              displayName: false
+              displayName: 'Tenant Management'
             }
         })
 
@@ -305,7 +305,7 @@ module.config(function ($stateProvider) {
             templateUrl: 'views/admin/tenants/edit.tpl.html',
             controller: 'EditTenantsCtrl',
             data: {
-              displayName: false
+              displayName: 'Edit Tenant'
             }
         })
 
@@ -314,7 +314,7 @@ module.config(function ($stateProvider) {
             templateUrl: 'views/admin/tenants/edit.tpl.html',
             controller: 'EditTenantsCtrl',
             data: {
-              displayName: false
+              displayName: 'Add Tenant'
             }
         })
 
@@ -354,7 +354,7 @@ module.config(function ($stateProvider) {
             url: '/products',
             template: '<div class="container">Here ly thy beast, Products</div>',
             data: {
-              displayName: false
+              displayName: 'Apps/Products'
             }
         })
 
@@ -364,7 +364,7 @@ module.config(function ($stateProvider) {
             url: '/permissions',
             template: '<div class="container">Here ly thy beast, Permissions</div>',
             data: {
-              displayName: false
+              displayName: 'Roles/Permissions'
             }
         });
 });
