@@ -68,6 +68,7 @@ module.exports = {
       'vendor/angular-bootstrap/ui-bootstrap-tpls.js',
       'vendor/angular-ui-router/release/angular-ui-router.js',
       'vendor/angular-ui-utils/modules/route/route.js',
+      'vendor/angular-breadcrumb/dist/angular-breadcrumb.js',
       'vendor/angular-animate/angular-animate.js',
       'vendor/underscore/underscore.js',
       'vendor/angular-underscore/angular-underscore.js',

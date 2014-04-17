@@ -31,7 +31,7 @@ module.config(function ($stateProvider) {
             url: '/admin',
             templateUrl: 'views/admin/admin.tpl.html',
             data: {
-              displayName: 'Home'
+              ncyBreadcrumbLabel: 'Home'
             }
         })
 
@@ -42,7 +42,7 @@ module.config(function ($stateProvider) {
             abstract: true,
             template: '<div class="admin-media" ui-view></div>',
             data: {
-              displayName: 'Media Library'
+              ncyBreadcrumbLabel: 'Media Library'
             }
         })
 
@@ -51,7 +51,7 @@ module.config(function ($stateProvider) {
             templateUrl: 'views/admin/media/new.tpl.html',
             controller: 'MediaNewCtrl',
             data: {
-              displayName: 'Add Media'
+              ncyBreadcrumbLabel: 'Add Media'
             }
         })
 
@@ -60,7 +60,7 @@ module.config(function ($stateProvider) {
             templateUrl: 'views/admin/media/edit.tpl.html',
             controller: 'MediaEditCtrl',
             data: {
-              displayName: 'Edit Media'
+              ncyBreadcrumbLabel: 'Edit Media'
             }
         })
 
@@ -69,7 +69,7 @@ module.config(function ($stateProvider) {
             abstract: true,
             templateUrl: 'views/admin/media/manage.tpl.html',
             data: {
-              displayName: false
+              ncyBreadcrumbLabel: false
             }
         })
 
@@ -86,7 +86,7 @@ module.config(function ($stateProvider) {
                 }
             },
             data: {
-              displayName: false
+              ncyBreadcrumbLabel: false
             }
         })
 
@@ -97,7 +97,7 @@ module.config(function ($stateProvider) {
             abstract: true,
             template: '<div class="admin-posts" ui-view></div>',
             data: {
-              displayName: 'Posts'
+              ncyBreadcrumbLabel: 'Posts'
             }
         })
 
@@ -114,7 +114,7 @@ module.config(function ($stateProvider) {
                 }
             },
             data: {
-              displayName: 'New Post'
+              ncyBreadcrumbLabel: 'New Post'
             }
         })
 
@@ -131,7 +131,7 @@ module.config(function ($stateProvider) {
                 }
             },
             data: {
-              displayName: 'Edit Post'
+              ncyBreadcrumbLabel: 'Edit Post'
             }
         })
 
@@ -144,7 +144,7 @@ module.config(function ($stateProvider) {
             templateUrl: 'views/admin/posts/popup.tpl.html',
             controller: 'PostsPopupCtrl',
             data: {
-              displayName: false
+              ncyBreadcrumbLabel: false
             }
         })
 
@@ -153,7 +153,7 @@ module.config(function ($stateProvider) {
             templateUrl: 'views/admin/media/new.tpl.html',
             controller: 'MediaNewCtrl',
             data: {
-              displayName: false
+              ncyBreadcrumbLabel: false
             }
         })
 
@@ -162,7 +162,7 @@ module.config(function ($stateProvider) {
             templateUrl: 'views/admin/media/edit.tpl.html',
             controller: 'MediaEditCtrl',
             data: {
-              displayName: false
+              ncyBreadcrumbLabel: false
             }
         })
 
@@ -171,7 +171,7 @@ module.config(function ($stateProvider) {
             abstract: true,
             templateUrl: 'views/admin/media/manage.tpl.html',
             data: {
-              displayName: false
+              ncyBreadcrumbLabel: false
             }
         })
 
@@ -188,7 +188,7 @@ module.config(function ($stateProvider) {
                 }
             },
             data: {
-              displayName: false
+              ncyBreadcrumbLabel: false
             }
         })
 
@@ -198,7 +198,7 @@ module.config(function ($stateProvider) {
             templateUrl: 'views/admin/posts/popup.tpl.html',
             controller: 'PostsPopupCtrl',
             data: {
-              displayName: false
+              ncyBreadcrumbLabel: false
             }
         })
 
@@ -207,7 +207,7 @@ module.config(function ($stateProvider) {
             templateUrl: 'views/admin/media/new.tpl.html',
             controller: 'MediaNewCtrl',
             data: {
-              displayName: false
+              ncyBreadcrumbLabel: false
             }
         })
 
@@ -216,7 +216,7 @@ module.config(function ($stateProvider) {
             templateUrl: 'views/admin/media/edit.tpl.html',
             controller: 'MediaEditCtrl',
             data: {
-              displayName: false
+              ncyBreadcrumbLabel: false
             }
         })
 
@@ -225,7 +225,7 @@ module.config(function ($stateProvider) {
             abstract: true,
             templateUrl: 'views/admin/media/manage.tpl.html',
             data: {
-              displayName: false
+              ncyBreadcrumbLabel: false
             }
         })
 
@@ -242,7 +242,7 @@ module.config(function ($stateProvider) {
                 }
             },
             data: {
-              displayName: false
+              ncyBreadcrumbLabel: false
             }
         })
 

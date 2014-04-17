@@ -9,13 +9,12 @@ var module = angular.module('cortex', [
     'ui.router.state',
     'angular-flash.service',
     'angular-flash.flash-alert-directive',
+    'ncy-angular-breadcrumb',
 
     // Cortex
     'cortex.states',
     'cortex.services.auth',
-    'cortex.constants',
-
-    'cortex.directives.uiBreadcrumbs'
+    'cortex.constants'
 ]);
 
 module.config(function ($urlRouterProvider, $httpProvider, flashProvider) {
