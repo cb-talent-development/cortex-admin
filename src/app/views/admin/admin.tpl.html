@@ -16,17 +16,17 @@
         <li ng-class="{ active: $state.includes('admin.permissions') }"><a class="navbar-item navbar-item-permissions" ui-sref="admin.permissions">Roles/Permissions</a></li>
         <li ng-class="{ active: $state.includes('admin.posts') }"><a class="navbar-item navbar-item-posts" ui-sref="admin.posts.manage.components">Posts</a></li>
         <li ng-class="{ active: $state.includes('admin.products') }"><a class="navbar-item navbar-item-apps" ui-sref="admin.products">Apps/Products</a></li>
-        <li class="visible-xs"><a class="navbar-item" href="#">My Profile</a></li>
-        <li class="visible-xs"><a class="navbar-item" ng-click="logout()">Log Out</a></li>
+        <li class="visible-sm visible-xs"><a class="navbar-item" href="#">My Profile</a></li>
+        <li class="visible-sm visible-xs"><a class="navbar-item" ng-click="logout()">Log Out</a></li>
       </ul>
 
-      <div class="hidden-xs profile-search pull-right">
-        <div class="navbar-profile-box clearfix">
-          <div class="navbar-profile-avatar pull-left">
+      <div class="profile-search">
+        <div class="navbar-profile-box">
+          <div class="navbar-profile-avatar">
             <img src="assets/admin/navbar-profile.jpg" width="40" height="40" alt="">
           </div>
 
-          <div class="navbar-profile-text pull-left">
+          <div class="navbar-profile-text">
             <strong>{{ currentUser.firstname }}</strong><br>
             <span class="smaller">
               <a href="#">My Profile</a> &bull; <a ng-click="logout()">Log Out</a>
@@ -34,7 +34,7 @@
           </div>
         </div>
 
-        <div class="navbar-form clearfix">
+        <div class="navbar-form">
           <div class="input-group input-group-sm">
             <form role="search">
               <input type="text" class="form-control input-sm form-search" placeholder="Search Cortex"><span class="input-group-btn"><button type="submit" class="btn btn-xs btn-search"><i class="fa fa-search"></i></button></span>
