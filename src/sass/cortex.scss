@@ -1,46 +1,8 @@
 ////////////////////////////////
-// Mixins (Should be moved to separate file)
-
-@mixin placeholder {
-  &.placeholder { @content; }
-  &:-moz-placeholder { @content; }
-  &::-moz-placeholder { @content; }
-  &::-webkit-input-placeholder { @content; }
-  &:-ms-input-placeholder { @content; }
-}
-
-@mixin navbar-bg-position($vertical-pos) {
-  background-position: center $vertical-pos;
-}
-
-@mixin navbar-bg-position-dual($vertical-pos) {
-  background-position: center $vertical-pos, center bottom;
-}
-
-@mixin hmargin-left($margin) {
-  margin-left: $margin;
-}
-
-@mixin hmargin-right($margin) {
-  margin-right: $margin;
-}
-
-@mixin vmargin-top($margin) {
-  margin-top: $margin;
-}
-
-@mixin vmargin-bot($margin) {
-  margin-bottom: $margin;
-}
-
-////////////////////////////////
 // Container
 
-// Wow, people have screens *much* larger than 1200px
-@media (min-width: 1400px) {
-  .container.content {
-    width: 1400px;
-  }
+.view {
+  @include make-md-column(12, 0);
 }
 
 ////////////////////////////////
@@ -60,31 +22,30 @@
 
 ////////////////////////////////
 // Margins
-
 // Keeping the hard-defined margins until refactoring is complete
 
 .hmargin-left-small {
-  margin-left: 10px;
+  margin-left: $standard-margin;
 }
 
 .hmargin-right-small {
-  margin-right: 10px;
+  margin-right: $standard-margin;
 }
 
 .vmargin-top-small {
-  margin-top: 10px; 
+  margin-top: $standard-margin; 
 }
 
 .vmargin-top-large {
-  margin-top: 20px; 
+  margin-top: $standard-margin * 2; 
 }
 
 .vmargin-bottom-small {
-  margin-bottom: 10px;  
+  margin-bottom: $standard-margin;  
 }
 
 .vmargin-bottom-large {
-  margin-bottom: 20px;  
+  margin-bottom: $standard-margin * 2;
 }
 
 ////////////////////////////////
@@ -93,21 +54,21 @@
 .hr-below, .heading-decorative {
   padding-bottom: $standard-margin / 2;
   margin-bottom: $standard-margin;
-  border-bottom: 1px solid #f47937;
+  border-bottom: $standard-border;
 }
 
 ////////////////////////////////
 // Bootstrap Restyling/Overrides
 
 header div.container {
-  @media (min-width: 768px) and (max-width: 991px) {
+  @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
     width: 100%;
   }
 }
 
 .container {
   .btn{
-    border: 1px solid #f47937;
+    border: $standard-border;
     background: white;
     color: black;
   }
@@ -123,12 +84,13 @@ header div.container {
   }
 
   .navbar-collapse {
-    @media (max-width: 768px) {
+    @media (max-width: $screen-md-min) {
       box-shadow: none;
     }
   }
 
   .navbar-form {
+    @extend .clearfix;
     margin: 5px 0 0.625em 0;
     padding: 0;
 
@@ -142,24 +104,31 @@ header div.container {
   }
 
   .pagination {
-    @include vmargin-top(0);
+    margin-top: 0;
   }
 }
 
 legend {
   font-size: 18px;
   font-weight: 500;
-  border-bottom: 1px solid #f47937;
-  padding-top: 10px;
-  @include vmargin-bot(10px);
+  @extend .heading-decorative;
+  margin-top: $standard-margin;
+  padding-bottom: 0;
 }
 
 dl.dl-horizontal {
-  @include vmargin-bot(10px);
+  margin-bottom: $standard-margin;
 }
 
 ////////////////////////////////
 // Alerts
+
+.alert-box {
+  @include make-xs-column(12);
+  @include make-md-column-offset(3);
+  @include make-md-column(6);
+  margin-top: $standard-margin * 2;
+}
 
 // Fix message flash transition
 .alert-flash:not(.in) {
@@ -172,20 +141,20 @@ dl.dl-horizontal {
 
 .filter-group {
   button{
-    @include vmargin-top(10px);
-    @include vmargin-bot(10px);
+    margin-top: $standard-margin;
+    margin-bottom: $standard-margin;
   }
 
   legend {
     padding-bottom: 3px;
     @extend .small;
     @extend .text-muted;
-    @include vmargin-bot(10px);
+    margin-bottom: $standard-margin;
   }
 
   .input-group button {
-    @include vmargin-top(0);
-    @include vmargin-bot(0);
+    margin-top: 0;
+    margin-bottom: 0;
   }
 
   label {
@@ -231,7 +200,7 @@ input.form-control[required]:not(:focus) {
   padding: 1em;
   border: 1px dashed #f47937;
   border-radius: 5px;
-  @include vmargin-top(10px);
+  margin-top: $standard-margin;
 }
 
 ////////////////////////////////
@@ -257,23 +226,11 @@ input.form-control[required]:not(:focus) {
 }
 
 ////////////////////////////////
-// Posts Index Table
-
-.posts-table th{
-  cursor: default;
-  background: white;
-}
-
-.posts-table thead tr:hover {
-  color: black;
-}
-
-.posts-table tbody tr:hover {
-  @extend .btn:hover;
-}
-
-////////////////////////////////
 // Cortex Navbar
+
+.navbar { 
+  margin-bottom: 0;
+}
 
 .nav li a { 
   padding: 10px;
@@ -294,21 +251,24 @@ input.form-control[required]:not(:focus) {
   background: url(../assets/admin/header-sprites.png) no-repeat, url(../assets/admin/header-active.png) repeat-x;
   padding-top: 5.35em;
   padding-bottom: 0.75em;
-  @media (max-width: 767px) {
+  @media (max-width: $screen-sm-max) {
       background: none;
       padding: 0.5em 0.5em 0.5em 2em;
   }
 }
 
 .profile-search {
-  width: 12.5em;
+  @extend .hidden-xs;
+  @extend .hidden-sm;
+  @extend .pull-right;
 
-  @media (max-width: 991px) {
-    @include hmargin-left(5px);
+  @media (max-width: $screen-md-min) {
+    margin-left: $standard-margin / 2;
   }
 }
 
 .navbar-profile-box {
+  @extend .clearfix;
   width: 11.6em;
   padding: .31em;
   margin-top: 0.625em;
@@ -318,13 +278,15 @@ input.form-control[required]:not(:focus) {
   @include text-overflow();
 
   .navbar-profile-avatar {
+    @extend .pull-left;
     width: 40px;
     height: 40px;
   }
 
   .navbar-profile-text {
+    margin-left: $standard-margin / 2;
     width: 7.5em;
-    @include hmargin-left(5px);
+    overflow: hidden;
   }
 }
 
@@ -343,14 +305,14 @@ input.form-control[required]:not(:focus) {
   }
 
   a:hover {
-    @media (max-width: 767px) {
+    @media (max-width: $screen-sm-max) {
       color: #f47937;
     }
   }
 
   li.active{
     background: url(../assets/admin/header-active.png) center bottom repeat-x;
-    @media (max-width: 767px) {
+    @media (max-width: $screen-sm-max) {
       background: #eee;
       font-weight: bold;
 
@@ -406,10 +368,29 @@ input.form-control[required]:not(:focus) {
 }
 
 ////////////////////////////////
+// Cortex Breadcrumb Bar
+
+div.breadcrumb-container {
+  width: 100%;
+  background: #f5f5f5;
+
+  .breadcrumb {
+    font: 13px $humanist;
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: 0;
+  }
+
+  .breadcrumb > li + li:before {
+    content: "\00a0\00BB";
+  }
+}
+
+////////////////////////////////
 // Modal Dialogs
-@media (min-width: 992px) {
+@media (min-width: $screen-md-min) {
   .modal-xl {
-    width: 1200px; } }
+    width: $screen-lg-min; } }
 
 ////////////////////////////////
 // AngularJS
