@@ -86,7 +86,7 @@ module.config(function ($stateProvider) {
                 }
             },
             data: {
-              ncyBreadcrumbLabel: false
+              ncyBreadcrumbLabel: 'Media Library'
             }
         })
 
@@ -97,7 +97,7 @@ module.config(function ($stateProvider) {
             abstract: true,
             template: '<div class="admin-posts" ui-view></div>',
             data: {
-              ncyBreadcrumbLabel: 'Posts'
+              ncyBreadcrumbLabel: false
             }
         })
 
@@ -253,7 +253,7 @@ module.config(function ($stateProvider) {
             abstract: true,
             templateUrl: 'views/admin/posts/manage.tpl.html',
             data: {
-              displayName: false
+              ncyBreadcrumbLabel: false
             }
         })
 
@@ -270,7 +270,7 @@ module.config(function ($stateProvider) {
                 }
             },
             data: {
-              displayName: false
+              ncyBreadcrumbLabel: 'Posts Library'
             }
         })
 
@@ -287,7 +287,7 @@ module.config(function ($stateProvider) {
                 }
             },
             data: {
-              displayName: 'Tenant Management'
+              ncyBreadcrumbLabel: false
             }
         })
 
@@ -296,7 +296,7 @@ module.config(function ($stateProvider) {
             template: '<ui-view/>',
             abstract: true,
             data: {
-              displayName: false
+              ncyBreadcrumbLabel: false
             }
         })
 
@@ -305,7 +305,7 @@ module.config(function ($stateProvider) {
             templateUrl: 'views/admin/tenants/edit.tpl.html',
             controller: 'EditTenantsCtrl',
             data: {
-              displayName: 'Edit Tenant'
+              ncyBreadcrumbLabel: 'Edit Tenant'
             }
         })
 
@@ -314,7 +314,7 @@ module.config(function ($stateProvider) {
             templateUrl: 'views/admin/tenants/edit.tpl.html',
             controller: 'EditTenantsCtrl',
             data: {
-              displayName: 'Add Tenant'
+              ncyBreadcrumbLabel: 'Add Tenant'
             }
         })
 
@@ -323,7 +323,7 @@ module.config(function ($stateProvider) {
             templateUrl: 'views/admin/organizations/manage.tpl.html',
             controller: 'OrganizationsManageCtrl',
             data: {
-              displayName: false
+              ncyBreadcrumbLabel: 'Tenant Management'
             }
         })
 
@@ -344,7 +344,7 @@ module.config(function ($stateProvider) {
                 }
             },
             data: {
-              displayName: false
+              ncyBreadcrumbLabel: false
             }
         })
 
@@ -354,7 +354,7 @@ module.config(function ($stateProvider) {
             url: '/products',
             template: '<div class="container">Here ly thy beast, Products</div>',
             data: {
-              displayName: 'Apps/Products'
+              ncyBreadcrumbLabel: 'Apps/Products'
             }
         })
 
@@ -364,7 +364,7 @@ module.config(function ($stateProvider) {
             url: '/permissions',
             template: '<div class="container">Here ly thy beast, Permissions</div>',
             data: {
-              displayName: 'Roles/Permissions'
+              ncyBreadcrumbLabel: 'Roles/Permissions'
             }
         });
 });
