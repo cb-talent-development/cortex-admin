@@ -1,7 +1,5 @@
-<div class="container">
-	<h3 ng-if="!$state.includes('admin.posts')" class="hr-below">Media Library</h3>
+<h3 ng-if="!$state.includes('admin.posts')" class="heading-decorative">Media Library</h3>
 
-    <div ui-view="media-filters" class="col-md-2"></div>
+<div ui-view="media-filters" class="media-filters"></div>
 
-    <div ui-view="media-grid" class="col-md-10"></div>
-</div>
+<div ui-view="media-grid" class="media-grid"></div>
