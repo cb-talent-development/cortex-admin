@@ -20,7 +20,7 @@ var module = angular.module('cortex.states', [
 module.config(function ($stateProvider, $urlRouterProvider) {
 
     // Catch /admin/media link from breadcrumb
-    //$urlRouterProvider.when('/admin/media', '/admin/media///');
+    $urlRouterProvider.when('/admin/media', '/admin/media///');
 
     $stateProvider
         .state('login', {
