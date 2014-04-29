@@ -17,7 +17,11 @@ var module = angular.module('cortex.states', [
     'cortex.controllers.admin.tenants.manage'
 ]);
 
-module.config(function ($stateProvider) {
+module.config(function ($stateProvider, $urlRouterProvider) {
+
+    // Catch /admin/media link from breadcrumb
+    //$urlRouterProvider.when('/admin/media', '/admin/media///');
+
     $stateProvider
         .state('login', {
             url: '/login',
@@ -42,7 +46,8 @@ module.config(function ($stateProvider) {
             abstract: true,
             template: '<div class="admin-media" ui-view></div>',
             data: {
-              ncyBreadcrumbLabel: 'Media Library'
+              ncyBreadcrumbLabel: 'Media',
+              ncyBreadcrumbLink: '/admin/media///'
             }
         })
 
@@ -86,7 +91,7 @@ module.config(function ($stateProvider) {
                 }
             },
             data: {
-              ncyBreadcrumbLabel: 'Media Library'
+              ncyBreadcrumbLabel: false
             }
         })
 
@@ -97,7 +102,7 @@ module.config(function ($stateProvider) {
             abstract: true,
             template: '<div class="admin-posts" ui-view></div>',
             data: {
-              ncyBreadcrumbLabel: false
+              ncyBreadcrumbLabel: 'Posts'
             }
         })
 
@@ -258,7 +263,7 @@ module.config(function ($stateProvider) {
         })
 
         .state('admin.posts.manage.components', {
-            url: '/',
+            url: '',
             views: {
                 'posts-grid': {
                   templateUrl: 'views/admin/posts/grid.tpl.html',
@@ -270,7 +275,7 @@ module.config(function ($stateProvider) {
                 }
             },
             data: {
-              ncyBreadcrumbLabel: 'Posts Library'
+              ncyBreadcrumbLabel: false
             }
         })
 
@@ -287,7 +292,7 @@ module.config(function ($stateProvider) {
                 }
             },
             data: {
-              ncyBreadcrumbLabel: false
+              ncyBreadcrumbLabel: 'Tenants'
             }
         })
 
@@ -323,7 +328,7 @@ module.config(function ($stateProvider) {
             templateUrl: 'views/admin/organizations/manage.tpl.html',
             controller: 'OrganizationsManageCtrl',
             data: {
-              ncyBreadcrumbLabel: 'Tenant Management'
+              ncyBreadcrumbLabel: false
             }
         })
 

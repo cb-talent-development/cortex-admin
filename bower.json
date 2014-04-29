@@ -11,7 +11,7 @@
     "angular-date-time-input": "latest",
     "angular-ui-router": "0.2.7",
     "angular-ui-utils": "0.1.1",
-    "angular-breadcrumb": "git@github.com:ncuillery/angular-breadcrumb.git#master",
+    "angular-breadcrumb": "cb-talent-development/angular-breadcrumb#fe8fff5cf775f85b297c7b332b1c9c6fcad85507",
     "angular-underscore": "*",
     "underscore": "1.5.2",
     "jquery": "~1",
@@ -28,6 +28,7 @@
   },
   "resolutions": {
     "angular": "1.2.15",
-    "jquery": "~1"
+    "jquery": "~1",
+    "angular-ui-router": "~0.2.10"
   }
 }
