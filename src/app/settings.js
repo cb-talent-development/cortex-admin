@@ -28,44 +28,10 @@ var development = {
     'view:media', 'modify:media'
   ],
   apiBaseUrl: 'http://dev.api.cbcortex.com/api/v1',
-  apiClientId: 'cortex-admin-development',
-  paging: {
-      defaultPerPage: 10
-  }
-};
-
-var staging = {
-  environmentName: 'Staging',
-  oauthUrl: 'http://stg.api.cbcortex.com/oauth',
-  oauthScopes: [
-    'view:profile', 'modify:profile',
-    'view:tenants', 'modify:tenants',
-    'view:users', 'modify:users',
-    'view:posts', 'modify:posts',
-    'view:media', 'modify:media'
-  ],
-  apiBaseUrl: 'http://stg.api.cbcortex.com/api/v1',
   apiClientId: 'c85f7f5ce7b44a67bf36b6faadffda38d2dc16bb7057590031c92205e082d660',
   paging: {
       defaultPerPage: 10
   }
 };
 
-var production = {
-  environmentName: 'Production',
-  oauthUrl: 'http://api.cbcortex.com/oauth',
-  oauthScopes: [
-    'view:profile', 'modify:profile',
-    'view:tenants', 'modify:tenants',
-    'view:users', 'modify:users',
-    'view:posts', 'modify:posts',
-    'view:media', 'modify:media'
-  ],
-  apiBaseUrl: 'http://api.cbcortex.com/api/v1',
-  apiClientId: 'cortex-admin',
-  paging: {
-      defaultPerPage: 10
-  }
-};
-
-module.constant('settings', staging);
+module.constant('settings', development);
