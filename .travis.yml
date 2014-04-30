@@ -1,8 +1,16 @@
 language: node_js
 node_js:
   - "0.10"
-before_install: npm install -g bower grunt-cli karma
-install: npm install && bower install && bundle install
-before_script: grunt build
-after_script: grunt ftp-deploy
+rvm:
+  - 2.1.1
+before_install:
+  - travis_retry npm install -g bower grunt-cli karma
+install:
+  - travis_retry npm install
+  - travis_retry bower install
+  - travis_retry bundle install
+before_script:
+  - grunt build
+after_script:
+  - grunt ftp-deploy
 
