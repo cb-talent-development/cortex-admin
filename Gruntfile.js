@@ -42,17 +42,17 @@ module.exports = function ( grunt ) {
           authKey: 'key1'
         },
         src: 'build',
-        dest: 'admin',
+        dest: '',
         exclusions: ['path/to/source/folder/**/.DS_Store', 'path/to/source/folder/**/Thumbs.db', 'dist/tmp']
       },
       compile: {
         auth: {
           host: 'cbcortex.com',
           port: 21,
-          authKey: 'key1'
+          authKey: 'key2'
         },
         src: 'bin',
-        dest: 'admin-bin',
+        dest: '',
         exclusions: ['path/to/source/folder/**/.DS_Store', 'path/to/source/folder/**/Thumbs.db', 'dist/tmp']
       }
     },

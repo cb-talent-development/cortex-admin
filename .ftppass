@@ -2,6 +2,10 @@
   "key1": {
     "username": "admin@cbcortex.com",
     "password": "muk223"
+  },
+  "key2": {
+    "username": "admin-bin@cbcortex.com",
+    "password": "muk223"
   }
 }
 
