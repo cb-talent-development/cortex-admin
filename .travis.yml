@@ -1,0 +1,8 @@
+language: node_js
+node_js:
+  - "0.10.26"
+before_install: npm install -g bower grunt-cli karma
+install: npm install && bower install
+before_script: grunt build
+after_script: grunt ftp-deploy
+

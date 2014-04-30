@@ -28,7 +28,6 @@
   },
   "resolutions": {
     "angular": "1.2.15",
-    "jquery": "~1",
-    "angular-ui-router": "~0.2.10"
+    "jquery": "~1"
   }
 }

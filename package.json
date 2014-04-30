@@ -36,5 +36,8 @@
     "karma-firefox-launcher": "~0.1",
     "karma-chrome-launcher": "~0.1"
   },
-  "engine": "node >= 0.10.26"
+  "engine": "node >= 0.10.26",
+  "scripts": {
+    "test": "grunt karma"
+  }
 }
