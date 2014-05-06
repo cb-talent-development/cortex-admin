@@ -37,22 +37,22 @@ module.exports = function ( grunt ) {
     'ftp-deploy': {
       build: {
         auth: {
-          host: 'whump.net',
+          host: 'cbcortex.com',
           port: 21,
           authKey: 'key1'
         },
         src: 'build',
-        dest: 'cb/cortex-admin',
+        dest: '',
         exclusions: ['path/to/source/folder/**/.DS_Store', 'path/to/source/folder/**/Thumbs.db', 'dist/tmp']
       },
       compile: {
         auth: {
-          host: 'whump.net',
+          host: 'cbcortex.com',
           port: 21,
-          authKey: 'key1'
+          authKey: 'key2'
         },
         src: 'bin',
-        dest: 'cb/cortex-admin-bin',
+        dest: '',
         exclusions: ['path/to/source/folder/**/.DS_Store', 'path/to/source/folder/**/Thumbs.db', 'dist/tmp']
       }
     },

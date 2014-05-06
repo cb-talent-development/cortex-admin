@@ -1,0 +1,9 @@
+.media-file-details {
+  @include make-md-column(3);
+  @include make-md-column-push(9);
+}
+
+.media-edit-form {
+  @include make-md-column(9);
+  @include make-md-column-pull(3);
+}
