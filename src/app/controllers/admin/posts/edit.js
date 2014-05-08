@@ -1,7 +1,9 @@
 var module = angular.module('cortex.controllers.admin.posts.edit', [
     'ngCookies',
+    'ngTagsInput',
+    'ngResource',
     'ui.router.state',
-    'ui.bootstrap.dropdownToggle',
+    'ui.bootstrap.dropdown',
     'ui.bootstrap.buttons',
     'ui.bootstrap.datepicker',
     'ui.bootstrap.datetimepicker',
@@ -12,17 +14,20 @@ var module = angular.module('cortex.controllers.admin.posts.edit', [
     'cortex.services.auth',
     'cortex.resources.posts',
     'cortex.resources.categories',
+    'cortex.resources.tags',
     'cortex.filters',
     'cortex.util'
 ]);
 
-module.controller('PostsEditCtrl', function($scope, $state, $stateParams, $window, $timeout, $q, $filter, flash, Posts, post, categories, session, PostBodyEditorService) {
+module.controller('PostsEditCtrl', function($scope, $state, $stateParams, $window, $timeout, $q, $filter, flash, Posts, post, categories, session, $http, Tags, PostBodyEditorService) {
 
     $scope.data = {
         savePost: function() {
             // Find selected categories
             var selectedCategories = _.filter($scope.data.jobPhaseCategories, function(category) { return category.$selected; });
             $scope.data.post.category_ids = _.map(selectedCategories, function(category) { return category.id; });
+
+            $scope.data.post.tag_list = $scope.data.post.tag_list.map(function(tag) { return tag.name; });
 
             $scope.data.post.$save(function(post) {
                 flash.success = 'Saved "' + post.title + '"';
@@ -85,8 +90,13 @@ module.controller('PostsEditCtrl', function($scope, $state, $stateParams, $windo
         $scope.data.post.author = session.currentUser().fullname;
         $scope.data.post.copyright_owner = $scope.data.post.copyright_owner || "CareerBuilder, LLC";
         $scope.data.categories = categories;
+        $scope.data.post.tag_list = '';
     }
     initializePost();
+
+    $scope.loadTags = function(query) {
+      return $http.get('/api/v1/tags?query=' + query);
+    };
 
     // angular-bootstrap datetimepicker settings
     $scope.datetimepicker = {

@@ -79,6 +79,7 @@ module.exports = {
       'vendor/angular-redactor/angular-redactor.js',
       'vendor/angular-bootstrap-datetimepicker/src/js/datetimepicker.js',
       'vendor/angular-date-time-input/src/dateTimeInput.js',
+      'vendor/ng-tags-input/ng-tags-input.js',
 
       /**
       * Angular-file-upload would prefer this file be loaded in dynamically by its library.
@@ -100,7 +101,8 @@ module.exports = {
       'vendor/ng-table/ng-table.css',
       'vendor/font-awesome/css/font-awesome.css',
       'src/vendor/redactor/redactor.css',
-      'vendor/angular-bootstrap-datetimepicker/src/css/datetimepicker.css'
+      'vendor/angular-bootstrap-datetimepicker/src/css/datetimepicker.css',
+      'vendor/ng-tags-input/ng-tags-input.css'
     ],
     assets: [
       'vendor/bootstrap-sass-official/vendor/assets/fonts/bootstrap/*',
